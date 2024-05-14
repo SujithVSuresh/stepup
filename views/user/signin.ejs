@@ -1,0 +1,65 @@
+<%- include('./header') %>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <form method="post" id="signin-form" class="colorlib-form col-md-3" style="height: auto;">
+        <h2 class="text-center">SIGNIN</h2>
+      <div class="row">
+    
+    
+    
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="companyname">EMAIL</label>
+                <input type="email" id="email" class="form-control" placeholder="Company Name">
+          </div>
+       </div>
+    
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="companyname">PASSWORD</label>
+        <input type="password" id="password" class="form-control" placeholder="Company Name">
+    </div>
+    </div>
+    
+
+    <input type="submit" class="btn btn-dark">
+    
+    </div>
+    </form>
+
+    <a href="/auth/google">sign in with google</a>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    let signinForm = document.getElementById("signin-form")
+
+    signinForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        let email = document.getElementById("email")
+        let password = document.getElementById("password")
+
+        console.log(email, password, "Heyyy111")
+        
+        let data = {
+            email: email.value,
+            password: password.value
+        }
+
+
+        axios.post('/signin', data)
+            .then((response) => {
+                if(response.status == 200){
+                    window.location.href = "/"
+                }
+            })
+            .catch((error) => {
+                console.log("it is an error", error)
+            })
+    })
+</script>
+
+<%- include('./footer') %>

@@ -1,0 +1,193 @@
+<%- include('./header') %>
+
+
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:partials/_sidebar.html -->
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin">
+          <span class="menu-title">Dashboard</span>
+          <i class="mdi mdi-home menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/addProduct">
+          <span class="menu-title">Products</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/users">
+          <span class="menu-title">Users</span>
+          <i class="mdi menu-icon mdi-account-multiple"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/category">
+          <span class="menu-title">Categories</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Orders</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Coupon</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Banner</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      
+    </ul>
+  </nav>
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-description"> ADD PRODUCT </p>
+                <form class="forms-sample" id="product-form" action="" method="POST">
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Model</label>
+                    <input type="text" class="form-control" id="model" placeholder="model name">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Brand</label>
+                    <input type="text" class="form-control" id="brand" placeholder="brand">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Quantity</label>
+                    <input type="text" class="form-control" id="quantity" placeholder="quantity">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Size</label>
+                    <input type="text" class="form-control" id="size" placeholder="size">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Color</label>
+                    <input type="text" class="form-control" id="color" placeholder="color">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Gender</label>
+                    <input type="text" class="form-control" id="gender" placeholder="gender">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Price</label>
+                    <input type="text" class="form-control" id="price" placeholder="price">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Category</label>
+                    <input type="text" class="form-control" id="category" placeholder="category">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Occasion</label>
+                    <input type="text" class="form-control" id="occasion" placeholder="occasion">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Outer material</label>
+                    <input type="text" class="form-control" id="outer-material" placeholder="outer material">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Sole material</label>
+                    <input type="text" class="form-control" id="sole-material" placeholder="sole material">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputUsername1">Description</label>
+                    <input type="text" class="form-control" id="description" placeholder="write description">
+                  </div>
+
+
+                  <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                  <a href="/admin/products" class="btn btn-light">Cancel</a>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+    <!-- content-wrapper ends -->
+
+   
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    let productForm = document.getElementById("product-form")
+
+    productForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        let model = document.getElementById("model").value
+        let brand = document.getElementById("brand").value
+        let quantity = document.getElementById("quantity").value
+        let size = document.getElementById("size").value
+        let color = document.getElementById("color").value
+        let gender = document.getElementById("gender").value
+        let price = document.getElementById("price").value
+        let category = document.getElementById("category").value
+        let occasion = document.getElementById("occasion").value
+        let outerMaterial = document.getElementById("outer-material").value
+        let soleMaterial = document.getElementById("sole-material").value
+        let description = document.getElementById("description").value
+
+        
+        let data = {
+            model,
+            brand,
+            quantity,
+            size,
+            color,
+            gender,
+            price,
+            category,
+            occasion,
+            outerMaterial,
+            soleMaterial,
+            description
+        }
+
+        axios.post('/admin/addProduct', data)
+            .then((response) => {
+                if(response.status == 200){
+                    window.location.href = "/admin/dashboard"
+                }
+            })
+            .catch((error) => {
+                console.log("it is an error", error)
+            })
+    })
+</script>
+<%- include('./footer') %>

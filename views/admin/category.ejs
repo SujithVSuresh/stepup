@@ -1,0 +1,103 @@
+<%- include('./header') %>
+
+
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:partials/_sidebar.html -->
+  <nav class="sidebar sidebar-offcanvas" style="width: 15vw" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/dashboard">
+          <span class="menu-title">Dashboard</span>
+          <i class="mdi mdi-home menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/products">
+          <span class="menu-title">Products</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/users">
+          <span class="menu-title">Users</span>
+          <i class="mdi menu-icon mdi-account-multiple"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/category">
+          <span class="menu-title">Categories</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Orders</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Coupon</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Banner</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      
+    </ul>
+  </nav>
+  <!-- partial -->
+  <div class="main-panel" style="width: 85vw;">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title"> Categories</h3>
+        <a href="/admin/addCategory" class="add btn btn-gradient-primary font-weight-bold" id="add-task">Add Category</a> 
+      </div>
+
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                
+          
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Product</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Jacob</td>
+                      <td>Photoshop</td>
+                    </tr>
+   
+       
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+
+    </div>
+    <!-- content-wrapper ends -->
+
+   
+  </div>
+</div>
+
+<%- include('./footer') %>

@@ -1,0 +1,97 @@
+<%- include('./header') %>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <form method="post" id="otpForm" action="" class="colorlib-form col-md-3" style="height: auto;">
+        <h2 class="text-center">Please enter OTP send to sujith@gmail.com</h2>
+      <div class="row">
+    
+    
+    
+            <div class="col-md-12">
+                <div class="form-group">
+                <input type="text" id="otpVal" class="form-control" placeholder="Company Name">
+          </div>
+       </div>
+    
+
+    <input type="submit" class="btn btn-dark">
+    
+    </div>
+    <h5 class="text-center" id="otp-timer-container">Resend otp in <span id="otp-timer">30</span> Sec</h5>
+    <h5 class="text-center" id="otp-resend" style="display: none;">Didn't get the OTP? <span><a id="resend" href="">Resend</a></span></h5>
+    </form>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+
+    let otpTimer = document.getElementById("otp-timer")
+    let otpTimerContainer = document.getElementById("otp-timer-container")
+    let otpResend = document.getElementById("otp-resend")
+
+    let resend = document.getElementById("resend")
+
+    let otpForm = document.getElementById("otpForm")
+    let otpVal = document.getElementById("otpVal")
+    
+    function otpTimerFunction(){
+    let k = 30
+    function timerFunc(){
+        otpTimer.innerText = k
+        k--;
+        if(k < 0){
+            clearInterval(otpTimerHandler)
+            otpTimerContainer.style.display = 'none'
+            otpResend.style.display = 'block'
+        }
+    }
+
+    let otpTimerHandler = setInterval(() => {
+        timerFunc()
+    }, 1000)
+    }
+
+    otpTimerFunction()
+
+
+    resend.addEventListener("click", (event) => {
+        event.preventDefault()
+
+        axios.post('/signup/otp/email')
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log("it is an error", error)
+            })
+            
+            otpTimerFunction()
+
+            otpTimerContainer.style.display = 'block'
+            otpResend.style.display = 'none'     
+    })
+
+    
+    otpForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        axios.post('/signup/otp/verify', {otpVal: otpVal.value})
+            .then((response) => {
+                console.log(response)
+                if(response.status == 200){
+                    window.location.href = "/signin"
+                }
+            })
+            .catch((error) => {
+                console.log("it is an error", error)
+            })
+
+    })
+
+
+</script>
+
+<%- include('./footer') %>

@@ -1,0 +1,87 @@
+<%- include('./header') %>
+
+
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:partials/_sidebar.html -->
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin">
+          <span class="menu-title">Dashboard</span>
+          <i class="mdi mdi-home menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/products">
+          <span class="menu-title">Products</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/users">
+          <span class="menu-title">Users</span>
+          <i class="mdi menu-icon mdi-account-multiple"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/category">
+          <span class="menu-title">Categories</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Orders</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Coupon</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">Banner</span>
+          <i class="mdi mdi-contacts menu-icon"></i>
+        </a>
+      </li>
+
+      
+    </ul>
+  </nav>
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <p class="card-description"> ADD CATEGORY </p>
+                <form class="forms-sample" action="/admin/addCategory" method="POST">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="exampleInputUsername1" name="category" placeholder="Category">
+                  </div>
+                  <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                  <a href="/admin/category" class="btn btn-light">Cancel</a>
+                </form>
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+    <!-- content-wrapper ends -->
+
+   
+  </div>
+</div>
+
+<%- include('./footer') %>
