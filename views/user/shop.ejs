@@ -182,8 +182,8 @@
                     itemContainer.innerHTML += `
                     <div class="col-lg-4 mb-4 text-center">
 						<div class="product-entry border">
-							<a href="#" class="prod-img">
-								<img src="/static/user/images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+							<a href="/shop/${item._id}" class="prod-img">
+								<img src="/static/images/${item.images[0]}" class="img-fluid" alt="Free html5 bootstrap 4 template">
 							</a>
 							<div class="desc">
 								<h2><a href="/shop/${item._id}" >${item.modelName} ${item.category.categoryName} for ${item.gender}</a></h2>

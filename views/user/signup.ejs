@@ -1,11 +1,12 @@
 <%- include('./header') %>
 
-<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; padding-top: 100px; padding-bottom: 100px;">
 
 <form method="POST" id="signup-form" action="/signup" class="colorlib-form col-md-3">
-    <h2>SIGNUP</h2>
+    <p class="form-heading">SIGNUP</p>
   <div class="row">
-    <div class="row">
+
+    <div class="row" style="margin-left: 5px; margin-right: 5px;">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="fname">First Name</label>
@@ -18,30 +19,60 @@
                 <input type="text" id="lname" name="lname" class="form-control" placeholder="Your lastname">
            </div>
         </div>
+     
+        <span id="nameError" style="color: red; margin-left: 20px;"></span>
     </div>
+
 
         <div class="col-md-12">
             <div class="form-group">
                 <label for="companyname">EMAIL</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Company Name">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address">
+            <span id="emailError" style="color: red"></span>
       </div>
    </div>
 
    <div class="col-md-12">
     <div class="form-group">
         <label for="companyname">PHONE</label>
-    <input type="text" id="phone" name="phone" class="form-control" placeholder="Company Name">
+    <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone Number">
+    <span id="phoneError" style="color: red"></span>
 </div>
 </div>
 
 <div class="col-md-12">
     <div class="form-group">
         <label for="companyname">PASSWORD</label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="Company Name">
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+    <span id="passwordError" style="color: red"></span>
 </div>
 </div>
 
-<input type="submit" id="submit" class="form-control btn btn-primary">
+<div class="col-md-12">
+    <div class="form-group">
+        <label for="companyname">CONFIRM PASSWORD</label>
+    <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Confirm Password">
+    <span id="password2Error" style="color: red"></span>
+</div>
+</div>
+
+<input type="submit" class="form-button">
+
+<div class="col-md-12">
+    <a href="/signin" class="create-account-button">Already have an account?</a>
+</div>
+<div class="col-md-12">
+    <div class="separator">
+        <span>OR</span>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <a  href="/auth/google" type="button" class="google-signin-button">
+        <img src="/static/images/googlelogo.svg" alt="Google logo">
+        Sign up with Google
+    </a>
+</div>
 
 </div>
 </form>
@@ -56,18 +87,92 @@
         event.preventDefault()
 
 
-        let firstName = document.getElementById("fname")
-        let lastName = document.getElementById("lname")
-        let email = document.getElementById("email")
-        let phone = document.getElementById("phone")
-        let password = document.getElementById("password")
-        
+        let firstName = document.getElementById("fname").value
+        let lastName = document.getElementById("lname").value
+        let email = document.getElementById("email").value
+        let phone = document.getElementById("phone").value
+        let password = document.getElementById("password").value
+        let confirmPassword = document.getElementById("confirm-password").value
+
+        console.log(email, "jiioii")
+
+
+        let emailError = document.getElementById("emailError");
+    let passwordError = document.getElementById("passwordError");
+    let phoneError = document.getElementById("phoneError");
+    let nameError = document.getElementById("nameError");
+    let password2Error = document.getElementById("password2Error");
+    let isValid = true;
+
+
+        //Email validation
+        if (!email.trim()) {
+      emailError.textContent = "Email is required";
+      isValid = false;
+    } else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailError.textContent = "Please enter a valid email address";
+      isValid = false;
+    } else if (/\s/.test(email) && /^\s|\s$/.test(email)) {
+      emailError.textContent = "Email cannot contain whitespace";
+      isValid = false;
+    } else {
+      emailError.textContent = "";
+    }
+
+
+        //Password validation
+        if (!password.trim()) {
+      passwordError.textContent = "Password is required";
+      isValid = false;
+    } else if (password && password.length < 8) {
+      passwordError.textContent = "Password must be at least 8 characters long";
+      isValid = false;
+    } else if (/\s/.test(password) && /^\s|\s$/.test(password)) {
+      passwordError.textContent = "Password cannot contain whitespace";
+      isValid = false;
+    } else {
+      passwordError.textContent = "";
+    }
+
+    //Password 2 validation
+    if (!confirmPassword.trim()) {
+      password2Error.textContent = "Password confirmation is required";
+      isValid = false;
+    } else if (password !== confirmPassword) {
+      password2Error.textContent = "Passwords do not match";
+    } else {
+      password2Error.textContent = "";
+    }
+
+    //Name validation
+    if (!firstName.trim() || !lastName.trim()) {
+      nameError.textContent = "First name & Last name is required";
+      isValid = false;
+    } else {
+      nameError.textContent = "";
+    }
+
+    //Phone validation
+    if (!phone.trim()) {
+      phoneError.textContent = "Phone number is required";
+      isValid = false;
+    } else if (
+      phone &&
+      !/^\(?([0-9]{3})\)?[- ]?([0-9]{3})[- ]?([0-9]{4})$/.test(phone)
+    ) {
+      phoneError.textContent = "Enter a valid phone number";
+    } else {
+      phoneError.textContent = "";
+    }
+
+
+    if (isValid) {
         let data = {
-            fname: firstName.value,
-            lname: lastName.value,
-            email: email.value,
-            phone: phone.value,
-            password: password.value
+            fname: firstName,
+            lname: lastName,
+            email: email,
+            phone: phone,
+            password: password
         }
 
 
@@ -80,6 +185,7 @@
             .catch((error) => {
                 console.log("it is an error", error)
             })
+        }
     })
 </script>
 <%- include('./footer') %>

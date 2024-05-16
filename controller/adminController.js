@@ -41,8 +41,9 @@ const products = async (req, res) => {
 const productData = async (req, res) => {
   if (req.method === "GET") {
       
-    const products = await Product.find({})
-
+    const products = await Product.find({}).populate('category');
+    
+    console.log("jjj", products)
     res.status(200).json({products: products})
   }
 
@@ -66,7 +67,8 @@ const addProduct = async (req, res) => {
       occasion,
       outerMaterial,
       soleMaterial,
-      description
+      description,
+      
   } = req.body;
 
   console.log(
@@ -81,8 +83,11 @@ const addProduct = async (req, res) => {
     occasion,
     outerMaterial,
     soleMaterial,
-    description
+    description,  
 )
+
+console.log("uuiu", req.files)
+const imagePaths = req.files.map(file => file.filename);
 
   const newProduct = new Product({
     modelName: model,
@@ -96,7 +101,8 @@ const addProduct = async (req, res) => {
     occasion:occasion,
     outerMaterial:outerMaterial,
     soleMaterial:soleMaterial,
-    description:description
+    description:description,
+    images: imagePaths
 })
 
 await newProduct.save()
@@ -147,21 +153,25 @@ const userStatus = async (req, res) => {
 
 
 const category = async (req,res) =>{
-    res.render('admin/category')
+
+  let categories = await Category.find({})
+
+  console.log(category)
+    res.render('admin/category', {categories: categories})
 }  
 
 
 const addCategory = async (req,res) => {
-  if (req.method === "GET") {
-    res.render('admin/addCategory')
-  }
-
   if (req.method === "POST") {
-    const { category } = req.body;
 
-    const newCategory = new Category({categoryName: category})
+
+    const { categoryValue } = req.body;
+
+    const newCategory = new Category({categoryName: categoryValue})
     await newCategory.save()
     console.log("CATEGORY SAVED")
+
+    res.status(200).json({categoryData: newCategory})
   }
 }   
 

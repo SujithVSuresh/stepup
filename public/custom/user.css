@@ -1,0 +1,134 @@
+
+
+.form-button {
+    background-color: #1DA1F2; /* Green background */
+    border: none; /* Remove default border */
+    color: white; /* White text */
+    padding: 10px 32px; /* Some padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline-block */
+    font-size: 16px; /* Set font size */
+    margin: 4px 20px; /* Some margin */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 12px; /* Rounded corners */
+    width: 100%; /* Set width to 100% */
+
+}
+
+
+.google-signin-button {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd; /* Light grey border */
+    color: #555; /* Dark grey text */
+    padding: 10px 15px; /* Some padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: flex; /* Flex display for aligning items */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    font-size: 16px; /* Set font size */
+    margin-top: 10px; /* Space above the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width button */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+.google-signin-button img {
+    width: 20px; /* Width of the Google logo */
+    height: 20px; /* Height of the Google logo */
+    margin-right: 10px; /* Space between logo and text */
+}
+
+.google-signin-button:hover {
+    background-color: #f7f7f7; /* Slightly darker background on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+}
+
+
+.form-heading {
+    font-size: 25px; /* Larger font size */
+    font-weight:lighter; /* Bold text */
+    color: #333; /* Dark grey color */
+    text-align: center; /* Center the heading */
+}
+
+
+.separator {
+    text-align: center; /* Center the separator text */
+    margin: 20px 0; /* Margin for spacing */
+    position: relative; /* Position relative for line positioning */
+}
+
+.separator span {
+    background: #ffffff; /* Background color for the span */
+    padding: 0 10px; /* Padding around the text */
+    position: relative; /* Position relative for z-index */
+    z-index: 1; /* Ensure text is above the lines */
+}
+
+.separator:before, .separator:after {
+    content: ''; /* Empty content for the lines */
+    display: block; /* Display as block element */
+    width: 100%; /* Full width lines */
+    height: 1px; /* Line height */
+    background: #ccc; /* Line color */
+    position: absolute; /* Absolute position */
+    top: 50%; /* Vertically center the lines */
+    z-index: 0; /* Ensure lines are below the text */
+}
+
+.separator:before {
+    left: 0; /* Position left line */
+}
+
+.separator:after {
+    right: 0; /* Position right line */
+}
+
+/* Create Account Button */
+.create-account-button {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #ddd; /* Light grey border */
+    color: #555; /* Dark grey text */
+    padding: 10px 15px; /* Some padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: flex; /* Flex display for aligning items */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    font-size: 16px; /* Set font size */
+    margin-top: 10px; /* Space above the button */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    width: 100%; /* Full width button */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+}
+
+
+
+.magnifier-lens{
+    position: absolute;   
+    /* top:0;
+    left:0;  */
+    width: 150px;
+    height: 100px;
+    background-color: #ff980030;
+    border: .1px solid var(--orange);
+}   
+
+ .product-details{
+    position: relative;
+}
+
+.magnified-img img{
+    top:0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ff980030;
+}  
+
+
+

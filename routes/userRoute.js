@@ -14,7 +14,7 @@ router.get('/shop/items', userController.items)
 
 router.get('/shop/:productId', userController.productDetail)
 
-router.get('/shop/product/details', userController.fetchProductDetails)
+// router.get('/shop/product/details', userController.fetchProductDetails)
 
 router.get('/signin', userController.signin)
 

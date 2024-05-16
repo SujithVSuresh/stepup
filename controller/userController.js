@@ -143,20 +143,25 @@ const items = async (req, res) => {
 const productDetail = async (req, res) => {
     if(req.method === "GET"){
         let productId = req.params.productId
-        res.render("user/product-detail", {productId: productId})
-    }
-}
-
-const fetchProductDetails = async (req, res) => {
-        let productId = req.query.pid
-        console.log(productId);
 
         let productDetails = await Product.findOne({_id: productId}).populate('category')
 
-        console.log(productDetails)
+        console.log("abhii", productDetails)
 
-        res.status(200).json({productDetails: productDetails})
+        res.render("user/product-detail", {productDetails: productDetails})
+    }
 }
+
+// const fetchProductDetails = async (req, res) => {
+//         let productId = req.query.pid
+//         console.log(productId);
+
+//         let productDetails = await Product.findOne({_id: productId}).populate('category')
+
+//         console.log(productDetails)
+
+//         res.status(200).json({productDetails: productDetails})
+// }
 
 module.exports = {
     home,
@@ -168,5 +173,5 @@ module.exports = {
     shop,
     items,
     productDetail,
-    fetchProductDetails
+    // fetchProductDetails
 }

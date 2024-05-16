@@ -1,103 +1,241 @@
 <%- include('./header') %>
 
-
 <div class="container-fluid page-body-wrapper">
   <!-- partial:partials/_sidebar.html -->
-  <nav class="sidebar sidebar-offcanvas" style="width: 15vw" id="sidebar">
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
       <li class="nav-item">
         <a class="nav-link" href="/admin/dashboard">
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">DASHBOARD</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/products">
-          <span class="menu-title">Products</span>
+          <span class="menu-title">PRODUCTS</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/users">
-          <span class="menu-title">Users</span>
+          <span class="menu-title">USERS</span>
           <i class="mdi menu-icon mdi-account-multiple"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/category">
-          <span class="menu-title">Categories</span>
+          <span class="menu-title">CATEGORIES</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Orders</span>
+          <span class="menu-title">ORDERS</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Coupon</span>
+          <span class="menu-title">COUPON</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Banner</span>
+          <span class="menu-title">BANNER</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
-
-      
     </ul>
   </nav>
   <!-- partial -->
-  <div class="main-panel" style="width: 85vw;">
+  <div class="main-panel" style="width: 85vw">
     <div class="content-wrapper">
       <div class="page-header">
-        <h3 class="page-title"> Categories</h3>
-        <a href="/admin/addCategory" class="add btn btn-gradient-primary font-weight-bold" id="add-task">Add Category</a> 
+        <h3 class="page-title">
+          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i
+              class="mdi menu-icon mdi-shoe-formal"
+              style="font-size: 24px"
+            ></i>
+          </span>
+          CATEGORIES
+        </h3>
+        <nav aria-label="breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+              <!-- <a href="/admin/addCategory" class="add btn btn-gradient-primary font-weight-bold" id="add-task">Add Categpry</a>  -->
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#addCategoryModal"
+              >
+                Add Category
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
 
-        <div class="col-lg-6 grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-                
-          
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>User</th>
-                      <th>Product</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Jacob</td>
-                      <td>Photoshop</td>
-                    </tr>
-   
-       
-                  </tbody>
-                </table>
+      <div class="row" id="category-card-container">
+        <% categories.forEach(function(category) { %>
+        <div class="col-md-3 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5
+                class="card-title"
+                style="margin-bottom: 20px; text-transform: uppercase"
+              >
+                <%= category.categoryName %>
+              </h5>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                "
+              >
+                <button type="button" class="btn btn-info btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
               </div>
             </div>
           </div>
+        </div>
+        <% }); %>
+      </div>
+
+      <div
+        class="modal fade"
+        id="addCategoryModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="addCategoryModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-description">ADD CATEGORY</p>
+                  <form
+                    class="forms-sample"
+                    action=""
+                    id="category-form"
+                    method="POST"
+                  >
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="category-value"
+                        name="category"
+                        placeholder="Category"
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">
+                      Submit
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-light"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-
+      
     </div>
     <!-- content-wrapper ends -->
-
-   
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const categoryForm = document.getElementById("category-form");
+  const addModal = document.getElementById("addCategoryModal");
+
+  console.log(categoryForm, "jjiijj");
+
+  categoryForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(categoryForm);
+    const categoryValue = formData.get("category");
+
+    const modalBackdrop = document.querySelector(".modal-backdrop");
+    categoryForm.reset()
+
+    
+
+    axios
+      .post("/admin/addCategory", { categoryValue: categoryValue })
+      .then((response) => {
+
+        console.log(response.data, "kkkkkk")
+        if (response.status == 200) {
+
+        
+          addModal.classList.remove("show");
+          addModal.style.display = "none";
+
+          if (modalBackdrop) {
+            modalBackdrop.remove();
+          }
+
+          const newCardDiv = document.createElement('div');
+          newCardDiv.classList.add('col-md-3', 'mb-4');
+
+          newCardDiv.innerHTML = `
+    <div class="card" id="card123">
+        <div class="card-body">
+            <h5 class="card-title" style="margin-bottom: 20px; text-transform: uppercase;">
+                ${response.data.categoryData.categoryName}
+            </h5>
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <button type="button" class="btn btn-info btn-sm">Edit</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+            </div>
+        </div>
+    </div>
+`;
+
+const cardContainer = document.getElementById('category-card-container');
+
+cardContainer.appendChild(newCardDiv);
+        }
+      })
+      .catch((error) => {
+        console.log("it is an error", error);
+      });
+  });
+</script>
 <%- include('./footer') %>

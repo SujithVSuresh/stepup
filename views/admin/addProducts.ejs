@@ -127,13 +127,21 @@
                     <input type="text" class="form-control" id="description" placeholder="write description">
                   </div>
 
+                  <div class="input-group">
+                    <label for="exampleInputUsername1">Upload Image</label>
+                    <input class="form-control form-control-sm" id="formFileSm" type="file" name="image" multiple>
+                    </div>
 
-                  <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+
+                  <input type="submit" class="btn btn-gradient-primary mr-2">Submit</input>
                   <a href="/admin/products" class="btn btn-light">Cancel</a>
                 </form>
+
+         
               </div>
             </div>
           </div>
+
 
 
     </div>
@@ -143,9 +151,11 @@
   </div>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    let productForm = document.getElementById("product-form")
+  const productForm = document.getElementById('product-form')
+   
 
     productForm.addEventListener('submit', (event) => {
         event.preventDefault()
@@ -162,24 +172,44 @@
         let outerMaterial = document.getElementById("outer-material").value
         let soleMaterial = document.getElementById("sole-material").value
         let description = document.getElementById("description").value
+        let image = document.getElementById('formFileSm');
 
-        
-        let data = {
-            model,
-            brand,
-            quantity,
-            size,
-            color,
-            gender,
-            price,
-            category,
-            occasion,
-            outerMaterial,
-            soleMaterial,
-            description
-        }
 
-        axios.post('/admin/addProduct', data)
+
+        const formData = new FormData()
+
+        formData.append('model', model)
+    formData.append('brand', brand)
+    formData.append('quantity', quantity)
+    formData.append('size', size)
+    formData.append('color', color)
+    formData.append('gender', gender)
+    formData.append('price', price)
+    formData.append('category', category)
+    formData.append('occasion', occasion)
+    formData.append('outerMaterial', outerMaterial)
+    formData.append('soleMaterial', soleMaterial)
+    formData.append('description', description)
+
+    for (let i = 0; i < image.files.length; i++) {
+      formData.append('images[]', image.files[i]); // 'images[]' allows multiple files with the same key
+    }
+        // let data = {
+        //     model,
+        //     brand,
+        //     quantity,
+        //     size,
+        //     color,
+        //     gender,
+        //     price,
+        //     category,
+        //     occasion,
+        //     outerMaterial,
+        //     soleMaterial,
+        //     description
+        // }
+
+        axios.post('/admin/addProduct', formData)
             .then((response) => {
                 if(response.status == 200){
                     window.location.href = "/admin/dashboard"

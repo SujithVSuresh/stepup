@@ -65,8 +65,7 @@ passport.use(new GoogleStrategy({
   callbackURL: '/auth/google/callback',
   passReqToCallback: true
 }, (req, accessToken, refreshToken, profile, done) => {
-  // User data from Google (e.g., profile ID, email, name)
-  console.log(profile);
+
 
   let manageAuth = async () => {
 
@@ -83,6 +82,13 @@ passport.use(new GoogleStrategy({
         });
         
         await newUser.save();
+
+        console.log("razik", newUser)
+
+        if(newUser){
+          req.session.userId = newUser._id;
+        }
+
         return done(null, newUser);
       }
       return done(null, user);

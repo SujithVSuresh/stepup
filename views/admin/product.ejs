@@ -7,49 +7,49 @@
     <ul class="nav">
       <li class="nav-item">
         <a class="nav-link" href="/admin/dashboard">
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">DASHBOARD</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/products">
-          <span class="menu-title">Products</span>
+          <span class="menu-title">PRODUCTS</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/users">
-          <span class="menu-title">Users</span>
+          <span class="menu-title">USERS</span>
           <i class="mdi menu-icon mdi-account-multiple"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/category">
-          <span class="menu-title">Categories</span>
+          <span class="menu-title">CATEGORIES</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Orders</span>
+          <span class="menu-title">ORDERS</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Coupon</span>
+          <span class="menu-title">COUPON</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Banner</span>
+          <span class="menu-title">BANNER</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
@@ -62,35 +62,47 @@
     <div class="content-wrapper">
 
       <div class="page-header">
-        <h3 class="page-title"> Products</h3>
-        <a href="/admin/addProduct" class="add btn btn-gradient-primary font-weight-bold" id="add-task">Add Products</a> 
+        <h3 class="page-title">
+          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i class="mdi menu-icon mdi-shoe-formal" style="font-size: 24px;"></i>
+          </span> PRODUCTS
+        </h3>
+        <nav aria-label="breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+              <a href="/admin/addProduct" class="add btn btn-gradient-primary font-weight-bold" id="add-task">Add Products</a> 
+            </li>
+          </ul>
+        </nav>
       </div>
 
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
      
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Model</th>
-                      <th>Brand</th>
-                      <!-- <th>Quantity</th>
-                      <th>Size</th>
-                      <th>Category</th>
-                      <th>Color</th>
-                      <th>Gender</th>
-                      <th>Price</th>
-                      <th>Occasion</th>
-                      <th>Outer material</th>
-                      <th>Sole material</th> -->
-                    </tr>
-                  </thead>
-                  <tbody id="product-table-container">
-        
-
-                  </tbody>
-                </table>
+                <div style="overflow-x: auto;">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>MODEL</th>
+                              <th>BRAND</th>
+                              <th>QUANTITY</th>
+                              <th>SIZE</th>
+                              <th>CATEGORY</th>
+                              <th>COLOR</th>
+                              <th>USER TYPE</th>
+                              <th>PRICE</th>
+                              <th>OUTER MATERIAL</th>
+                              <th>SOLE MATERIAL</th>
+                              <th></th>
+                              <th></th>
+                          </tr>
+                      </thead>
+                      <tbody id="product-table-container">
+                          <!-- Your table data goes here -->
+                      </tbody>
+                  </table>
+              </div>
               </div>
             </div>
           </div>
@@ -125,6 +137,16 @@
                         <tr>
                       <td>${product.modelName}</td>
                       <td>${product.brand}</td>
+                      <td>${product.quantity}</td>
+                      <td>${product.size}</td>
+                      <td>${product.category.categoryName}</td>
+                      <td>${product.color}</td>
+                      <td>${product.gender}</td>
+                      <td>${product.price}</td>
+                      <td>${product.outerMaterial}</td>
+                      <td>${product.soleMaterial}</td>
+                     <td><button data-user-id="" id="" type="button" class="btn btn-primary btn-sm statusBtn">Edit</button></td>
+                     <td><button data-user-id="" id="" type="button" class="btn btn-primary btn-sm statusBtn">Delete</button></td>
                   
                     </tr>
                         `;

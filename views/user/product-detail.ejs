@@ -14,14 +14,25 @@
 				</div>
 			</div>
 		</div>
-         <div id="id-container" style="display: none;" product-id="<%= productId %>"></div>
 
 		<div class="colorlib-product">
 			<div class="container">
 				<div class="row row-pb-lg product-detail-wrap">
 					<div class="col-sm-8">
 						<div class="owl-carousel">
-							<div class="item">
+							<% productDetails.images.forEach(function(url) { %>
+
+								<div class="item">
+									<div class="product-entry border">
+										<div class="prod-img product-image">
+											<img src="/static/images/<%= url %>" class="img-fluid" alt="Free html5 bootstrap 4 template">
+											<div class="magnifier-lens"></div>
+										</div>
+										
+									</div>
+								</div>
+								<% }); %>
+							<!-- <div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
 										<img src="/static/user/images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
@@ -43,28 +54,31 @@
 								</div>
 							</div>
 							<div class="item">
+							
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
 										<img src="/static/user/images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div class="col-sm-4">
-						<div class="product-desc">
-							<h3 id="product-title"></h3>
+						<div class="product-desc product-details">
+							<h3 id="product-title"><%= productDetails.modelName %> <%= productDetails.category.categoryName %> for <%= productDetails.gender %></h3>
 							<p class="price">
-								<span>$68.00</span> 
-								<span class="rate">
-									<i class="icon-star-full"></i>
-									<i class="icon-star-full"></i>
-									<i class="icon-star-full"></i>
-									<i class="icon-star-full"></i>
-									<i class="icon-star-half"></i>
-									(74 Rating)
-								</span>
+								<span style="font-size: 25px;">₹ <%= productDetails.price %></span> 
+						
+								
 							</p>
+
+							<span class="rate" style="display: flex; flex-direction: row;">
+								<div style="background-color: green; width: auto; padding-left: 5px; padding-right: 5px; border-radius: 50px;  margin-right: 5px;">
+								<span style="font-size: 15; color: white; font-weight: bold;">4.5</span>
+								<i class="icon-star-full" style="color: white;"></i>
+							</div>
+								<span>(74 ratings & 15 reviews)</span>
+							</span>
 							<p></p>
 							<div class="size-wrap">
 								<div class="block-26 mb-2">
@@ -82,8 +96,8 @@
 				            <div class="block-26 mb-4">
 									<h4>Color</h4>
 				               <ul>
-				                  <li><a href="#">M</a></li>
-				                  <li><a href="#">W</a></li>
+				                  <li style="background-color: skyblue;"><a href="#"></a></li>
+				                  <li style="background-color: brown;"><a href="#"></a></li>
 				               </ul>
 				            </div>
 							</div>
@@ -102,18 +116,22 @@
                   	</div>
                   	<div class="row">
 	                  	<div class="col-sm-6 text-center">
-									<p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
+									<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
 
 									
 								</div>
 
 								<div class="col-sm-6 text-center">
-									<p class="addtocart"><a href="cart.html" class="btn btn-primary btn-addtocart"><i class="icon-heart"></i> Add to Wishlist</a></p>
+									<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i class="icon-heart"></i>Add to Wishlist</a></p>
 
 									
 								</div>
 							</div>
+
+							<div class="magnified-img"></div>
 						</div>
+
+						
 					</div>
 				</div>
 
@@ -125,11 +143,9 @@
 								  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 
 								    <li class="nav-item">
-								      <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">Description</a>
+								      <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">PRODUCT DETAILS</a>
 								    </li>
-								    <li class="nav-item">
-								      <a class="nav-link" id="pills-manufacturer-tab" data-toggle="pill" href="#pills-manufacturer" role="tab" aria-controls="pills-manufacturer" aria-expanded="true">Manufacturer</a>
-								    </li>
+							
 								    <li class="nav-item">
 								      <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Review</a>
 								    </li>
@@ -137,21 +153,21 @@
 
 								  <div class="tab-content" id="pills-tabContent">
 								    <div class="tab-pane border fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-								      <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-										<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
+								      <p><%= productDetails.description %></p>
 										<ul>
-											<li>The Big Oxmox advised her not to do so</li>
-											<li>Because there were thousands of bad Commas</li>
-											<li>Wild Question Marks and devious Semikoli</li>
-											<li>She packed her seven versalia</li>
-											<li>tial into the belt and made herself on the way.</li>
+											<li>Color - <%= productDetails.color %></li>
+											<li>Model - <%= productDetails.modelName %></li>
+											<li>Brand - <%= productDetails.brand %></li>
+											<li>Outer material - <%= productDetails.outerMaterial %></li>
+											<li>Sole material - <%= productDetails.soleMaterial %></li>
+											<li>Ideal for - <%= productDetails.gender %></li>
+											<li>Category - <%= productDetails.category.categoryName %></li>
+											
+										
 										</ul>
 								    </div>
 
-								    <div class="tab-pane border fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-								      <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-										<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way.</p>
-								    </div>
+			
 
 								    <div class="tab-pane border fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
 								      <div class="row">
@@ -554,29 +570,79 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
-	document.addEventListener("DOMContentLoaded", (event) => {
-	let container = document.getElementById("id-container");
+	const lens = document.querySelector('.magnifier-lens')
+	const product_img = document.querySelector('.product-image img')
+	const magnified_img = document.querySelector('.magnified-img')
 
-	let  productId = container.getAttribute("product-id");
+	console.log(lens, product_img, magnified_img)
+	
+	function magnify(product_img, magnified_img){
+		lens.addEventListener('mousemove', moveLens, { passive: false })
+		product_img.addEventListener('mousemove', moveLens, { passive: false })
+	}
+	
+	function moveLens(e){
 
-	let productTitle = document.getElementById('product-title')			
+		console.log("sujith, i am")
+		console.log("X : " + e.pageX + " Y:" + e.pageY)
+		let x, y, cx, cy;
+        
+		const product_img_rect = product_img.getBoundingClientRect()
+
+		x = e.pageX - product_img_rect.left - lens.offsetWidth / 2;
+		y = e.pageY - product_img_rect.top - lens.offsetHeight / 2; 
+
+
+		
+        lens.style.left = `${x}px`;
+		lens.style.right = `${y}px`;
+
+		let max_xpos = product_img_rect.width - lens.offsetWidth;
+		let max_ypos = product_img_rect.height - lens.offsetHeight;
+
+		if(x > max_xpos) x = max_xpos;
+		if(x < 0) x = 0;
+
+		if(y > max_ypos) x = max_ypos;
+		if(y < 0) y = 0;
+
+		lens.style.cssText = `top: ${y}px; left: ${x}px;`;
+
+	    cx = magnified_img.offsetWidth / lens.offsetWidth
+		cy = magnified_img.offsetHeight / lens.offsetHeight
+	
+
+	
+	}
+
+	magnify(product_img, magnified_img)
+	
+	
+	
+	
+	// document.addEventListener("DOMContentLoaded", (event) => {
+	// let container = document.getElementById("id-container");
+
+	// let  productId = container.getAttribute("product-id");
+
+	// let productTitle = document.getElementById('product-title')			
 
 
 
-	axios.get(`/shop/product/details?pid=${productId}`)
-            .then((response) => {
-                if(response.status == 200){
-					console.log(response)
-					productTitle.innerText = `${response.data.productDetails.modelName} ${response.data.productDetails.category.categoryName} for ${response.data.productDetails.gender}`
+	// axios.get(`/shop/product/details?pid=${productId}`)
+    //         .then((response) => {
+    //             if(response.status == 200){
+	// 				console.log(response)
+	// 				productTitle.innerText = `${response.data.productDetails.modelName} ${response.data.productDetails.category.categoryName} for ${response.data.productDetails.gender}`
        
-                }
-            })
-            .catch((error) => {
-                console.log("it is an error", error)
-            })
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log("it is an error", error)
+    //         })
 
 
     
-		})
+	// 	})
 </script>
 <%- include('./footer') %>

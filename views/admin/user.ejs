@@ -7,75 +7,49 @@
     <ul class="nav">
       <li class="nav-item">
         <a class="nav-link" href="/admin/dashboard">
-          <span class="menu-title">Dashboard</span>
+          <span class="menu-title">DASHBOARD</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/products">
-          <span class="menu-title">Products</span>
+          <span class="menu-title">PRODUCTS</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/users">
-          <span class="menu-title">Users</span>
+          <span class="menu-title">USERS</span>
           <i class="mdi menu-icon mdi-account-multiple"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/category">
-          <span class="menu-title">Categories</span>
+          <span class="menu-title">CATEGORIES</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Orders</span>
+          <span class="menu-title">ORDERS</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Coupon</span>
+          <span class="menu-title">COUPON</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href=""><script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-          <script>
-              let signinForm = document.getElementById("signin-form")
-          
-              signinForm.addEventListener('submit', (event) => {
-                  event.preventDefault()
-          
-                  let email = document.getElementById("email")
-                  let password = document.getElementById("password")
-                            
-                  let data = {
-                      email: email.value,
-                      password: password.value
-                  }
-          
-          
-                  axios.post('/signin', data)
-                      .then((response) => {
-                          if(response.status == 200){
-                              window.location.href = "/"
-                          }
-                      })
-                      .catch((error) => {
-                          console.log("it is an error", error)
-                      })
-              })
-          </script>
-          <span class="menu-title">Banner</span>
+        <a class="nav-link" href="">
+          <span class="menu-title">BANNER</span>
           <i class="mdi mdi-contacts menu-icon"></i>
         </a>
       </li>
@@ -87,8 +61,18 @@
     <div class="content-wrapper">
 
       <div class="page-header">
-        <h3 class="page-title"> Users</h3>
-       
+        <h3 class="page-title">
+          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i class="mdi menu-icon mdi-account-multiple"></i>
+          </span> USERS
+        </h3>
+        <nav aria-label="breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+              <!-- <span></span> <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i> -->
+            </li>
+          </ul>
+        </nav>
       </div>
 
         <div class="col-lg-12 grid-margin stretch-card">
@@ -100,12 +84,12 @@
                 <table class="table table-hover ">
                   <thead>
                     <tr>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Email</th>
-                      <th>Phone Number</th>
-                      <th>Date Joined</th>
-                      <th>Status</th>
+                      <th>FIRST NAME</th>
+                      <th>LAST NAME</th>
+                      <th>EMAIL</th>
+                      <th>PHONE NUMBER</th>
+                      <th>DATE JOINED</th>
+                      <th>STATUS</th>
                       <th></th>
                     </tr>
                   </thead>
@@ -135,6 +119,7 @@
    
   </div>
 </div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
