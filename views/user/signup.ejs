@@ -1,4 +1,4 @@
-<%- include('./header') %>
+<%- include('./header', {isLogin: isLogin}) %>
 
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; padding-top: 100px; padding-bottom: 100px;">
 
@@ -184,6 +184,17 @@
             })
             .catch((error) => {
                 console.log("it is an error", error)
+                if (error.response.status == 400) {
+     
+     new Noty({
+           type: 'error', 
+           text:  error.response.data.message,
+           timeout: 3000,
+           layout: 'bottomCenter',
+           theme: 'metroui', 
+       }).show(); 
+
+   }
             })
         }
     })

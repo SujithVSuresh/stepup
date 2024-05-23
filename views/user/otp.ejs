@@ -1,4 +1,4 @@
-<%- include('./header') %>
+<%- include('./header', {isLogin: isLogin}) %>
 
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
     <form method="post" id="otpForm" action="" class="colorlib-form col-md-3" style="height: auto;">
@@ -87,6 +87,17 @@
             })
             .catch((error) => {
                 console.log("it is an error", error)
+                if (error.response.status == 400) {
+     
+     new Noty({
+           type: 'error', 
+           text:  error.response.data.message,
+           timeout: 3000,
+           layout: 'bottomCenter',
+           theme: 'metroui', 
+       }).show(); 
+
+   }
             })
 
     })

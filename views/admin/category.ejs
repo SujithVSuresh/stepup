@@ -1,9 +1,23 @@
-<%- include('./header') %>
+<%- include('./header', {adminName: adminName}) %>
 
 <div class="container-fluid page-body-wrapper">
   <!-- partial:partials/_sidebar.html -->
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+      <!-- <li class="nav-item nav-profile">
+        <a href="#" class="nav-link">
+          <div class="nav-profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <span class="login-status online"></span>
+
+          </div>
+          <div class="nav-profile-text d-flex flex-column">
+            <span class="font-weight-bold mb-2">David Grey. H</span>
+            <span class="text-secondary text-small">Project Manager</span>
+          </div> 
+          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+        </a>
+      </li> -->
       <li class="nav-item">
         <a class="nav-link" href="/admin/dashboard">
           <span class="menu-title">DASHBOARD</span>
@@ -12,10 +26,25 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/admin/products">
+        <a
+          class="nav-link"
+          data-toggle="collapse"
+          href="#ui-products"
+          aria-expanded="false"
+          aria-controls="ui-basic"
+        >
           <span class="menu-title">PRODUCTS</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="menu-arrow"></i>
+          <i class="mdi menu-icon mdi-shoe-formal" style="font-size: 24px"></i>
         </a>
+        <div class="collapse" id="ui-products">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/products">LISTED</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="">UNLISTED</a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">
@@ -26,30 +55,47 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/admin/category">
+        <a
+          class="nav-link"
+          data-toggle="collapse"
+          href="#ui-categories"
+          aria-expanded="false"
+          aria-controls="ui-basic"
+        >
           <span class="menu-title">CATEGORIES</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-cube-outline menu-icon"></i>
         </a>
+        <div class="collapse" id="ui-categories">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/category">LISTED</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/category/unlisted">UNLISTED</a>
+            </li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
           <span class="menu-title">ORDERS</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="mdi mdi-cart menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
           <span class="menu-title">COUPON</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="mdi mdi-tag menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
           <span class="menu-title">BANNER</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <i class="mdi mdi-label menu-icon"></i>
         </a>
       </li>
     </ul>
@@ -60,10 +106,7 @@
       <div class="page-header">
         <h3 class="page-title">
           <span class="page-title-icon bg-gradient-primary text-white mr-2">
-            <i
-              class="mdi menu-icon mdi-shoe-formal"
-              style="font-size: 24px"
-            ></i>
+            <i class="mdi mdi-folder folder-icon"></i>
           </span>
           CATEGORIES
         </h3>
@@ -86,12 +129,24 @@
 
       <div class="row" id="category-card-container">
         <% categories.forEach(function(category) { %>
-        <div class="col-md-3 mb-4">
+        <div class="col-md-3 mb-4" id="card<%= category._id %>">
           <div class="card">
             <div class="card-body">
+              <div id="categoryImg">
+                <img
+                  id="preview"
+                  src="/static/images/<%= category.image %>"
+                  alt="Image preview"
+                />
+              </div>
+
               <h5
                 class="card-title"
-                style="margin-bottom: 20px; text-transform: uppercase"
+                style="
+                  margin-bottom: 20px;
+                  text-transform: uppercase;
+                  margin-top: 30px;
+                "
               >
                 <%= category.categoryName %>
               </h5>
@@ -102,8 +157,22 @@
                   justify-content: space-between;
                 "
               >
-                <button type="button" class="btn btn-info btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">
+                <button
+                  type="button"
+                  data-id="<%= category._id %>"
+                  data-category="<%= category.categoryName %>"
+                  class="btn btn-info btn-sm categoryEditBtn"
+                  data-toggle="modal"
+                  data-target="#editCategoryModal"
+                >
+                  Edit
+                </button>
+                <button
+                  data-id="<%= category._id %>"
+                  data-category="<%= category.categoryName %>"
+                  type="button"
+                  class="btn btn-danger btn-sm categoryDeleteBtn"
+                >
                   Delete
                 </button>
               </div>
@@ -113,17 +182,20 @@
         <% }); %>
       </div>
 
+      <!-- Start of add modal -->
+
       <div
-        class="modal fade"
+        class="modal fade modal-backdrop1"
         id="addCategoryModal"
         tabindex="-1"
         role="dialog"
         aria-labelledby="addCategoryModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+        <div class="modal-dialog">
+          <div class="modal-content" style="padding: 15px">
             <div class="modal-header">
+              <h5 class="modal-title" id="productModalLabel">ADD CATEGORY</h5>
               <button
                 type="button"
                 class="close"
@@ -133,109 +205,436 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-description">ADD CATEGORY</p>
-                  <form
-                    class="forms-sample"
-                    action=""
-                    id="category-form"
-                    method="POST"
-                  >
-                    <div class="form-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="category-value"
-                        name="category"
-                        placeholder="Category"
-                      />
-                    </div>
-                    <button type="submit" class="btn btn-gradient-primary mr-2">
-                      Submit
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-light"
-                      data-dismiss="modal"
-                    >
-                      Cancel
-                    </button>
-                  </form>
+            <div class="modal-body">
+              <form
+                class="forms-sample"
+                action=""
+                id="category-form"
+                method="POST"
+              >
+                <div class="form-group">
+                  <label for="model">Category</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="category-value"
+                    name="category-value"
+                    placeholder="category name"
+                  />
+                  <span id="categoryError" style="color: red"></span>
                 </div>
-              </div>
+
+                <div class="file-input-box">
+                  <label for="file-upload" style="cursor: pointer;">
+                    <span>ADD IMAGE</span>
+                    <input type="file" id="categoryImage" name="file-upload" accept="image/*" />
+                  </label>
+                  
+                </div>
+                <div id="imagePreview"  style="margin-bottom: 20px; margin-top: 10px;"></div>
+
+                <!-- <div class="form-group">
+                  <label for="model">Image</label>
+                  <input type="file" class="form-control" id="categoryImage" />
+                  <div id="imagePreview"></div>
+                </div> -->
+
+                <input
+                  type="submit"
+                  class="btn btn-gradient-primary mr-2"
+                  value="Submit"
+                 
+                />
+                <button
+                type="button"
+                class="btn btn-light"
+                data-dismiss="modal"
+              >Cancel</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- End of add modal -->
 
-      
+      <!-- Start of edit modal -->
+
+      <div
+      class="modal fade"
+      id="editCategoryModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editCategoryModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content" style="padding: 15px">
+          <div class="modal-header">
+            <h5 class="modal-title" id="productModalLabel">EDIT CATEGORY</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form
+            class="forms-sample"
+            action=""
+            id="edit-category-form"
+            method="POST"
+            >
+              <div class="form-group">
+                <label for="model">Category</label>
+                <input
+                type="text"
+                class="form-control"
+                id="edit-category-value"
+                name="category"
+                placeholder="Category"
+                />
+                <span id="categoryError" style="color: red"></span>
+              </div>
+
+
+              <div class="file-input-box">
+                <label for="file-upload" style="cursor: pointer;">
+                  <span>CHANGE IMAGE</span>
+                  <input type="file" id="categoryEditImage" name="file-upload" accept="image/*" />
+                </label>
+                
+              </div>
+              <div id="imagePreview"  style="margin-bottom: 20px; margin-top: 10px;"></div>
+
+
+
+              <!-- <div class="form-group">
+                <label for="model">Image</label>
+                <input type="file" class="form-control" id="categoryImage" />
+                <div id="imagePreview"></div>
+              </div> -->
+
+              <input
+                type="submit"
+                class="btn btn-gradient-primary mr-2"
+                value="Submit"
+              />
+              <button
+              type="button"
+              class="btn btn-light"
+              data-dismiss="modal"
+            >Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- content-wrapper ends -->
+
+
+      <!-- End of edit modal -->
+    </div>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!-- SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 <script>
-  const categoryForm = document.getElementById("category-form");
-  const addModal = document.getElementById("addCategoryModal");
 
-  console.log(categoryForm, "jjiijj");
+function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+        backdrop.parentNode.removeChild(backdrop);
+    }
+}
+  document.addEventListener("DOMContentLoaded", () => {
 
-  categoryForm.addEventListener("submit", (event) => {
-    event.preventDefault();
 
-    const formData = new FormData(categoryForm);
-    const categoryValue = formData.get("category");
+    const categoryImage = document.getElementById("categoryImage");
 
-    const modalBackdrop = document.querySelector(".modal-backdrop");
-    categoryForm.reset()
 
-    
+    // Add category
+    const categoryForm = document.getElementById("category-form");
+    const addModal = document.getElementById("addCategoryModal");
 
-    axios
-      .post("/admin/addCategory", { categoryValue: categoryValue })
-      .then((response) => {
 
-        console.log(response.data, "kkkkkk")
-        if (response.status == 200) {
+    categoryImage.addEventListener("change", (event) => {
+      readURL(event.target);
+    });
+
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const imgElement = document.createElement("img");
+          imgElement.src = e.target.result;
+          imgElement.alt = "Category Image";
+          imgElement.id = "cropperImage";
+          imgElement.style.objectFit = "contain";
+          imgElement.classList.add("img-thumbnail");
+
+          const imagePreviewContainer = document.getElementById("imagePreview");
+          imagePreviewContainer.innerHTML = "";
+          imagePreviewContainer.appendChild(imgElement);
+
+          imgElement.addEventListener("load", function () {
+            if (cropper) {
+              cropper.destroy();
+            }
+
+            cropper = new Cropper(imgElement, {
+              aspectRatio: 1 / 1,
+              viewMode: 2,
+              autoCropArea: 1,
+              movable: true,
+              zoomable: true,
+              scalable: true,
+              rotatable: true,
+              minContainerWidth: 100,
+              minContainerHeight: 200,
+              // crop(event) {
+              //   console.log(event.detail.x);
+              //   console.log(event.detail.y);
+              //   console.log(event.detail.width);
+              //   console.log(event.detail.height);
+              //   console.log(event.detail.rotate);
+              //   console.log(event.detail.scaleX);
+              //   console.log(event.detail.scaleY);
+              // },
+            });
+          });
+        };
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    categoryForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const categoryValue = document.getElementById("category-value").value;
+
+      let categoryError = document.getElementById("categoryError");
+
+
+      if (cropper) {
+        cropper.getCroppedCanvas().toBlob((blob) => {
+          const formData = new FormData();
+          formData.append("croppedImage", blob);
+          formData.append("categoryValue", categoryValue);
+
+          axios
+            .post("/admin/category/add", formData, {
+              headers: { "Content-Type": "multipart/form-data" },
+            })
+            .then((response) => {
+              if (response.status == 200) {
+                // addModal.classList.remove("show");
+                // addModal.style.display = "none";
+                // document.querySelector(".modal-backdrop1").remove();
+                //hideModal('addCategoryModal');
+
+                categoryForm.reset();
 
         
-          addModal.classList.remove("show");
-          addModal.style.display = "none";
 
-          if (modalBackdrop) {
-            modalBackdrop.remove();
-          }
+                const newCardDiv = document.createElement("div");
+                newCardDiv.classList.add("col-md-3", "mb-4");
 
-          const newCardDiv = document.createElement('div');
-          newCardDiv.classList.add('col-md-3', 'mb-4');
+                newCardDiv.innerHTML = `
 
-          newCardDiv.innerHTML = `
-    <div class="card" id="card123">
+
+    <div class="card" id="card${response.data.categoryData._id}">
         <div class="card-body">
+          <div id="categoryImg">
+          <img id="preview" src="/static/images/${response.data.categoryData.image}" alt="Image preview">
+          </div>
             <h5 class="card-title" style="margin-bottom: 20px; text-transform: uppercase;">
                 ${response.data.categoryData.categoryName}
             </h5>
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                <button type="button" class="btn btn-info btn-sm">Edit</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button>
+              <button
+                  type="button"
+                  data-id="${response.data.categoryData._id}"
+                  data-category="${response.data.categoryData.categoryName}"
+                  class="btn btn-info btn-sm categoryEditBtn"
+                  data-toggle="modal"
+                  data-target="#editCategoryModal"
+                >
+                  Edit
+                </button>
+                <button
+                   data-id="${response.data.categoryData._id}"
+                  data-category="${response.data.categoryData.categoryName}"
+                  type="button"
+                  class="btn btn-danger btn-sm categoryDeleteBtn"
+                >
+                Delete
+                </button>
+                        
             </div>
         </div>
     </div>
 `;
 
-const cardContainer = document.getElementById('category-card-container');
+                const cardContainer = document.getElementById(
+                  "category-card-container"
+                );
 
-cardContainer.appendChild(newCardDiv);
-        }
-      })
-      .catch((error) => {
-        console.log("it is an error", error);
+                cardContainer.appendChild(newCardDiv);
+              }
+            })
+            .catch((error) => {
+              if (error.response.status == 409) {
+                categoryError.innerText = error.response.data.message;
+                console.log(categoryError, error.response.data.message);
+              }
+            });
+        });
+      } else {
+        console.log("No image cropped");
+      }
+    });
+  });
+
+  //Edit Category
+  document.addEventListener("click", (event) => {
+    if (event.target && event.target.classList.contains("categoryEditBtn")) {
+      let editButton = event.target;
+
+      let editModal = document.getElementById("editCategoryModal");
+
+      let categoryEditError = document.getElementById("categoryEditError");
+
+      let categoryId = editButton.getAttribute("data-id");
+      let categoryValue = editButton.getAttribute("data-category");
+
+      document.getElementById("edit-category-value").value = categoryValue;
+
+      const categoryEditForm = document.getElementById("edit-category-form");
+
+      categoryEditForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        let formValue = document.getElementById("edit-category-value").value;
+
+        const modalBackdrop = document.querySelector(".modal-backdrop");
+
+        axios
+          .post("/admin/category/edit", {
+            categoryName: formValue,
+            id: categoryId,
+          })
+          .then((response) => {
+            if (response.status == 200) {
+              let categoryElement = document.getElementById(
+                `card${categoryId}`
+              );
+
+              if (categoryElement) {
+                let categoryNameElement =
+                  categoryElement.querySelector(".card-title");
+
+                if (categoryNameElement) {
+                  categoryNameElement.textContent =
+                    response.data.categoryData.categoryName;
+
+                  editButton.setAttribute(
+                    "data-category",
+                    response.data.categoryData.categoryName
+                  );
+                }
+              }
+
+              editModal.classList.remove("show");
+              editModal.style.display = "none";
+
+              if (modalBackdrop) {
+                modalBackdrop.remove();
+              }
+            }
+          })
+          .catch((error) => {
+            if (error.response.status == 409) {
+              categoryEditError.innerText = error.response.data.message;
+              console.log(categoryEditError, error.response.data.message);
+            }
+            console.log("it is an error", error.response);
+          });
       });
+    }
+  });
+
+  //Delete Category
+  document.addEventListener("click", (event) => {
+    if (event.target && event.target.classList.contains("categoryDeleteBtn")) {
+      let deleteButton = event.target;
+
+      let categoryId = deleteButton.getAttribute("data-id");
+      let categoryValue = deleteButton.getAttribute("data-category");
+
+      console.log(categoryId, categoryValue, "lllllllllll");
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: `Do you want to delete the category "${categoryValue}"?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post("/admin/category/manage", {
+              id: categoryId,
+            })
+            .then((response) => {
+              console.log(response, "affffff");
+
+              if (response.status == 200) {
+                let categoryElement = document.getElementById(
+                  `card${categoryId}`
+                );
+                console.log("99999", categoryElement);
+                if (categoryElement) {
+                  categoryElement.remove();
+
+                  Swal.fire(
+                    "Deleted!",
+                    `The category "${categoryValue}" has been deleted.`,
+                    "success"
+                  );
+                } else {
+                  console.error("Category not found with ID:", categoryId);
+                }
+              }
+            })
+            .catch((error) => {
+              Swal.fire(
+                "Error!",
+                "There was an error deleting the category.",
+                "error"
+              );
+            });
+        }
+      });
+    }
   });
 </script>
 <%- include('./footer') %>

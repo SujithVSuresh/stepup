@@ -38,7 +38,9 @@
 	<!-- Custom css -->
 	<link rel="stylesheet" href="/static/custom/user.css">
 
-
+      <!-- Noty -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3/lib/noty.css">
+    <script src="https://cdn.jsdelivr.net/npm/noty@3/lib/noty.min.js"></script>
 
 	</head>
 	<body>
@@ -67,9 +69,21 @@
 							<ul>
 								<li class="active"><a href="/">Home</a></li>
 								<li><a href="/shop">Shop</a></li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="contact.html">Contact</a></li>
-                                <li class="cart"><a href="cart.html"><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+								<li><a href="">About</a></li>
+								<li><a href="">Contact</a></li>
+								<% if (isLogin) { %>
+								<li class="has-dropdown">
+									<a href="">Profile</a>
+									<ul class="dropdown">
+										<li><a href="/logout" type="submit">Logout</a></li>
+										
+									</ul>
+								</li>
+								<% } else { %>
+									<li><a href="/signin">Signin</a></li>
+
+								<% } %>
+								<li class="cart"><a href=""><i class="icon-shopping-cart"></i> Cart [0]</a></li>
 							</ul>
 						</div>
 					</div>

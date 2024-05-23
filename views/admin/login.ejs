@@ -1,26 +1,31 @@
-<%- include('./header') %>
+<%- include('./header', {isLogin: isLogin}) %>
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="content-wrapper d-flex align-items-center auth">
+          
           <div class="row flex-grow">
             <div class="col-lg-4 mx-auto">
+              
               <div class="auth-form-light text-left p-5">
-                <div class="brand-logo">
+                <!-- <div class="brand-logo">
                   <img src="/static/admin/images/logo.svg">
-                </div>
-       
-                <h6 class="font-weight-light">Sign in to continue.</h6>
+                </div> -->
+                <h5 style="font-size: 20px;" class="text-center">ADMIN LOGIN</h5>
+
                 <form class="pt-3" id="login-form">
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="email" placeholder="Username">
+                    <input type="email" value="sujithforcoding@gmail.com" class="form-control form-control-lg" id="email" placeholder="Email Address">
+                    <span id="emailError" style="color: red"></span>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="password" placeholder="Password">
+                    <input type="password" value="vishnu@123" class="form-control form-control-lg" id="password" placeholder="Password">
+                    <span id="passwordError" style="color: red"></span>
                   </div>
 
                   <input type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">
-
+              
                 </form>
+          
               </div>
             </div>
           </div>
@@ -35,16 +40,51 @@
 <script>
     let loginForm = document.getElementById("login-form")
 
+
+
     loginForm.addEventListener('submit', (event) => {
         event.preventDefault()
 
-        let email = document.getElementById("email")
-        let password = document.getElementById("password")
+        let email = document.getElementById("email").value
+        let password = document.getElementById("password").value
+        console.log("kkk")
 
-        
+        let isValid = true;
+
+                    //Email validation
+                    if (!email.trim()) {
+      emailError.textContent = "Email is required";
+      isValid = false;
+    } else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailError.textContent = "Please enter a valid email address";
+      isValid = false;
+    } else if (/\s/.test(email) && /^\s|\s$/.test(email)) {
+      emailError.textContent = "Email cannot contain whitespace";
+      isValid = false;
+    } else {
+      emailError.textContent = "";
+    }
+
+
+       //Password validation
+       if (!password.trim()) {
+      passwordError.textContent = "Password is required";
+      isValid = false;
+    } else if (password && password.length < 8) {
+      passwordError.textContent = "Password must be at least 8 characters long";
+      isValid = false;
+    } else if (/\s/.test(password) && /^\s|\s$/.test(password)) {
+      passwordError.textContent = "Password cannot contain whitespace";
+      isValid = false;
+    } else {
+      passwordError.textContent = "";
+    }
+
+    if (isValid) {
+
         let data = {
-            email: email.value,
-            password: password.value
+            email: email,
+            password: password
         }
 
         axios.post('/admin', data)
@@ -55,7 +95,20 @@
             })
             .catch((error) => {
                 console.log("it is an error", error)
+                if (error.response.status == 404) {
+     
+          new Noty({
+                type: 'error', 
+                text:  error.response.data.message,
+                timeout: 3000,
+                layout: 'bottomCenter',
+                theme: 'metroui', 
+            }).show(); 
+     
+        }
             })
+          }
+
     })
 </script>
     <%- include('./footer') %>

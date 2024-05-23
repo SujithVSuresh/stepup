@@ -7,13 +7,14 @@ const nocache = require('nocache')
 const session = require('express-session')
 const { v4: uuidv4 } = require('uuid');
 const User = require('./models/userModel')
+const auth = require('./middleware/userAuth')
 
 //passport
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const dotenv = require('dotenv'); 
 
-//to load variables from a .env file into process.env
+
 dotenv.config();
 
 
@@ -83,14 +84,12 @@ passport.use(new GoogleStrategy({
         
         await newUser.save();
 
-        console.log("razik", newUser)
+        req.session.userId = newUser._id
 
-        if(newUser){
-          req.session.userId = newUser._id;
-        }
 
         return done(null, newUser);
       }
+      req.session.userId = user._id
       return done(null, user);
     } catch (error) {
 
@@ -105,7 +104,7 @@ passport.use(new GoogleStrategy({
 }));
 
 
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google',  passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/',

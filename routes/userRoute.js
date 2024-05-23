@@ -1,4 +1,5 @@
 const express = require('express')
+const auth = require("../middleware/userAuth");
 
 const userController = require("../controller/userController")
 
@@ -8,25 +9,27 @@ const router = express.Router()
 
 router.get('/', userController.home)
 
-router.get('/shop', userController.shop)
+router.get('/shop', auth.isLogin, userController.shop)
 
-router.get('/shop/items', userController.items)
+router.get('/shop/items', auth.isLogin, userController.items)
 
-router.get('/shop/:productId', userController.productDetail)
+router.get('/shop/:productId', auth.isLogin, userController.productDetail)
 
 // router.get('/shop/product/details', userController.fetchProductDetails)
 
-router.get('/signin', userController.signin)
+router.get('/signin',  auth.isLogout, userController.signin)
 
-router.post('/signin', userController.signin)
+router.post('/signin',  auth.isLogout, userController.signin)
 
-router.get('/signup', userController.signup)
+router.get('/logout', userController.logout)
 
-router.post('/signup', userController.signup)
+router.get('/signup',  auth.isLogout, userController.signup)
 
-router.get('/signup/otp', userController.otp)
+router.post('/signup', auth.isLogout,  userController.signup)
 
-router.post('/signup/otp/email', userController.otpMailSender)
+router.get('/signup/otp', auth.isLogout,  userController.otp)
+
+router.post('/signup/otp/email',  auth.isLogout, userController.otpMailSender)
 
 router.post('/signup/otp/verify', userController.verifyOtp)
 

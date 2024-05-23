@@ -10,19 +10,25 @@ const generateOtp = require('../util/generateOtp')
 
 
 const home = async (req, res) => {
-    res.render('user/home')
+    res.render('user/home', {isLogin: req.session.userId || req.isAuthenticated() ? true : false})
 }
 
 
 const signup = async (req, res) => {
     if(req.method == "GET"){
         console.log("4")
-    res.render('user/signup')
+    res.render('user/signup', {isLogin: false})
     }
 
     if(req.method == "POST"){
 
         const { fname, lname, email, phone, password } = req.body;
+
+        const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return res.status(400).json({ message: 'User with this email already exists' });
+    }
     
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -47,29 +53,49 @@ const signup = async (req, res) => {
 
 const signin = async (req, res) => {
     if(req.method == "GET"){
-    res.render('user/signin')
+    res.render('user/signin', {isLogin: false})
     }
 
     if(req.method == "POST"){
         const { email, password } = req.body;
         console.log(email, password);
 
-        const user = await User.findOne({ email: email });
+        const user = await User.findOne({ email: email,  password: { $exists: true } });
         console.log(user, "iiooii")
 
         if(user && (await bcrypt.compare(password, user.password))){
             req.session.userId = user._id;
             res.status(200).json({ message: "login successfull" });
         }else{
-            res.status(400).json({ message: "No user found with these email and password" });
+            res.status(404).json({ message: "No user found with these credentials" });
         }
 
     }
 }
 
 
+const logout = (req, res) => {
+    if (req.session.userId) {
+      delete req.session.userId;
+
+    }
+
+    if(req.isAuthenticated()){
+        req.logout(err => {
+            if (err) {
+              return next(err);
+            }
+        
+          });
+
+    }
+  
+    res.redirect("/signin");
+  };
+
+
 const otp = async (req, res) => {
-    res.render('user/otp')
+    res.render('user/otp', {isLogin: false})
 }
 
 
@@ -82,7 +108,7 @@ const otpMailSender = async (req, res) => {
     const mailResponse = await sendMail(email, "Verification Email", `This is your OTP ${otp}`)
 
     if(mailResponse){
-        console.log("hi", mailResponse)
+
         res.status(200).json({msg: "mail send successfully"})
     }else{
         res.status(500).json({msg: "mail not send successfully"})
@@ -122,7 +148,7 @@ const verifyOtp = async (req, res) => {
 
 const shop = async (req, res) => {
     if(req.method === "GET"){
-        res.render("user/shop")
+        res.render("user/shop", {isLogin: true})
     }
 }
 
@@ -148,7 +174,7 @@ const productDetail = async (req, res) => {
 
         console.log("abhii", productDetails)
 
-        res.render("user/product-detail", {productDetails: productDetails})
+        res.render("user/product-detail", {productDetails: productDetails, isLogin: true})
     }
 }
 
@@ -173,5 +199,6 @@ module.exports = {
     shop,
     items,
     productDetail,
+    logout
     // fetchProductDetails
 }

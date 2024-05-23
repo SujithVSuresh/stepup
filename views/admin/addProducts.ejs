@@ -1,60 +1,88 @@
-<%- include('./header') %>
+<%- include('./header', {adminName: adminName}) %>
 
 
 <div class="container-fluid page-body-wrapper">
   <!-- partial:partials/_sidebar.html -->
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
+
+      <!-- <li class="nav-item nav-profile">
+        <a href="#" class="nav-link">
+          <div class="nav-profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <span class="login-status online"></span>
+
+          </div>
+          <div class="nav-profile-text d-flex flex-column">
+            <span class="font-weight-bold mb-2">David Grey. H</span>
+            <span class="text-secondary text-small">Project Manager</span>
+          </div> 
+          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+        </a>
+      </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="/admin">
-          <span class="menu-title">Dashboard</span>
+        <a class="nav-link" href="/admin/dashboard">
+          <span class="menu-title">DASHBOARD</span>
           <i class="mdi mdi-home menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/admin/addProduct">
-          <span class="menu-title">Products</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+        <a class="nav-link" data-toggle="collapse" href="#ui-products" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">PRODUCTS</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi menu-icon mdi-shoe-formal" style="font-size: 24px;"></i>
         </a>
+        <div class="collapse" id="ui-products">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/admin/products">LISTED</a></li>
+            <li class="nav-item"> <a class="nav-link" href="">UNLISTED</a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/users">
-          <span class="menu-title">Users</span>
+          <span class="menu-title">USERS</span>
           <i class="mdi menu-icon mdi-account-multiple"></i>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/admin/category">
-          <span class="menu-title">Categories</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+        <a class="nav-link" data-toggle="collapse" href="#ui-categories" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">CATEGORIES</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-cube-outline menu-icon"></i>
+        </a>
+        <div class="collapse" id="ui-categories">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/admin/category">LISTED</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/admin/category/unlisted">UNLISTED</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">ORDERS</span>
+          <i class="mdi mdi-cart menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Orders</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <span class="menu-title">COUPON</span>
+          <i class="mdi mdi-tag menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
         <a class="nav-link" href="">
-          <span class="menu-title">Coupon</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
+          <span class="menu-title">BANNER</span>
+          <i class="mdi mdi-label menu-icon"></i>
         </a>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="">
-          <span class="menu-title">Banner</span>
-          <i class="mdi mdi-contacts menu-icon"></i>
-        </a>
-      </li>
-
-      
     </ul>
   </nav>
   <!-- partial -->
@@ -102,16 +130,16 @@
                     <input type="text" class="form-control" id="price" placeholder="price">
                   </div>
 
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">Category</label>
-                    <input type="text" class="form-control" id="category" placeholder="category">
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputUsername1">Occasion</label>
-                    <input type="text" class="form-control" id="occasion" placeholder="occasion">
-                  </div>
-
+  
+                    <!-- <input type="text" class="form-control" id="category" placeholder="category"> -->
+                    <div class="form-group">
+                      <label for="category">Category</label>
+                      <select class="form-control" id="category">
+                  
+                      </select>
+                    </div>
+                   
+                 
                   <div class="form-group">
                     <label for="exampleInputUsername1">Outer material</label>
                     <input type="text" class="form-control" id="outer-material" placeholder="outer material">
@@ -131,6 +159,16 @@
                     <label for="exampleInputUsername1">Upload Image</label>
                     <input class="form-control form-control-sm" id="formFileSm" type="file" name="image" multiple>
                     </div>
+
+
+
+<div class="container mt-5">
+  <label for="formFileLg" class="form-label">Large file input example</label>
+  <div class="file-input-box">
+    <input class="form-control form-control-lg" id="formFileLg" type="file">
+    <span>Drag and drop a file here or click to upload</span>
+  </div>
+</div>
 
 
                   <input type="submit" class="btn btn-gradient-primary mr-2">Submit</input>
@@ -155,69 +193,33 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   const productForm = document.getElementById('product-form')
-   
 
-    productForm.addEventListener('submit', (event) => {
-        event.preventDefault()
+  document.addEventListener('DOMContentLoaded',(event) => {
 
-        let model = document.getElementById("model").value
-        let brand = document.getElementById("brand").value
-        let quantity = document.getElementById("quantity").value
-        let size = document.getElementById("size").value
-        let color = document.getElementById("color").value
-        let gender = document.getElementById("gender").value
-        let price = document.getElementById("price").value
-        let category = document.getElementById("category").value
-        let occasion = document.getElementById("occasion").value
-        let outerMaterial = document.getElementById("outer-material").value
-        let soleMaterial = document.getElementById("sole-material").value
-        let description = document.getElementById("description").value
-        let image = document.getElementById('formFileSm');
-
-
-
-        const formData = new FormData()
-
-        formData.append('model', model)
-    formData.append('brand', brand)
-    formData.append('quantity', quantity)
-    formData.append('size', size)
-    formData.append('color', color)
-    formData.append('gender', gender)
-    formData.append('price', price)
-    formData.append('category', category)
-    formData.append('occasion', occasion)
-    formData.append('outerMaterial', outerMaterial)
-    formData.append('soleMaterial', soleMaterial)
-    formData.append('description', description)
-
-    for (let i = 0; i < image.files.length; i++) {
-      formData.append('images[]', image.files[i]); // 'images[]' allows multiple files with the same key
-    }
-        // let data = {
-        //     model,
-        //     brand,
-        //     quantity,
-        //     size,
-        //     color,
-        //     gender,
-        //     price,
-        //     category,
-        //     occasion,
-        //     outerMaterial,
-        //     soleMaterial,
-        //     description
-        // }
-
-        axios.post('/admin/addProduct', formData)
+    axios.get('/admin/category/list')
             .then((response) => {
-                if(response.status == 200){
-                    window.location.href = "/admin/dashboard"
-                }
+      
+                  if (response.status === 200) {
+        const categories = response.data;
+
+        const categorySelect = document.getElementById('category');
+
+        categories.categories.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category._id; 
+          option.textContent = category.categoryName; 
+          categorySelect.appendChild(option);
+        });
+      }
+      
             })
             .catch((error) => {
                 console.log("it is an error", error)
             })
-    })
+
+  })
+   
+
+ 
 </script>
 <%- include('./footer') %>

@@ -6,7 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Stepup Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/static/admin/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/static/admin/vendors/css/vendor.bundle.base.css">
@@ -18,31 +18,22 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="/static/admin/css/style.css">
+
+    	<!-- Custom css -->
+	<link rel="stylesheet" href="/static/custom/admin.css">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="/static/admin/images/favicon.ico" />
+    <!-- <link rel="shortcut icon" href="/static/admin/images/favicon.ico" /> -->
 
-    <style>
+    <!-- Noty -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3/lib/noty.css">
+    <script src="https://cdn.jsdelivr.net/npm/noty@3/lib/noty.min.js"></script>
 
-  #img-container{
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  }
-
-  #cropperImage{
-    display: block;
-   width: 500px;
-   height: 600px;
-   max-width: "100%";
-
-  }
-
-  #croppedResult{
-    margin: 0 5px;
-  }
-    </style>
+    
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    
   </head>
   <body>
     <div class="container-scroller">
@@ -50,13 +41,16 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="/static/admin/images/logo.svg" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/static/admin/images/logo-mini.svg" alt="logo" /></a>
+          <!-- <a class="navbar-brand brand-logo" href="index.html"><img src="/static/admin/images/logo.svg" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="/static/admin/images/logo-mini.svg" alt="logo" /></a> -->
+          <h5 style="font-weight: bolder; font-size:xx-large; color: blueviolet;">STEPUP</h5>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-menu"></span>
-          </button>
+          </button> -->
+
+          <% if (isLogin) { %>
           <div class="search-field d-none d-md-block">
             <form class="d-flex align-items-center h-100" action="#">
               <div class="input-group">
@@ -67,25 +61,28 @@
               </div>
             </form>
           </div>
+          <% } %>
           <ul class="navbar-nav navbar-nav-right">
+
+            <% if (isLogin) { %>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
-                  <img src="/static/admin/images/faces/face1.jpg" alt="image">
+                  <img src="/static/admin/images/faces/profile.png" alt="image">
                   <span class="availability-status online"></span>
                 </div>
                 <div class="nav-profile-text">
-                  <p class="mb-1 text-black">Salman Faris</p>
+                  <p class="mb-1 text-black"><%= adminName %></p>
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
+          
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" type="submit" href="/admin/logout">
                   <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
               </div>
             </li>
+            <% } %>
 
 
           </ul>
