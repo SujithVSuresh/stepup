@@ -36,6 +36,16 @@
 
     let otpForm = document.getElementById("otpForm")
     let otpVal = document.getElementById("otpVal")
+
+    function destroyOtp() {
+            axios.get('/auth/destroy-otp')
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error('There was an error!', error);
+                });
+        }
     
     function otpTimerFunction(){
     let k = 30
@@ -46,6 +56,8 @@
             clearInterval(otpTimerHandler)
             otpTimerContainer.style.display = 'none'
             otpResend.style.display = 'block'
+
+            destroyOtp()
         }
     }
 

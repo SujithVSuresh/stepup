@@ -111,6 +111,13 @@ app.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/signin'
 }));
 
+app.get('/auth/destroy-otp', (req, res) => {
+  delete req.session.otp;
+  res.send(200).json({"message": "OTP destroyed"})
+
+});
+
+
 app.listen("3000", () => {
   console.log("Server has started");
 });

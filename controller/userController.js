@@ -10,11 +10,16 @@ const generateOtp = require('../util/generateOtp')
 
 
 const home = async (req, res) => {
+    try{
     res.render('user/home', {isLogin: req.session.userId || req.isAuthenticated() ? true : false})
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 
 const signup = async (req, res) => {
+    try{
     if(req.method == "GET"){
         console.log("4")
     res.render('user/signup', {isLogin: false})
@@ -49,9 +54,14 @@ const signup = async (req, res) => {
       res.status(200).json({message: "User created successfully."})
 
     }
+
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 const signin = async (req, res) => {
+    try{
     if(req.method == "GET"){
     res.render('user/signin', {isLogin: false})
     }
@@ -71,10 +81,15 @@ const signin = async (req, res) => {
         }
 
     }
+
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 
 const logout = (req, res) => {
+    try{
     if (req.session.userId) {
       delete req.session.userId;
 
@@ -91,15 +106,27 @@ const logout = (req, res) => {
     }
   
     res.redirect("/signin");
+
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
   };
 
 
 const otp = async (req, res) => {
+    try{
     res.render('user/otp', {isLogin: false})
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 
+
+
+
 const otpMailSender = async (req, res) => {
+    try{
     const email = req.session.user.email
     const otp = await generateOtp()
 
@@ -112,11 +139,15 @@ const otpMailSender = async (req, res) => {
         res.status(200).json({msg: "mail send successfully"})
     }else{
         res.status(500).json({msg: "mail not send successfully"})
-    }                                
+    }
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }                                
 }
 
 
 const verifyOtp = async (req, res) => {
+    try{
  
     if(req.session.otp == req.body.otpVal){
         console.log("otp is same")
@@ -143,17 +174,26 @@ const verifyOtp = async (req, res) => {
     }else{
         res.status(400).json({ message: 'Invalid OTP. Please try again.' });
     }
+
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 
 const shop = async (req, res) => {
+    try{
     if(req.method === "GET"){
         res.render("user/shop", {isLogin: true})
     }
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 
 const items = async (req, res) => {
+    try{
     if(req.method === "GET"){
         console.log("jio");
         let products = await Product.find({}).populate('category');
@@ -163,10 +203,14 @@ const items = async (req, res) => {
 
 
     }
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 
 const productDetail = async (req, res) => {
+    try{
     if(req.method === "GET"){
         let productId = req.params.productId
 
@@ -176,6 +220,9 @@ const productDetail = async (req, res) => {
 
         res.render("user/product-detail", {productDetails: productDetails, isLogin: true})
     }
+} catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
 
 // const fetchProductDetails = async (req, res) => {

@@ -365,7 +365,7 @@ function hideModal(modalId) {
 
 
     const categoryImage = document.getElementById("categoryImage");
-
+let cropper
 
     // Add category
     const categoryForm = document.getElementById("category-form");
@@ -407,15 +407,7 @@ function hideModal(modalId) {
               rotatable: true,
               minContainerWidth: 100,
               minContainerHeight: 200,
-              // crop(event) {
-              //   console.log(event.detail.x);
-              //   console.log(event.detail.y);
-              //   console.log(event.detail.width);
-              //   console.log(event.detail.height);
-              //   console.log(event.detail.rotate);
-              //   console.log(event.detail.scaleX);
-              //   console.log(event.detail.scaleY);
-              // },
+ 
             });
           });
         };

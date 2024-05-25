@@ -38,10 +38,17 @@ router.get("/logout", auth.isAdminLogin, adminController.logout);
 router.get('/dashboard', auth.isAdminLogin, adminController.dashboard)
 
 router.get('/products', auth.isAdminLogin, adminController.products)
+// router.get('/products/inactive', auth.isAdminLogin, adminController.inactiveProducts)
+// router.get('/products/inactive/list', auth.isAdminLogin, adminController.inactiveProductsList)
 router.get('/products/data', auth.isAdminLogin, adminController.productData)
 
 router.post('/addProduct', auth.isAdminLogin, adminController.addProduct)
 router.post('/addProduct/colorVarient', auth.isAdminLogin, uploadFields, adminController.addColorVarient)
+router.post('/addProduct/sizeVarient', auth.isAdminLogin, adminController.addSizeVarient)
+
+router.get('/product/getColorVarient', auth.isAdminLogin, adminController.getAllColorVarient)
+router.get('/product/getSizeVarient', auth.isAdminLogin, adminController.getAllSizeVarient)
+router.get('/product/singleProductData', auth.isAdminLogin, adminController.singleProductData)
 
 router.get('/users', auth.isAdminLogin, adminController.users)
 router.get('/users/data', auth.isAdminLogin, adminController.usersData)

@@ -1,0 +1,931 @@
+<%- include('./header', {adminName: adminName}) %>
+
+<!-- partial -->
+<div class="container-fluid page-body-wrapper">
+  <!-- partial:partials/_sidebar.html -->
+  <nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <!-- <li class="nav-item nav-profile">
+        <a href="#" class="nav-link">
+          <div class="nav-profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <span class="login-status online"></span>
+
+          </div>
+          <div class="nav-profile-text d-flex flex-column">
+            <span class="font-weight-bold mb-2">David Grey. H</span>
+            <span class="text-secondary text-small">Project Manager</span>
+          </div> 
+          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/dashboard">
+          <span class="menu-title">DASHBOARD</span>
+          <i class="mdi mdi-home menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#ui-products" aria-expanded="false" aria-controls="ui-basic">
+          <span class="menu-title">PRODUCTS</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi menu-icon mdi-shoe-formal" style="font-size: 24px;"></i>
+        </a>
+        <div class="collapse" id="ui-products">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="/admin/products">LISTED</a></li>
+            <li class="nav-item"> <a class="nav-link" href="">UNLISTED</a></li>
+            <li class="nav-item"> <a class="nav-link" href="">INACTIVE</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/users">
+          <span class="menu-title">USERS</span>
+          <i class="mdi menu-icon mdi-account-multiple"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          data-toggle="collapse"
+          href="#ui-categories"
+          aria-expanded="false"
+          aria-controls="ui-basic"
+        >
+          <span class="menu-title">CATEGORIES</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-cube-outline menu-icon"></i>
+        </a>
+        <div class="collapse" id="ui-categories">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/category">LISTED</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/category/unlisted">UNLISTED</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">ORDERS</span>
+          <i class="mdi mdi-cart menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">COUPON</span>
+          <i class="mdi mdi-tag menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <span class="menu-title">BANNER</span>
+          <i class="mdi mdi-label menu-icon"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- partial -->
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="page-header">
+        <h3 class="page-title">
+          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i
+              class="mdi menu-icon mdi-shoe-formal"
+              style="font-size: 24px"
+            ></i>
+          </span>
+          INACTIVE PRODUCTS
+        </h3>
+        <nav aria-label="breadcrumb">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+   
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div style="overflow-x: auto">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>MODEL</th>
+                    <th>BRAND</th>
+                    <!-- <th>QUANTITY</th>
+                              <th>SIZE</th> -->
+                    <th>CATEGORY</th>
+                    <!-- <th>COLOR</th> -->
+                    <th>USER TYPE</th>
+                    <!-- <th>PRICE</th> -->
+                    <th>OUTER MATERIAL</th>
+                    <th>SOLE MATERIAL</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="product-table-container">
+                  <!-- Your table data goes here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+     
+      <!-- Varient modal -->
+      <div
+        class="modal fade"
+        id="varientModal"
+        tabindex="-1"
+        aria-labelledby="productModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-custom">
+          <div class="modal-content" style="padding: 15px">
+            <div class="modal-header">
+              <!-- <h5 class="modal-title" id="productModalLabel">VARIENTS</h5>-->
+              <h4>VARIENTS - <span id="colorNameTag"></span></h4>
+
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+
+              <div class="container">
+                <div class="heading-container">
+                  <h4 style="color: gray">COLORS</h4>
+                  <div>
+                    <button
+                      data-user-id=""
+                      id=""
+                      type="button"
+                      class="btn btn-primary btn-sm statusBtn"
+                      data-toggle="modal"
+                      data-target="#addColorVarientModal"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      data-user-id=""
+                      id=""
+                      type="button"
+                      class="btn btn-primary btn-sm statusBtn"
+                      data-toggle="modal"
+                      data-target="#addColorVarientModal"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <div class="color-selection" id="colorSelection"></div>
+              </div>
+
+              <div class="container">
+                <h4 style="color: gray">IMAGES</h4>
+                <div class="image-selection" id="imageGroup"></div>
+              </div>
+
+              <div class="container">
+                <div class="heading-container">
+                  <h4 style="color: gray">SIZE VARIENTS</h4>
+
+                  <button
+                    data-user-id=""
+                    id=""
+                    type="button"
+                    class="btn btn-primary btn-sm statusBtn"
+                  >
+                    Add
+                  </button>
+                </div>
+
+                <form
+                  action=""
+                  id="sub-varient-add-form"
+                  class="row d-flex justify-content-between forms-sample"
+                >
+                  <input
+                    type="text"
+                    class="form-control col-md-3"
+                    id="size"
+                    placeholder="Enter size"
+                  />
+                  <input
+                    type="text"
+                    class="form-control col-md-3"
+                    id="quantity"
+                    placeholder="Enter quantity"
+                  />
+                  <input
+                    type="text"
+                    class="form-control col-md-3"
+                    id="price"
+                    placeholder="Enter price"
+                  />
+
+                  <input
+                    type="submit"
+                    class="btn btn-primary"
+                    id="model"
+                    placeholder="model name"
+                  />
+                </form>
+
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Size</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="sizeVariantTable">
+
+           
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Varient modal end -->
+
+      <!-- Add Color Varient Modal start -->
+      <div
+        class="modal fade"
+        id="addColorVarientModal"
+        tabindex="-1"
+        aria-labelledby="productModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog color-varient-modal-dialog-custom">
+          <div class="modal-content" style="padding: 15px">
+            <div class="modal-header">
+              <!-- <h5 class="modal-title" id="productModalLabel">VARIENTS</h5>-->
+              <h4>ADD COLOR VARIENTS</h4>
+
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form
+                class="forms-sample"
+                id="product-color-varient-form"
+                action=""
+                method="POST"
+              >
+                <div class="row" style="padding-left: 0px; padding-right: 0px">
+                  <div class="form-group col-md-6">
+                    <label for="model">Color name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="colorName"
+                      placeholder="color name"
+                    />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="model">Color code</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="colorCode"
+                      placeholder="color code"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <h4 style="color: gray">ADD IMAGES</h4>
+                  <div class="image-add-selection d-flex flex-wrap">
+                    <div class="project-preview-box-container">
+                      <div style="height: 10%">
+                        <div class="file-input-box">
+                          <label for="file-upload" style="cursor: pointer">
+                            <span>UPLOAD IMAGE</span>
+                            <input
+                              type="file"
+                              id="productImageOne"
+                              name="file-upload-one"
+                              accept="image/*"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div style="height: 90%" id="imagePreviewOne"></div>
+                    </div>
+
+                    <div class="project-preview-box-container">
+                      <div style="height: 10%">
+                        <div class="file-input-box">
+                          <label for="file-upload" style="cursor: pointer">
+                            <span>UPLOAD IMAGE</span>
+                            <input
+                              type="file"
+                              id="productImageTwo"
+                              name="file-upload-two"
+                              accept="image/*"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div style="height: 90%" id="imagePreviewTwo"></div>
+                    </div>
+
+                    <div class="project-preview-box-container">
+                      <div style="height: 10%">
+                        <div class="file-input-box">
+                          <label for="file-upload" style="cursor: pointer">
+                            <span>UPLOAD IMAGE</span>
+                            <input
+                              type="file"
+                              id="productImageThree"
+                              name="file-upload-three"
+                              accept="image/*"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div style="height: 90%" id="imagePreviewThree"></div>
+                    </div>
+
+                    <div class="project-preview-box-container">
+                      <div style="height: 10%">
+                        <div class="file-input-box">
+                          <label for="file-upload" style="cursor: pointer">
+                            <span>UPLOAD IMAGE</span>
+                            <input
+                              type="file"
+                              id="productImageFour"
+                              name="file-upload-four"
+                              accept="image/*"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div style="height: 90%" id="imagePreviewFour"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <input
+                  type="submit"
+                  class="btn btn-gradient-primary mr-2"
+                  value="Submit"
+                />
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add Color Varient Modal end -->
+    </div>
+    <!-- content-wrapper ends -->
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+<script>
+
+function showModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.add("show");
+    modal.setAttribute("aria-hidden", "false");
+    modal.style.display = "block";
+    document.body.classList.add("modal-open");
+    const backdrop = document.createElement("div");
+    backdrop.className = "modal-backdrop fade show";
+    document.body.appendChild(backdrop);
+  }
+
+  function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+    modal.style.display = "none";
+    document.body.classList.remove("modal-open");
+    const backdrop = document.querySelector(".modal-backdrop");
+    if (backdrop) {
+      backdrop.parentNode.removeChild(backdrop);
+    }
+  }
+
+
+  //VARIENT CLICK EVENT
+  document.addEventListener("click", (event) => {
+    let sizeVariantTable = document.getElementById("sizeVariantTable")
+
+    function getSizeVarientOfColor(varientId) {
+      
+      sizeVariantTable.innerHTML = ""
+      console.log(varientId, "patti");
+      axios
+        .get(`/admin/product/getSizeVarient?varientid=${varientId}`)
+        .then((response) => {
+          if (response.status === 200) {
+
+            response.data.sizeVarients.forEach((size) => {
+              sizeVariantTable.innerHTML += `
+              <tr>
+                      <td>${size.size}</td>
+                      <td>${size.quantity}</td>
+                      <td>${size.price}</td>
+                      <td>
+                        <button
+                          data-user-id=""
+                          id=""
+                          type="button"
+                          class="btn btn-primary btn-sm statusBtn"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+              `
+            })
+ 
+          } else {
+            console.log("Unexpected response status", response.status);
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+        });
+    }
+
+    if (event.target && event.target.classList.contains("productVarientBtn")) {
+      let varientBtn = event.target;
+      let productId = varientBtn.getAttribute("data-product-id");
+      let colorNameTag = document.getElementById("colorNameTag");
+
+      let imageGroup = document.getElementById("imageGroup");
+
+      const colorSelection = document.getElementById("colorSelection");
+
+      colorNameTag.setAttribute('productid', productId);
+
+     
+
+      colorSelection.innerHTML = "";
+
+      imageGroup.innerHTML = "";
+
+      axios
+        .get(`/admin/product/getColorVarient?pid=${productId}`)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(
+              "Data fetched successfully",
+              response.data.colorVarients
+            );
+
+            colorNameTag.innerText = response.data.colorVarients[0].colorName;
+
+            response.data.colorVarients.forEach((varient) => {
+              colorSelection.innerHTML += `
+            <div class="color-box" data-color-name=${varient.colorName} data-color-images=${varient.images} id="${varient._id}" style="background-color: ${varient.colorCode}"></div>
+            `;
+            });
+
+            response.data.colorVarients[0].images.forEach((image) => {
+              imageGroup.innerHTML += `
+            <img class="image-box" src="/static/images/${image}" alt="A description of the image">
+            `;
+            });
+
+            getSizeVarientOfColor(response.data.colorVarients[0]._id);
+
+            colorNameTag.setAttribute('varientid', response.data.colorVarients[0]._id)
+          } else {
+            console.log("Unexpected response status", response.status);
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+        });
+    }
+
+    if (event.target && event.target.classList.contains("color-box")) {
+      let varientBtn = event.target;
+      let colorName = varientBtn.getAttribute("data-color-name");
+      let colorImages = varientBtn.getAttribute("data-color-images");
+      let colorVarientId = varientBtn.getAttribute("id");
+      colorNameTag.innerText = colorName;
+
+
+      colorNameTag.setAttribute('varientid', colorVarientId);
+
+      imageGroup.innerHTML = "";
+
+      colorImages.split(",").forEach((image) => {
+        imageGroup.innerHTML += `
+            <img class="image-box" src="/static/images/${image}" alt="A description of the image">
+            `;
+      });
+
+      getSizeVarientOfColor(colorVarientId);
+    }
+  });
+
+
+//GET INACTIVE PRODUCTS DATA
+document.addEventListener("DOMContentLoaded", (event) => {
+  let tableContainer = document.getElementById("product-table-container");
+
+  tableContainer.innerHTML = "";
+
+  axios
+    .get("/admin/products/inactive/list")
+    .then((response) => {
+      console.log(response.data.products);
+      if (response.status == 200) {
+        if (response.data.inactiveProducts.length !== 0) {
+          response.data.inactiveProducts.forEach((product) => {
+            tableContainer.innerHTML += `
+                      <tr>
+                    <td>${product.modelName}</td>
+                    <td>${product.brand.name}</td>
+                    <td>${product.category.categoryName}</td>
+                    <td>${product.gender}</td>
+                    <td>${product.outerMaterial}</td>
+                    <td>${product.soleMaterial}</td>
+                    <td><button data-product-id="${product._id}" id="varient${product._id}" data-toggle="modal" data-target="#varientModal" type="button" class="productVarientBtn btn btn-primary btn-sm statusBtn">Varient</button></td>
+                   <td><button data-product-id="${product._id}" id="edit${product._id}" type="button" class="productEditBtn btn btn-primary btn-sm statusBtn">Edit</button></td>
+                   <td><button data-product-id="${product._id}" id="delete${product._id}" type="button" class="productUnlistBtn btn btn-primary btn-sm statusBtn">Delete</button></td>
+                  </tr>
+                      `;
+          });
+        }
+      }
+    })
+    .catch((error) => {
+      console.log("it is an error", error);
+    });
+});
+
+
+
+
+  //ADD VARIEENT
+  let cropperOne, cropperTwo, cropperThree, cropperFour;
+
+  document.addEventListener("change", (event) => {
+    if (
+      event.target &&
+      (event.target.id == "productImageOne" ||
+        event.target.id == "productImageTwo" ||
+        event.target.id == "productImageThree" ||
+        event.target.id == "productImageFour")
+    )
+      console.log("Hey this is the id.", event.target.id);
+
+    if (event.target.id == "productImageOne") {
+      imgOneSetup(event.target);
+    } else if (event.target.id == "productImageTwo") {
+      imgTwoSetup(event.target);
+    } else if (event.target.id == "productImageThree") {
+      imgThreeSetup(event.target);
+    } else if (event.target.id == "productImageFour") {
+      imgFourSetup(event.target);
+    }
+  });
+
+  function imgOneSetup(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const imgElement = document.createElement("img");
+        imgElement.src = e.target.result;
+        imgElement.alt = "Category Image";
+        imgElement.id = `cropperImageOne`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+        console.log("kkk1", input.id, "kkk");
+
+        let imagePreviewContainer = document.getElementById("imagePreviewOne");
+
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
+
+        imgElement.addEventListener("load", function () {
+          if (cropperOne) {
+            cropperOne.destroy();
+          }
+
+          cropperOne = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
+          });
+        });
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function imgTwoSetup(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const imgElement = document.createElement("img");
+        imgElement.src = e.target.result;
+        imgElement.alt = "Category Image";
+        imgElement.id = `cropperImageTwo`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+        console.log("kkk1", input.id, "kkk");
+
+        let imagePreviewContainer = document.getElementById("imagePreviewTwo");
+
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
+
+        imgElement.addEventListener("load", function () {
+          if (cropperTwo) {
+            cropperTwo.destroy();
+          }
+
+          cropperTwo = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
+          });
+        });
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function imgThreeSetup(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const imgElement = document.createElement("img");
+        imgElement.src = e.target.result;
+        imgElement.alt = "Category Image";
+        imgElement.id = `cropperImageThree`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+        console.log("kkk1", input.id, "kkk");
+
+        let imagePreviewContainer =
+          document.getElementById("imagePreviewThree");
+
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
+
+        imgElement.addEventListener("load", function () {
+          if (cropperThree) {
+            cropperThree.destroy();
+          }
+
+          cropperThree = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
+          });
+        });
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function imgFourSetup(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const imgElement = document.createElement("img");
+        imgElement.src = e.target.result;
+        imgElement.alt = "Category Image";
+        imgElement.id = `cropperImageFour`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+        console.log("kkk1", input.id, "kkk");
+
+        let imagePreviewContainer = document.getElementById("imagePreviewFour");
+
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
+
+        imgElement.addEventListener("load", function () {
+          if (cropperFour) {
+            cropperFour.destroy();
+          }
+
+          cropperFour = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
+          });
+        });
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  const productColorVarientForm = document.getElementById(
+    "product-color-varient-form"
+  );
+
+
+
+// SUBVARIENT ADD
+let subVarientForm = document.getElementById("sub-varient-add-form");
+
+subVarientForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  let colorNameTag = document.getElementById("colorNameTag")
+
+let productId = colorNameTag.getAttribute("productid")
+let varientId = colorNameTag.getAttribute("varientid")
+
+  const price = document.getElementById("price").value;
+  const quantity = document.getElementById("quantity").value;
+  const size = document.getElementById("size").value;
+
+
+
+
+
+  const data = {
+    price: price,
+    quantity: quantity,
+    size: size,
+    productId: productId,
+    varientId: varientId
+  };
+
+  axios
+    .post("/admin/addProduct/sizeVarient", data)
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response.data.subVarient);
+        sizeVariantTable.innerHTML += `
+            <tr>
+                      <td>${response.data.subVarient.size}</td>
+                      <td>${response.data.subVarient.quantity}</td>
+                      <td>${response.data.subVarient.price}</td>
+                      <td>
+                        <button
+                          data-user-id=""
+                          id=""
+                          type="button"
+                          class="btn btn-primary btn-sm statusBtn"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+            `
+
+        subVarientForm.reset()    
+      }
+    })
+    .catch((error) => {
+      console.log("it is an error", error);
+    });
+});
+
+
+  //VARIENT SUBMIT FORM
+  productColorVarientForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let colorName = document.getElementById("colorName").value;
+    let colorCode = document.getElementById("colorCode").value;
+
+    let colorNameTag = document.getElementById("colorNameTag")
+
+    let productId = colorNameTag.getAttribute("productid")
+    
+    
+
+    if (cropperOne && cropperTwo && cropperThree && cropperFour) {
+      const formData = new FormData();
+
+      const getBlobFromCropper = (cropper) => {
+        return new Promise((resolve) => {
+          cropper.getCroppedCanvas().toBlob((blob) => {
+            resolve(blob);
+          });
+        });
+      };
+
+      Promise.all([
+        getBlobFromCropper(cropperOne),
+        getBlobFromCropper(cropperTwo),
+        getBlobFromCropper(cropperThree),
+        getBlobFromCropper(cropperFour),
+      ])
+        .then((blobs) => {
+          formData.append("productImgOne", blobs[0]);
+          formData.append("productImgTwo", blobs[1]);
+          formData.append("productImgThree", blobs[2]);
+          formData.append("productImgFour", blobs[3]);
+          formData.append("colorName", colorName);
+          formData.append("colorCode", colorCode);
+          formData.append("productId", productId)
+
+          console.log("All blobs appended");
+          //POST REQUEST - ADD COLOR VARIENT
+
+          axios
+            .post("/admin/addProduct/colorVarient", formData)
+            .then((response) => {
+              if (response.status === 200) {
+              }
+            })
+            .catch((error) => {
+              console.log("it is an error", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Error creating blobs:", error);
+        });
+    }
+  });
+
+</script>
+<%- include('./footer') %>

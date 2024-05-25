@@ -44,6 +44,9 @@
               <a class="nav-link" href="/admin/products">LISTED</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="">UNLISTED</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/products/inactive">INACTIVE</a>
+            </li>
           </ul>
         </div>
       </li>
@@ -122,6 +125,7 @@
                 class="btn btn-primary"
                 data-toggle="modal"
                 data-target="#productModal"
+                id="add-product-btn"
               >
                 ADD PRODUCT
               </button>
@@ -147,14 +151,11 @@
                   <tr>
                     <th>MODEL</th>
                     <th>BRAND</th>
-                    <!-- <th>QUANTITY</th>
-                              <th>SIZE</th> -->
                     <th>CATEGORY</th>
-                    <!-- <th>COLOR</th> -->
                     <th>USER TYPE</th>
-                    <!-- <th>PRICE</th> -->
                     <th>OUTER MATERIAL</th>
                     <th>SOLE MATERIAL</th>
+                    <th>STATUS</th>
                     <th></th>
                     <th></th>
                   </tr>
@@ -168,7 +169,7 @@
         </div>
       </div>
 
-      <!-- Add Form Modal -->
+      <!---------------------------------------------- ADD FORM MODAL START ----------------------------------->
 
       <div
         class="modal fade"
@@ -279,70 +280,121 @@
         </div>
       </div>
 
-      <!-- Add Color Form Modal -->
+      <!---------------------------------------------- ADD FORM MODAL END----------------------------------->
 
-      <!-- <div class="modal fade" id="productColorModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content"  style="padding: 15px;">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="productModalLabel">ADD </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="forms-sample" id="product-form" action="" method="POST">
-                    
-                              <div class="form-group">
-                                <label for="model">Model</label>
-                                <input type="text" class="form-control" id="model" placeholder="model name">
-                              </div>
-                    
-                              <div class="form-group">
-                                <label for="brand">Brand</label>
-                                <input type="text" class="form-control" id="brand" placeholder="brand">
-                              </div>
-                
-                    
-                              <div class="form-group">
-                                <label for="gender">Gender</label>
-                                <input type="text" class="form-control" id="gender" placeholder="gender">
-                              </div>
-                    
-                    
-                              <div class="form-group">
-                                <label for="category">Category</label>
-                                <select class="form-control" id="category">
-                        
-                                </select>
-                              </div>
-                    
-                              <div class="form-group">
-                                <label for="outer-material">Outer material</label>
-                                <input type="text" class="form-control" id="outer-material" placeholder="outer material">
-                              </div>
-                    
-                              <div class="form-group">
-                                <label for="sole-material">Sole material</label>
-                                <input type="text" class="form-control" id="sole-material" placeholder="sole material">
-                              </div>
-                    
-                              <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea class="form-control" id="description" rows="3" placeholder="Write description"></textarea>
-                              </div>
-                    
-          
-                    
-                              <input type="submit" class="btn btn-gradient-primary mr-2" value="Submit">
-                              <a href="/admin/products" class="btn btn-light">Cancel</a>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div> -->
+      <!---------------------------------------------- EDIT FORM MODAL START ----------------------------------->
+      <div
+        class="modal fade"
+        id="productEditModal"
+        tabindex="-1"
+        aria-labelledby="productModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content" style="padding: 15px">
+            <div class="modal-header">
+              <h5 class="modal-title" id="productModalLabel">EDIT PRODUCT</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form
+                class="forms-sample"
+                id="product-edit-form"
+                action=""
+                method="POST"
+              >
+                <div class="form-group">
+                  <label for="model">Model</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-model"
+                    placeholder="model name"
+                  />
+                </div>
 
-      <!-- Varient modal -->
+                <div class="form-group">
+                  <label for="brand">Brand</label>
+                  <select class="form-control" id="edit-brand">
+                    <!-- Add category options here -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="gender">Gender</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-gender"
+                    placeholder="gender"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="category">Category</label>
+                  <select class="form-control" id="edit-category">
+                    <!-- Add category options here -->
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="outer-material">Outer material</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-outer-material"
+                    placeholder="outer material"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="sole-material">Sole material</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="edit-sole-material"
+                    placeholder="sole material"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea
+                    class="form-control"
+                    id="edit-description"
+                    rows="3"
+                    placeholder="Write description"
+                  ></textarea>
+                </div>
+
+                <input
+                  type="submit"
+                  class="btn btn-gradient-primary mr-2"
+                  value="Submit"
+                />
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!---------------------------------------------- EDIT FORM MODAL END----------------------------------->
+
+      <!----------------------------------------------- VARIENT MODAL START ---------------------------------->
       <div
         class="modal fade"
         id="varientModal"
@@ -354,7 +406,7 @@
           <div class="modal-content" style="padding: 15px">
             <div class="modal-header">
               <!-- <h5 class="modal-title" id="productModalLabel">VARIENTS</h5>-->
-              <h4>VARIENTS</h4>
+              <h4>VARIENTS - <span id="colorNameTag"></span></h4>
 
               <button
                 type="button"
@@ -366,12 +418,6 @@
               </button>
             </div>
             <div class="modal-body">
-              <!-- <div class="container" style="background-color: aquamarine;">
-                             <div id="cropperContainer">
-                                <input type="file" id="productImage" class="form-control">
-                            </div> 
-                        </div> -->
-
               <div class="container">
                 <div class="heading-container">
                   <h4 style="color: gray">COLORS</h4>
@@ -398,43 +444,12 @@
                     </button>
                   </div>
                 </div>
-                <div class="color-selection">
-                  <div class="color-box" style="background-color: red"></div>
-                  <div class="color-box" style="background-color: blue"></div>
-                  <div class="color-box" style="background-color: green"></div>
-                  <div class="color-box" style="background-color: yellow"></div>
-                  <!-- <a type="button"  data-toggle="modal" data-target="#nestedModal" class="color-box" style="border-color: gray; display: flex; justify-content: center; align-items: center;">  <i class="mdi menu-icon mdi-plus"></i></a> -->
-                </div>
+                <div class="color-selection" id="colorSelection"></div>
               </div>
 
               <div class="container">
                 <h4 style="color: gray">IMAGES</h4>
-                <div class="image-selection">
-                  <div
-                    class="image-box"
-                    style="
-                      background-image: url('https://via.placeholder.com/150');
-                    "
-                  ></div>
-                  <div
-                    class="image-box"
-                    style="
-                      background-image: url('https://via.placeholder.com/150');
-                    "
-                  ></div>
-                  <div
-                    class="image-box"
-                    style="
-                      background-image: url('https://via.placeholder.com/150');
-                    "
-                  ></div>
-                  <div
-                    class="image-box"
-                    style="
-                      background-image: url('https://via.placeholder.com/150');
-                    "
-                  ></div>
-                </div>
+                <div class="image-selection" id="imageGroup"></div>
               </div>
 
               <div class="container">
@@ -453,26 +468,26 @@
 
                 <form
                   action=""
-                  id="sub-varient-form"
+                  id="sub-varient-add-form"
                   class="row d-flex justify-content-between forms-sample"
                 >
                   <input
                     type="text"
                     class="form-control col-md-3"
-                    id="model"
-                    placeholder="model name"
+                    id="size"
+                    placeholder="Enter size"
                   />
                   <input
                     type="text"
                     class="form-control col-md-3"
-                    id="model"
-                    placeholder="model name"
+                    id="quantity"
+                    placeholder="Enter quantity"
                   />
                   <input
                     type="text"
                     class="form-control col-md-3"
-                    id="model"
-                    placeholder="model name"
+                    id="price"
+                    placeholder="Enter price"
                   />
 
                   <input
@@ -493,83 +508,7 @@
                         <th scope="col"></th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>Small</td>
-                        <td>10</td>
-                        <td>$15.00</td>
-                        <td>
-                          <button
-                            data-user-id=""
-                            id=""
-                            type="button"
-                            class="btn btn-primary btn-sm statusBtn"
-                          >
-                            Edit
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Medium</td>
-                        <td>20</td>
-                        <td>$20.00</td>
-                        <td>
-                          <button
-                            data-user-id=""
-                            id=""
-                            type="button"
-                            class="btn btn-primary btn-sm statusBtn"
-                          >
-                            Edit
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Large</td>
-                        <td>15</td>
-                        <td>$25.00</td>
-                        <td>
-                          <button
-                            data-user-id=""
-                            id=""
-                            type="button"
-                            class="btn btn-primary btn-sm statusBtn"
-                          >
-                            Edit
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Extra Large</td>
-                        <td>5</td>
-                        <td>$30.00</td>
-                        <td>
-                          <button
-                            data-user-id=""
-                            id=""
-                            type="button"
-                            class="btn btn-primary btn-sm statusBtn"
-                          >
-                            Edit
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Extra Large</td>
-                        <td>5</td>
-                        <td>$30.00</td>
-                        <td>
-                          <button
-                            data-user-id=""
-                            id=""
-                            type="button"
-                            class="btn btn-primary btn-sm statusBtn"
-                          >
-                            Edit
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
+                    <tbody id="sizeVariantTable"></tbody>
                   </table>
                 </div>
               </div>
@@ -805,10 +744,231 @@
     document.body.appendChild(backdrop);
   }
 
-  let cropperOne;
-  let cropperTwo;
-  let cropperThree;
-  let cropperFour;
+  const addProductBtn = document.getElementById("add-product-btn")
+  addProductBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    fetchAllBrands()
+    fetchAllCategories()
+  })
+
+  //VARIENT CLICK EVENT
+  document.addEventListener("click", (event) => {
+    let sizeVariantTable = document.getElementById("sizeVariantTable");
+
+    function getSizeVarientOfColor(varientId) {
+      sizeVariantTable.innerHTML = "";
+      console.log(varientId, "patti");
+      axios
+        .get(`/admin/product/getSizeVarient?varientid=${varientId}`)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response.data.sizeVarients.length, "Hey how are you");
+
+            response.data.sizeVarients.forEach((size) => {
+              sizeVariantTable.innerHTML += `
+              <tr>
+                      <td>${size.size}</td>
+                      <td>${size.quantity}</td>
+                      <td>${size.price}</td>
+                      <td>
+                        <button
+                          data-user-id=""
+                          id=""
+                          type="button"
+                          class="btn btn-primary btn-sm statusBtn"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+              `;
+            });
+          } else {
+            console.log("Unexpected response status", response.status);
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+        });
+    }
+
+    //PRODUCT EDIT
+    if (event.target && event.target.classList.contains("productEditBtn")) {
+      console.log("liooooo", event.target);
+      let editBtn = event.target;
+
+      let productId = editBtn.getAttribute("data-product-id");
+
+      axios
+        .get(`/admin/product/singleProductData?pid=${productId}`)
+        .then((response) => {
+          if (response.status === 200) {
+            let productEditModel = document.getElementById("edit-model");
+            let productEditBrand = document.getElementById("edit-brand");
+            let productEditGender = document.getElementById("edit-gender");
+            let productEditCategory = document.getElementById("edit-category");
+            let productEditOuterMaterial = document.getElementById(
+              "edit-outer-material"
+            );
+            let productEditSoleMaterial =
+              document.getElementById("edit-sole-material");
+            let productEditDescription =
+              document.getElementById("edit-description");
+
+            productEditModel.value = response.data.productData.modelName;
+            productEditBrand.value = response.data.productData.brand;
+            productEditGender.value = response.data.productData.gender;
+            productEditCategory.value = response.data.productData.category;
+            productEditOuterMaterial.value =
+              response.data.productData.outerMaterial;
+            productEditSoleMaterial.value =
+              response.data.productData.soleMaterial;
+            productEditDescription.value =
+              response.data.productData.description;
+          } else {
+            console.log("Unexpected response status", response.status);
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+        });
+    }
+
+    if (event.target && event.target.classList.contains("productVarientBtn")) {
+      let varientBtn = event.target;
+      let productId = varientBtn.getAttribute("data-product-id");
+      let colorNameTag = document.getElementById("colorNameTag");
+
+      let imageGroup = document.getElementById("imageGroup");
+
+      const colorSelection = document.getElementById("colorSelection");
+
+      colorNameTag.setAttribute("productid", productId);
+
+      colorSelection.innerHTML = "";
+
+      imageGroup.innerHTML = "";
+
+      axios
+        .get(`/admin/product/getColorVarient?pid=${productId}`)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("loppppossss", response.data.colorVarients.length);
+
+            if (response.data.colorVarients.length != 0) {
+              colorNameTag.innerText = response.data.colorVarients[0].colorName;
+
+              response.data.colorVarients.forEach((varient) => {
+                colorSelection.innerHTML += `
+<div class="color-box" data-color-name=${varient.colorName} data-color-images=${varient.images} id="${varient._id}" style="background-color: ${varient.colorCode}"></div>
+`;
+              });
+
+              response.data.colorVarients[0].images.forEach((image) => {
+                imageGroup.innerHTML += `
+<img class="image-box" src="/static/images/${image}" alt="A description of the image">
+`;
+              });
+
+              console.log("jioooooooooo", response.data.colorVarients[0]._id);
+
+              getSizeVarientOfColor(response.data.colorVarients[0]._id);
+
+              colorNameTag.setAttribute(
+                "varientid",
+                response.data.colorVarients[0]._id
+              );
+            } else {
+              colorSelection.innerHTML = "No color added";
+              imageGroup.innerHTML = " No iamge added";
+              sizeVariantTable.innerHTML = "No data added";
+            }
+          } else {
+            console.log("Unexpected response status", response.status);
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+        });
+    }
+
+    if (event.target && event.target.classList.contains("color-box")) {
+      let varientBtn = event.target;
+      let colorName = varientBtn.getAttribute("data-color-name");
+      let colorImages = varientBtn.getAttribute("data-color-images");
+      let colorVarientId = varientBtn.getAttribute("id");
+      colorNameTag.innerText = colorName;
+
+      colorNameTag.setAttribute("varientid", colorVarientId);
+
+      imageGroup.innerHTML = "";
+
+      colorImages.split(",").forEach((image) => {
+        imageGroup.innerHTML += `
+            <img class="image-box" src="/static/images/${image}" alt="A description of the image">
+            `;
+      });
+
+      getSizeVarientOfColor(colorVarientId);
+    }
+  });
+
+  // SUBVARIENT ADD
+  let subVarientForm = document.getElementById("sub-varient-add-form");
+
+  subVarientForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let colorNameTag = document.getElementById("colorNameTag");
+
+    let productId = colorNameTag.getAttribute("productid");
+    let varientId = colorNameTag.getAttribute("varientid");
+
+    const price = document.getElementById("price").value;
+    const quantity = document.getElementById("quantity").value;
+    const size = document.getElementById("size").value;
+
+    const data = {
+      price: price,
+      quantity: quantity,
+      size: size,
+      productId: productId,
+      varientId: varientId,
+    };
+
+    axios
+      .post("/admin/addProduct/sizeVarient", data)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data.subVarient);
+          sizeVariantTable.innerHTML += `
+            <tr>
+                      <td>${response.data.subVarient.size}</td>
+                      <td>${response.data.subVarient.quantity}</td>
+                      <td>${response.data.subVarient.price}</td>
+                      <td>
+                        <button
+                          data-user-id=""
+                          id=""
+                          type="button"
+                          class="btn btn-primary btn-sm statusBtn"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                    </tr>
+            `;
+          subVarientForm.reset();
+        }
+      })
+      .catch((error) => {
+        console.log("it is an error", error);
+      });
+  });
+
+  //ADD VARIENT
+  let cropperOne, cropperTwo, cropperThree, cropperFour;
 
   document.addEventListener("change", (event) => {
     if (
@@ -818,11 +978,20 @@
         event.target.id == "productImageThree" ||
         event.target.id == "productImageFour")
     )
-    console.log("Hey this is the id.", event.target.id);
-    readURL(event.target);
+      console.log("Hey this is the id.", event.target.id);
+
+    if (event.target.id == "productImageOne") {
+      imgOneSetup(event.target);
+    } else if (event.target.id == "productImageTwo") {
+      imgTwoSetup(event.target);
+    } else if (event.target.id == "productImageThree") {
+      imgThreeSetup(event.target);
+    } else if (event.target.id == "productImageFour") {
+      imgFourSetup(event.target);
+    }
   });
 
-  function readURL(input) {
+  function imgOneSetup(input) {
     if (input.files && input.files[0]) {
       const reader = new FileReader();
 
@@ -830,111 +999,168 @@
         const imgElement = document.createElement("img");
         imgElement.src = e.target.result;
         imgElement.alt = "Category Image";
-        imgElement.id = `cropperImage${input.id}`;
+        imgElement.id = `cropperImageOne`;
         imgElement.style.objectFit = "contain";
         imgElement.classList.add("img-thumbnail");
 
         console.log("kkk1", input.id, "kkk");
 
-        if (input.id == "productImageOne") {
-          let imagePreviewContainer =
-            document.getElementById("imagePreviewOne");
+        let imagePreviewContainer = document.getElementById("imagePreviewOne");
 
-          imagePreviewContainer.innerHTML = "";
-          imagePreviewContainer.appendChild(imgElement);
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
 
-          imgElement.addEventListener("load", function () {
-            if (cropperOne) {
-              cropperOne.destroy();
-            }
+        imgElement.addEventListener("load", function () {
+          if (cropperOne) {
+            cropperOne.destroy();
+          }
 
-            cropperOne = new Cropper(imgElement, {
-              aspectRatio: 1 / 1,
-              viewMode: 2,
-              autoCropArea: 1,
-              movable: true,
-              zoomable: true,
-              scalable: true,
-              rotatable: true,
-              minContainerWidth: 100,
-              minContainerHeight: 200,
-            });
+          cropperOne = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
           });
-        } else if (input.id == "productImageTwo") {
-          let imagePreviewContainer =
-            document.getElementById("imagePreviewTwo");
-          imagePreviewContainer.innerHTML = "";
-          imagePreviewContainer.appendChild(imgElement);
-
-          imgElement.addEventListener("load", function () {
-            if (cropperTwo) {
-              cropperTwo.destroy();
-            }
-
-            cropperTwo = new Cropper(imgElement, {
-              aspectRatio: 1 / 1,
-              viewMode: 2,
-              autoCropArea: 1,
-              movable: true,
-              zoomable: true,
-              scalable: true,
-              rotatable: true,
-              minContainerWidth: 100,
-              minContainerHeight: 200,
-            });
-          });
-        } else if (input.id == "productImageThree") {
-          let imagePreviewContainer =
-            document.getElementById("imagePreviewThree");
-          imagePreviewContainer.innerHTML = "";
-          imagePreviewContainer.appendChild(imgElement);
-
-          imgElement.addEventListener("load", function () {
-            if (cropperThree) {
-              cropperThree.destroy();
-            }
-
-            cropperThree = new Cropper(imgElement, {
-              aspectRatio: 1 / 1,
-              viewMode: 2,
-              autoCropArea: 1,
-              movable: true,
-              zoomable: true,
-              scalable: true,
-              rotatable: true,
-              minContainerWidth: 100,
-              minContainerHeight: 200,
-            });
-          });
-        } else if (input.id == "productImageFour") {
-          let imagePreviewContainer =
-            document.getElementById("imagePreviewFour");
-          imagePreviewContainer.innerHTML = "";
-          imagePreviewContainer.appendChild(imgElement);
-
-          imgElement.addEventListener("load", function () {
-            if (cropperFour) {
-              cropperFour.destroy();
-            }
-
-            cropperFour = new Cropper(imgElement, {
-              aspectRatio: 1 / 1,
-              viewMode: 2,
-              autoCropArea: 1,
-              movable: true,
-              zoomable: true,
-              scalable: true,
-              rotatable: true,
-              minContainerWidth: 100,
-              minContainerHeight: 200,
-            });
-          });
-        }
+        });
       };
 
       reader.readAsDataURL(input.files[0]);
     }
   }
+
+  function imgTwoSetup(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const imgElement = document.createElement("img");
+        imgElement.src = e.target.result;
+        imgElement.alt = "Category Image";
+        imgElement.id = `cropperImageTwo`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+        console.log("kkk1", input.id, "kkk");
+
+        let imagePreviewContainer = document.getElementById("imagePreviewTwo");
+
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
+
+        imgElement.addEventListener("load", function () {
+          if (cropperTwo) {
+            cropperTwo.destroy();
+          }
+
+          cropperTwo = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
+          });
+        });
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function imgThreeSetup(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const imgElement = document.createElement("img");
+        imgElement.src = e.target.result;
+        imgElement.alt = "Category Image";
+        imgElement.id = `cropperImageThree`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+        console.log("kkk1", input.id, "kkk");
+
+        let imagePreviewContainer =
+          document.getElementById("imagePreviewThree");
+
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
+
+        imgElement.addEventListener("load", function () {
+          if (cropperThree) {
+            cropperThree.destroy();
+          }
+
+          cropperThree = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
+          });
+        });
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function imgFourSetup(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const imgElement = document.createElement("img");
+        imgElement.src = e.target.result;
+        imgElement.alt = "Category Image";
+        imgElement.id = `cropperImageFour`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+        console.log("kkk1", input.id, "kkk");
+
+        let imagePreviewContainer = document.getElementById("imagePreviewFour");
+
+        imagePreviewContainer.innerHTML = "";
+        imagePreviewContainer.appendChild(imgElement);
+
+        imgElement.addEventListener("load", function () {
+          if (cropperFour) {
+            cropperFour.destroy();
+          }
+
+          cropperFour = new Cropper(imgElement, {
+            aspectRatio: 1 / 1,
+            viewMode: 2,
+            autoCropArea: 1,
+            movable: true,
+            zoomable: true,
+            scalable: true,
+            rotatable: true,
+            minContainerWidth: 100,
+            minContainerHeight: 200,
+          });
+        });
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  //VARIENT SUBMIT FORM
 
   const productColorVarientForm = document.getElementById(
     "product-color-varient-form"
@@ -946,7 +1172,9 @@
     let colorName = document.getElementById("colorName").value;
     let colorCode = document.getElementById("colorCode").value;
 
-    console.log(colorName, colorCode, "kkikikkiki");
+    let colorNameTag = document.getElementById("colorNameTag");
+
+    let productId = colorNameTag.getAttribute("productid");
 
     if (cropperOne && cropperTwo && cropperThree && cropperFour) {
       const formData = new FormData();
@@ -972,6 +1200,7 @@
           formData.append("productImgFour", blobs[3]);
           formData.append("colorName", colorName);
           formData.append("colorCode", colorCode);
+          formData.append("productId", productId);
 
           console.log("All blobs appended");
           //POST REQUEST - ADD COLOR VARIENT
@@ -980,7 +1209,6 @@
             .post("/admin/addProduct/colorVarient", formData)
             .then((response) => {
               if (response.status === 200) {
- 
               }
             })
             .catch((error) => {
@@ -992,11 +1220,199 @@
         });
     }
   });
+  // let cropperOne;
+  // let cropperTwo;
+  // let cropperThree;
+  // let cropperFour;
 
-  const productForm = document.getElementById("product-form");
+  // document.addEventListener("change", (event) => {
+  //   if (
+  //     event.target &&
+  //     (event.target.id == "productImageOne" ||
+  //       event.target.id == "productImageTwo" ||
+  //       event.target.id == "productImageThree" ||
+  //       event.target.id == "productImageFour")
+  //   )
+  //   console.log("Hey this is the id.", event.target.id);
+  //   readURL(event.target);
+  // });
 
-  document.addEventListener("DOMContentLoaded", (event) => {
-    //FETCH ALL CATEGORIES
+  // function readURL(input) {
+  //   if (input.files && input.files[0]) {
+  //     const reader = new FileReader();
+
+  //     reader.onload = function (e) {
+  //       const imgElement = document.createElement("img");
+  //       imgElement.src = e.target.result;
+  //       imgElement.alt = "Category Image";
+  //       imgElement.id = `cropperImage${input.id}`;
+  //       imgElement.style.objectFit = "contain";
+  //       imgElement.classList.add("img-thumbnail");
+
+  //       console.log("kkk1", input.id, "kkk");
+
+  //       if (input.id == "productImageOne") {
+  //         let imagePreviewContainer =
+  //          document.getElementById("imagePreviewOne");
+
+  //         imagePreviewContainer.innerHTML = "";
+  //         imagePreviewContainer.appendChild(imgElement);
+
+  //         imgElement.addEventListener("load", function () {
+  //           if (cropperOne) {
+  //             cropperOne.destroy();
+  //           }
+
+  //           cropperOne = new Cropper(imgElement, {
+  //             aspectRatio: 1 / 1,
+  //             viewMode: 2,
+  //             autoCropArea: 1,
+  //             movable: true,
+  //             zoomable: true,
+  //             scalable: true,
+  //             rotatable: true,
+  //             minContainerWidth: 100,
+  //             minContainerHeight: 200,
+  //           });
+  //         });
+  //       } else if (input.id == "productImageTwo") {
+  //         let imagePreviewContainer =
+  //           document.getElementById("imagePreviewTwo");
+  //         imagePreviewContainer.innerHTML = "";
+  //         imagePreviewContainer.appendChild(imgElement);
+
+  //         imgElement.addEventListener("load", function () {
+  //           if (cropperTwo) {
+  //             cropperTwo.destroy();
+  //           }
+
+  //           cropperTwo = new Cropper(imgElement, {
+  //             aspectRatio: 1 / 1,
+  //             viewMode: 2,
+  //             autoCropArea: 1,
+  //             movable: true,
+  //             zoomable: true,
+  //             scalable: true,
+  //             rotatable: true,
+  //             minContainerWidth: 100,
+  //             minContainerHeight: 200,
+  //           });
+  //         });
+  //       } else if (input.id == "productImageThree") {
+  //         let imagePreviewContainer =
+  //           document.getElementById("imagePreviewThree");
+  //         imagePreviewContainer.innerHTML = "";
+  //         imagePreviewContainer.appendChild(imgElement);
+
+  //         imgElement.addEventListener("load", function () {
+  //           if (cropperThree) {
+  //             cropperThree.destroy();
+  //           }
+
+  //           cropperThree = new Cropper(imgElement, {
+  //             aspectRatio: 1 / 1,
+  //             viewMode: 2,
+  //             autoCropArea: 1,
+  //             movable: true,
+  //             zoomable: true,
+  //             scalable: true,
+  //             rotatable: true,
+  //             minContainerWidth: 100,
+  //             minContainerHeight: 200,
+  //           });
+  //         });
+  //       } else if (input.id == "productImageFour") {
+  //         let imagePreviewContainer =
+  //           document.getElementById("imagePreviewFour");
+  //         imagePreviewContainer.innerHTML = "";
+  //         imagePreviewContainer.appendChild(imgElement);
+
+  //         imgElement.addEventListener("load", function () {
+  //           if (cropperFour) {
+  //             cropperFour.destroy();
+  //           }
+
+  //           cropperFour = new Cropper(imgElement, {
+  //             aspectRatio: 1 / 1,
+  //             viewMode: 2,
+  //             autoCropArea: 1,
+  //             movable: true,
+  //             zoomable: true,
+  //             scalable: true,
+  //             rotatable: true,
+  //             minContainerWidth: 100,
+  //             minContainerHeight: 200,
+  //           });
+  //         });
+  //       }
+  //     };
+
+  //     reader.readAsDataURL(input.files[0]);
+
+  //     console.log(input.files[0], "Hey Solaman");
+  //   }
+  // }
+
+  // const productColorVarientForm = document.getElementById(
+  //   "product-color-varient-form"
+  // );
+
+  // productColorVarientForm.addEventListener("submit", (event) => {
+  //   event.preventDefault();
+
+  //   let colorName = document.getElementById("colorName").value;
+  //   let colorCode = document.getElementById("colorCode").value;
+
+  //   console.log(cropperOne, cropperTwo, cropperThree, cropperFour, "Hey, I am sujith");
+
+  //   if (cropperOne && cropperTwo && cropperThree && cropperFour) {
+  //     const formData = new FormData();
+
+  //     const getBlobFromCropper = (cropper) => {
+
+  //       return new Promise((resolve) => {
+  //         cropper.getCroppedCanvas().toBlob((blob) => {
+  //           resolve(blob);
+  //         });
+  //       });
+  //     };
+
+  //     Promise.all([
+  //       getBlobFromCropper(cropperOne),
+  //       getBlobFromCropper(cropperTwo),
+  //       getBlobFromCropper(cropperThree),
+  //       getBlobFromCropper(cropperFour),
+  //     ])
+  //       .then((blobs) => {
+  //         formData.append("productImgOne", blobs[0]);
+  //         formData.append("productImgTwo", blobs[1]);
+  //         formData.append("productImgThree", blobs[2]);
+  //         formData.append("productImgFour", blobs[3]);
+  //         formData.append("colorName", colorName);
+  //         formData.append("colorCode", colorCode);
+
+  //         console.log("All blobs appended");
+  //         //POST REQUEST - ADD COLOR VARIENT
+
+  //         axios
+  //           .post("/admin/addProduct/colorVarient", formData)
+  //           .then((response) => {
+  //             if (response.status === 200) {
+
+  //             }
+  //           })
+  //           .catch((error) => {
+  //             console.log("it is an error", error);
+  //           });
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error creating blobs:", error);
+  //       });
+  //   }
+  // });
+
+  //FETCH ALL CATEGORIES
+  function fetchAllCategories() {
     axios
       .get("/admin/category/list")
       .then((response) => {
@@ -1016,29 +1432,79 @@
       .catch((error) => {
         console.log("it is an error", error);
       });
+  }
 
-    //FETCH ALL BRANDS
+  //FETCH ALL BRANDS
+  function fetchAllBrands(){
     axios
-      .get("/admin/brands/list")
-      .then((response) => {
-        if (response.status === 200) {
-          const brands = response.data;
+    .get("/admin/brands/list")
+    .then((response) => {
+      if (response.status === 200) {
+        const brands = response.data;
 
-          const brandSelect = document.getElementById("brand");
+        const brandSelect = document.getElementById("brand");
 
-          brands.brands.forEach((brand) => {
-            const option = document.createElement("option");
-            option.value = brand._id;
-            option.textContent = brand.name;
-            brandSelect.appendChild(option);
-          });
-        }
-      })
-      .catch((error) => {
-        console.log("it is an error", error);
-      });
-  });
+        brands.brands.forEach((brand) => {
+          const option = document.createElement("option");
+          option.value = brand._id;
+          option.textContent = brand.name;
+          brandSelect.appendChild(option);
+        });
+      }
+    })
+    .catch((error) => {
+      console.log("it is an error", error);
+    });
 
+  }
+
+
+  // document.addEventListener("DOMContentLoaded", (event) => {
+  //   //FETCH ALL CATEGORIES
+  //   axios
+  //     .get("/admin/category/list")
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         const categories = response.data;
+
+  //         const categorySelect = document.getElementById("category");
+
+  //         categories.categories.forEach((category) => {
+  //           const option = document.createElement("option");
+  //           option.value = category._id;
+  //           option.textContent = category.categoryName;
+  //           categorySelect.appendChild(option);
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log("it is an error", error);
+  //     });
+
+  //   //FETCH ALL BRANDS
+  //   axios
+  //     .get("/admin/brands/list")
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         const brands = response.data;
+
+  //         const brandSelect = document.getElementById("brand");
+
+  //         brands.brands.forEach((brand) => {
+  //           const option = document.createElement("option");
+  //           option.value = brand._id;
+  //           option.textContent = brand.name;
+  //           brandSelect.appendChild(option);
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log("it is an error", error);
+  //     });
+  // });
+
+  //ADD PRODUCT
+  const productForm = document.getElementById("product-form");
   productForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -1060,18 +1526,14 @@
       description: description,
     };
 
-    // for (let i = 0; i < image.files.length; i++) {
-    //   formData.append('images[]', image.files[i]); // 'images[]' allows multiple files with the same key
-    // }
-
     axios
       .post("/admin/addProduct", formData)
       .then((response) => {
         if (response.status == 200) {
-          // window.location.href = "/admin/dashboard"
           hideModal("productModal");
+          window.location.href = "/admin/products/inactive";
 
-          showModal("varientModal");
+          //showModal("varientModal");
         }
       })
       .catch((error) => {
@@ -1079,61 +1541,7 @@
       });
   });
 
-  // document.addEventListener('DOMContentLoaded', function() {
-  //     const productImage = document.getElementById('productImage');
-  //     let cropper;
-
-  //     productImage.addEventListener('change', function() {
-  //         readURL(this);
-  //     });
-
-  //     function readURL(input) {
-  //         if (input.files && input.files[0]) {
-  //             const reader = new FileReader();
-  //             reader.onload = function(e) {
-  //                 const imgElement = document.createElement('img');
-  //                 imgElement.src = e.target.result;
-  //                 imgElement.alt = 'Product Image';
-  //                 imgElement.id = 'cropperImage';
-  //                 imgElement.classList.add('img-thumbnail');
-
-  //                 // Clean up any existing image and cropper
-  //                 const container = document.getElementById('cropperContainer');
-  //                 container.innerHTML = '';
-  //                 container.appendChild(imgElement);
-
-  //                 // Initialize Cropper.js
-  //                 imgElement.addEventListener('load', function () {
-  //                     if (cropper) {
-  //                         cropper.destroy();
-  //                     }
-  //                     cropper = new Cropper(imgElement, {
-  //                         aspectRatio: 1 / 1,
-  //                         viewMode: 2,
-  //                         autoCropArea: 1,
-  //                         movable: true,
-  //                         zoomable: true,
-  //                         scalable: true,
-  //                         rotatable: true,
-  //                         minContainerWidth: 100,
-  //                         minContainerHeight: 200,
-  //                         crop(event) {
-  //                             console.log(event.detail.x);
-  //                             console.log(event.detail.y);
-  //                             console.log(event.detail.width);
-  //                             console.log(event.detail.height);
-  //                             console.log(event.detail.rotate);
-  //                             console.log(event.detail.scaleX);
-  //                             console.log(event.detail.scaleY);
-  //                         }
-  //                     });
-  //                 });
-  //             }
-  //             reader.readAsDataURL(input.files[0]);
-  //         }
-  //     }
-  // });
-
+  //GET PRODUCTS DATA
   document.addEventListener("DOMContentLoaded", (event) => {
     let tableContainer = document.getElementById("product-table-container");
 
@@ -1154,10 +1562,21 @@
                       <td>${product.gender}</td>
                       <td>${product.outerMaterial}</td>
                       <td>${product.soleMaterial}</td>
-                      <td><button data-user-id="" id="" data-toggle="modal" data-target="#varientModal" type="button" class="btn btn-primary btn-sm statusBtn">Varient</button></td>
-                     <td><button data-user-id="" id="" type="button" class="btn btn-primary btn-sm statusBtn">Edit</button></td>
-                     <td><button data-user-id="" id="" type="button" class="btn btn-primary btn-sm statusBtn">Unlist</button></td>
-                  
+            
+                      <td>${
+                        product.isActive
+                          ? `<span class="text-success">ACTIVE</span>`
+                          : `<span class="text-danger">INACTIVE</span>`
+                      }</td>
+                      <td><button data-product-id="${product._id}" id="varient${
+                product._id
+              }" data-toggle="modal" data-target="#varientModal" type="button" class="productVarientBtn btn btn-primary btn-sm statusBtn">Varient</button></td>
+                     <td><button data-product-id="${product._id}" id="edit${
+                product._id
+              }" data-toggle="modal" data-target="#productEditModal" type="button" class="productEditBtn btn btn-primary btn-sm statusBtn">Edit</button></td>
+                     <td><button data-product-id="${product._id}" id="delete${
+                product._id
+              }" type="button" class="productUnlistBtn btn btn-primary btn-sm statusBtn">Unlist</button></td>
                     </tr>
                         `;
             });
@@ -1169,4 +1588,4 @@
       });
   });
 </script>
-] <%- include('./footer') %>
+<%- include('./footer') %>
