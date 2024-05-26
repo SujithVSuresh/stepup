@@ -38,13 +38,17 @@ router.get("/logout", auth.isAdminLogin, adminController.logout);
 router.get('/dashboard', auth.isAdminLogin, adminController.dashboard)
 
 router.get('/products', auth.isAdminLogin, adminController.products)
-// router.get('/products/inactive', auth.isAdminLogin, adminController.inactiveProducts)
-// router.get('/products/inactive/list', auth.isAdminLogin, adminController.inactiveProductsList)
+router.get('/unlistedProducts', auth.isAdminLogin, adminController.unlistedProducts)
 router.get('/products/data', auth.isAdminLogin, adminController.productData)
+router.get('/unlistedProducts/data', auth.isAdminLogin, adminController.unlistedProductData)
+
 
 router.post('/addProduct', auth.isAdminLogin, adminController.addProduct)
+router.post('/editProduct', auth.isAdminLogin, adminController.editProduct)
+router.post('/manageDeleteProduct', auth.isAdminLogin, adminController.manageProductDeleteStatus)
 router.post('/addProduct/colorVarient', auth.isAdminLogin, uploadFields, adminController.addColorVarient)
 router.post('/addProduct/sizeVarient', auth.isAdminLogin, adminController.addSizeVarient)
+router.post('/editProduct/sizeVarient', auth.isAdminLogin, adminController.editSizeVarient)
 
 router.get('/product/getColorVarient', auth.isAdminLogin, adminController.getAllColorVarient)
 router.get('/product/getSizeVarient', auth.isAdminLogin, adminController.getAllSizeVarient)

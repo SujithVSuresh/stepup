@@ -67,24 +67,47 @@ const products = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-
-}
+};
 
 const productData = async (req, res) => {
-  try{
-  if (req.method === "GET") {
-    const products = await Product.find({}).populate([
-      { path: "category" },
-      { path: "brand" },
-    ])
+  try {
+    if (req.method === "GET") {
+      const products = await Product.find({ isDelete: false }).populate([
+        { path: "category" },
+        { path: "brand" },
+      ]);
 
-    res.status(200).json({ products: products });
+      res.status(200).json({ products: products });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-} catch (error) {
-  res.status(500).json({ error: error.message });
-}
-  
+};
 
+const unlistedProducts = async (req, res) => {
+  try {
+    res.render("admin/unlistedProduct", {
+      isLogin: true,
+      adminName: req.session.adminName,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const unlistedProductData = async (req, res) => {
+  try {
+    if (req.method === "GET") {
+      const products = await Product.find({ isDelete: true }).populate([
+        { path: "category" },
+        { path: "brand" },
+      ]);
+
+      res.status(200).json({ products: products });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 const addProduct = async (req, res) => {
@@ -124,7 +147,6 @@ const addProduct = async (req, res) => {
 
       await newProduct.save();
 
-
       res.status(200).json({ msg: "Product created successfully" });
     }
   } catch (error) {
@@ -132,42 +154,69 @@ const addProduct = async (req, res) => {
   }
 };
 
-
-//Inactive products page
-const inactiveProducts = async (req, res) => {
+const editProduct = async (req, res) => {
   try {
-    const products = await Product.find({isActive:false}).populate([
-      { path: "category" },
-      { path: "brand" },
-    ]);
+    if (req.method === "POST") {
+      const {
+        model,
+        brand,
+        gender,
+        category,
+        outerMaterial,
+        soleMaterial,
+        description,
+        id,
+      } = req.body;
 
-    res.render("admin/inactive", {
-      isLogin: true,
-      adminName: req.session.adminName,
-    });
+      let product = await Product.findOne({ _id: id });
+
+      // let checkingCategory = await Category.findOne({
+      //   categoryName: categoryName,
+      //   _id: { $ne: id },
+      // });
+
+      // if (!checkingCategory) {
+      //   category.categoryName = categoryName;
+      //   await category.save();
+      //   res.status(200).json({ categoryData: category });
+      // } else {
+      //   res.status(409).json({ message: "Category already exists" });
+      // }
+
+      console.log("Hello...............", product);
+
+      product.modelName = model;
+      product.brand = brand;
+      product.gender = gender;
+      product.category = category;
+      product.outerMaterial = outerMaterial;
+      product.soleMaterial = soleMaterial;
+      product.description = description;
+
+      product.save();
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-
-//Inactive products page
-const inactiveProductsList = async (req, res) => {
+const manageProductDeleteStatus = async (req, res) => {
   try {
-    const products = await Product.find({isActive:false}).populate([
-      { path: "category" },
-      { path: "brand" },
-    ]);
+    if (req.method === "POST") {
+      const { id } = req.body;
 
-    res.status(200).json({inactiveProducts: products})
-    
+      let product = await Product.findOne({ _id: id });
+
+      product.isDelete = !product.isDelete;
+
+      await product.save();
+
+      res.status(200).json({ deleteStatus: product.isDelete });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-
-
-
 
 // Users
 const users = async (req, res) => {
@@ -352,6 +401,7 @@ const editCategory = async (req, res) => {
         await category.save();
         res.status(200).json({ categoryData: category });
       } else {
+
         res.status(409).json({ message: "Category already exists" });
       }
     }
@@ -390,8 +440,6 @@ const addColorVarient = async (req, res) => {
       (item) => item[0].filename
     );
 
-    console.log("999", productImage);
-
     const colorVarient = new Varient({
       colorName: colorName,
       colorCode: colorCode,
@@ -429,6 +477,32 @@ const addSizeVarient = async (req, res) => {
   }
 };
 
+
+const editSizeVarient = async (req, res) => {
+  try {
+   
+    const { price, size, quantity, id } = req.body;
+
+
+    console.log(price, id, size, quantity, "jiiiiiiiiiioooooooooo");
+
+    let subVarient = await Subvarient.findOne({_id: id})
+
+    console.log(subVarient, "jiiiiiiiiiioooooooooo");
+
+    subVarient.price = price
+    subVarient.size = size
+    subVarient.quantity = quantity
+
+    await subVarient.save();
+
+    res.status(200).json({ subVarient: subVarient });
+  } catch (error) {
+    console.error("Error in addColorVarient:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 const getAllColorVarient = async (req, res) => {
   try {
     const productId = req.query.pid;
@@ -447,11 +521,9 @@ const getAllSizeVarient = async (req, res) => {
 
     console.log(varientId, "Hi, how are you");
 
-
     const subVarients = await Subvarient.find({ varient: varientId });
 
     console.log(subVarients, "Hi, how are you222");
-
 
     res.status(200).json({ sizeVarients: subVarients });
   } catch (error) {
@@ -460,26 +532,28 @@ const getAllSizeVarient = async (req, res) => {
 };
 
 const singleProductData = async (req, res) => {
-  try{
+  try {
     const productId = req.query.pid;
 
-    const productData = await Product.findOne({_id: productId}).populate([
+    const productData = await Product.findOne({ _id: productId }).populate([
       { path: "category" },
-      { path: "brand" }
-    ])
+      { path: "brand" },
+    ]);
 
-    res.status(200).json({productData: productData})
-
-
+    res.status(200).json({ productData: productData });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
+};
 
 module.exports = {
   dashboard,
   products,
+  unlistedProducts,
   addProduct,
+  editProduct,
+  manageProductDeleteStatus,
+  unlistedProductData,
   users,
   login,
   logout,
@@ -497,9 +571,8 @@ module.exports = {
   brandList,
   addColorVarient,
   addSizeVarient,
+  editSizeVarient,
   getAllColorVarient,
   getAllSizeVarient,
-  inactiveProducts,
-  inactiveProductsList,
-  singleProductData
+  singleProductData,
 };
