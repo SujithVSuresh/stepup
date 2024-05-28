@@ -15,62 +15,64 @@
 			</div>
 		</div>
 
+		<span id="data-handler" style="display: none;" varient-data-id="<%=  varientId %>" product-data-id="<%= productId %>"></span>
+
 		<div class="colorlib-product">
 			<div class="container">
 				<div class="row row-pb-lg product-detail-wrap">
 					<div class="col-sm-8">
-						<div class="owl-carousel">
-							<% productDetails.images.forEach(function(url) { %>
+						<div class="owl-carousel" id="product-image-container">
 
-								<div class="item">
-									<div class="product-entry border">
-										<div class="prod-img product-image">
-											<img src="/static/images/<%= url %>" class="img-fluid" alt="Free html5 bootstrap 4 template">
-											<div class="magnifier-lens"></div>
-										</div>
-										
-									</div>
-								</div>
-								<% }); %>
-							<!-- <div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img src="/static/user/images/item-1.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="/static/user/images/item-2.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img id="img1" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
+
 							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="/static/user/images/item-3.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img id="img2" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
 							</div>
+
 							<div class="item">
+								<div class="product-entry border">
+									<a href="#" class="prod-img">
+										<img id="img3" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
+									</a>
+								</div>
+							</div>	
 							
+							<div class="item">
 								<div class="product-entry border">
 									<a href="#" class="prod-img">
-										<img src="/static/user/images/item-4.jpg" class="img-fluid" alt="Free html5 bootstrap 4 template">
+										<img id="img4" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
 									</a>
 								</div>
-							</div> -->
+							</div>	
+
+					
 						</div>
 					</div>
 					<div class="col-sm-4">
 						<div class="product-desc product-details">
-							<h3 id="product-title"><%= productDetails.modelName %> <%= productDetails.category.categoryName %> for <%= productDetails.gender %></h3>
-							<p class="price">
-								<span style="font-size: 25px;">₹ <%= productDetails.price %></span> 
-						
-								
-							</p>
+				 <!--product details --> 
+				 <p style="font-weight: bold; font-size: 26px; color: black;" id="product-title"><span id="show-model-name"></span>  <span id="show-category-name"></span> for  <span id="show-gender"></span></p>
+				 <p class="price">
+					 <span style="font-size: 25px;" id="show-price"></span> 
+			 
+					 
+				 </p>
+
+				 <div class="">
+					
+					<!-- Color container -->
+				   <span><p style="font-size: 25px; color: red;" id="show-stock">Only Few Left</p></span>
+				</div>
 
 							<span class="rate" style="display: flex; flex-direction: row;">
 								<div style="background-color: green; width: auto; padding-left: 5px; padding-right: 5px; border-radius: 50px;  margin-right: 5px;">
@@ -83,23 +85,21 @@
 							<div class="size-wrap">
 								<div class="block-26 mb-2">
 									<h4>Size</h4>
-				               <ul>
-				                  <li><a href="#">7</a></li>
-				                  <li><a href="#">7.5</a></li>
-				                  <li><a href="#">8</a></li>
-				                  <li><a href="#">8.5</a></li>
-				                  <li><a href="#">9</a></li>
-				                  <li><a href="#">9.5</a></li>
+				               <ul id="size-container">
+				                  
+	
 				              
 				               </ul>
 				            </div>
 				            <div class="block-26 mb-4">
 									<h4>Color</h4>
-				               <ul>
-				                  <li style="background-color: skyblue;"><a href="#"></a></li>
-				                  <li style="background-color: brown;"><a href="#"></a></li>
+								<!-- Color container -->
+				               <ul id="color-container">
+				               
 				               </ul>
 				            </div>
+
+			
 							</div>
                      <div class="input-group mb-4">
                      	<span class="input-group-btn">
@@ -122,7 +122,7 @@
 								</div>
 
 								<div class="col-sm-6 text-center">
-									<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i class="icon-heart"></i>Add to Wishlist</a></p>
+									<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i class="icon-heart"></i>Wishlist</a></p>
 
 									
 								</div>
@@ -153,18 +153,20 @@
 
 								  <div class="tab-content" id="pills-tabContent">
 								    <div class="tab-pane border fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-								      <p><%= productDetails.description %></p>
-										<ul>
-											<li>Color - <%= productDetails.color %></li>
-											<li>Model - <%= productDetails.modelName %></li>
-											<li>Brand - <%= productDetails.brand %></li>
-											<li>Outer material - <%= productDetails.outerMaterial %></li>
-											<li>Sole material - <%= productDetails.soleMaterial %></li>
-											<li>Ideal for - <%= productDetails.gender %></li>
-											<li>Category - <%= productDetails.category.categoryName %></li>
-											
-										
-										</ul>
+						<!-- product description -->
+
+						<p id="p-desc">ss</p>
+						<ul>
+							<li id="p-clr">Color - </li>
+							<li id="p-model">Model - </li>
+							<li id="p-brand">Brand -</li>
+							<li id="p-outer">Outer material -</li>
+							<li id="p-sole">Sole material - </li>
+							<li id="p-gender">Ideal for - </li>
+							<li id="p-category">Category - </li>
+							
+						
+						</ul>
 								    </div>
 
 			
@@ -567,82 +569,318 @@
 </html>
 
 
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="path/to/jquery.min.js"></script>
+<script src="path/to/owl.carousel.min.js"></script>
 
 <script>
-	const lens = document.querySelector('.magnifier-lens')
-	const product_img = document.querySelector('.product-image img')
-	const magnified_img = document.querySelector('.magnified-img')
 
-	console.log(lens, product_img, magnified_img)
-	
-	function magnify(product_img, magnified_img){
-		lens.addEventListener('mousemove', moveLens, { passive: false })
-		product_img.addEventListener('mousemove', moveLens, { passive: false })
-	}
-	
-	function moveLens(e){
 
-		console.log("sujith, i am")
-		console.log("X : " + e.pageX + " Y:" + e.pageY)
-		let x, y, cx, cy;
+document.addEventListener("DOMContentLoaded", function() {
+
+let dataHandler = document.getElementById("data-handler")
+
+let initialProductId = dataHandler.getAttribute('product-data-id')
+let initialVarientId = dataHandler.getAttribute('varient-data-id')
+
+let productImageContainer = document.getElementById("product-image-container")
+
+console.log(productImageContainer);
+
+let imageOne = document.getElementById('img1')
+let imageTwo = document.getElementById('img2')
+let imageThree = document.getElementById('img3')
+let imageFour = document.getElementById('img4')
+
+//let pDescription = document.getElementById('p-desc')
+let pColor = document.getElementById('p-clr')
+let pModel = document.getElementById('p-model')
+let pBrand = document.getElementById('p-brand')
+let pOuter = document.getElementById('p-outer')
+let pSole = document.getElementById('p-sole')
+let pGender = document.getElementById('p-gender')
+let pCategory = document.getElementById('p-category')
+
+axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${initialVarientId}`)
+.then(function(response) {
+	if (response.status == 200) {
+		console.log(response.data);
+
+		let data = response.data
+
+		let varients = data.allVarients
+
+		let selectedSubVarients = data.selectedSubVarients
+
+		console.log(varients);
+
+
+		let product = data.product
         
-		const product_img_rect = product_img.getBoundingClientRect()
+		// Setting images
+		let images = data.selectedVarients[0].images
 
-		x = e.pageX - product_img_rect.left - lens.offsetWidth / 2;
-		y = e.pageY - product_img_rect.top - lens.offsetHeight / 2; 
+		imageOne.src = `/static/images/${images[0]}`
+		imageTwo.src = `/static/images/${images[1]}`
+		imageThree.src = `/static/images/${images[2]}`
+		imageFour.src = `/static/images/${images[3]}`
 
+
+		//Setting colors
+        let colorContainer = document.getElementById('color-container')
+
+		colorContainer.innerHTML = ""
+		varients.forEach(function (varient){
+			colorContainer.innerHTML += `
+			<li><a id="clr${varient._id}" varient-data-id="${varient._id}" style="background-color: ${varient.colorCode}; border-width: 1px; border-style: solid; border-color: gray" class="clrBox" href="#"></a></li>
+			`
+
+		});
+
+
+		// Setting sizes
+		let sizeContainer = document.getElementById('size-container')
+
+		sizeContainer.innerHTML = ""
+		selectedSubVarients.forEach(function (subVarient){
+			sizeContainer.innerHTML += `
+		 <li><a id="size${subVarient._id}" sub-varient-data-id="${subVarient._id}" style="border-width: 1px; border-style: solid; border-color: gray" class="sizeBox" href="#">${subVarient.size}</a></li>
+			`
+		});
+
+
+	    // Setting product details
+		let showModelName = document.getElementById('show-model-name')
+		let showCategoryName = document.getElementById('show-category-name')
+		let showGender = document.getElementById("show-gender")
+		let showPrice = document.getElementById("show-price")
+
+
+		showModelName.innerText = `${product.modelName}`
+		showCategoryName.innerText = `${product.category.categoryName}`
+		showGender.innerText = `${product.gender}`
+
+		showPrice.innerText = `₹ ${selectedSubVarients[0].price}`
+
+		let firstColor = document.getElementById(`clr${varients[0]._id}`)
+
+		let firstSize = document.getElementById(`size${selectedSubVarients[0]._id}`)
+
+		firstColor.style.borderColor = 'black'
+		firstColor.style.borderWidth = '3px'
+
+		firstSize.style.borderColor = 'black'
+		firstSize.style.borderWidth = '3px'
+
+
+		// Setting stock status
+		//let showStock = document.getElementById("show-stock")
+
+		if(selectedSubVarients[0].quantity > 10){
+			showStock.style.color = 'green'
+			showStock.innerText = `In Stock`
+
+		}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 5){
+			showStock.style.color = 'red'
+			showStock.innerText = `Only Few Left`
+
+		}else{
+			showStock.style.color = 'red'
+			showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
+
+		}
+
+
+
+	}
+
+})
+.catch(function(error) {
+  console.error('Error fetching data:', error);
+});
+
+
+// CLICK EVENT START
+
+document.addEventListener("click", (event) => {
+	event.preventDefault()
+
+	let showStock = document.getElementById("show-stock")
+   
+
+	// COLOR BUTTON
+    if(event.target && event.target.classList.contains("clrBox")){
+
+		let allClrBox = document.querySelectorAll(".clrBox")
+
+		let clickedClrBox = event.target
+
+
+
+		console.log("Jiooo", clickedClrBox);
+
+		let varientId = clickedClrBox.getAttribute("varient-data-id")
+	
+
+
+		axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${varientId}`)
+.then(function(response) {
+	if (response.status == 200) {
+		console.log("kjiooo", response.data);
+
+		let data = response.data
+
+		let selectedSubVarients = data.selectedSubVarients
+
+		if(data.selectedVarients[0]._id == varientId){
+
+		for (let i = 0; i < allClrBox.length; i++) {
+			allClrBox[i].style.borderColor = 'gray'; 
+			allClrBox[i].style.borderWidth = '1px';
+        }
+
+		clickedClrBox.style.borderColor = "black"
+		clickedClrBox.style.borderWidth = '3px'
+
+
+				// Setting images
+				let images = data.selectedVarients[0].images
+
+imageOne.src = `/static/images/${images[0]}`
+imageTwo.src = `/static/images/${images[1]}`
+imageThree.src = `/static/images/${images[2]}`
+imageFour.src = `/static/images/${images[3]}`
+
+
+
+		// Setting sizes
+		let sizeContainer = document.getElementById('size-container')
+
+		sizeContainer.innerHTML = ""
+		selectedSubVarients.forEach(function (subVarient){
+			sizeContainer.innerHTML += `
+			<li><a id="size${subVarient._id}" sub-varient-data-id="${subVarient._id}" style="border-width: 1px; border-style: solid; border-color: gray" class="sizeBox" href="#">${subVarient.size}</a></li>
+			`
+
+		});
+
+		let firstSize = document.getElementById(`size${selectedSubVarients[0]._id}`)
+
+
+        firstSize.style.borderColor = 'black'
+        firstSize.style.borderWidth = '3px'
+
+// Setting Price
+let showPrice = document.getElementById("show-price")
+        showPrice.innerText = `₹ ${selectedSubVarients[0].price}`
+
+
+
+				// Setting stock status
+				// let showStock = document.getElementById("show-stock")
+
+if(selectedSubVarients[0].quantity > 10){
+	showStock.style.color = 'green'
+	showStock.innerText = `In Stock`
+
+}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 5){
+	showStock.style.color = 'red'
+	showStock.innerText = `Only Few Left`
+
+}else{
+	showStock.style.color = 'red'
+	showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
+
+}
 
 		
-        lens.style.left = `${x}px`;
-		lens.style.right = `${y}px`;
+		}
 
-		let max_xpos = product_img_rect.width - lens.offsetWidth;
-		let max_ypos = product_img_rect.height - lens.offsetHeight;
-
-		if(x > max_xpos) x = max_xpos;
-		if(x < 0) x = 0;
-
-		if(y > max_ypos) x = max_ypos;
-		if(y < 0) y = 0;
-
-		lens.style.cssText = `top: ${y}px; left: ${x}px;`;
-
-	    cx = magnified_img.offsetWidth / lens.offsetWidth
-		cy = magnified_img.offsetHeight / lens.offsetHeight
-	
-
-	
 	}
 
-	magnify(product_img, magnified_img)
+})
+.catch(function(error) {
+  console.error('Error fetching data:', error);
+});
+	}
+
+
+
+// SIZE BOX
+	if(event.target && event.target.classList.contains("sizeBox")){
+
+		let allSizeBox = document.querySelectorAll(".sizeBox")
+
+		let sizeElement = event.target
+
+		let subVarientId = sizeElement.getAttribute("sub-varient-data-id")
+
+		axios.get(`/shop/item/productDetails?svid=${subVarientId}`)
+.then(function(response) {
+	if (response.status == 200) {
+
+		console.log("yadhav", response.data, subVarientId)
+
+		let subVarient = response.data.subVarient
+		console.log(subVarient, "lllll");
+
+		if(subVarient._id == subVarientId){
+
+			console.log("Kohli");
+
+			for (let i = 0; i < allSizeBox.length; i++) {
+				allSizeBox[i].style.borderColor = 'gray'; 
+				allSizeBox[i].style.borderWidth = '1px';
+        }
+
+		
+		sizeElement.style.borderColor = "black"
+		sizeElement.style.borderWidth = '3px'
+
+
+		// Setting Price
+let showPrice = document.getElementById("show-price")
+        showPrice.innerText = `₹ ${subVarient.price}`
+
+
+
+						// Setting stock status
+						// let showStock = document.getElementById("show-stock")
+
+if(subVarient.quantity > 10){
 	
-	
-	
-	
-	// document.addEventListener("DOMContentLoaded", (event) => {
-	// let container = document.getElementById("id-container");
+	showStock.style.color = 'green'
+	showStock.innerText = `In Stock`
 
-	// let  productId = container.getAttribute("product-id");
-
-	// let productTitle = document.getElementById('product-title')			
+}else if(subVarient.quantity <= 10 && subVarient.quantity >= 5){
+	showStock.style.color = 'red'
+	showStock.innerText = `Only Few Left`
 
 
+}else{
+	showStock.style.color = 'red'
+	showStock.innerText = `Only ${subVarient.quantity} Left`
 
-	// axios.get(`/shop/product/details?pid=${productId}`)
-    //         .then((response) => {
-    //             if(response.status == 200){
-	// 				console.log(response)
-	// 				productTitle.innerText = `${response.data.productDetails.modelName} ${response.data.productDetails.category.categoryName} for ${response.data.productDetails.gender}`
-       
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log("it is an error", error)
-    //         })
+}
 
 
-    
-	// 	})
+		}
+
+
+	}
+
+})
+.catch(function(error) {
+  console.error('Error fetching data:', error);
+});
+
+	}
+
+})
+
+
+})
+
 </script>
 <%- include('./footer') %>

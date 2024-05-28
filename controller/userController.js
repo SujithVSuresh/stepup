@@ -1,6 +1,8 @@
 
 const User = require('../models/userModel')
 const Product = require('../models/productModel')
+const Subvarient = require('../models/subVarientModel')
+const Varient = require('../models/varientModel')
 
 
 const bcrypt = require('bcrypt')
@@ -74,7 +76,10 @@ const signin = async (req, res) => {
         console.log(user, "iiooii")
 
         if(user && (await bcrypt.compare(password, user.password))){
+            console.log("kioooooooooopppppppppppp");
             req.session.userId = user._id;
+
+            console.log(req.session.userId);
             res.status(200).json({ message: "login successfull" });
         }else{
             res.status(404).json({ message: "No user found with these credentials" });
@@ -192,16 +197,69 @@ const shop = async (req, res) => {
 }
 
 
+// const items = async (req, res) => {
+//     try{
+//     if(req.method === "GET"){
+//         let varients = await Varient.find({}).populate("product");  
+
+//         let products = await Product.find({}).populate("category"); 
+        
+//         let subVarients = await Subvarient.find({})
+
+        
+//         res.status(200).json({varients: varients, products: products, subVarients: subVarients})
+
+//     }
+// } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// }
+
+
 const items = async (req, res) => {
+    try {
+        if (req.method === "GET") {
+            let varients = await Varient.find({}).populate("product");
+            let products = await Product.find({}).populate("category");
+            let subVarients = await Subvarient.find({});
+
+            // Filter and map the products with their corresponding varients and subvarients
+            let mappedProduct = products.map((product) => {
+                let filteredVarients = varients
+                    .filter((varient) => varient.product._id.toString() === product._id.toString())
+                    .map((varient) => {
+                        let filteredSubvarients = subVarients.filter(
+                            (subVarient) => subVarient.varient.toString() === varient._id.toString()
+                        );
+                        return { ...varient._doc, subVarients: filteredSubvarients };
+                    });
+
+                return { ...product._doc, varients: filteredVarients };
+            });
+
+            res.status(200).json({ products: mappedProduct });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
+const productDetailsPage = async (req, res) => {
     try{
     if(req.method === "GET"){
-        console.log("jio");
-        let products = await Product.find({}).populate('category');
+        let productId = req.params.productId
+        
 
-        console.log(products)
-        res.status(200).json({items: products})
+        let subVarient = await Subvarient.findOne({product: productId}).populate("varient")
+
+        
 
 
+         console.log("abhii", subVarient.varient._id)
+
+
+        res.render("user/product-detail", {productId: productId, varientId: subVarient.varient._id, isLogin: true})
     }
 } catch (error) {
     res.status(500).json({ error: error.message });
@@ -209,16 +267,32 @@ const items = async (req, res) => {
 }
 
 
-const productDetail = async (req, res) => {
+const productDetails = async (req, res) => {
     try{
     if(req.method === "GET"){
-        let productId = req.params.productId
+        let productId = req.query.pid
+        let varientId = req.query.vid
+        let subVarientId = req.query.svid
 
-        let productDetails = await Product.findOne({_id: productId}).populate('category')
+        if(subVarientId && !productId && !varientId){
+            let selectedSubVarientDetails = await Subvarient.findOne({_id: subVarientId})
+            res.status(200).json({subVarient: selectedSubVarientDetails})
 
-        console.log("abhii", productDetails)
+        }
 
-        res.render("user/product-detail", {productDetails: productDetails, isLogin: true})
+        if(productId && varientId && !subVarientId){
+
+        let product = await Product.findOne({_id: productId}).populate('category')
+
+        let allVarients = await Varient.find({product: productId})
+
+        let selectedVarients = await Varient.find({_id: varientId})
+
+        let selectedSubVarients = await Subvarient.find({product: productId, varient: varientId})
+        
+
+        res.status(200).json({product: product, allVarients:allVarients, selectedVarients: selectedVarients, selectedSubVarients:selectedSubVarients})
+        }
     }
 } catch (error) {
     res.status(500).json({ error: error.message });
@@ -245,7 +319,8 @@ module.exports = {
     verifyOtp,
     shop,
     items,
-    productDetail,
+    productDetailsPage,
+    productDetails,
     logout
     // fetchProductDetails
 }

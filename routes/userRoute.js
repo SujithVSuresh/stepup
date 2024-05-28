@@ -13,9 +13,11 @@ router.get('/shop', auth.isLogin, userController.shop)
 
 router.get('/shop/items', auth.isLogin, userController.items)
 
-router.get('/shop/:productId', auth.isLogin, userController.productDetail)
+router.get('/shop/items/:productId', auth.isLogin, userController.productDetailsPage)
 
-// router.get('/shop/product/details', userController.fetchProductDetails)
+router.get('/shop/item/productDetails', auth.isLogin, userController.productDetails)
+
+//router.get('/shop/product/details', userController.fetchProductDetails)
 
 router.get('/signin',  auth.isLogout, userController.signin)
 
