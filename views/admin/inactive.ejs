@@ -463,7 +463,6 @@ function showModal(modalId) {
     function getSizeVarientOfColor(varientId) {
       
       sizeVariantTable.innerHTML = ""
-      console.log(varientId, "patti");
       axios
         .get(`/admin/product/getSizeVarient?varientid=${varientId}`)
         .then((response) => {

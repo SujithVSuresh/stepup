@@ -1,4 +1,4 @@
-<%- include('./header', {isLogin: isLogin}) %>
+<%- include('./header', {isLogin: isLogin, cartCount: 0}) %>
 
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
     <form method="post" id="signin-form" class="colorlib-form col-md-3" style="height: auto;">
@@ -10,7 +10,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="companyname">EMAIL</label>
-                <input value="vishnumohanmfc@gmail.com" type="email" id="email" class="form-control" placeholder="Email Address">
+                <input value="sujithvsxyz@yopmail.com" type="email" id="email" class="form-control" placeholder="Email Address">
                 <span id="emailError" style="color: red"></span>
           </div>
        </div>
@@ -18,9 +18,9 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="companyname">PASSWORD</label>
-        <input value="vishnu@123" type="password" id="password" class="form-control" placeholder="Password">
+        <input value="sujith@123" type="password" id="password" class="form-control" placeholder="Password">
         <div class="col-md-12 text-right">
-            <a href="/forgotpassword" class="forgot-password-button">Forgot Password?</a>
+            <a href="/password/reset/request" class="forgot-password-button">Forgot Password?</a>
         </div>
         <span id="passwordError" style="color: red"></span>
     </div>

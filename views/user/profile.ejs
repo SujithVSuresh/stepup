@@ -1,0 +1,170 @@
+<%- include('./header', {isLogin: isLogin, cartCount:0}) %>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="bread">
+          <span><a href="index.html">Home</a></span> /
+          <span>Profile</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="height: 100vh; margin-top: 100px;">
+  <div class="profile-info">
+    <h2><span id="p-fname"><%= user.firstName %></span> <span id="p-lname"><%= user.lastName %></span></h2>
+    <p>Email: <span id="p-email"><%= user.email %></span></p>
+    <p>Phone: <span id="p-phone"><%= user.phone %></span></p>
+  </div>
+
+  <div class="buttons">
+    <a class="button" href="/address">Manage Address</a>
+    <a class="button" data-toggle="modal" data-target="#profileEditModal"
+      >Edit Profile</a
+    >
+    <a class="button">My Orders</a>
+    <a class="button">Wallet</a>
+    <a class="button" href="/profile/changePassword">Change Password</a>
+    <!-- <div class="button button-orange">Copy Referral Link</div> -->
+    <a class="button button-red">Sign Out</a>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="profileEditModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="profileEditLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="billingModalLabel">EDIT PROFILE</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" class="colorlib-form">
+          <!-- <h2>EDIT PROFILE</h2> -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstName">Full Name</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  class="form-control"
+                  placeholder="First name"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  class="form-control"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="text"
+                  id="phone"
+                  class="form-control"
+                  placeholder="Phone number"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  placeholder="Email address"
+                  disabled
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" id="profileEditSaveBtn" class="btn btn-primary">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(event){
+
+  const firstName = document.getElementById('firstName')
+  const lastName = document.getElementById('lastName')
+  const phoneNumber = document.getElementById('phone')
+  const emailAddress = document.getElementById('email')
+
+  const pFirstName = document.getElementById('p-fname')
+  const pLastName = document.getElementById('p-lname')
+  const pEmail = document.getElementById('p-email')
+  const pPhone = document.getElementById('p-phone')
+
+
+  firstName.value = pFirstName.innerText
+  lastName.value = pLastName.innerText
+  phoneNumber.value = pPhone.innerText
+  emailAddress.value = pEmail.innerText
+
+
+  const profileEditSaveBtn = document.getElementById('profileEditSaveBtn')
+
+  profileEditSaveBtn.onclick = function(event){
+    console.log("Hey hello", firstName.value, lastName.value);
+
+    axios
+      .post("/profile/editProfile", {firstName: firstName.value, lastName: lastName.value, phoneNumber: phoneNumber.value})
+      .then((response) => {
+        const data = response.data.data
+        console.log(response);
+
+        pFirstName.innerText = data.firstName
+        pLastName.innerText = data.lastName
+        pPhone.innerText = data.phone
+
+        document.querySelector('#profileEditModal .close').click();
+
+      })
+      .catch((error) => {
+        console.log("it is an error", error);
+      });
+  }
+
+})
+</script>
+
+<%- include('./footer') %>

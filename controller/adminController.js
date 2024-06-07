@@ -77,6 +77,8 @@ const productData = async (req, res) => {
         { path: "brand" },
       ]);
 
+      console.log(products);
+
       res.status(200).json({ products: products });
     }
   } catch (error) {
@@ -147,7 +149,7 @@ const addProduct = async (req, res) => {
 
       await newProduct.save();
 
-      res.status(200).json({ msg: "Product created successfully" });
+      return res.status(200).json({ msg: "Product created successfully" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -194,6 +196,11 @@ const editProduct = async (req, res) => {
       product.description = description;
 
       product.save();
+
+      // res.redirect('/admin/products')
+
+      return res.status(200).json({ message: "product edited successfully."});
+
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -434,6 +441,12 @@ const addColorVarient = async (req, res) => {
   try {
     const { colorName, colorCode, productId } = req.body;
 
+    let findColorVarient = await Varient.findOne({colorName: colorName, colorCode: colorCode})
+
+    if(findColorVarient){
+      return res.status(409).json({ "message": "Color you are trying to add already exists." });
+    }
+
     const files = req.files;
 
     const productImage = await Object.values(files).map(
@@ -448,6 +461,37 @@ const addColorVarient = async (req, res) => {
     });
 
     await colorVarient.save();
+
+    if(colorVarient){
+      return res.status(200).json({ "message": "Color added successfully" });
+
+    }
+
+    
+  } catch (error) {
+    console.error("Error in addColorVarient:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+const deleteColorVarient = async (req, res) => {
+  try {
+    const { varientId } = req.body;
+
+    console.log(varientId, "colorVarientId");
+
+
+    const colorVariant = await Varient.findOne({ _id: varientId});
+
+     if (!colorVariant) {
+      return res.status(409).json({ message: "No color varient found" });
+     }
+
+    await Varient.findByIdAndDelete(colorVariant._id);
+
+    return res.status(200).json({ message: "Color variant deleted successfully." });
+    
   } catch (error) {
     console.error("Error in addColorVarient:", error);
     res.status(500).json({ error: error.message });
@@ -458,7 +502,13 @@ const addSizeVarient = async (req, res) => {
   try {
     const { price, size, quantity, productId, varientId } = req.body;
 
-    console.log(price, size, quantity, "jijiji");
+    let checkingSubVarient = await Subvarient.findOne({size: size, varient: varientId})
+
+    console.log(checkingSubVarient, "preeeee");
+
+    if(checkingSubVarient){
+      return res.status(409).json({ message: "Size with this value already exists." });
+    }
 
     const subVarient = new Subvarient({
       size: size,
@@ -468,9 +518,11 @@ const addSizeVarient = async (req, res) => {
       product: productId,
     });
 
+ 
+
     await subVarient.save();
 
-    res.status(200).json({ subVarient: subVarient });
+    return res.status(200).json({ subVarient: subVarient });
   } catch (error) {
     console.error("Error in addColorVarient:", error);
     res.status(500).json({ error: error.message });
@@ -481,25 +533,49 @@ const addSizeVarient = async (req, res) => {
 const editSizeVarient = async (req, res) => {
   try {
    
-    const { price, size, quantity, id } = req.body;
+    const { price, size, quantity, id, varientId } = req.body;
+
+    let checkingSubVarient = await Subvarient.findOne({size: size, varient: varientId, _id:{$ne: id}})
+
+    if(!checkingSubVarient){
+      let subVarient = await Subvarient.findOne({_id: id})
+
+      subVarient.price = price
+      subVarient.size = size
+      subVarient.quantity = quantity
+  
+      await subVarient.save();
+  
+      return res.status(200).json({ subVarient: subVarient });
+      
+    }else{
+      return res.status(409).json({ message: "Size with this value already exists." });
+
+    }
 
 
-    console.log(price, id, size, quantity, "jiiiiiiiiiioooooooooo");
 
-    let subVarient = await Subvarient.findOne({_id: id})
-
-    console.log(subVarient, "jiiiiiiiiiioooooooooo");
-
-    subVarient.price = price
-    subVarient.size = size
-    subVarient.quantity = quantity
-
-    await subVarient.save();
-
-    res.status(200).json({ subVarient: subVarient });
   } catch (error) {
     console.error("Error in addColorVarient:", error);
     res.status(500).json({ error: error.message });
+  }
+};
+
+
+const deleteSizeVarient = async (req, res) => {
+  try {
+   
+    const { id } = req.body;
+
+    const subVarient = await Subvarient.findByIdAndDelete(id);
+    if (subVarient) {
+      return res.status(200).json({ message: "Size deleted successfully",  subVarient: subVarient });
+    } else {
+      return res.status(404).json({ error: "Size not found" });
+    }
+  } catch (error) {
+    console.error("Error in addColorVarient:", error);
+    return res.status(500).json({ error: error.message });
   }
 };
 
@@ -570,8 +646,11 @@ module.exports = {
   addBrand,
   brandList,
   addColorVarient,
+  deleteColorVarient,
   addSizeVarient,
   editSizeVarient,
+  deleteSizeVarient,
+
   getAllColorVarient,
   getAllSizeVarient,
   singleProductData,

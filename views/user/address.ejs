@@ -1,0 +1,397 @@
+<%- include('./header', {isLogin: isLogin, cartCount: 0}) %>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="bread">
+          <span><a href="index.html">Home</a></span> / <span>Profile</span> /
+          <span>Address</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="colorlib-product">
+    <div class="container">
+
+      <div class="row row-pb-lg">
+        <div class="col-md-12">
+
+            <div class="container cart-detail">
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h2>DELIVERY ADDRESS</h2>
+                <button
+                style="width: auto; border-radius: 10px; height: 40px;"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#addAddressModal"
+              >
+                Add Address
+              </button>
+            </div>
+              
+                <div class="address-selection" id="addressContainer">
+                  <% if (address){ %> <% address.address.map(function (item){ %>
+                    <div style="display: flex; flex-direction: row;" class="address-card-two">
+                  <div style="flex: 4;">
+                      <p><strong><%= item.name %></strong></p>
+                      <p>
+                        <%= item.localityAreaStreet %>, <%= item.landmark %>, <%= item.cityDistrictTown %>, <%= item.state %>, <%= item.pincode %>
+                      </p>
+                      <p>Phone: <%= item.phoneNumber %></p>
+                  </div>
+                  <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-evenly;">
+                    <button class="editDltBtn editBtn" style="border-color: rgb(76, 174, 212);">Edit</button>
+                    <button class="editDltBtn dltBtn" style="border-color: rgb(250, 141, 141);">Delete</button>
+                  </div>
+                </div>
+                  <% }); %> <% } else { %>
+                  <h3 style="color: gray; text-align: center">No address found !</h3>
+                  <% } %>
+                </div>
+              </div>
+
+        </div>
+      </div>
+
+     
+    </div>
+  </div>
+
+
+
+  <!-- ADD ADDRESS MODAL -->
+  <div
+  class="modal fade"
+  id="addAddressModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addAddressModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAddressModalLabel">ADD ADDRESS</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" class="colorlib-form">
+          <!-- <h2>Billing Details</h2> -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  id="fullName"
+                  class="form-control"
+                  placeholder="Full Name"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="state">Select State</label>
+                <div class="form-field">
+                  <i class="icon icon-arrow-down3"></i>
+                  <select
+                    name="people"
+                    id="state"
+                    class="form-control"
+                  ></select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="cityDistrictTown">City/District/Town</label>
+                <input
+                  type="text"
+                  id="cityDistrictTown"
+                  class="form-control"
+                  placeholder="City / District / Town"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="zipPostalCode">Zip/Postal Code</label>
+                <input
+                  type="text"
+                  id="zipPostalCode"
+                  class="form-control"
+                  placeholder="Zip / Postal"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="localityAreaStreet">Locality/Area/Street</label>
+                <input
+                  type="text"
+                  id="localityAreaStreet"
+                  class="form-control"
+                  placeholder="Locality / Area / Street"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="landmark">Landmark</label>
+                <input
+                  type="text"
+                  id="landmark"
+                  class="form-control"
+                  placeholder="Landmark"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="housenoBuildingApartment"
+                  >House no/Building/Apartment</label
+                >
+                <input
+                  type="text"
+                  id="housenoBuildingApartment"
+                  class="form-control"
+                  placeholder="House no / Building / Apartment"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="text"
+                  id="phone"
+                  class="form-control"
+                  placeholder="Phone Number"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" id="addressSaveBtn" class="btn btn-primary">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.2.0/noty.min.js"></script>
+
+<script>
+     document.addEventListener("DOMContentLoaded", (event) => {
+    const states = [
+      "Select state",
+      "Andhra Pradesh",
+      "Arunachal Pradesh",
+      "Assam",
+      "Bihar",
+      "Chhattisgarh",
+      "Goa",
+      "Gujarat",
+      "Haryana",
+      "Himachal Pradesh",
+      "Jharkhand",
+      "Karnataka",
+      "Kerala",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Manipur",
+      "Meghalaya",
+      "Mizoram",
+      "Nagaland",
+      "Odisha",
+      "Punjab",
+      "Rajasthan",
+      "Sikkim",
+      "Tamil Nadu",
+      "Telangana",
+      "Tripura",
+      "Uttar Pradesh",
+      "Uttarakhand",
+      "West Bengal",
+    ];
+
+    const stateSelect = document.getElementById("state");
+
+    for (const state of states) {
+      const option = document.createElement("option");
+      if (state == "Select state") {
+        option.value = "";
+        option.text = state;
+      } else {
+        option.value = state;
+        option.text = state;
+      }
+      stateSelect.appendChild(option);
+    }
+
+
+    document.addEventListener("click", (event) => {
+      if (event.target && event.target.id == "addressSaveBtn") {
+        event.preventDefault();
+
+        const addressContainer = document.getElementById('addressContainer')
+
+        let fullName = document.getElementById("fullName");
+        let state = document.getElementById("state");
+        let cityDistrictTown = document.getElementById("cityDistrictTown");
+        let zipPostalCode = document.getElementById("zipPostalCode");
+        let localityAreaStreet = document.getElementById("localityAreaStreet");
+        let housenoBuildingApartment = document.getElementById(
+          "housenoBuildingApartment"
+        );
+        let phone = document.getElementById("phone");
+        let landmark = document.getElementById("landmark");
+
+        const data = {
+          fullName: fullName.value,
+          state: state.value,
+          cityDistrictTown: cityDistrictTown.value,
+          zipPostalCode: zipPostalCode.value,
+          localityAreaStreet: localityAreaStreet.value,
+          housenoBuildingApartment: housenoBuildingApartment.value,
+          phone: phone.value,
+          landmark: landmark.value,
+        };
+
+        axios
+          .post("/address/addAddress", data)
+          .then((response) => {
+            if (response.status == 200) {
+                console.log("Hey", response.data);
+                const data = response.data.data
+
+                addressContainer.innerHTML += `
+                
+                <div style="display: flex; flex-direction: row;" class="address-card-two">
+                  <div style="flex: 4;">
+                      <p><strong>${data.name}</strong></p>
+                      <p>
+                        ${data.localityAreaStreet}, ${data.landmark}, ${data.cityDistrictTown}, ${data.state}, ${data.pincode}
+                      </p>
+                      <p>Phone: ${data.phoneNumber}</p>
+    
+                            </div>
+                  <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-evenly;">
+                    <button class="editDltBtn" style="border-color: rgb(76, 174, 212);">Edit</button>
+                    <button class="editDltBtn" style="border-color: rgb(250, 141, 141);">Delete</button>
+
+                  </div>
+                </div>
+                `
+                document.querySelector('#addAddressModal .close').click();
+
+            }
+          })
+          .catch((error) => {
+            console.log("error code");
+          });
+      }
+
+
+      if(event.target && event.target.classList.contains("dltBtn")){
+        console.log("Hey delete it.....");
+        new Noty({
+        text: 'Are you sure you want to delete this item?',
+        type: 'confirm',
+        buttons: [
+          Noty.button('Yes', 'btn btn-success btn-yes', function() {
+            // Handle the delete action here
+            console.log('Item deleted');
+            n.close();
+          }),
+          Noty.button('No', 'btn btn-danger btn-no', function() {
+            // Handle the cancel action here
+            console.log('Delete canceled');
+            n.close();
+          })
+        ]
+      }).show();
+      }
+    });
+
+})
+//   const changePasswordForm = document.getElementById("changePasswordForm");
+
+//   changePasswordForm.addEventListener("submit", (event) => {
+//     event.preventDefault();
+
+//     const currentPassword = document.getElementById("currentPassword");
+//     const newPassword = document.getElementById("newPassword");
+//     const confirmNewPassword = document.getElementById("confirmNewPassword");
+
+//     axios
+//       .post("/profile/changePassword", {
+//         currentPassword: currentPassword.value,
+//         newPassword: newPassword.value,
+//       })
+//       .then((response) => {
+//         if (response.status == 200) {
+//           new Noty({
+//             type: "success",
+//             text: response.data.message,
+//             timeout: 3000, // Duration to display the message (in milliseconds)
+//             layout: "bottomCenter",
+//             theme: "relax",
+//             animation: {
+//               open: "animated bounceInRight",
+//               close: "animated bounceOutRight",
+//             },
+//             callbacks: {
+//               afterClose: function () {
+//                 // Redirect to the sign-in page after the notification closes
+//                 window.location.href = "/profile";
+//               },
+//             },
+//           }).show();
+//         }
+//       })
+//       .catch((error) => {
+//         console.log("it is an error", error);
+//         if (error.response.status == 409) {
+//           new Noty({
+//             type: "error",
+//             text: error.response.data.message,
+//             timeout: 3000,
+//             layout: "bottomCenter",
+//             theme: "metroui",
+//           }).show();
+//         }
+//       });
+//   });
+</script>
+
+<%- include('./footer') %>

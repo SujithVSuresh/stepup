@@ -1,112 +1,148 @@
-<%- include('./header', {isLogin: isLogin}) %>
+<%- include('./header', {isLogin: isLogin, cartCount: 0}) %>
 
-<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; padding-top: 100px; padding-bottom: 100px;">
-
-<form method="POST" id="signup-form" action="/signup" class="colorlib-form col-md-3">
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="min-height: 100vh; padding-top: 100px; padding-bottom: 100px"
+>
+  <form
+    method="POST"
+    id="signup-form"
+    action="/signup"
+    class="colorlib-form col-md-3"
+  >
     <p class="form-heading">SIGNUP</p>
-  <div class="row">
-
-    <div class="row" style="margin-left: 5px; margin-right: 5px;">
+    <div class="row">
+      <div class="row" style="margin-left: 5px; margin-right: 5px">
         <div class="col-md-6">
-            <div class="form-group">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="fname" class="form-control" placeholder="Your firstname">
-            </div>
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input
+              type="text"
+              id="fname"
+              name="fname"
+              class="form-control"
+              placeholder="Your firstname"
+            />
+          </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lname" class="form-control" placeholder="Your lastname">
-           </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input
+              type="text"
+              id="lname"
+              name="lname"
+              class="form-control"
+              placeholder="Your lastname"
+            />
+          </div>
         </div>
-     
-        <span id="nameError" style="color: red; margin-left: 20px;"></span>
-    </div>
 
-
-        <div class="col-md-12">
-            <div class="form-group">
-                <label for="companyname">EMAIL</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address">
-            <span id="emailError" style="color: red"></span>
+        <span id="nameError" style="color: red; margin-left: 20px"></span>
       </div>
-   </div>
 
-   <div class="col-md-12">
-    <div class="form-group">
-        <label for="companyname">PHONE</label>
-    <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone Number">
-    <span id="phoneError" style="color: red"></span>
-</div>
-</div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="companyname">EMAIL</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            placeholder="Email Address"
+          />
+          <span id="emailError" style="color: red"></span>
+        </div>
+      </div>
 
-<div class="col-md-12">
-    <div class="form-group">
-        <label for="companyname">PASSWORD</label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="Password">
-    <span id="passwordError" style="color: red"></span>
-</div>
-</div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="companyname">PHONE</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            class="form-control"
+            placeholder="Phone Number"
+          />
+          <span id="phoneError" style="color: red"></span>
+        </div>
+      </div>
 
-<div class="col-md-12">
-    <div class="form-group">
-        <label for="companyname">CONFIRM PASSWORD</label>
-    <input type="password" id="confirm-password" name="confirm-password" class="form-control" placeholder="Confirm Password">
-    <span id="password2Error" style="color: red"></span>
-</div>
-</div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="companyname">PASSWORD</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+          />
+          <span id="passwordError" style="color: red"></span>
+        </div>
+      </div>
 
-<input type="submit" class="form-button">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="companyname">CONFIRM PASSWORD</label>
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            class="form-control"
+            placeholder="Confirm Password"
+          />
+          <span id="password2Error" style="color: red"></span>
+        </div>
+      </div>
 
-<div class="col-md-12">
-    <a href="/signin" class="create-account-button">Already have an account?</a>
-</div>
-<div class="col-md-12">
-    <div class="separator">
-        <span>OR</span>
+      <input type="submit" class="form-button" />
+
+      <div class="col-md-12">
+        <a href="/signin" class="create-account-button"
+          >Already have an account?</a
+        >
+      </div>
+      <div class="col-md-12">
+        <div class="separator">
+          <span>OR</span>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <a href="/auth/google" type="button" class="google-signin-button">
+          <img src="/static/images/googlelogo.svg" alt="Google logo" />
+          Sign up with Google
+        </a>
+      </div>
     </div>
-</div>
-
-<div class="col-md-12">
-    <a  href="/auth/google" type="button" class="google-signin-button">
-        <img src="/static/images/googlelogo.svg" alt="Google logo">
-        Sign up with Google
-    </a>
-</div>
-
-</div>
-</form>
-
+  </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    let signupForm = document.getElementById("signup-form")
+  let signupForm = document.getElementById("signup-form");
 
-    signupForm.addEventListener('submit', (event) => {
-        event.preventDefault()
+  signupForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
+    let firstName = document.getElementById("fname").value;
+    let lastName = document.getElementById("lname").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value; 
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirm-password").value;
 
-        let firstName = document.getElementById("fname").value
-        let lastName = document.getElementById("lname").value
-        let email = document.getElementById("email").value
-        let phone = document.getElementById("phone").value
-        let password = document.getElementById("password").value
-        let confirmPassword = document.getElementById("confirm-password").value
-
-        console.log(email, "jiioii")
-
-
-        let emailError = document.getElementById("emailError");
+    let emailError = document.getElementById("emailError");
     let passwordError = document.getElementById("passwordError");
     let phoneError = document.getElementById("phoneError");
     let nameError = document.getElementById("nameError");
     let password2Error = document.getElementById("password2Error");
     let isValid = true;
 
-
-        //Email validation
-        if (!email.trim()) {
+    //Email validation
+    if (!email.trim()) {
       emailError.textContent = "Email is required";
       isValid = false;
     } else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -119,9 +155,8 @@
       emailError.textContent = "";
     }
 
-
-        //Password validation
-        if (!password.trim()) {
+    //Password validation
+    if (!password.trim()) {
       passwordError.textContent = "Password is required";
       isValid = false;
     } else if (password && password.length < 8) {
@@ -165,38 +200,35 @@
       phoneError.textContent = "";
     }
 
-
     if (isValid) {
-        let data = {
-            fname: firstName,
-            lname: lastName,
-            email: email,
-            phone: phone,
-            password: password
-        }
+      let data = {
+        fname: firstName,
+        lname: lastName,
+        email: email,
+        phone: phone,
+        password: password,
+      };
 
-
-        axios.post('/signup', data)
-            .then((response) => {
-                if(response.status == 200){
-                    window.location.href = "/signup/otp"
-                }
-            })
-            .catch((error) => {
-                console.log("it is an error", error)
-                if (error.response.status == 400) {
-     
-     new Noty({
-           type: 'error', 
-           text:  error.response.data.message,
-           timeout: 3000,
-           layout: 'bottomCenter',
-           theme: 'metroui', 
-       }).show(); 
-
-   }
-            })
-        }
-    })
+      axios
+        .post("/signup", data)
+        .then((response) => {
+          if (response.status == 200) {
+            window.location.href = "/signup/otp";
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+          if (error.response.status == 400) {
+            new Noty({
+              type: "error",
+              text: error.response.data.message,
+              timeout: 3000,
+              layout: "bottomCenter",
+              theme: "metroui",
+            }).show();
+          }
+        });
+    }
+  });
 </script>
 <%- include('./footer') %>

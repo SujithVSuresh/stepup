@@ -1,0 +1,496 @@
+<%- include('./header', {isLogin: isLogin, cartCount}) %>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="bread">
+          <span><a href="index.html">Home</a></span> / <span>Checkout</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="colorlib-product">
+  <div class="container">
+    <div class="row row-pb-lg">
+      <div class="col-sm-10 offset-md-1">
+        <div class="process-wrap">
+          <div class="process text-center active">
+            <p><span>01</span></p>
+            <h3>Shopping Cart</h3>
+          </div>
+          <div class="process text-center active">
+            <p><span>02</span></p>
+            <h3>Checkout</h3>
+          </div>
+          <div class="process text-center">
+            <p><span>03</span></p>
+            <h3>Order Complete</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <!--   -->
+        <div class="container cart-detail">
+          <h2>Delivery Address</h2>
+
+          <div class="address-selection">
+            <% if (address){ %> 
+              <% address.address.map(function (item){ %>
+              <div class="address-card">
+                <input
+                  type="radio"
+                  id="address<%= item._id %>"
+                  name="address"
+                  class="address-radio"
+                />
+                <label for="address<%= item._id %>">
+                  <p><strong><%= item.name %></strong></p>
+                  <p>
+                    <%= item.localityAreaStreet %>, <%= item.landmark %>, <%= item.cityDistrictTown %>, <%= item.state %>, <%= item.pincode %>
+                  </p>
+                  <p>Phone: <%= item.phoneNumber %></p>
+                </label>
+              </div>
+              <% }); %>
+              <% } else { %> 
+                <h3 style="color: gray; text-align: center;">No address found !</h3>
+                <% } %>
+      
+
+            <!-- <div class="address-card">
+              <input
+                type="radio"
+                id="address2"
+                name="address"
+                class="address-radio"
+              />
+              <label for="address2">
+                <p><strong>Sujith V S</strong></p>
+                <p>
+                  Kinfra Techno Industrial Part, Calicut University PO,<br />
+                  Kakkancheri, Kerala 673635
+                </p>
+                <p>Phone: 8590369084</p>
+              </label>
+            </div> -->
+
+            <button
+              style="
+                width: 30%;
+                border-radius: 10px;
+                height: 50px;
+                margin-top: 15px;
+              "
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#billingModal"
+            >
+              Add Address
+            </button>
+          </div>
+        </div>
+
+        <!-- <form method="post" class="colorlib-form">
+							<h2>Billing Details</h2>
+		              	<div class="row">
+			               <div class="col-md-12">
+			                  <div class="form-group">
+			                  	<label for="country">Select Country</label>
+			                     <div class="form-field">
+			                     	<i class="icon icon-arrow-down3"></i>
+			                        <select name="people" id="people" class="form-control">
+				                      	<option value="#">Select country</option>
+				                        <option value="#">Alaska</option>
+				                        <option value="#">China</option>
+				                        <option value="#">Japan</option>
+				                        <option value="#">Korea</option>
+				                        <option value="#">Philippines</option>
+			                        </select>
+			                     </div>
+			                  </div>
+			               </div>
+
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="fname">First Name</label>
+										<input type="text" id="fname" class="form-control" placeholder="Your firstname">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="lname">Last Name</label>
+										<input type="text" id="lname" class="form-control" placeholder="Your lastname">
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="companyname">Company Name</label>
+			                    	<input type="text" id="companyname" class="form-control" placeholder="Company Name">
+			                  </div>
+			               </div>
+
+			               <div class="col-md-12">
+									<div class="form-group">
+										<label for="fname">Address</label>
+			                    	<input type="text" id="address" class="form-control" placeholder="Enter Your Address">
+			                  </div>
+			                  <div class="form-group">
+			                    	<input type="text" id="address2" class="form-control" placeholder="Second Address">
+			                  </div>
+			               </div>
+			            
+			               <div class="col-md-12">
+									<div class="form-group">
+										<label for="companyname">Town/City</label>
+			                    	<input type="text" id="towncity" class="form-control" placeholder="Town or City">
+			                  </div>
+			               </div>
+			            
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="stateprovince">State/Province</label>
+										<input type="text" id="fname" class="form-control" placeholder="State Province">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="lname">Zip/Postal Code</label>
+										<input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
+									</div>
+								</div>
+							
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="email">E-mail Address</label>
+										<input type="text" id="email" class="form-control" placeholder="State Province">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="Phone">Phone Number</label>
+										<input type="text" id="zippostalcode" class="form-control" placeholder="">
+									</div>
+								</div>
+
+								<div class="col-md-12">
+									<div class="form-group">
+										<div class="radio">
+										  <label><input type="radio" name="optradio"> Create an Account? </label>
+										  <label><input type="radio" name="optradio"> Ship to different address</label>
+										</div>
+									</div>
+								</div>
+		               </div>
+		            </form> -->
+      </div>
+
+      <div class="col-lg-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cart-detail">
+              <h2>Cart Total</h2>
+              <ul>
+                <li>
+                  <span>Subtotal</span> <span>$100.00</span>
+                  <ul>
+                    <li><span>1 x Product Name</span> <span>$99.00</span></li>
+                    <li><span>1 x Product Name</span> <span>$78.00</span></li>
+                  </ul>
+                </li>
+                <li><span>Shipping</span> <span>$0.00</span></li>
+                <li><span>Order Total</span> <span>$180.00</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="w-100"></div>
+
+          <div class="col-md-12">
+            <div class="cart-detail">
+              <h2>Payment Method</h2>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="radio">
+                    <label
+                      ><input type="radio" name="optradio" /> Direct Bank
+                      Tranfer</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="radio">
+                    <label
+                      ><input type="radio" name="optradio" /> Check
+                      Payment</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="radio">
+                    <label><input type="radio" name="optradio" /> Paypal</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="checkbox">
+                    <label
+                      ><input type="checkbox" value="" /> I have read and accept
+                      the terms and conditions</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p><a href="#" class="btn btn-primary">Place an order</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="billingModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="billingModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="billingModalLabel">ADD ADDRESS</h5> -->
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" class="colorlib-form">
+              <!-- <h2>Billing Details</h2> -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      class="form-control"
+                      placeholder="Full Name"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="state">Select State</label>
+                    <div class="form-field">
+                      <i class="icon icon-arrow-down3"></i>
+                      <select
+                        name="people"
+                        id="state"
+                        class="form-control"
+                      ></select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cityDistrictTown">City/District/Town</label>
+                    <input
+                      type="text"
+                      id="cityDistrictTown"
+                      class="form-control"
+                      placeholder="City / District / Town"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="zipPostalCode">Zip/Postal Code</label>
+                    <input
+                      type="text"
+                      id="zipPostalCode"
+                      class="form-control"
+                      placeholder="Zip / Postal"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="localityAreaStreet">Locality/Area/Street</label>
+                    <input
+                      type="text"
+                      id="localityAreaStreet"
+                      class="form-control"
+                      placeholder="Locality / Area / Street"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="landmark">Landmark</label>
+                    <input
+                      type="text"
+                      id="landmark"
+                      class="form-control"
+                      placeholder="Landmark"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="housenoBuildingApartment"
+                      >House no/Building/Apartment</label
+                    >
+                    <input
+                      type="text"
+                      id="housenoBuildingApartment"
+                      class="form-control"
+                      placeholder="House no / Building / Apartment"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input
+                      type="text"
+                      id="phone"
+                      class="form-control"
+                      placeholder="Phone Number"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" id="addressSaveBtn" class="btn btn-primary">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    const states = [
+      "Select state",
+      "Andhra Pradesh",
+      "Arunachal Pradesh",
+      "Assam",
+      "Bihar",
+      "Chhattisgarh",
+      "Goa",
+      "Gujarat",
+      "Haryana",
+      "Himachal Pradesh",
+      "Jharkhand",
+      "Karnataka",
+      "Kerala",
+      "Madhya Pradesh",
+      "Maharashtra",
+      "Manipur",
+      "Meghalaya",
+      "Mizoram",
+      "Nagaland",
+      "Odisha",
+      "Punjab",
+      "Rajasthan",
+      "Sikkim",
+      "Tamil Nadu",
+      "Telangana",
+      "Tripura",
+      "Uttar Pradesh",
+      "Uttarakhand",
+      "West Bengal",
+    ];
+
+    const stateSelect = document.getElementById("state");
+
+    for (const state of states) {
+      const option = document.createElement("option");
+      if (state == "Select state") {
+        option.value = "";
+        option.text = state;
+      } else {
+        option.value = state;
+        option.text = state;
+      }
+      stateSelect.appendChild(option);
+    }
+
+    document.addEventListener("click", (event) => {
+      if (event.target && event.target.id == "addressSaveBtn") {
+        event.preventDefault();
+
+        let fullName = document.getElementById("fullName");
+        let state = document.getElementById("state");
+        let cityDistrictTown = document.getElementById("cityDistrictTown");
+        let zipPostalCode = document.getElementById("zipPostalCode");
+        let localityAreaStreet = document.getElementById("localityAreaStreet");
+        let housenoBuildingApartment = document.getElementById(
+          "housenoBuildingApartment"
+        );
+        let phone = document.getElementById("phone");
+        let landmark = document.getElementById("landmark");
+
+        const data = {
+          fullName: fullName.value,
+          state: state.value,
+          cityDistrictTown: cityDistrictTown.value,
+          zipPostalCode: zipPostalCode.value,
+          localityAreaStreet: localityAreaStreet.value,
+          housenoBuildingApartment: housenoBuildingApartment.value,
+          phone: phone.value,
+          landmark: landmark.value,
+        };
+
+        axios
+          .post("/address/addAddress", data)
+          .then((response) => {
+            if (response.status == 200) {
+            }
+          })
+          .catch((error) => {
+            console.log("error code");
+          });
+      }
+    });
+  });
+</script>
+
+<%- include('./footer') %>

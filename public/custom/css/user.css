@@ -132,5 +132,107 @@
 
 
 
+/* Address selecting checkout */
+
+.address-selection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.address-card {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    padding-left: 40px;
+}
+
+
+.address-card-two {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 49%;
+}
+
+
+
+.address-card label {
+    cursor: pointer;
+}
+
+.address-radio {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.address-card p, .address-card-two p {
+    margin: 0px;
+    padding: 2px 0;
+}
+
+
+/* Profile */
+.breadcrumbs, .colorlib-product {
+    margin: 20px 0;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.button {
+    background-color: #F0F0F0;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    margin: 10px 5px;
+    border-radius: 5px;
+    flex: 1 1 calc(33.333% - 20px);
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: #C2C2C2;
+
+}
+
+.button-red {
+    border: 1px solid red;
+    width: 50px;
+}
+.button-orange {
+    border: 1px solid orange;
+
+}
+.profile-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.profile-info p {
+    margin: 5px 0;
+}
+
+
+/* Address */
+
+.editDltBtn{
+    border: 1px solid orange;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.editDltBtn:hover{
+    cursor: pointer;
+}
+
+.editDltBtn:focus {
+    outline: none;
+  }
 
 

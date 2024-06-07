@@ -1,5 +1,7 @@
 <%- include('./header', {adminName: adminName}) %>
 
+
+
 <!-- partial -->
 <div class="container-fluid page-body-wrapper">
   <!-- partial:partials/_sidebar.html -->
@@ -43,8 +45,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/admin/products">LISTED</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="/admin/unlistedProducts">UNLISTED</a></li>
-  
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/unlistedProducts">UNLISTED</a>
+            </li>
           </ul>
         </div>
       </li>
@@ -107,7 +110,7 @@
     <div class="content-wrapper">
       <div class="page-header">
         <h3 class="page-title">
-          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+          <span class="page-title-icon bg-gradient-dark text-white mr-2">
             <i
               class="mdi menu-icon mdi-shoe-formal"
               style="font-size: 24px"
@@ -120,21 +123,14 @@
             <li class="breadcrumb-item active" aria-current="page">
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-dark"
                 data-toggle="modal"
                 data-target="#productModal"
                 id="add-product-btn"
               >
                 ADD PRODUCT
               </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-toggle="modal"
-                data-target="#varientModal"
-              >
-                VARIENT BUTTON
-              </button>
+
             </li>
           </ul>
         </nav>
@@ -204,6 +200,10 @@
                     id="model"
                     placeholder="model name"
                   />
+                  <span
+                    id="modelNameError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -211,9 +211,13 @@
                   <select class="form-control" id="brand">
                     <!-- Add category options here -->
                   </select>
+                  <span
+                    id="brandNameError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="gender">Gender</label>
                   <input
                     type="text"
@@ -221,6 +225,24 @@
                     id="gender"
                     placeholder="gender"
                   />
+                  <span
+                      id="genderError"
+                      style="color: red; font-size: 12px"
+                      ></span>
+                </div> -->
+
+                <div class="form-group">
+                  <label for="gender">Gender</label>
+                  <select class="form-control" id="gender">
+                    <option value="">Select Gender</option>
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="unisex">Unsex</option>
+                  </select>
+                  <span
+                    id="genderError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -228,6 +250,10 @@
                   <select class="form-control" id="category">
                     <!-- Add category options here -->
                   </select>
+                  <span
+                    id="categoryError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -238,6 +264,10 @@
                     id="outer-material"
                     placeholder="outer material"
                   />
+                  <span
+                    id="outerMaterialError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -248,6 +278,10 @@
                     id="sole-material"
                     placeholder="sole material"
                   />
+                  <span
+                    id="soleMaterialError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -316,6 +350,10 @@
                     id="edit-model"
                     placeholder="model name"
                   />
+                  <span
+                    id="modelNameEditError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -323,9 +361,13 @@
                   <select class="form-control" id="edit-brand">
                     <!-- Add category options here -->
                   </select>
+                  <span
+                    id="brandEditError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="gender">Gender</label>
                   <input
                     type="text"
@@ -333,6 +375,23 @@
                     id="edit-gender"
                     placeholder="gender"
                   />
+                  <span
+                    id="genderEditError"
+                    style="color: red; font-size: 12px"
+                  ></span>
+                </div> -->
+
+                <div class="form-group">
+                  <label for="gender">Gender</label>
+                  <select class="form-control" id="edit-gender">
+                    <option value="men">Men</option>
+                    <option value="women">Women</option>
+                    <option value="unisex">Unsex</option>
+                  </select>
+                  <span
+                    id="genderEditError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -340,6 +399,10 @@
                   <select class="form-control" id="edit-category">
                     <!-- Add category options here -->
                   </select>
+                  <span
+                    id="categoryEditError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -350,6 +413,10 @@
                     id="edit-outer-material"
                     placeholder="outer material"
                   />
+                  <span
+                    id="outerMaterialEditError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -360,6 +427,10 @@
                     id="edit-sole-material"
                     placeholder="sole material"
                   />
+                  <span
+                    id="soleMaterialEditError"
+                    style="color: red; font-size: 12px"
+                  ></span>
                 </div>
 
                 <div class="form-group">
@@ -424,9 +495,17 @@
                       data-user-id=""
                       id=""
                       type="button"
-                      class="btn btn-primary btn-sm statusBtn"
+                      class="varientDltBtn btn btn-primary btn-sm statusBtn"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      data-user-id=""
+                      id=""
+                      type="button"
+                      class="varientEditBtn btn btn-primary btn-sm statusBtn"
                       data-toggle="modal"
-                      data-target="#addColorVarientModal"
+                      data-target="#editColorVarientModal"
                     >
                       Edit
                     </button>
@@ -464,77 +543,115 @@
                 </div>
 
                 <!-- SUB-VARIENT ADD FORM -->
-                <div style="display: none;" id="subVarientAddformContainer">
-                <form
-                  action=""
-                  id="sub-varient-add-form"
-            
-                  class="row d-flex justify-content-between forms-sample"
-                >
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="size"
-                    placeholder="Enter size"
-                  />
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="quantity"
-                    placeholder="Enter quantity"
-                  />
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="price"
-                    placeholder="Enter price"
-                  />
+                <div style="display: none" id="subVarientAddformContainer">
+                  <form
+                    action=""
+                    id="sub-varient-add-form"
+                    class="d-flex justify-content-between forms-sample"
+                  >
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="size"
+                        placeholder="Enter size"
+                      />
+                      <span
+                        id="sizeError"
+                        style="color: red; font-size: 12px"
+                      ></span>
+                    </div>
 
-                  <input
-                    type="submit"
-                    class="btn btn-primary"
-                    id="model"
-                    placeholder="model name"
-                  />
-                </form>
-              </div>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="quantity"
+                        placeholder="Enter quantity"
+                      />
+                      <span
+                        id="quantityError"
+                        style="color: red; font-size: 12px"
+                      ></span>
+                    </div>
 
-              
-              <!-- SUB-VARIENT EDIT FORM -->
-              <div style="display: none;" id="subVarientEditformContainer">
-                <form
-                  action=""
-                  id="sub-varient-edit-form"
-            
-                  class="row d-flex justify-content-between forms-sample"
-                >
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="edit-size"
-                    placeholder="Enter size"
-                  />
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="edit-quantity"
-                    placeholder="Enter quantity"
-                  />
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="edit-price"
-                    placeholder="Enter price"
-                  />
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="price"
+                        placeholder="Enter price"
+                      />
+                      <span
+                        id="priceError"
+                        style="color: red; font-size: 12px"
+                      ></span>
+                    </div>
 
-                  <input
-                    type="submit"
-                    class="btn btn-primary"
-                    id="model"
-                    placeholder="model name"
-                  />
-                </form>
-              </div>
+                    <div>
+                      <input
+                        type="submit"
+                        class="btn btn-primary"
+                        id="model"
+                        placeholder="model name"
+                      />
+                    </div>
+                  </form>
+                </div>
+
+                <!-- SUB-VARIENT EDIT FORM -->
+                <div style="display: none" id="subVarientEditformContainer">
+                  <form
+                    action=""
+                    id="sub-varient-edit-form"
+                    class="d-flex justify-content-between forms-sample"
+                  >
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="edit-size"
+                        placeholder="Enter size"
+                      />
+                      <span
+                        id="sizeEditError"
+                        style="color: red; font-size: 12px"
+                      ></span>
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="edit-quantity"
+                        placeholder="Enter quantity"
+                      />
+                      <span
+                        id="quantityEditError"
+                        style="color: red; font-size: 12px"
+                      ></span>
+                    </div>
+                    <div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="edit-price"
+                        placeholder="Enter price"
+                      />
+                      <span
+                        id="priceEditError"
+                        style="color: red; font-size: 12px"
+                      ></span>
+                    </div>
+                    <div>
+                      <input
+                        type="submit"
+                        class="btn btn-primary"
+                        id="model"
+                        placeholder="model name"
+                      />
+                    </div>
+                  </form>
+                </div>
 
                 <div class="table-responsive">
                   <table class="table table-bordered">
@@ -546,9 +663,7 @@
                         <th scope="col"></th>
                       </tr>
                     </thead>
-                    <tbody id="sizeVariantTable">
-
-                    </tbody>
+                    <tbody id="sizeVariantTable"></tbody>
                   </table>
                 </div>
               </div>
@@ -570,7 +685,7 @@
           <div class="modal-content" style="padding: 15px">
             <div class="modal-header">
               <!-- <h5 class="modal-title" id="productModalLabel">VARIENTS</h5>-->
-              <h4>ADD COLOR VARIENTS</h4>
+              <h4>ADD COLOR VARIANTS</h4>
 
               <button
                 type="button"
@@ -597,6 +712,10 @@
                       id="colorName"
                       placeholder="color name"
                     />
+                    <span
+                      id="colorNameError"
+                      style="color: red; font-size: 12px"
+                    ></span>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="model">Color code</label>
@@ -606,56 +725,12 @@
                       id="colorCode"
                       placeholder="color code"
                     />
+                    <span
+                      id="colorCodeError"
+                      style="color: red; font-size: 12px"
+                    ></span>
                   </div>
                 </div>
-
-                <!-- <div>
-                        <h4 style="color: gray;">ADD IMAGES</h4>
-                        <div class="image-add-selection d-flex flex-wrap">
-                            <div class="image-add-box">
-                              <div class="file-input-box">
-                                <label for="file-upload" style="cursor: pointer;">
-                                  <span>UPLOAD IMAGE</span>
-                                  <input type="file" id="productImageOne" name="file-upload-one" accept="image/*" />
-                                </label>
-                                
-                              </div>
-                              <div id="imagePreviewOne"  style="margin-bottom: 20px; margin-top: 10px; width: auto; height: auto; background-color: blue;">
-                              </div>
-                            </div>
-                            <div class="image-add-box">
-                              <div class="file-input-box">
-                                <label for="file-upload" style="cursor: pointer;">
-                                  <span>UPLOAD IMAGE</span>
-                                  <input type="file" id="productImageTwo" name="file-upload-two" accept="image/*" />
-                                </label>
-                                
-                              </div>
-                              <div id="imagePreviewTwo"  style="margin-bottom: 20px; margin-top: 10px;"></div>
-                            </div>
-                            <div class="image-add-box">
-                              <div class="file-input-box">
-                                <label for="file-upload" style="cursor: pointer;">
-                                  <span>UPLOAD IMAGE</span>
-                                  <input type="file" id="productImageThree" name="file-upload-three" accept="image/*" />
-                                </label>
-                                
-                              </div>
-                              <div id="imagePreviewThree"  style="margin-bottom: 20px; margin-top: 10px;"></div>
-                            </div>
-                            <div class="image-add-box">
-                              <div class="file-input-box">
-                                <label for="file-upload" style="cursor: pointer;">
-                                  <span>UPLOAD IMAGE</span>
-                                  <input type="file" id="productImageFour" name="file-upload-four" accept="image/*" />
-                                </label>
-                                
-                              </div>
-                              <div id="imagePreviewFour"  style="margin-bottom: 20px; margin-top: 10px;"></div>
-                            </div>
-           
-                        </div>
-                    </div> -->
 
                 <div>
                   <h4 style="color: gray">ADD IMAGES</h4>
@@ -748,6 +823,158 @@
         </div>
       </div>
       <!-- Add Color Varient Modal end -->
+
+
+         <!-- EDIT Color Varient Modal start -->
+         <div
+         class="modal fade"
+         id="editColorVarientModal"
+         tabindex="-1"
+         aria-labelledby="productModalLabel"
+         aria-hidden="true"
+       >
+         <div class="modal-dialog color-varient-modal-dialog-custom">
+           <div class="modal-content" style="padding: 15px">
+             <div class="modal-header">
+               <!-- <h5 class="modal-title" id="productModalLabel">VARIENTS</h5>-->
+               <h4>EDIT COLOR VARIANTS</h4>
+ 
+               <button
+                 type="button"
+                 class="close"
+                 data-dismiss="modal"
+                 aria-label="Close"
+               >
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <form
+                 class="forms-sample"
+                 id="product-color-varient-form"
+                 action=""
+                 method="POST"
+               >
+                 <div class="row" style="padding-left: 0px; padding-right: 0px">
+                   <div class="form-group col-md-6">
+                     <label for="model">Color name</label>
+                     <input
+                       type="text"
+                       class="form-control"
+                       id="colorEditName"
+                       placeholder="color name"
+                     />
+                     <span
+                       id="colorNameError"
+                       style="color: red; font-size: 12px"
+                     ></span>
+                   </div>
+                   <div class="form-group col-md-6">
+                     <label for="model">Color code</label>
+                     <input
+                       type="text"
+                       class="form-control"
+                       id="colorEditCode"
+                       placeholder="color code"
+                     />
+                     <span
+                       id="colorCodeError"
+                       style="color: red; font-size: 12px"
+                     ></span>
+                   </div>
+                 </div>
+ 
+                 <div>
+                   <h4 style="color: gray">ADD IMAGES</h4>
+                   <div class="image-add-selection d-flex flex-wrap">
+                     <div class="project-preview-box-container">
+                       <div style="height: 10%">
+                         <div class="file-input-box">
+                           <label for="file-upload" style="cursor: pointer">
+                             <span>UPLOAD IMAGE</span>
+                             <input
+                               type="file"
+                               id="productEditImageOne"
+                               name="file-upload-one"
+                               accept="image/*"
+                             />
+                           </label>
+                         </div>
+                       </div>
+                       <div style="height: 90%" id="imageEditPreviewOne"></div>
+                     </div>
+ 
+                     <div class="project-preview-box-container">
+                       <div style="height: 10%">
+                         <div class="file-input-box">
+                           <label for="file-upload" style="cursor: pointer">
+                             <span>UPLOAD IMAGE</span>
+                             <input
+                               type="file"
+                               id="productEditImageTwo"
+                               name="file-upload-two"
+                               accept="image/*"
+                             />
+                           </label>
+                         </div>
+                       </div>
+                       <div style="height: 90%" id="imageEditPreviewTwo"></div>
+                     </div>
+ 
+                     <div class="project-preview-box-container">
+                       <div style="height: 10%">
+                         <div class="file-input-box">
+                           <label for="file-upload" style="cursor: pointer">
+                             <span>UPLOAD IMAGE</span>
+                             <input
+                               type="file"
+                               id="productEditImageThree"
+                               name="file-upload-three"
+                               accept="image/*"
+                             />
+                           </label>
+                         </div>
+                       </div>
+                       <div style="height: 90%" id="imageEditPreviewThree"></div>
+                     </div>
+ 
+                     <div class="project-preview-box-container">
+                       <div style="height: 10%">
+                         <div class="file-input-box">
+                           <label for="file-upload" style="cursor: pointer">
+                             <span>UPLOAD IMAGE</span>
+                             <input
+                               type="file"
+                               id="productEditImageFour"
+                               name="file-upload-four"
+                               accept="image/*"
+                             />
+                           </label>
+                         </div>
+                       </div>
+                       <div style="height: 90%" id="imageEditPreviewFour"></div>
+                     </div>
+                   </div>
+                 </div>
+ 
+                 <input
+                   type="submit"
+                   class="btn btn-gradient-primary mr-2"
+                   value="Submit"
+                 />
+                 <button
+                   type="button"
+                   class="btn btn-light"
+                   data-dismiss="modal"
+                 >
+                   Cancel
+                 </button>
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+       <!-- EDIT Color Varient Modal end -->
     </div>
     <!-- content-wrapper ends -->
   </div>
@@ -758,12 +985,15 @@
 <!-- SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
 
 <script>
+
+
   function hideModal(modalId) {
     const modal = document.getElementById(modalId);
     modal.classList.remove("show");
@@ -871,6 +1101,53 @@
   //--------------------------------------CLICK EVENT START-------------------------------------------
 
   document.addEventListener("click", (event) => {
+    // DELETE SIZE VARIENT
+    if (event.target && event.target.classList.contains("sizeDltBtn")) {
+      let dltSizeVarientBtn = event.target;
+
+      let sizeVarientId = dltSizeVarientBtn.getAttribute("data-subvarient-id");
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: `Do you want to delete?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        console.log("Kooooooooooooooooiiiiiiii");
+        if (result.isConfirmed) {
+          axios
+            .post("/admin/deleteProduct/sizeVarient", {
+              id: sizeVarientId,
+            })
+            .then((response) => {
+              if (response.status == 200) {
+                console.log(response.data);
+                let sizeElement = document.getElementById(`tr${sizeVarientId}`);
+                if (sizeElement) {
+                  sizeElement.remove();
+                  Swal.fire("Deleted!", `Size has been deleted.`, "success");
+                } else {
+                  console.error(
+                    "Size not found with ID:",
+                    response.data.sizeVarient._id
+                  );
+                }
+              }
+            })
+            .catch((error) => {
+              Swal.fire(
+                "Error!",
+                "There was an error deleting the size.",
+                "error"
+              );
+            });
+        }
+      });
+    }
+
     //ADD PRODUCT BUTTON CLICK
     if (event.target && event.target.id == "add-product-btn") {
       fetchAllCategories("add");
@@ -882,7 +1159,6 @@
 
     function getSizeVarientOfColor(varientId) {
       sizeVariantTable.innerHTML = "";
-      console.log(varientId, "patti");
       axios
         .get(`/admin/product/getSizeVarient?varientid=${varientId}`)
         .then((response) => {
@@ -903,7 +1179,7 @@
                             data-subvarient-price="${size.price}"
                             id="subVarientEdit${size._id}"
                             type="button"
-                            class="subVarientEditBtn btn btn-primary btn-sm statusBtn"
+                            class="subVarientEditBtn editBtnClr btn btn-primary btn-sm statusBtn"
                           >
                             Edit
                           </button>
@@ -911,10 +1187,10 @@
 
                         <td>
                           <button
-                            data-subvarient-id=""
+                            data-subvarient-id="${size._id}"
                             id=""
                             type="button"
-                            class="btn btn-primary btn-sm statusBtn"
+                            class="sizeDltBtn dltBtnClr btn btn-primary btn-sm statusBtn"
                           >
                             Delete
                           </button>
@@ -931,118 +1207,195 @@
         });
     }
 
+    let subVarientAddformContainer = document.getElementById(
+      "subVarientAddformContainer"
+    );
+    let subVarientEditformContainer = document.getElementById(
+      "subVarientEditformContainer"
+    );
 
-    let subVarientAddformContainer = document.getElementById("subVarientAddformContainer")
-    let subVarientEditformContainer = document.getElementById("subVarientEditformContainer")
 
-    if(event.target && event.target.id == "sub-varient-add-btn"){
+    // SUB VARIENT ADD CLICK
+    if (event.target && event.target.id == "sub-varient-add-btn") {
       console.log("button clicked");
-      let subVarientAddBtn = event.target
+      let subVarientAddBtn = event.target;
 
-
-
-      subVarientAddformContainer.style.display = "block"
-      subVarientEditformContainer.style.display = "none"
+      subVarientAddformContainer.style.display = "block";
+      subVarientEditformContainer.style.display = "none";
     }
 
-    if(event.target && event.target.classList.contains("subVarientEditBtn")){
+
+    // SUB VARIENT EDIT CLICK
+    if (event.target && event.target.classList.contains("subVarientEditBtn")) {
       console.log("button clicked Edit");
-      let subVarientEditBtn = event.target
+      let subVarientEditBtn = event.target;
+
+      subVarientEditformContainer.style.display = "block";
+      subVarientAddformContainer.style.display = "none";
+
+      let sizeField = document.getElementById("edit-size");
+      let qtyField = document.getElementById("edit-quantity");
+      let priceField = document.getElementById("edit-price");
+
+      sizeField.value = subVarientEditBtn.getAttribute("data-subvarient-size");
+      priceField.value = subVarientEditBtn.getAttribute(
+        "data-subvarient-price"
+      );
+      qtyField.value = subVarientEditBtn.getAttribute("data-subvarient-qty");
+
+      let subVarientId = subVarientEditBtn.getAttribute("data-subvarient-id");
+
+      // EDIT SUBVARIENT EVENT HANDLER - (SIZE)
+      let subVarientEditForm = document.getElementById("sub-varient-edit-form");
+
+      subVarientEditForm.onsubmit = (e) => {
+        e.preventDefault();
+
+        const priceEdit = document.getElementById("edit-price").value;
+        const quantityEdit = document.getElementById("edit-quantity").value;
+        const sizeEdit = document.getElementById("edit-size").value;
+
+        const priceEditError = document.getElementById("priceEditError");
+        const quantityEditError = document.getElementById("quantityEditError");
+        const sizeEditError = document.getElementById("sizeEditError");
+
+        let varientId = colorNameTag.getAttribute("varientid");
+
+        let isValid = true;
+
+        //Size validation
+        if (!sizeEdit.trim()) {
+          sizeEditError.textContent = "Size is required";
+          isValid = false;
+        } else if (sizeEdit && (sizeEdit < 1 || sizeEdit > 17)) {
+          sizeEditError.textContent = "Enter a valid size";
+          isValid = false;
+        } else if (!/^\d+$/.test(sizeEdit)) {
+          sizeEditError.textContent = "Enter a valid size";
+          isValid = false;
+        } else if (/\s/.test(sizeEdit) && /^\s|\s$/.test(sizeEdit)) {
+          sizeEditError.textContent = "Enter a valid size";
+          isValid = false;
+        } else {
+          sizeEditError.textContent = "";
+        }
+
+        //Quantity validation
+        if (!quantityEdit.trim()) {
+          quantityEditError.textContent = "Quantity is required";
+          isValid = false;
+        } else if (quantityEdit && quantityEdit < 0) {
+          quantityEditError.textContent = "Enter a valid quantity";
+          isValid = false;
+        } else if (!/^\d+$/.test(quantityEdit)) {
+          quantityEditError.textContent = "Enter a valid quantity";
+          isValid = false;
+        } else if (/\s/.test(quantityEdit) && /^\s|\s$/.test(quantityEdit)) {
+          quantityEditError.textContent = "Enter a valid quantity";
+          isValid = false;
+        } else {
+          quantityEditError.textContent = "";
+        }
+
+        //Price validation
+        if (!priceEdit.trim()) {
+          priceEditError.textContent = "Price is required";
+          isValid = false;
+        } else if (priceEdit && priceEdit < 1) {
+          priceEditError.textContent = "Enter a valid price";
+          isValid = false;
+        } else if (!/^\d+$/.test(priceEdit)) {
+          priceEditError.textContent = "Enter a valid price";
+          isValid = false;
+        } else if (/\s/.test(priceEdit) && /^\s|\s$/.test(priceEdit)) {
+          priceEditError.textContent = "Enter a valid price";
+          isValid = false;
+        } else {
+          priceEditError.textContent = "";
+        }
+
+        if (isValid) {
+          const data = {
+            price: priceEdit,
+            quantity: quantityEdit,
+            size: sizeEdit,
+            id: subVarientId,
+            varientId: varientId,
+          };
+
+          axios
+            .post("/admin/editProduct/sizeVarient", data)
+            .then((response) => {
+              if (response.status == 200) {
+
+                console.log("Hey created...");
+                subVarientEditformContainer.style.display = "none";
+
+                // let sizeVariantTable =
+                //   document.getElementById("sizeVariantTable");
+
+                // let oldTr = document.getElementById(`tr${subVarientId}`);
+
+                // let responseData = response.data.subVarient;
+
+                // const newTr = document.createElement("tr");
+
+                // Set the id attribute using the responseData
+                // newTr.id = `tr${responseData._id}`;
+
+                //window.location.href = "/admin/products";
+
+                // let newTr = `
+                //         <tr id="tr${responseData._id}">
+                //           <td>${responseData.size}</td>
+                //                 <td>${responseData.quantity}</td>
+                //                 <td>${responseData.price}</td>
+                //                 <td>
+                //                   <button
+                //                     data-subvarient-id="${responseData._id}"
+                //                     data-subvarient-size="${responseData.size}"
+                //                     data-subvarient-qty="${responseData.quantity}"
+                //                     data-subvarient-price="${responseData.price}"
+                //                     id="subVarientEdit${responseData._id}"
+                //                     type="button"
+                //                     class="subVarientEditBtn btn btn-primary btn-sm statusBtn"
+                //                   >
+                //                     Edit
+                //                   </button>
+                //                 </td>
+
+                //                 <td>
+                //                   <button
+                //                     data-subvarient-id=""
+                //                     id=""
+                //                     type="button"
+                //                     class="btn btn-primary btn-sm statusBtn"
+                //                   >
+                //                     Delete
+                //                   </button>
+                //                 </td>
+
+                //               </tr>
+                //         `;
+              }
 
 
-      subVarientEditformContainer.style.display = "block"
-      subVarientAddformContainer.style.display = "none"
+            })
+            .catch((error) => {
+              if (error.response.status == 409) {
+                new Noty({
+                  type: "error",
+                  text: error.response.data.message,
+                  timeout: 3000,
+                  layout: "bottomCenter",
+                  theme: "metroui",
+                }).show();
 
-      let sizeField = document.getElementById("edit-size")
-      let qtyField = document.getElementById("edit-quantity")
-      let priceField = document.getElementById("edit-price")
-
-      sizeField.value = subVarientEditBtn.getAttribute("data-subvarient-size")
-      priceField.value = subVarientEditBtn.getAttribute("data-subvarient-price")
-      qtyField.value = subVarientEditBtn.getAttribute("data-subvarient-qty")
-
-      let subVarientId = subVarientEditBtn.getAttribute("data-subvarient-id")
-
-
-
-          // EDIT SUBVARIENT EVENT HANDLER - (SIZE)
-    let subVarientEditForm = document.getElementById("sub-varient-edit-form");
-
-subVarientEditForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-
-  const price = document.getElementById("edit-price").value;
-  const quantity = document.getElementById("edit-quantity").value;
-  const size = document.getElementById("edit-size").value;
-
-  const data = {
-    price: price,
-    quantity: quantity,
-    size: size,
-    id: subVarientId
-  };
-
-  axios
-    .post("/admin/editProduct/sizeVarient", data)
-    .then((response) => {
-      if (response.status === 200) {
-        subVarientEditformContainer.style.display = "none"
-
-        let sizeVariantTable = document.getElementById("sizeVariantTable");
-
-        let oldTr = document.getElementById(`tr${subVarientId}`)
-
-        let responseData = response.data.subVarient
-
-
-        const newTr = document.createElement('tr');
-    
-    // Set the id attribute using the responseData
-    newTr.id = `tr${responseData._id}`;
-
-
-        // let newTr = `
-        //         <tr id="tr${responseData._id}">
-        //           <td>${responseData.size}</td>
-        //                 <td>${responseData.quantity}</td>
-        //                 <td>${responseData.price}</td>
-        //                 <td>
-        //                   <button
-        //                     data-subvarient-id="${responseData._id}"
-        //                     data-subvarient-size="${responseData.size}"
-        //                     data-subvarient-qty="${responseData.quantity}"
-        //                     data-subvarient-price="${responseData.price}"
-        //                     id="subVarientEdit${responseData._id}"
-        //                     type="button"
-        //                     class="subVarientEditBtn btn btn-primary btn-sm statusBtn"
-        //                   >
-        //                     Edit
-        //                   </button>
-        //                 </td>
-
-        //                 <td>
-        //                   <button
-        //                     data-subvarient-id=""
-        //                     id=""
-        //                     type="button"
-        //                     class="btn btn-primary btn-sm statusBtn"
-        //                   >
-        //                     Delete
-        //                   </button>
-        //                 </td>
-      
-        //               </tr>
-        //         `;        
-
-      }
-
-      sizeVariantTable.replaceChild(newTr, oldTr);
-    })
-    .catch((error) => {
-      console.log("it is an error", error);
-    });
-});
+                console.log(error.response.data.message, "Hey111111");
+              }
+            });
+        }
+      };
     }
 
     //PRODUCT EDIT BUTTON CLICK
@@ -1106,40 +1459,99 @@ subVarientEditForm.addEventListener("submit", (e) => {
         let soleMaterial = document.getElementById("edit-sole-material").value;
         let description = document.getElementById("edit-description").value;
 
-        console.log(
-          model,
-          brand,
-          gender,
-          category,
-          outerMaterial,
-          soleMaterial,
-          description
+        let modelNameEditError = document.getElementById("modelNameEditError");
+        let brandEditError = document.getElementById("brandEditError");
+        let genderEditError = document.getElementById("genderEditError");
+        let categoryEditError = document.getElementById("categoryEditError");
+        let outerMaterialEditError = document.getElementById(
+          "outerMaterialEditError"
+        );
+        let soleMaterialEditError = document.getElementById(
+          "soleMaterialEditError"
         );
 
-        let formData = {
-          model: model,
-          brand: brand,
-          gender: gender,
-          category: category,
-          outerMaterial: outerMaterial,
-          soleMaterial: soleMaterial,
-          description: description,
-          id: productId,
-        };
+        let isValid = true;
 
-        axios
-          .post("/admin/editProduct", formData)
-          .then((response) => {
-            if (response.status == 200) {
-              //hideModal("productModal");
-              window.location.href = "/admin/products";
+        if (!model.trim()) {
+          modelNameEditError.textContent = "Model name is required";
+          isValid = false;
+        } else if (!/^[a-zA-Z0-9\s\-_]+$/.test(model)) {
+          modelNameEditError.textContent = "Enter a valid model name";
+          isValid = false;
+        } else {
+          modelNameEditError.textContent = "";
+        }
 
-              //showModal("varientModal");
-            }
-          })
-          .catch((error) => {
-            console.log("it is an error", error);
-          });
+        if (!brand.trim()) {
+          brandEditError.textContent = "Select a brand";
+          isValid = false;
+        } else {
+          brandEditError.textContent = "";
+        }
+
+        if (!gender.trim()) {
+          genderEditError.textContent = "Select a user type";
+          isValid = false;
+        } else {
+          genderEditError.textContent = "";
+        }
+
+        if (!category.trim()) {
+          categoryEditError.textContent = "Select a category";
+          isValid = false;
+        } else {
+          categoryEditError.textContent = "";
+        }
+
+        if (!outerMaterial.trim()) {
+          outerMaterialEditError.textContent = "Outer material is required";
+          isValid = false;
+        } else if (!/^[a-zA-Z0-9\s\-_]+$/.test(outerMaterial)) {
+          outerMaterialEditError.textContent =
+            "Enter a valid outer material name";
+          isValid = false;
+        } else {
+          outerMaterialEditError.textContent = "";
+        }
+
+        if (!soleMaterial.trim()) {
+          soleMaterialEditError.textContent = "Sole material is required";
+          isValid = false;
+        } else if (!/^[a-zA-Z0-9\s\-_]+$/.test(soleMaterial)) {
+          soleMaterialEditError.textContent =
+            "Enter a valid sole material name";
+          isValid = false;
+        } else {
+          soleMaterialEditError.textContent = "";
+        }
+
+        if (isValid) {
+          let formData = {
+            model: model,
+            brand: brand,
+            gender: gender,
+            category: category,
+            outerMaterial: outerMaterial,
+            soleMaterial: soleMaterial,
+            description: description,
+            id: productId,
+          };
+
+          axios
+            .post("/admin/editProduct", formData)
+            .then((response) => {
+              if (response.status == 200) {
+                //hideModal("productModal");
+                //window.location.href = "/admin/products";
+
+                //showModal("varientModal");
+                window.location.href = "/admin/products";
+              }
+            })
+            .catch((error) => {
+              console.log("it is an error", error);
+            });
+        }
       });
     }
 
@@ -1157,26 +1569,18 @@ subVarientEditForm.addEventListener("submit", (e) => {
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes",
       }).then((result) => {
-        console.log("Kooooooooooooooooiiiiiiii");
         if (result.isConfirmed) {
           axios
             .post("/admin/manageDeleteProduct", {
               id: productId,
             })
             .then((response) => {
-
               if (response.status == 200) {
-                let productElement = document.getElementById(
-                  `row${productId}`
-                );
+                let productElement = document.getElementById(`row${productId}`);
                 if (productElement) {
                   productElement.remove();
 
-                  Swal.fire(
-                    "Deleted!",
-                    `Product has been deleted.`,
-                    "success"
-                  );
+                  Swal.fire("Deleted!", `Product has been deleted.`, "success");
                 } else {
                   console.error("Product not found with ID:", productId);
                 }
@@ -1198,10 +1602,12 @@ subVarientEditForm.addEventListener("submit", (e) => {
       let varientBtn = event.target;
       let productId = varientBtn.getAttribute("data-product-id");
       let colorNameTag = document.getElementById("colorNameTag");
-      
+
       //closing subvarient edit and add form on varient btn click
-      subVarientEditformContainer.style.display = "none"
-      subVarientAddformContainer.style.display = "none"
+      // subVarientEditformContainer.style.display = "none";
+      // subVarientAddformContainer.style.display = "none";
+
+      console.log("lokam...............", subVarientAddformContainer);
 
       let imageGroup = document.getElementById("imageGroup");
 
@@ -1224,7 +1630,7 @@ subVarientEditForm.addEventListener("submit", (e) => {
 
               response.data.colorVarients.forEach((varient) => {
                 colorSelection.innerHTML += `
-  <div class="color-box" data-color-name=${varient.colorName} data-color-images=${varient.images} id="${varient._id}" style="background-color: ${varient.colorCode}"></div>
+  <div class="color-box" data-color-name=${varient.colorName} data-color-code=${varient.colorCode} data-color-images=${varient.images} id="${varient._id}" style="background-color: ${varient.colorCode}"></div>
   `;
               });
 
@@ -1254,7 +1660,7 @@ subVarientEditForm.addEventListener("submit", (e) => {
         });
     }
 
-    //COLOR BOX CLICK
+    //COLOR BOX CLICK 
     if (event.target && event.target.classList.contains("color-box")) {
       let varientBtn = event.target;
       let colorName = varientBtn.getAttribute("data-color-name");
@@ -1275,16 +1681,114 @@ subVarientEditForm.addEventListener("submit", (e) => {
       getSizeVarientOfColor(colorVarientId);
     }
 
+    if (event.target && event.target.classList.contains("varientEditBtn")) {
+      let colorNameTag = document.getElementById("colorNameTag");
+
+      let varientId = colorNameTag.getAttribute("varientid");
+
+      let selectedColor = document.getElementById(varientId);
+
+      let colorEditName = document.getElementById("colorEditName")
+      let colorEditCode = document.getElementById("colorEditCode")
+
+      let imageEditPreviewOne = document.getElementById("imageEditPreviewOne")
+      let imageEditPreviewTwo = document.getElementById("imageEditPreviewTwo")
+      let imageEditPreviewThree = document.getElementById("imageEditPreviewThree")
+      let imageEditPreviewFour = document.getElementById("imageEditPreviewFour")
+
+
+      let colorImages = selectedColor.getAttribute("data-color-images");
+      let colorName = selectedColor.getAttribute("data-color-name");
+      let colorCode = selectedColor.getAttribute("data-color-code");
+
+      let imgArr = colorImages.split(",")
+
+      console.log(imgArr, "arr of img");
+
+      colorEditName.value = colorName
+      colorEditCode.value = colorCode
+    
+
+      colorImages.split(",").forEach((image, index) => {
+
+        let imgElement = document.createElement("img");
+        imgElement.src = `/static/images/${image}`;
+        imgElement.alt = "Category Image";
+        // imgElement.id = `cropperImageTwo`;
+        imgElement.style.objectFit = "contain";
+        imgElement.classList.add("img-thumbnail");
+
+
+        //let imagePreviewContainer = document.getElementById("imagePreviewTwo");
+        if(index == 0){
+        imageEditPreviewOne.innerHTML = "";
+        imageEditPreviewOne.appendChild(imgElement);
+      }else if(index == 1){
+        imageEditPreviewTwo.innerHTML = "";
+        imageEditPreviewTwo.appendChild(imgElement);
+
+      }else if(index == 2){
+        imageEditPreviewThree.innerHTML = "";
+        imageEditPreviewThree.appendChild(imgElement);
+
+      }else if(index == 3){
+        imageEditPreviewFour.innerHTML = "";
+        imageEditPreviewFour.appendChild(imgElement);
+
+      }
+
+      })
+      
+      console.log(selectedColor, imageEditPreviewOne, imageEditPreviewTwo, imageEditPreviewThree, imageEditPreviewFour, "color selected..........");
+    }
+
+    //COLOR VARIENT DELETE
+    if (event.target && event.target.classList.contains("varientDltBtn")) {
+      event.preventDefault();
+
+      let varientBtn = event.target;
+      let colorNameTag = document.getElementById("colorNameTag");
+
+      let varientId = colorNameTag.getAttribute("varientid");
+
+      console.log(varientId, "delete btn clicked.....");
+
+      Swal.fire({
+        title: "Are you sure?",
+        text: `Do you want to delete this color varient?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .post("/admin/delete/colorVarient", { varientId: varientId })
+            .then((response) => {
+              if (response.status === 200) {
+                window.location.href = "/admin/products";
+                // Swal.fire(
+                //         "Deleted!",
+                //         `Color varieent has been deleted.`,
+                //         "success"
+                //       );
+              }
+            })
+            .catch((error) => {
+              console.log("it is an error", error);
+            });
+        }
+      });
+    }
   });
 
   //--------------------------------------CLICK EVENT END------------------------------------------
 
- 
-
   // ADD SUBVARIENT EVENT HANDLER - (SIZE)
   let subVarientForm = document.getElementById("sub-varient-add-form");
 
-  subVarientForm.addEventListener("submit", (e) => {
+  subVarientForm.onsubmit = (e) => {
     e.preventDefault();
 
     let colorNameTag = document.getElementById("colorNameTag");
@@ -1296,42 +1800,88 @@ subVarientEditForm.addEventListener("submit", (e) => {
     const quantity = document.getElementById("quantity").value;
     const size = document.getElementById("size").value;
 
-    const data = {
-      price: price,
-      quantity: quantity,
-      size: size,
-      productId: productId,
-      varientId: varientId,
-    };
+    const priceError = document.getElementById("priceError");
+    const quantityError = document.getElementById("quantityError");
+    const sizeError = document.getElementById("sizeError");
 
-    axios
-      .post("/admin/addProduct/sizeVarient", data)
-      .then((response) => {
-        if (response.status === 200) {
-          sizeVariantTable.innerHTML += `
-              <tr>
-                        <td>${response.data.subVarient.size}</td>
-                        <td>${response.data.subVarient.quantity}</td>
-                        <td>${response.data.subVarient.price}</td>
+    let isValid = true;
+
+    //Price validation
+    if (!price.trim()) {
+      priceError.textContent = "Price is required";
+      isValid = false;
+    } else if (price && price < 1) {
+      priceError.textContent = "Enter a valid price";
+      isValid = false;
+    } else if (!/^\d+$/.test(price)) {
+      priceError.textContent = "Enter a valid price";
+      isValid = false;
+    } else if (/\s/.test(price) && /^\s|\s$/.test(price)) {
+      priceError.textContent = "Enter a valid price";
+      isValid = false;
+    } else {
+      priceError.textContent = "";
+    }
+
+    //Quantity validation
+    if (!quantity.trim()) {
+      quantityError.textContent = "Quantity is required";
+      isValid = false;
+    } else if (quantity && quantity < 0) {
+      quantityError.textContent = "Enter a valid quantity";
+      isValid = false;
+    } else if (!/^\d+$/.test(quantity)) {
+      quantityError.textContent = "Enter a valid quantity";
+      isValid = false;
+    } else if (/\s/.test(quantity) && /^\s|\s$/.test(quantity)) {
+      quantityError.textContent = "Enter a valid quantity";
+      isValid = false;
+    } else {
+      quantityError.textContent = "";
+    }
+
+    //Size validation
+    if (!size.trim()) {
+      sizeError.textContent = "Size is required";
+      isValid = false;
+    } else if (size && (size < 1 || size > 17)) {
+      sizeError.textContent = "Enter a valid size";
+      isValid = false;
+    } else if (!/^\d+$/.test(quantity)) {
+      sizeError.textContent = "Enter a valid size";
+      isValid = false;
+    } else if (/\s/.test(quantity) && /^\s|\s$/.test(quantity)) {
+      sizeError.textContent = "Enter a valid size";
+      isValid = false;
+    } else {
+      sizeError.textContent = "";
+    }
+
+    if (isValid) {
+      const data = {
+        price: price,
+        quantity: quantity,
+        size: size,
+        productId: productId,
+        varientId: varientId,
+      };
+
+      axios
+        .post("/admin/addProduct/sizeVarient", data)
+        .then((response) => {
+          if (response.status === 200) {
+            let size = response.data.subVarient;
+            window.location.href = "/admin/products";
+            sizeVariantTable.innerHTML += `
+
+            
+              <tr id="tr${size._id}">
+                        <td>${size.size}</td>
+                        <td>${size.quantity}</td>
+                        <td>${size.price}</td>
                         <td>
-                          <button
-                            data-user-id=""
-                            id=""
-                            type="button"
-                            class="btn btn-primary btn-sm statusBtn"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            data-user-id=""
-                            id=""
-                            type="button"
-                            class="btn btn-primary btn-sm statusBtn"
-                          >
-                            Delete
-                          </button>
+ 
 
-                          <td>
                           <button
                           data-subvarient-id="${size._id}"
                             data-subvarient-size="${size.size}"
@@ -1343,19 +1893,39 @@ subVarientEditForm.addEventListener("submit", (e) => {
                           >
                             Edit
                           </button>
+
+                          <td>
+
+                          <button
+                            data-user-id="${size._id}"
+                            id=""
+                            type="button"
+                            class="sizeDltBtn btn btn-primary btn-sm statusBtn"
+                          >
+                            Delete
+                          </button>
+                     
                         </td>
                         </td>
                       </tr>
               `;
-          subVarientForm.reset();
-        }
-      })
-      .catch((error) => {
-        console.log("it is an error", error);
-      });
-  });
-
-
+            subVarientForm.reset();
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+          if (error.response.status == 409) {
+            new Noty({
+              type: "error",
+              text: error.response.data.message,
+              timeout: 3000,
+              layout: "bottomCenter",
+              theme: "metroui",
+            }).show();
+          }
+        });
+    }
+  };
 
   //PRODUCT SELECT AND CROPPING
   let cropperOne, cropperTwo, cropperThree, cropperFour;
@@ -1566,48 +2136,85 @@ subVarientEditForm.addEventListener("submit", (e) => {
 
     let productId = colorNameTag.getAttribute("productid");
 
-    if (cropperOne && cropperTwo && cropperThree && cropperFour) {
-      const formData = new FormData();
+    let colorNameError = document.getElementById("colorNameError");
+    let colorCodeError = document.getElementById("colorCodeError");
 
-      const getBlobFromCropper = (cropper) => {
-        return new Promise((resolve) => {
-          cropper.getCroppedCanvas().toBlob((blob) => {
-            resolve(blob);
-          });
-        });
-      };
+    let isValid = true;
 
-      Promise.all([
-        getBlobFromCropper(cropperOne),
-        getBlobFromCropper(cropperTwo),
-        getBlobFromCropper(cropperThree),
-        getBlobFromCropper(cropperFour),
-      ])
-        .then((blobs) => {
-          formData.append("productImgOne", blobs[0]);
-          formData.append("productImgTwo", blobs[1]);
-          formData.append("productImgThree", blobs[2]);
-          formData.append("productImgFour", blobs[3]);
-          formData.append("colorName", colorName);
-          formData.append("colorCode", colorCode);
-          formData.append("productId", productId);
+    //Size validation
+    if (!colorName.trim()) {
+      colorNameError.textContent = "Color name is required";
+      isValid = false;
+    } else {
+      colorNameError.textContent = "";
+    }
 
-          console.log("All blobs appended");
-          //POST REQUEST - ADD COLOR VARIENT
+    //Size validation
+    if (!colorCode.trim()) {
+      colorCodeError.textContent = "Color code is required";
+      isValid = false;
+    } else if (!/^#[0-9a-fA-F]{3}$|^#[0-9a-fA-F]{6}$/.test(colorCode)) {
+      colorCodeError.textContent = "Enter a valid color code";
+      isValid = false;
+    } else if (/\s/.test(quantity) && /^\s|\s$/.test(colorCode)) {
+      colorCodeError.textContent = "Enter a valid color code";
+      isValid = false;
+    } else {
+      colorCodeError.textContent = "";
+    }
 
-          axios
-            .post("/admin/addProduct/colorVarient", formData)
-            .then((response) => {
-              if (response.status === 200) {
-              }
-            })
-            .catch((error) => {
-              console.log("it is an error", error);
+    if (isValid) {
+      if (cropperOne && cropperTwo && cropperThree && cropperFour) {
+        const formData = new FormData();
+
+        const getBlobFromCropper = (cropper) => {
+          return new Promise((resolve) => {
+            cropper.getCroppedCanvas().toBlob((blob) => {
+              resolve(blob);
             });
-        })
-        .catch((error) => {
-          console.error("Error creating blobs:", error);
-        });
+          });
+        };
+
+        Promise.all([
+          getBlobFromCropper(cropperOne),
+          getBlobFromCropper(cropperTwo),
+          getBlobFromCropper(cropperThree),
+          getBlobFromCropper(cropperFour),
+        ])
+          .then((blobs) => {
+            formData.append("productImgOne", blobs[0]);
+            formData.append("productImgTwo", blobs[1]);
+            formData.append("productImgThree", blobs[2]);
+            formData.append("productImgFour", blobs[3]);
+            formData.append("colorName", colorName);
+            formData.append("colorCode", colorCode);
+            formData.append("productId", productId);
+
+            console.log("All blobs appended");
+            //POST REQUEST - ADD COLOR VARIENT
+
+            axios
+              .post("/admin/addProduct/colorVarient", formData)
+              .then((response) => {
+                if (response.status === 200) {
+                  window.location.href = "/admin/products";
+                }
+              })
+              .catch((error) => {
+                console.log("it is an error", error);
+                new Noty({
+                  type: "error",
+                  text: error.response.data.message,
+                  timeout: 3000,
+                  layout: "bottomCenter",
+                  theme: "metroui",
+                }).show();
+              });
+          })
+          .catch((error) => {
+            console.error("Error creating blobs:", error);
+          });
+      }
     }
   });
   // let cropperOne;
@@ -1814,35 +2421,113 @@ subVarientEditForm.addEventListener("submit", (e) => {
     let soleMaterial = document.getElementById("sole-material").value;
     let description = document.getElementById("description").value;
 
-    let formData = {
-      model: model,
-      brand: brand,
-      gender: gender,
-      category: category,
-      outerMaterial: outerMaterial,
-      soleMaterial: soleMaterial,
-      description: description,
-    };
+    let modelNameError = document.getElementById("modelNameError");
+    let brandNameError = document.getElementById("brandNameError");
+    let genderError = document.getElementById("genderError");
+    let categoryError = document.getElementById("categoryError");
+    let outerMaterialError = document.getElementById("outerMaterialError");
+    let soleMaterialError = document.getElementById("soleMaterialError");
 
-    axios
-      .post("/admin/addProduct", formData)
-      .then((response) => {
-        if (response.status == 200) {
-          hideModal("productModal");
-          window.location.href = "/admin/products/inactive";
+    let isValid = true;
 
-          //showModal("varientModal");
-        }
-      })
-      .catch((error) => {
-        console.log("it is an error", error);
-      });
+    // if (!model.trim()) {
+    //       quantityEditError.textContent = "Model name is required";
+    //       isValid = false;
+    //     } else if (quantityEdit && quantityEdit < 0) {
+    //       quantityEditError.textContent = "Enter a valid quantity";
+    //       isValid = false;
+    //     } else if (!/^\d+$/.test(quantityEdit)) {
+    //       quantityEditError.textContent = "Enter a valid quantity";
+    //       isValid = false;
+    //     } else if (/\s/.test(quantityEdit) && /^\s|\s$/.test(quantityEdit)) {
+    //       quantityEditError.textContent = "Enter a valid quantity";
+    //       isValid = false;
+    //     } else {
+    //       quantityEditError.textContent = "";
+    //     }
+
+    if (!model.trim()) {
+      modelNameError.textContent = "Model name is required";
+      isValid = false;
+    } else if (!/^[a-zA-Z0-9\s\-_]+$/.test(model)) {
+      modelNameError.textContent = "Enter a valid model name";
+      isValid = false;
+    } else {
+      modelNameError.textContent = "";
+    }
+
+    if (!brand.trim()) {
+      brandNameError.textContent = "Select a brand";
+      isValid = false;
+    } else {
+      brandNameError.textContent = "";
+    }
+
+    if (!gender.trim()) {
+      genderError.textContent = "Select a user type";
+      isValid = false;
+    } else {
+      genderError.textContent = "";
+    }
+
+    if (!category.trim()) {
+      categoryError.textContent = "Select a category";
+      isValid = false;
+    } else {
+      categoryError.textContent = "";
+    }
+
+    if (!outerMaterial.trim()) {
+      outerMaterialError.textContent = "Outer material is required";
+      isValid = false;
+    } else if (!/^[a-zA-Z0-9\s\-_]+$/.test(outerMaterial)) {
+      outerMaterialError.textContent = "Enter a valid outer material name";
+      isValid = false;
+    } else {
+      outerMaterialError.textContent = "";
+    }
+
+    if (!soleMaterial.trim()) {
+      soleMaterialError.textContent = "Sole material is required";
+      isValid = false;
+    } else if (!/^[a-zA-Z0-9\s\-_]+$/.test(soleMaterial)) {
+      soleMaterialError.textContent = "Enter a valid sole material name";
+      isValid = false;
+    } else {
+      soleMaterialError.textContent = "";
+    }
+
+    if (isValid) {
+      let formData = {
+        model: model,
+        brand: brand,
+        gender: gender,
+        category: category,
+        outerMaterial: outerMaterial,
+        soleMaterial: soleMaterial,
+        description: description,
+      };
+
+      axios
+        .post("/admin/addProduct", formData)
+        .then((response) => {
+          if (response.status == 200) {
+            //hideModal("productModal");
+            //$('#productModal').modal('hide');
+            window.location.href = "/admin/products";
+
+            //showModal("varientModal");
+          }
+        })
+        .catch((error) => {
+          console.log("it is an error", error);
+        });
+    }
   });
 
   //GET PRODUCTS DATA
   document.addEventListener("DOMContentLoaded", (event) => {
     let tableContainer = document.getElementById("product-table-container");
-
     tableContainer.innerHTML = "";
 
     axios
@@ -1861,22 +2546,10 @@ subVarientEditForm.addEventListener("submit", (e) => {
                         <td>${product.outerMaterial}</td>
                         <td>${product.soleMaterial}</td>
 
-                        <td>${
-                          product.isActive
-                            ? `<span class="text-success">ACTIVE</span>`
-                            : `<span class="text-danger">INACTIVE</span>`
-                        }</td>
-                        <td><button data-product-id="${
-                          product._id
-                        }" id="varient${
-                product._id
-              }" data-toggle="modal" data-target="#varientModal" type="button" class="productVarientBtn btn btn-primary btn-sm statusBtn">Varient</button></td>
-                       <td><button data-product-id="${product._id}" id="edit${
-                product._id
-              }" data-toggle="modal" data-target="#productEditModal" type="button" class="productEditBtn btn btn-primary btn-sm statusBtn">Edit</button></td>
-                       <td><button data-product-id="${product._id}" id="delete${
-                product._id
-              }" type="button" class="productUnlistBtn btn btn-primary btn-sm statusBtn">Unlist</button></td>
+            
+                        <td><button data-product-id="${product._id}" id="varient${product._id}" data-toggle="modal" data-target="#varientModal" type="button" class="productVarientBtn varientBtnClr btn btn-primary btn-sm statusBtn">Varient</button></td>
+                       <td><button data-product-id="${product._id}" id="edit${product._id}" data-toggle="modal" data-target="#productEditModal" type="button" class="productEditBtn editBtnClr btn btn-primary btn-sm statusBtn">Edit</button></td>
+                       <td><button data-product-id="${product._id}" id="delete${product._id}" type="button" class="productUnlistBtn dltBtnClr btn btn-primary btn-sm statusBtn">Unlist</button></td>
                       </tr>
                           `;
             });
@@ -1888,4 +2561,12 @@ subVarientEditForm.addEventListener("submit", (e) => {
       });
   });
 </script>
+
+<!-- <td>${
+    product.isActive
+      ? `<span class="text-success">ACTIVE</span>`
+       : `<span class="text-danger">INACTIVE</span>`
+  }</td> -->
+
+  <%- include('./loader') %>
 <%- include('./footer') %>

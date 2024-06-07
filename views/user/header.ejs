@@ -36,7 +36,7 @@
 	<link rel="stylesheet" href="/static/user/css/style.css">
     
 	<!-- Custom css -->
-	<link rel="stylesheet" href="/static/custom/user.css">
+	<link rel="stylesheet" href="/static/custom/css/user.css">
 
       <!-- Noty -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/noty@3/lib/noty.css">
@@ -71,19 +71,25 @@
 								<li><a href="/shop">Shop</a></li>
 								<li><a href="">About</a></li>
 								<li><a href="">Contact</a></li>
+								<li class="cart"><a href="/shop/cart"><i class="icon-shopping-cart"></i> Cart [<span id="mainCartCount">
+					
+									<%= cartCount %>
+							
+							</span>]</a></li>
 								<% if (isLogin) { %>
-								<li class="has-dropdown">
-									<a href="">Profile</a>
+								<li class="has-dropdown cart">
+									<a style="cursor: pointer; color: black;"><i class="icon-user"> </i> Profile</a>
 									<ul class="dropdown">
 										<li><a href="/logout" type="submit">Logout</a></li>
+										<li><a href="/profile" type="submit">View profile</a></li>
 										
 									</ul>
 								</li>
 								<% } else { %>
-									<li><a href="/signin">Signin</a></li>
+									<li class="cart"><a href="/signin"><i class="icon-user"></i> Signin</a></li>
 
 								<% } %>
-								<li class="cart"><a href=""><i class="icon-shopping-cart"></i> Cart [0]</a></li>
+					
 							</ul>
 						</div>
 					</div>

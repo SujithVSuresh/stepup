@@ -169,7 +169,7 @@
 
 
 /* Loading Indicator Styles */
-/* .loading-indicator {
+.loading-indicator {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -194,4 +194,19 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-} */
+}
+
+
+/* Button and theme color. */
+
+.editBtnClr{
+  background-color: #1DA1F2;
+}
+
+.dltBtnClr{
+  background-color: red;
+}
+
+.varientBtnClr{
+  background-color: orange;
+}

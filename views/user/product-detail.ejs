@@ -1,8 +1,7 @@
-<%- include('./header', {isLogin: isLogin}) %>
+ <%- include('./header', {isLogin: isLogin, cartCount}) %>
 		
 	<!-- <div class="colorlib-loader"></div> -->
 
-	<div id="page">
 
 
 		<div class="breadcrumbs">
@@ -103,22 +102,20 @@
 							</div>
                      <div class="input-group mb-4">
                      	<span class="input-group-btn">
-                        	<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                           <i class="icon-minus2"></i>
+                        	<button id="decrement-qty" type="button" class="dec-qty-btn quantity-left-minus btn"  data-type="minus" data-field="">
+                           <i class="icon-minus2 dec-qty-btn"></i>
                         	</button>
                     		</span>
-                     	<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+                     	<input type="text" id="quantity-input" name="quantity" class="form-control input-number" value="1" min="1" max="100" disabled>
                      	<span class="input-group-btn ml-1">
-                        	<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                             <i class="icon-plus2"></i>
+                        	<button id="increment-qty" type="button" class="inc-qty-btn quantity-right-plus btn" data-type="plus" data-field="">
+                             <i class="icon-plus2 inc-qty-btn"></i>
                          </button>
                      	</span>
                   	</div>
                   	<div class="row">
 	                  	<div class="col-sm-6 text-center">
-									<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
-
-									
+									<p class="addtocart"><a href="" id="addToCartBtn" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
 								</div>
 
 								<div class="col-sm-6 text-center">
@@ -157,13 +154,13 @@
 
 						<p id="p-desc">ss</p>
 						<ul>
-							<li id="p-clr">Color - </li>
-							<li id="p-model">Model - </li>
-							<li id="p-brand">Brand -</li>
-							<li id="p-outer">Outer material -</li>
-							<li id="p-sole">Sole material - </li>
-							<li id="p-gender">Ideal for - </li>
-							<li id="p-category">Category - </li>
+							<li id="p-clr"></li>
+							<li id="p-model"></li>
+							<li id="p-brand"></li>
+							<li id="p-outer"></li>
+							<li id="p-sole"></li>
+							<li id="p-gender"></li>
+							<li id="p-category"></li>
 							
 						
 						</ul>
@@ -586,6 +583,13 @@ let initialVarientId = dataHandler.getAttribute('varient-data-id')
 
 let productImageContainer = document.getElementById("product-image-container")
 
+let addToCartBtn = document.getElementById('addToCartBtn')
+
+
+	     // Header cart count.
+		 let cartCount = document.getElementById('mainCartCount')
+
+
 console.log(productImageContainer);
 
 let imageOne = document.getElementById('img1')
@@ -593,7 +597,7 @@ let imageTwo = document.getElementById('img2')
 let imageThree = document.getElementById('img3')
 let imageFour = document.getElementById('img4')
 
-//let pDescription = document.getElementById('p-desc')
+let pDescription = document.getElementById('p-desc')
 let pColor = document.getElementById('p-clr')
 let pModel = document.getElementById('p-model')
 let pBrand = document.getElementById('p-brand')
@@ -605,18 +609,39 @@ let pCategory = document.getElementById('p-category')
 axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${initialVarientId}`)
 .then(function(response) {
 	if (response.status == 200) {
-		console.log(response.data);
+		
 
 		let data = response.data
+
+        
 
 		let varients = data.allVarients
 
 		let selectedSubVarients = data.selectedSubVarients
 
-		console.log(varients);
-
+		console.log(addToCartBtn, "AddToCart...............1", response.data);
 
 		let product = data.product
+
+		pColor.innerText = `Color - ${data.selectedVarients[0].colorName}`
+
+		pDescription.innerText = `${product.description}`
+
+
+		//Setting Subvarient id to add t cart btn
+		addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id) 
+
+
+
+		//Setting description
+		pModel.innerText = `Model - ${product.modelName}`
+		pBrand.innerText = `Brand - ${product.brand}`
+		pOuter.innerText = `Outer material - ${product.outerMaterial}`
+		pSole.innerText = `Sole material - ${product.soleMaterial}`
+		pCategory.innerText = `Category - ${product.category.categoryName}`
+		pGender.innerText = `Gender - ${product.gender}`
+		pBrand.innerText = `Brand - ${product.brand}`
+
         
 		// Setting images
 		let images = data.selectedVarients[0].images
@@ -673,24 +698,26 @@ axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${initialVarien
 		firstSize.style.borderColor = 'black'
 		firstSize.style.borderWidth = '3px'
 
-
 		// Setting stock status
-		//let showStock = document.getElementById("show-stock")
+		let showStock = document.getElementById("show-stock")
 
 		if(selectedSubVarients[0].quantity > 10){
 			showStock.style.color = 'green'
 			showStock.innerText = `In Stock`
 
-		}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 5){
+		}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 6){
 			showStock.style.color = 'red'
 			showStock.innerText = `Only Few Left`
 
-		}else{
+		}else if(selectedSubVarients[0].quantity > 0 && selectedSubVarients[0].quantity <= 5){
 			showStock.style.color = 'red'
 			showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
 
-		}
+		}else{
+			showStock.style.color = 'red'
+			showStock.innerText = `Out of stock`
 
+		}
 
 
 	}
@@ -701,16 +728,57 @@ axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${initialVarien
 });
 
 
-// CLICK EVENT START
+// ----------------------------CLICK EVENT START------------------------------------------
 
 document.addEventListener("click", (event) => {
-	event.preventDefault()
+	
 
 	let showStock = document.getElementById("show-stock")
+
+
+
+	// Qty inc & dec event
+	if(event.target && (event.target.classList.contains("inc-qty-btn") || event.target.classList.contains("dec-qty-btn"))){
+		event.preventDefault()
+let qtyInput = document.getElementById("quantity-input")
+
+		if(event.target.classList.contains("inc-qty-btn")){
+		    let num = qtyInput.value 
+
+			if(num < 10){
+
+			num++
+
+			qtyInput.value = num
+
+			console.log(num);
+			}
+
+		}
+
+		if(event.target.classList.contains("dec-qty-btn")){
+
+			let num = qtyInput.value 
+
+			if(num > 1){
+
+            num--
+
+            qtyInput.value = num
+
+            console.log(num);
+			}
+			
+		}
+
+	}
+
+
    
 
 	// COLOR BUTTON
     if(event.target && event.target.classList.contains("clrBox")){
+		event.preventDefault()
 
 		let allClrBox = document.querySelectorAll(".clrBox")
 
@@ -727,13 +795,21 @@ document.addEventListener("click", (event) => {
 		axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${varientId}`)
 .then(function(response) {
 	if (response.status == 200) {
-		console.log("kjiooo", response.data);
+		console.log(addToCartBtn, "AddToCart...............2");
 
 		let data = response.data
 
+		console.log("kpppppppppppppp", data);
+		pColor.innerText = `Color - ${data.selectedVarients[0].colorName}`
+
 		let selectedSubVarients = data.selectedSubVarients
 
+
+
 		if(data.selectedVarients[0]._id == varientId){
+
+		//Setting Subvarient id to add t cart btn
+		addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id) 
 
 		for (let i = 0; i < allClrBox.length; i++) {
 			allClrBox[i].style.borderColor = 'gray'; 
@@ -784,15 +860,19 @@ if(selectedSubVarients[0].quantity > 10){
 	showStock.style.color = 'green'
 	showStock.innerText = `In Stock`
 
-}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 5){
+}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 6){
 	showStock.style.color = 'red'
 	showStock.innerText = `Only Few Left`
 
-}else{
-	showStock.style.color = 'red'
-	showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
+}else if(selectedSubVarients[0].quantity > 0 && selectedSubVarients[0].quantity <= 5){
+			showStock.style.color = 'red'
+			showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
 
-}
+		}else{
+			showStock.style.color = 'red'
+			showStock.innerText = `Out of stock`
+
+		}
 
 		
 		}
@@ -809,6 +889,7 @@ if(selectedSubVarients[0].quantity > 10){
 
 // SIZE BOX
 	if(event.target && event.target.classList.contains("sizeBox")){
+		event.preventDefault()
 
 		let allSizeBox = document.querySelectorAll(".sizeBox")
 
@@ -822,12 +903,17 @@ if(selectedSubVarients[0].quantity > 10){
 
 		console.log("yadhav", response.data, subVarientId)
 
+		console.log(addToCartBtn, "AddToCart...............3");
+
 		let subVarient = response.data.subVarient
 		console.log(subVarient, "lllll");
 
 		if(subVarient._id == subVarientId){
 
 			console.log("Kohli");
+
+				//Setting Subvarient id to add t cart btn
+		addToCartBtn.setAttribute('svid', subVarientId) 
 
 			for (let i = 0; i < allSizeBox.length; i++) {
 				allSizeBox[i].style.borderColor = 'gray'; 
@@ -853,16 +939,20 @@ if(subVarient.quantity > 10){
 	showStock.style.color = 'green'
 	showStock.innerText = `In Stock`
 
-}else if(subVarient.quantity <= 10 && subVarient.quantity >= 5){
+}else if(subVarient.quantity <= 10 && subVarient.quantity >= 6){
 	showStock.style.color = 'red'
 	showStock.innerText = `Only Few Left`
 
 
-}else{
-	showStock.style.color = 'red'
-	showStock.innerText = `Only ${subVarient.quantity} Left`
+}else if(subVarient.quantity > 0 && subVarient.quantity <= 5){
+			showStock.style.color = 'red'
+			showStock.innerText = `Only ${subVarient.quantity} Left`
 
-}
+		}else{
+			showStock.style.color = 'red'
+			showStock.innerText = `Out of stock`
+
+		}
 
 
 		}
@@ -877,10 +967,64 @@ if(subVarient.quantity > 10){
 
 	}
 
-})
+// ADD TO CART EVENT
+	if(event.target && event.target.id == "addToCartBtn"){
+		event.preventDefault()
 
+		 let qty = document.getElementById("quantity-input").value
+
+		 let productSubVarientId = event.target.getAttribute('svid')
+
+
+
+		 console.log(qty, productSubVarientId, "qty Input");
+
+		 axios
+          .post("/shop/cart/addToCart", {productId: productSubVarientId, quantity: qty})
+          .then((response) => {
+            if (response.status == 200) {
+
+				cartCount.innerText = response.data.cartCount
+
+			 new Noty({
+                type: 'success', 
+                text: response.data.message,
+                timeout: 3000,
+                layout: 'bottomCenter',
+                theme: 'relax',
+				animation: {
+    open: 'animated bounceInRight',
+    close: 'animated bounceOutRight', 
+}
+            }).show();
+            }
+          })
+          .catch((error) => {
+            console.log("it is an error", error);
+			if (error.response.status == 409) {
+				new Noty({
+                type: 'warning', 
+                text: error.response.data.message,
+                timeout: 3000,
+                layout: 'bottomCenter',
+                theme: 'relax',
+				animation: {
+    open: 'animated bounceInRight', 
+    close: 'animated bounceOutRight', 
+}
+            }).show();
+				
+			}
+          });
+
+	}
+
+
+
+})
+// ----------------------------CLICK EVENT END------------------------------------------
 
 })
 
 </script>
-<%- include('./footer') %>
+<%- include('./footer') %> 

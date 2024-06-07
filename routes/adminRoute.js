@@ -46,9 +46,13 @@ router.get('/unlistedProducts/data', auth.isAdminLogin, adminController.unlisted
 router.post('/addProduct', auth.isAdminLogin, adminController.addProduct)
 router.post('/editProduct', auth.isAdminLogin, adminController.editProduct)
 router.post('/manageDeleteProduct', auth.isAdminLogin, adminController.manageProductDeleteStatus)
+
 router.post('/addProduct/colorVarient', auth.isAdminLogin, uploadFields, adminController.addColorVarient)
+router.post('/delete/colorVarient', auth.isAdminLogin, adminController.deleteColorVarient)
+
 router.post('/addProduct/sizeVarient', auth.isAdminLogin, adminController.addSizeVarient)
 router.post('/editProduct/sizeVarient', auth.isAdminLogin, adminController.editSizeVarient)
+router.post('/deleteProduct/sizeVarient', auth.isAdminLogin, adminController.deleteSizeVarient)
 
 router.get('/product/getColorVarient', auth.isAdminLogin, adminController.getAllColorVarient)
 router.get('/product/getSizeVarient', auth.isAdminLogin, adminController.getAllSizeVarient)

@@ -1,0 +1,457 @@
+<%- include('./header', {isLogin: isLogin}) %>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="bread">
+          <span><a href="index.html">Home</a></span> /
+          <span>Shopping Cart</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="colorlib-product">
+  <div class="container">
+    <div class="row row-pb-lg">
+      <div class="col-md-10 offset-md-1">
+        <div class="process-wrap">
+          <div class="process text-center active">
+            <p><span>01</span></p>
+            <h3>Shopping Cart</h3>
+          </div>
+          <div class="process text-center">
+            <p><span>02</span></p>
+            <h3>Checkout</h3>
+          </div>
+          <div class="process text-center">
+            <p><span>03</span></p>
+            <h3>Order Complete</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-pb-lg">
+      <div class="col-md-12">
+        <div class="product-name d-flex">
+          <div class="one-forth text-left px-4">
+            <span>Product Details</span>
+          </div>
+          <div class="one-eight text-center">
+            <span>Price</span>
+          </div>
+          <div class="one-eight text-center">
+            <span>Quantity</span>
+          </div>
+          <div class="one-eight text-center">
+            <span>Total</span>
+          </div>
+          <div class="one-eight text-center px-4">
+            <span>Remove</span>
+          </div>
+        </div>
+        <div id="cartItemsContainer">
+          <!-- <div class="product-cart d-flex">
+							<div class="one-forth">
+								<div class="product-img" style="background-image: url(images/item-8.jpg);">
+								</div>
+								<div class="display-tc">
+									<h3>Product Name</h3>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">$68.00</span>
+								</div>
+							</div>
+							<div class="one-eight text-center" style="display: flex; justify-content: center; align-items: center;" >
+								<div class="quantity-wrapper" style="display: flex; flex-direction: row;">
+									<a href="" type="button" id="decrement" class="" style="background-color: #f1f1f1; width: 20px;">-</a>
+									<div type="text" style="width: 30px;" id="quantity" >2</div>
+									<a href="" type="button" id="increment" class="" style="background-color: #f1f1f1; width: 20px;">+</a>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">$120.00</span>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<a href="#" class="closed"></a>
+								</div>
+							</div>
+						</div> -->
+        </div>
+        <!-- <div class="product-cart d-flex">
+							<div class="one-forth">
+								<div class="product-img" style="background-image: url(images/item-8.jpg);">
+								</div>
+								<div class="display-tc">
+									<h3>Product Name</h3>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">$68.00</span>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<input type="text" id="quantity" name="quantity" class="form-control input-number text-center" value="1" min="1" max="100">
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">$120.00</span>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<a href="#" class="closed"></a>
+								</div>
+							</div>
+						</div> -->
+      </div>
+    </div>
+    <div class="row row-pb-lg">
+      <div class="col-md-12">
+        <div class="total-wrap">
+          <div class="row">
+            <div class="col-sm-8">
+              <form action="#">
+                <div class="row form-group">
+                  <div class="col-sm-9">
+                    <input
+                      type="text"
+                      name="quantity"
+                      class="form-control input-number"
+                      placeholder="Your Coupon Number..."
+                    />
+                  </div>
+                  <div class="col-sm-3">
+                    <input
+                      type="submit"
+                      value="Apply Coupon"
+                      class="btn btn-primary"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-sm-4 text-center">
+              <div class="total">
+                <div class="sub">
+                  <p>
+                    <span>Total Price:</span>
+                    <span id="subtotalValue">₹ 0.00</span>
+                  </p>
+                  <p><span>Delivery:</span> <span>₹ 0.00</span></p>
+                  <p><span>Discount:</span> <span>₹ 0.00</span></p>
+                </div>
+                <div class="grand-total">
+                  <p>
+                    <span><strong>Total Amount:</strong></span> <span id="grossTotalValue">₹ 0.00</span>
+                  </p>
+                </div>
+              </div>
+
+              <button
+                style="
+                  width: 100%;
+                  border-radius: 10px;
+                  height: 50px;
+                  margin-top: 10px;
+                "
+                class="btn btn-primary"
+              >
+                Place Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+
+    // Header cart count.
+    let cartCount = document.getElementById('mainCartCount')
+    
+
+
+    let subTotal = document.getElementById("subtotalValue");
+    let subTotalValue = 0;
+
+    let grossTotal = document.getElementById("grossTotalValue");
+
+
+    function findSubtotal(items){
+      let subTotalCartValue = 0
+
+      items.forEach((item) => {
+        if (item.productId.quantity != 0) {
+              subTotalCartValue += item.quantity * item.productId.price;
+            }
+
+      })
+
+      return subTotalCartValue
+    }
+
+    axios
+      .get("/shop/cart/products")
+      .then((response) => {
+        if (response.status == 200) {
+          console.log("hey", response.data);
+
+          let cartItemsContainer =
+            document.getElementById("cartItemsContainer");
+
+          cartItemsContainer.innerHTML = "";
+
+          subTotalValue = findSubtotal(response.data.cartData.items)
+
+          response.data.cartData.items.forEach((item) => {
+            
+            // if (item.productId.quantity != 0) {
+            //   subTotalValue += item.quantity * item.productId.price;
+            // }
+
+            cartItemsContainer.innerHTML += `
+					<div class="product-cart d-flex" id="cartItemContainer${item._id}">
+							<div class="one-forth">
+								<div class="product-img" style="background-image: url('/static/images/${
+                  item.productId.varient.images[0]
+                }');">
+								</div>
+								<div class="display-tc">
+									<span style="margin-left: 30px; color: black">${
+                    item.productId.product.modelName
+                  } for ${item.productId.product.gender}</span><br>
+									<span style="margin-left: 30px;" class="price">Size: ${
+                    item.productId.size
+                  }, Color: ${item.productId.varient.colorName}</span><br>
+				  ${
+            item.productId.quantity == 0
+              ? '<span style="margin-left: 30px; color: red;" class="price" id="oos' +
+                item._id +
+                '">Out of stock</span>'
+              : ""
+          }
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price">₹ ${item.productId.price}</span>
+								</div>
+							</div>
+							<div class="one-eight text-center" style="display: flex; justify-content: center; align-items: center;" >
+								<div class="quantity-wrapper" style="display: flex; flex-direction: row;">
+									<a href="" data-cart-item-id="${
+                    item._id
+                  }" type="button" id="decrementBtn" class="qty-btn" style="background-color: #f1f1f1; width: 20px;">-</a>
+									<div type="text" style="width: 30px;" id="quantity${item._id}" >${
+                    item.productId.quantity < item.quantity ? item.productId.quantity : item.quantity
+              
+            }</div>
+									<a href="" data-cart-item-id="${
+                    item._id
+                  }" type="button" id="incrementBtn" class="qty-btn" style="background-color: #f1f1f1; width: 20px;">+</a>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<span class="price" id="total${item._id}">₹ ${
+              item.quantity * item.productId.price
+            }</span>
+								</div>
+							</div>
+							<div class="one-eight text-center">
+								<div class="display-tc">
+									<a href="" data-cart-item-id=${item._id} class="removeFromCartBtn closed"></a>
+								</div>
+							</div>
+						</div>
+				    `;
+          });
+
+          subTotal.innerText = `₹ ${subTotalValue}`;
+
+          grossTotal.innerText = `₹ ${subTotalValue}`;
+        }
+      })
+
+      .catch((error) => {
+        console.log("error code");
+      });
+
+    //   -------------------------------------CLICK EVENT START-----------------------------------
+
+    document.addEventListener("click", (event) => {
+      //event.preventDefault();
+
+      if (event.target && event.target.classList.contains("qty-btn")) {
+        event.preventDefault();
+
+        let qtyBtn = event.target;
+        let cartItemId = qtyBtn.getAttribute("data-cart-item-id");
+
+        let cartItemQtyDisplay = document.getElementById(
+          `quantity${cartItemId}`
+        );
+
+        let cartItemTotalAmountDisplay = document.getElementById(
+          `total${cartItemId}`
+        );
+
+        if (qtyBtn.id == "decrementBtn") {
+          axios
+            .post("/shop/cart/qtyManagement", {
+              itemId: cartItemId,
+              qtyUpdateIdentifier: 0,
+            })
+            .then((response) => {
+              if (response.status == 200) {
+                console.log("loppp", response.data);
+                cartItemQtyDisplay.innerText =
+                  response.data.updatedItem.quantity;
+                cartItemTotalAmountDisplay.innerText =
+                  response.data.updatedItem.productId.price *
+                  response.data.updatedItem.quantity;
+                
+                // subTotalValue -= response.data.updatedItem.productId.price;
+                subTotalValue = findSubtotal(response.data.cartItem)
+                subTotal.innerText = `₹ ${subTotalValue}` 
+                grossTotal.innerText = `₹ ${subTotalValue}`;
+                new Noty({
+                  type: "success",
+                  text: response.data.message,
+                  timeout: 3000,
+                  layout: "bottomCenter",
+                  theme: "relax",
+                  animation: {
+                    open: "animated bounceInRight",
+                    close: "animated bounceOutRight",
+                  },
+                }).show();
+              }
+            })
+            .catch((error) => {
+              console.log("error code");
+            });
+        }
+
+        if (qtyBtn.id == "incrementBtn") {
+          axios
+            .post("/shop/cart/qtyManagement", {
+              itemId: cartItemId,
+              qtyUpdateIdentifier: 1,
+            })
+            .then((response) => {
+              if (response.status == 200) {
+                cartItemQtyDisplay.innerText =
+                  response.data.updatedItem.quantity;
+                cartItemTotalAmountDisplay.innerText =
+                  response.data.updatedItem.productId.price *
+                  response.data.updatedItem.quantity;
+
+                subTotalValue += response.data.updatedItem.productId.price;
+                subTotal.innerText = `₹ ${subTotalValue}` 
+                grossTotal.innerText = `₹ ${subTotalValue}`;
+                new Noty({
+                  type: "success",
+                  text: response.data.message,
+                  timeout: 3000,
+                  layout: "bottomCenter",
+                  theme: "relax",
+                  animation: {
+                    open: "animated bounceInRight",
+                    close: "animated bounceOutRight",
+                  },
+                }).show();
+              }
+            })
+            .catch((error) => {
+              console.log("error code");
+              if (error.response.status == 409) {
+                new Noty({
+                  type: "warning",
+                  text: error.response.data.message,
+                  timeout: 3000,
+                  layout: "bottomCenter",
+                  theme: "relax",
+                  animation: {
+                    open: "animated bounceInRight",
+                    close: "animated bounceOutRight",
+                  },
+                }).show();
+              }
+            });
+        }
+      }
+
+      if (
+        event.target &&
+        event.target.classList.contains("removeFromCartBtn")
+      ) {
+        event.preventDefault();
+        const removeFromCartBtn = event.target;
+
+        const cartItemId = removeFromCartBtn.getAttribute("data-cart-item-id");
+
+        console.log(removeFromCartBtn, "remove from cart btn");
+
+        axios
+          .post("/shop/cart/removeFromCart", {
+            itemId: cartItemId,
+          })
+          .then((response) => {
+            if (response.status == 200) {
+              console.log("jioppp", response.data);
+              if (response.data) {
+                subTotalValue = findSubtotal(response.data.cartData.items)
+
+                cartCount.innerText = response.data.cartCount
+                
+                let cartItemContainer = document.getElementById(
+                  `cartItemContainer${cartItemId}`
+                );
+
+                if (cartItemContainer) {
+                  cartItemContainer.remove();
+                }
+
+                subTotal.innerText =  `₹ ${subTotalValue}`;
+                grossTotal.innerText = `₹ ${subTotalValue}`;
+
+                new Noty({
+                  type: "success",
+                  text: response.data.message,
+                  timeout: 3000,
+                  layout: "bottomCenter",
+                  theme: "relax",
+                  animation: {
+                    open: "animated bounceInRight",
+                    close: "animated bounceOutRight",
+                  },
+                }).show();
+              }
+            }
+          })
+          .catch((error) => {
+            console.log("error code");
+          });
+      }
+    });
+  });
+</script>
+
+<%- include('./footer') %>
