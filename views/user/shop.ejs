@@ -1,252 +1,556 @@
 <%- include('./header', {isLogin: isLogin, cartCount}) %>
 
-<div class="breadcrumbs">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <p class="bread">
-          <span><a href="index.html">Home</a></span> / <span>Shop</span>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="colorlib-product">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-xl-3">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="side border mb-1">
-              <h3>Brand</h3>
-              <ul>
-                <li><a href="#">Nike</a></li>
-                <li><a href="#">Adidas</a></li>
-                <li><a href="#">Merrel</a></li>
-                <li><a href="#">Gucci</a></li>
-                <li><a href="#">Skechers</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="side border mb-1">
-              <h3>Size/Width</h3>
-              <div class="block-26 mb-2">
-                <h4>Size</h4>
-                <ul>
-                  <li><a href="#">7</a></li>
-                  <li><a href="#">7.5</a></li>
-                  <li><a href="#">8</a></li>
-                  <li><a href="#">8.5</a></li>
-                  <li><a href="#">9</a></li>
-                  <li><a href="#">9.5</a></li>
-                  <li><a href="#">10</a></li>
-                  <li><a href="#">10.5</a></li>
-                  <li><a href="#">11</a></li>
-                  <li><a href="#">11.5</a></li>
-                  <li><a href="#">12</a></li>
-                  <li><a href="#">12.5</a></li>
-                  <li><a href="#">13</a></li>
-                  <li><a href="#">13.5</a></li>
-                  <li><a href="#">14</a></li>
-                </ul>
-              </div>
-              <div class="block-26">
-                <h4>Width</h4>
-                <ul>
-                  <li><a href="#">M</a></li>
-                  <li><a href="#">W</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="side border mb-1">
-              <h3>Style</h3>
-              <ul>
-                <li><a href="#">Slip Ons</a></li>
-                <li><a href="#">Boots</a></li>
-                <li><a href="#">Sandals</a></li>
-                <li><a href="#">Lace Ups</a></li>
-                <li><a href="#">Oxfords</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="side border mb-1">
-              <h3>Colors</h3>
-              <ul>
-                <li><a href="#">Black</a></li>
-                <li><a href="#">White</a></li>
-                <li><a href="#">Blue</a></li>
-                <li><a href="#">Red</a></li>
-                <li><a href="#">Green</a></li>
-                <li><a href="#">Grey</a></li>
-                <li><a href="#">Orange</a></li>
-                <li><a href="#">Cream</a></li>
-                <li><a href="#">Brown</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="side border mb-1">
-              <h3>Material</h3>
-              <ul>
-                <li><a href="#">Leather</a></li>
-                <li><a href="#">Suede</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="side border mb-1">
-              <h3>Technologies</h3>
-              <ul>
-                <li><a href="#">BioBevel</a></li>
-                <li><a href="#">Groove</a></li>
-                <li><a href="#">FlexBevel</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-9 col-xl-9">
-        <div class="row row-pb-md" id="item-container"></div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <div class="block-27">
-              <ul>
-                <li>
-                  <a href="#"><i class="ion-ios-arrow-back"></i></a>
-                </li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                  <a href="#"><i class="ion-ios-arrow-forward"></i></a>
-                </li>
-              </ul>
-            </div>
-          </div>
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="bread">
+            <span><a href="index.html">Home</a></span> / <span>Shop</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="colorlib-partner">
-  <div class="container">
-    <div class="row">
-      <div
-        class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm"
-      >
-        <h2>Trusted Partners</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col partner-col text-center">
-        <img
-          src="images/brand-1.jpg"
-          class="img-fluid"
-          alt="Free html4 bootstrap 4 template"
-        />
-      </div>
-      <div class="col partner-col text-center">
-        <img
-          src="images/brand-2.jpg"
-          class="img-fluid"
-          alt="Free html4 bootstrap 4 template"
-        />
-      </div>
-      <div class="col partner-col text-center">
-        <img
-          src="images/brand-3.jpg"
-          class="img-fluid"
-          alt="Free html4 bootstrap 4 template"
-        />
-      </div>
-      <div class="col partner-col text-center">
-        <img
-          src="images/brand-4.jpg"
-          class="img-fluid"
-          alt="Free html4 bootstrap 4 template"
-        />
-      </div>
-      <div class="col partner-col text-center">
-        <img
-          src="images/brand-5.jpg"
-          class="img-fluid"
-          alt="Free html4 bootstrap 4 template"
-        />
-      </div>
-    </div>
-  </div>
-</div>
+  <div class="colorlib-product">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-xl-3">
+          <form action="">
+            <div class="row">
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", (event) => {
-    let itemContainer = document.getElementById("item-container");
+              <!-- <div class="col-sm-12">
+                <div class="side border mb-1">
+                  <h3>Brand</h3>
+                  <ul>
+                    <% filterBrand.forEach((brand)=> {%>
+                      <li><label><input type="checkbox" class="filter-brand" name="filter-brand"
+                            value="<%= brand.name %>">
+                          <%= brand.name %>
+                        </label></li>
+                      <% }) %>
 
-    itemContainer.innerHTML = "";
+                  </ul>
+                </div>
+              </div>
+              
+              -->
+              <div class="col-sm-12">
+                <label style="font-size: 18px;">FILTERS</label>
+              </div>
 
-	axios
-  .get("/shop/items")
-  .then((response) => {
-    if (response.status == 200) {
-    //   console.log(response.data.varients);
-    //   console.log(response.data.products[0], "Hey");
-    //   console.log(response.data.subVarients);
+              <div class="col-sm-12">
+                <div class="side border mb-1 pb-0">
+                  <a data-toggle="collapse" href="#collapseExample"
+                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h3>Category</h3>
+                    <h3><i class="icon-chevron-down"></i></h3>
 
-    //   let varients = response.data.varients;
-    //   let products = response.data.products;
-    //   let subVarients = response.data.subVarients;
+                  </a>
 
-    //   let mappedProduct = products.map((product) => {
-    //     let filteredVarients = varients
-    //       .filter((varient) => varient.product._id == product._id)
-    //       .map((varient) => {
-    //         let filteredSubvarients = subVarients.filter(
-    //           (subVarient) => subVarient.varient == varient._id
-    //         );
-    //         return { ...varient, subVarients: filteredSubvarients };
-    //       });
+                  <ul class="collapse" id="collapseExample">
+                    <% filterCategory.forEach((category)=> {%>
+                      <li><label><input type="checkbox" class="filter-category" name="filter-category"
+                            value="<%=category.categoryName %>">
+                          <%= category.categoryName %>
+                        </label></li>
+                      <% }) %>
 
-    //     return { ...product, varient: filteredVarients };
-    //   });
+                  </ul>
+                </div>
+              </div>
 
-	//console.log(mappedProduct);
 
-	let products = response.data.products;
+              <div class="col-sm-12">
+                <div class="side border mb-1 pb-0">
+                  <a data-toggle="collapse" href="#collapseBrandExample"
+                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h3>Brand</h3>
+                    <h3><i class="icon-chevron-down"></i></h3>
 
-      products.forEach((item) => {
-        itemContainer.innerHTML += `
-          <div class="col-lg-4 mb-4 text-center">
-            <div class="product-entry border">
-              <a href="/shop/items/${item._id}" class="prod-img">
-                <img src="/static/images/${item.varients[0].images[0]}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-              </a>
-              <div class="desc">
-                <h2><a href="/shop/items/${item._id}" >${item.modelName} ${item.category.categoryName} for ${item.gender}</a></h2>
-                <span class="price">₹${item.varients[0].subVarients[0].price}</span>
+                  </a>
+
+                  <ul class="collapse" id="collapseBrandExample">
+                    <% filterBrand.forEach((brand)=> {%>
+                      <li><label><input type="checkbox" class="filter-brand" name="filter-brand"
+                            value="<%=brand.name %>">
+                          <%= brand.name %>
+                        </label></li>
+                      <% }) %>
+
+                  </ul>
+                </div>
+              </div>
+
+
+              <div class="col-sm-12">
+                <div class="side border mb-1 pb-0">
+                  <a data-toggle="collapse" href="#collapseGenderExample"
+                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h3>Gender</h3>
+                    <h3><i class="icon-chevron-down"></i></h3>
+
+                  </a>
+
+                  <ul class="collapse" id="collapseGenderExample">
+                    <li>
+                      <label><input type="checkbox" class="filter-gender" name="filter-gender" value="men">
+                        Men
+                      </label>
+                    </li>
+                    <li>
+                      <label><input type="checkbox" class="filter-gender" name="filter-gender" value="women">
+                        Women
+                      </label>
+                    </li>
+                    <li>
+                      <label><input type="checkbox" class="filter-gender" name="filter-gender" value="unisex">
+                        Men & Women
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+
+              <div class="col-sm-12">
+                <div class="side border mb-1 pb-0">
+                  <a data-toggle="collapse" href="#collapseColorExample"
+                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h3>Color</h3>
+                    <h3><i class="icon-chevron-down"></i></h3>
+
+                  </a>
+
+                  <ul class="collapse" id="collapseColorExample">
+                    <li><label><input type="checkbox" name="filter-color" value="black"> Black</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="white"> White</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="blue"> Blue</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="red"> Red</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="green"> Green</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="grey"> Grey</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="orange"> Orange</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="cream"> Cream</label></li>
+                    <li><label><input type="checkbox" name="filter-color" value="brown"> Brown</label></li>
+                  </ul>
+                </div>
+              </div>
+
+
+              <div class="col-sm-12">
+                <div class="side border mb-1 pb-0">
+                  <a data-toggle="collapse" href="#collapseSizeExample"
+                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h3>Size</h3>
+                    <h3><i class="icon-chevron-down"></i></h3>
+
+                  </a>
+
+                  <ul class="collapse" id="collapseSizeExample">
+                    <li><label><input type="checkbox" name="filter-size" value="5"> 5</label></li>
+                    <li><label><input type="checkbox" name="filter-size" value="6"> 6</label></li>
+                    <li><label><input type="checkbox" name="filter-size" value="7"> 7</label></li>
+                    <li><label><input type="checkbox" name="filter-size" value="8"> 8</label></li>
+                    <li><label><input type="checkbox" name="filter-size" value="9"> 9</label></li>
+                    <li><label><input type="checkbox" name="filter-size" value="10"> 10</label></li>
+                    <li><label><input type="checkbox" name="filter-size" value="11"> 11</label></li>
+                    <li><label><input type="checkbox" name="filter-size" value="12"> 12</label></li>
+                  </ul>
+                </div>
+              </div>
+
+
+              <div class="col-sm-12">
+                <div class="side border mb-1 pb-0">
+                  <a data-toggle="collapse" href="#collapsePriceExample"
+                    style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;"
+                    role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <h3>Price</h3>
+                    <h3><i class="icon-chevron-down"></i></h3>
+
+                  </a>
+                
+                  <ul class="collapse" id="collapsePriceExample">
+                    <li><label><input type="checkbox" name="filter-price" value="0-500"> Below 500</label></li>
+                    <li><label><input type="checkbox" name="filter-price" value="501-1000"> 501 - 1000</label></li>
+                    <li><label><input type="checkbox" name="filter-price" value="1001-1500"> 1001 - 1500</label></li>
+                    <li><label><input type="checkbox" name="filter-price" value="1501-2000"> 1501 - 2000</label></li>
+                    <li><label><input type="checkbox" name="filter-price" value="2001-2500"> 2001 - 2500</label></li>
+                    <li><label><input type="checkbox" name="filter-price" value="2501-3000"> 2501 - 3000</label></li>
+                    <li><label><input type="checkbox" name="filter-price" value="3000-10000"> Above 3000</label></li>
+                  </ul> 
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-9 col-xl-9">
+          <div class="sort-by-container" id="sort-by">
+            <label for="sort-by">SORT BY:</label>
+            <select id="sort-by" name="sort-by">
+              <option value="new">New arrivals</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-atoz">A to Z</option>
+              <option value="name-ztoa">Z to A</option>
+            </select>
+          </div>
+          <div style="min-height: 100vh;">
+
+            <div class="row row-pb-md" id="item-container">
+
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="block-27">
+                <ul>
+                  <li>
+                    <a href="" class="prevPageClass" id="prevPage"><i class="ion-ios-arrow-back prevPageClass"></i></a>
+                  </li>
+
+                  <li class="active"><span id="pageNo">1</span></li>
+
+                  <!-- <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li> -->
+                  <li>
+                    <a href="" class="nxtPageClass" id="nxtPage"><i class="ion-ios-arrow-forward nxtPageClass"></i></a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-        `;
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="colorlib-partner">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+          <h2>Trusted Partners</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col partner-col text-center">
+          <img src="images/brand-1.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template" />
+        </div>
+        <div class="col partner-col text-center">
+          <img src="images/brand-2.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template" />
+        </div>
+        <div class="col partner-col text-center">
+          <img src="images/brand-3.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template" />
+        </div>
+        <div class="col partner-col text-center">
+          <img src="images/brand-4.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template" />
+        </div>
+        <div class="col partner-col text-center">
+          <img src="images/brand-5.jpg" class="img-fluid" alt="Free html4 bootstrap 4 template" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+
+      let pageNo = document.getElementById('pageNo')
+      let sortBy = document.getElementById('sort-by')
+
+      let filterCategory = document.getElementsByName("filter-category")
+      let filterBrand = document.getElementsByName("filter-brand")
+      let filterGender = document.getElementsByName("filter-gender")
+      let filterColor = document.getElementsByName("filter-color")
+      let filterSize = document.getElementsByName("filter-size")
+      let filterPrice = document.getElementsByName("filter-price")
+
+      let searchInput = document.getElementById("searchInput")
+
+
+      let sortValue = ""
+
+      let searchValue = ""
+
+      let categoryFilterArr = []
+      let brandFilterArr = []
+      let genderFilterArr = []
+      let colorFilterArr = []
+      let sizeFilterArr = []
+      let priceFilterArr = []
+
+
+      function fetchProducts(pg = 1, sort = sortValue) {
+
+        console.log(sort, "Hey sort");
+
+
+        let itemContainer = document.getElementById("item-container");
+
+        let itemsUrl = "/shop/items" + `?page=${pg}` + `&sort=${sort}` + `&category=${categoryFilterArr}` + `&brand=${brandFilterArr}` + `&gender=${genderFilterArr}` + `&color=${colorFilterArr}` + `&size=${sizeFilterArr}` + `&price=${priceFilterArr}` + `&search=${searchValue}`
+
+
+        itemContainer.innerHTML = " ";
+
+        axios
+          .get(itemsUrl)
+          .then((response) => {
+            if (response.status == 200) {
+              let products = response.data.products;
+              let totalPages = response.data.totalPages
+              let currentPage = response.data.currentPage
+
+              pageNo.setAttribute("totalPages", totalPages)
+              pageNo.setAttribute("currentPage", currentPage)
+
+              console.log(totalPages, currentPage, "koiiii");
+
+
+              products.forEach((item) => {
+                console.log("Hey lokam", item);
+                itemContainer.innerHTML += `
+    <div class="col-lg-4 mb-4 text-center">
+      <div class="product-entry border">
+        <a href="/shop/items/${item._id}" class="prod-img">
+     <img src="/static/images/${item.varients[0].images[0]}" class="img-fluid" alt="Free html5 bootstrap 4 template"> 
+         
+          </a>
+        <div class="desc">
+          <h2><a href="/shop/items/${item._id}" >${item.modelName} ${item.category.categoryName} for ${item.gender}</a></h2>
+          <span style="color: red">${item.varients[0].subVarients[0].quantity == 0 ? "Out of stock" : item.varients[0].subVarients[0].quantity <= 5 ? `Only ${item.varients[0].subVarients[0].quantity} left` : ""}</span>
+
+          <span class="price">₹${item.varients[0].subVarients[0].price}</span>
+        </div>
+      </div>
+    </div>
+  `;
+              });
+            }
+          })
+          .catch((error) => {
+            console.log("it is an error", error);
+          });
+      }
+
+      fetchProducts(Number(pageNo.innerText))
+
+
+
+
+
+      document.addEventListener("click", (event) => {
+        const totalPages = pageNo.getAttribute("totalPages")
+
+        if (event.target && event.target.classList.contains("nxtPageClass")) {
+          event.preventDefault()
+
+
+          if (Number(pageNo.innerText) < totalPages) {
+            fetchProducts(Number(pageNo.innerText) + 1)
+            pageNo.innerText = Number(pageNo.innerText) + 1
+          }
+        }
+
+        if (event.target && event.target.classList.contains("prevPageClass")) {
+          event.preventDefault()
+          if (Number(pageNo.innerText) > 1) {
+            fetchProducts(Number(pageNo.innerText) - 1)
+            pageNo.innerText = Number(pageNo.innerText) - 1
+          }
+        }
+      })
+
+
+      sortBy.addEventListener('change', (event) => {
+        console.log(event.target.value);
+
+        fetchProducts(1, event.target.value)
+
+        pageNo.innerText = 1
+
+        sortValue = event.target.value
+      })
+
+
+      // Category filter
+      filterCategory.forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const checkbox = event.target
+          if (!checkbox.checked) {
+
+
+            let index = categoryFilterArr.indexOf(checkbox.value);
+            if (index !== -1) {
+              categoryFilterArr.splice(index, 1);
+              fetchProducts()
+              // pageNo.innerText = 1
+            }
+            console.log("Checkbox is unchecked", categoryFilterArr);
+          } else {
+
+            categoryFilterArr.push(checkbox.value)
+            console.log("Checkbox is checked", categoryFilterArr);
+            fetchProducts()
+            // pageNo.innerText = 1
+          }
+        });
       });
-    }
-  })
-  .catch((error) => {
-    console.log("it is an error", error);
-  });
-
-  })
-</script>
 
 
+      // Brand filter
+      filterBrand.forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const checkbox = event.target
+          if (!checkbox.checked) {
+
+
+            let index = brandFilterArr.indexOf(checkbox.value);
+            if (index !== -1) {
+              brandFilterArr.splice(index, 1);
+              fetchProducts()
+              pageNo.innerText = 1
+            }
+            console.log("Checkbox is unchecked", brandFilterArr);
+          } else {
+
+            brandFilterArr.push(checkbox.value)
+            console.log("Checkbox is checked", brandFilterArr);
+            fetchProducts()
+            pageNo.innerText = 1
+          }
+        });
+      });
+
+
+      // Gender filter
+      filterGender.forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const checkbox = event.target
+          if (!checkbox.checked) {
+
+
+            let index = genderFilterArr.indexOf(checkbox.value);
+            if (index !== -1) {
+              genderFilterArr.splice(index, 1);
+              fetchProducts()
+              pageNo.innerText = 1
+            }
+            console.log("Checkbox is unchecked", genderFilterArr);
+          } else {
+
+            genderFilterArr.push(checkbox.value)
+            console.log("Checkbox is checked", genderFilterArr);
+            fetchProducts()
+            pageNo.innerText = 1
+          }
+        });
+      });
 
 
 
-<%- include('./footer') %>
+      // Color filter
+      filterColor.forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const checkbox = event.target
+          if (!checkbox.checked) {
+
+
+            let index = colorFilterArr.indexOf(checkbox.value);
+            if (index !== -1) {
+              colorFilterArr.splice(index, 1);
+              fetchProducts()
+              pageNo.innerText = 1
+            }
+            console.log("Checkbox is unchecked", colorFilterArr);
+          } else {
+            colorFilterArr.push(checkbox.value)
+            console.log("Checkbox is checked", colorFilterArr);
+            fetchProducts()
+            pageNo.innerText = 1
+          }
+        });
+      });
+
+
+      // Size filter
+      filterSize.forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const checkbox = event.target
+          if (!checkbox.checked) {
+
+
+            let index = sizeFilterArr.indexOf(checkbox.value);
+            if (index !== -1) {
+              sizeFilterArr.splice(index, 1);
+              fetchProducts()
+              pageNo.innerText = 1
+            }
+            console.log("Checkbox is unchecked", sizeFilterArr);
+          } else {
+            sizeFilterArr.push(checkbox.value)
+            console.log("Checkbox is checked", sizeFilterArr);
+            fetchProducts()
+            pageNo.innerText = 1
+          }
+        });
+      });
+
+// Price Filter
+      filterPrice.forEach((checkbox) => {
+        checkbox.addEventListener('change', (event) => {
+          const checkbox = event.target
+          if (!checkbox.checked) {
+
+
+            let index = priceFilterArr.indexOf(checkbox.value);
+            if (index !== -1) {
+              priceFilterArr.splice(index, 1);
+              fetchProducts()
+              pageNo.innerText = 1
+            }
+            console.log("Checkbox is unchecked", priceFilterArr);
+          } else {
+            priceFilterArr.push(checkbox.value)
+            console.log("Checkbox is checked", priceFilterArr);
+            fetchProducts()
+            pageNo.innerText = 1
+          }
+        });
+      });
+      
+
+      // Search input
+      let debounceTimeout
+      searchInput.addEventListener('input', (event) => {
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+          searchValue = event.target.value;
+          console.log(`User typed: ${searchValue}`);
+          fetchProducts()
+          pageNo.innerText = 1
+        }, 1000)
+      });
+
+
+
+
+
+    })
+  </script>
+
+
+
+
+
+  <%- include('./footer') %>

@@ -1,4 +1,4 @@
-<%- include('./header', {isLogin: isLogin, cartCount:0}) %>
+<%- include('./header', {isLogin: isLogin, cartCount}) %>
 
 <div class="breadcrumbs">
   <div class="container">
@@ -25,9 +25,11 @@
     <a class="button" data-toggle="modal" data-target="#profileEditModal"
       >Edit Profile</a
     >
-    <a class="button">My Orders</a>
+    <a class="button" href="/profile/order">My Orders</a>
     <a class="button">Wallet</a>
+    <% if(!gUser){ %>
     <a class="button" href="/profile/changePassword">Change Password</a>
+    <% } %>
     <!-- <div class="button button-orange">Copy Referral Link</div> -->
     <a class="button button-red">Sign Out</a>
   </div>

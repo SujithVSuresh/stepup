@@ -62,24 +62,24 @@
           aria-expanded="false"
           aria-controls="ui-basic"
         >
-          <span class="menu-title">CATEGORIES</span>
-          <i class="menu-arrow"></i>
-          <i class="mdi mdi-cube-outline menu-icon"></i>
+          <span class="menu-title text-dark">CATEGORIES</span>
+          <i class="menu-arrow text-dark"></i>
+          <i class="mdi mdi-cube-outline menu-icon text-dark"></i>
         </a>
         <div class="collapse" id="ui-categories">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item">
-              <a class="nav-link" href="/admin/category">LISTED</a>
+              <a class="nav-link  text-dark" href="/admin/category">LISTED</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/category/unlisted">UNLISTED</a>
+              <a class="nav-link" href="/admin/category/unlisted" style="color: gray;">UNLISTED</a>
             </li>
           </ul>
         </div>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/admin/order">
           <span class="menu-title">ORDERS</span>
           <i class="mdi mdi-cart menu-icon"></i>
         </a>
@@ -105,7 +105,7 @@
     <div class="content-wrapper">
       <div class="page-header">
         <h3 class="page-title">
-          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+          <span class="page-title-icon bg-dark text-white mr-2">
             <i class="mdi mdi-folder folder-icon"></i>
           </span>
           CATEGORIES
@@ -116,7 +116,7 @@
               <!-- <a href="/admin/addCategory" class="add btn btn-gradient-primary font-weight-bold" id="add-task">Add Categpry</a>  -->
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-outline-dark"
                 data-toggle="modal"
                 data-target="#addCategoryModal"
               >
@@ -161,7 +161,7 @@
                   type="button"
                   data-id="<%= category._id %>"
                   data-category="<%= category.categoryName %>"
-                  class="btn btn-info btn-sm categoryEditBtn"
+                  class="btn btn-outline-dark btn-sm categoryEditBtn"
                   data-toggle="modal"
                   data-target="#editCategoryModal"
                 >
@@ -171,7 +171,7 @@
                   data-id="<%= category._id %>"
                   data-category="<%= category.categoryName %>"
                   type="button"
-                  class="btn btn-danger btn-sm categoryDeleteBtn"
+                  class="btn btn-outline-danger btn-sm categoryDeleteBtn"
                 >
                   Delete
                 </button>
@@ -348,6 +348,9 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+
+<%- include('./loader') %>
+
 <script>
 
 function hideModal(modalId) {
@@ -464,7 +467,7 @@ let cropper
                   type="button"
                   data-id="${response.data.categoryData._id}"
                   data-category="${response.data.categoryData.categoryName}"
-                  class="btn btn-info btn-sm categoryEditBtn"
+                  class="btn btn-outline-dark btn-sm categoryEditBtn"
                   data-toggle="modal"
                   data-target="#editCategoryModal"
                 >
@@ -474,7 +477,7 @@ let cropper
                    data-id="${response.data.categoryData._id}"
                   data-category="${response.data.categoryData.categoryName}"
                   type="button"
-                  class="btn btn-danger btn-sm categoryDeleteBtn"
+                  class="btn btn-outline-danger btn-sm categoryDeleteBtn"
                 >
                 Delete
                 </button>
@@ -629,5 +632,4 @@ let cropper
   });
 
 </script>
-<%- include('./loader') %>
 <%- include('./footer') %>

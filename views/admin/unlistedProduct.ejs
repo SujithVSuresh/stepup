@@ -43,7 +43,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/admin/products">LISTED</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="">UNLISTED</a></li>
+            <li class="nav-item text-dark"><a class="nav-link  text-dark" href="">UNLISTED</a></li>
   
           </ul>
         </div>
@@ -107,7 +107,7 @@
     <div class="content-wrapper">
       <div class="page-header">
         <h3 class="page-title">
-          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+          <span class="page-title-icon bg-dark text-white mr-2">
             <i
               class="mdi menu-icon mdi-shoe-formal"
               style="font-size: 24px"
@@ -152,132 +152,6 @@
         </div>
       </div>
 
-
-
-      <!----------------------------------------------- VARIENT MODAL START ---------------------------------->
-      <div
-        class="modal fade"
-        id="varientModal"
-        tabindex="-1"
-        aria-labelledby="productModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog modal-dialog-custom">
-          <div class="modal-content" style="padding: 15px">
-            <div class="modal-header">
-              <!-- <h5 class="modal-title" id="productModalLabel">VARIENTS</h5>-->
-              <h4>VARIENTS - <span id="colorNameTag"></span></h4>
-
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="container">
-                <div class="heading-container">
-                  <h4 style="color: gray">COLORS</h4>
-                  <div>
-                    <button
-                      data-user-id=""
-                      id=""
-                      type="button"
-                      class="btn btn-primary btn-sm statusBtn"
-                      data-toggle="modal"
-                      data-target="#addColorVarientModal"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      data-user-id=""
-                      id=""
-                      type="button"
-                      class="btn btn-primary btn-sm statusBtn"
-                      data-toggle="modal"
-                      data-target="#addColorVarientModal"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-                <div class="color-selection" id="colorSelection"></div>
-              </div>
-
-              <div class="container">
-                <h4 style="color: gray">IMAGES</h4>
-                <div class="image-selection" id="imageGroup"></div>
-              </div>
-
-              <div class="container">
-                <div class="heading-container">
-                  <h4 style="color: gray">SIZE VARIENTS</h4>
-
-                  <button
-                    data-user-id=""
-                    id=""
-                    type="button"
-                    class="btn btn-primary btn-sm statusBtn"
-                  >
-                    Add
-                  </button>
-                </div>
-
-                <form
-                  action=""
-                  id="sub-varient-add-form"
-                  class="row d-flex justify-content-between forms-sample"
-                >
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="size"
-                    placeholder="Enter size"
-                  />
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="quantity"
-                    placeholder="Enter quantity"
-                  />
-                  <input
-                    type="text"
-                    class="form-control col-md-3"
-                    id="price"
-                    placeholder="Enter price"
-                  />
-
-                  <input
-                    type="submit"
-                    class="btn btn-primary"
-                    id="model"
-                    placeholder="model name"
-                  />
-                </form>
-
-                <div class="table-responsive">
-                  <table class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">Size</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody id="sizeVariantTable"></tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Varient modal end -->
-
    
     </div>
     <!-- content-wrapper ends -->
@@ -290,6 +164,7 @@
 
 <!-- SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<%- include('./loader') %>
 
 <script>
 
@@ -364,7 +239,7 @@ Swal.fire({
                         <td>${product.modelName}</td>
                         <td>${product.brand.name}</td>
                         <td>${product.category.categoryName}</td>
-                        <td>${product.gender}</td>
+                        <td>${product.gender == "men" ? "Men" : product.gender == "women" ? "Women" : "Men & Women"}</td>
                         <td>${product.outerMaterial}</td>
                         <td>${product.soleMaterial}</td>
 
@@ -373,14 +248,9 @@ Swal.fire({
                             ? `<span class="text-success">ACTIVE</span>`
                             : `<span class="text-danger">INACTIVE</span>`
                         }</td>
-                        <td><button data-product-id="${
-                          product._id
-                        }" id="varient${
-                product._id
-              }" data-toggle="modal" data-target="#varientModal" type="button" class="productVarientBtn btn btn-primary btn-sm statusBtn">Varient</button></td>
                        <td><button data-product-id="${product._id}" id="relist${
                 product._id
-              }" type="button" class="productRelistBtn btn btn-primary btn-sm statusBtn">Relist</button></td>
+              }" type="button" class="productRelistBtn btn btn-outline-dark btn-sm statusBtn">Relist</button></td>
                       </tr>
                           `;
             });
@@ -393,6 +263,5 @@ Swal.fire({
   });
 </script>
 
-<%- include('./loader') %>
 
 <%- include('./footer') %>

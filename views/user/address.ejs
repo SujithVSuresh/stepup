@@ -1,4 +1,4 @@
-<%- include('./header', {isLogin: isLogin, cartCount: 0}) %>
+<%- include('./header', {isLogin: isLogin, cartCount: cartCount}) %>
 
 <div class="breadcrumbs">
   <div class="container">
@@ -13,61 +13,69 @@
   </div>
 </div>
 
-
-
-
-
 <div class="colorlib-product">
-    <div class="container">
+  <div class="container">
+    <div class="row row-pb-lg">
+      <div class="col-md-12">
+        <div class="container cart-detail">
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+            "
+          >
+            <h2>DELIVERY ADDRESS</h2>
+            <button
+              style="width: auto; border-radius: 10px; height: 40px"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#addAddressModal"
+            >
+              Add Address
+            </button>
+          </div>
 
-      <div class="row row-pb-lg">
-        <div class="col-md-12">
-
-            <div class="container cart-detail">
-                <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                <h2>DELIVERY ADDRESS</h2>
-                <button
-                style="width: auto; border-radius: 10px; height: 40px;"
-                class="btn btn-primary"
-                data-toggle="modal"
-                data-target="#addAddressModal"
-              >
-                Add Address
-              </button>
-            </div>
-              
-                <div class="address-selection" id="addressContainer">
-                  <% if (address){ %> <% address.address.map(function (item){ %>
-                    <div style="display: flex; flex-direction: row;" class="address-card-two">
-                  <div style="flex: 4;">
-                      <p><strong><%= item.name %></strong></p>
-                      <p>
-                        <%= item.localityAreaStreet %>, <%= item.landmark %>, <%= item.cityDistrictTown %>, <%= item.state %>, <%= item.pincode %>
-                      </p>
-                      <p>Phone: <%= item.phoneNumber %></p>
-                  </div>
-                  <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-evenly;">
-                    <button class="editDltBtn editBtn" style="border-color: rgb(76, 174, 212);">Edit</button>
-                    <button class="editDltBtn dltBtn" style="border-color: rgb(250, 141, 141);">Delete</button>
-                  </div>
-                </div>
-                  <% }); %> <% } else { %>
-                  <h3 style="color: gray; text-align: center">No address found !</h3>
-                  <% } %>
-                </div>
+          <div class="address-selection" id="addressContainer">
+            <% if (address){ %> <% address.address.map(function (item){ %>
+            <div
+              style="display: flex; flex-direction: row"
+              class="address-card-two"
+              id="addressCard<%= item.id %>"
+            >
+              <div style="flex: 4">
+                <p><strong><span id="name<%= item._id %>"><%= item.name %></span></strong></p>
+                <p>
+                  <span id="locality<%= item._id %>"><%= item.localityAreaStreet %></span>, <span id="landmark<%= item._id %>"><%= item.landmark %></span>, <span id="city<%= item._id %>"><%=item.cityDistrictTown %></span>, <span id="state<%= item._id %>"><%= item.state %></span>, <span id="pincode<%= item._id %>"><%= item.pincode%></span>
+                </p>
+                <p>Phone: <span id="phone<%= item._id %>"><%= item.phoneNumber %></span></p>
               </div>
-
+              <div
+                style="
+                  flex: 1;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-evenly;
+                "
+              >
+                <button
+                  class="editDltBtn editBtn"
+                  address-id="<%= item._id %>" data-toggle="modal" data-target="#editAddressModal" style="border-color: rgb(76, 174, 212)" > Edit</button>
+                <button class="editDltBtn dltBtn" address-id="<%=item._id%>" style="border-color: rgb(250, 141, 141)" > Delete </button>
+              </div>
+            </div>
+            <% }); %> <% } else { %>
+            <h3 style="color: gray; text-align: center">No address found !</h3>
+            <% } %>
+          </div>
         </div>
       </div>
-
-     
     </div>
   </div>
+</div>
 
-
-
-  <!-- ADD ADDRESS MODAL -->
-  <div
+<!-- ADD ADDRESS MODAL -->
+<div
   class="modal fade"
   id="addAddressModal"
   tabindex="-1"
@@ -101,6 +109,8 @@
                   class="form-control"
                   placeholder="Full Name"
                 />
+                <span id="nameError" style="color: red; margin-left: 20px"></span>
+
               </div>
             </div>
 
@@ -114,6 +124,8 @@
                     id="state"
                     class="form-control"
                   ></select>
+                  <span id="stateError" style="color: red; margin-left: 20px"></span>
+
                 </div>
               </div>
             </div>
@@ -127,6 +139,8 @@
                   class="form-control"
                   placeholder="City / District / Town"
                 />
+                <span id="cityError" style="color: red; margin-left: 20px"></span>
+
               </div>
             </div>
             <div class="col-md-6">
@@ -138,6 +152,8 @@
                   class="form-control"
                   placeholder="Zip / Postal"
                 />
+                <span id="pincodeError" style="color: red; margin-left: 20px"></span>
+
               </div>
             </div>
 
@@ -150,6 +166,8 @@
                   class="form-control"
                   placeholder="Locality / Area / Street"
                 />
+                <span id="localityError" style="color: red; margin-left: 20px"></span>
+
               </div>
             </div>
             <div class="col-md-6">
@@ -161,6 +179,8 @@
                   class="form-control"
                   placeholder="Landmark"
                 />
+                <span id="landmarkError" style="color: red; margin-left: 20px"></span>
+
               </div>
             </div>
 
@@ -175,6 +195,8 @@
                   class="form-control"
                   placeholder="House no / Building / Apartment"
                 />
+                <span id="houseError" style="color: red; margin-left: 20px"></span>
+
               </div>
             </div>
             <div class="col-md-6">
@@ -186,16 +208,14 @@
                   class="form-control"
                   placeholder="Phone Number"
                 />
+                <span id="phoneError" style="color: red; margin-left: 20px"></span>
+
               </div>
             </div>
           </div>
         </form>
         <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-dismiss="modal"
-          >
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
             Close
           </button>
           <button type="button" id="addressSaveBtn" class="btn btn-primary">
@@ -207,11 +227,158 @@
   </div>
 </div>
 
+
+<!-- EDit ADDRESS MODAL -->
+<div
+  class="modal fade"
+  id="editAddressModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="addAddressModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAddressModalLabel">EDIT ADDRESS</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" class="colorlib-form">
+          <!-- <h2>Billing Details</h2> -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input
+                  type="text"
+                  id="fullNameEdit"
+                  class="form-control"
+                  placeholder="Full Name"
+                />
+                <span id="nameEditError" style="color: red; margin-left: 20px"></span>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="state">Select State</label>
+                <div class="form-field">
+                  <i class="icon icon-arrow-down3"></i>
+                  <select
+                    name="people"
+                    id="stateEdit"
+                    class="form-control"
+                  ></select>
+                  <span id="stateEditError" style="color: red; margin-left: 20px"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="cityDistrictTown">City/District/Town</label>
+                <input
+                  type="text"
+                  id="cityDistrictTownEdit"
+                  class="form-control"
+                  placeholder="City / District / Town"
+                />
+                <span id="cityEditError" style="color: red; margin-left: 20px"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="zipPostalCode">Zip/Postal Code</label>
+                <input
+                  type="text"
+                  id="zipPostalCodeEdit"
+                  class="form-control"
+                  placeholder="Zip / Postal"
+                />
+                <span id="pincodeEditError" style="color: red; margin-left: 20px"></span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="localityAreaStreet">Locality/Area/Street</label>
+                <input
+                  type="text"
+                  id="localityAreaStreetEdit"
+                  class="form-control"
+                  placeholder="Locality / Area / Street"
+                />
+                <span id="localityEditError" style="color: red; margin-left: 20px"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="landmark">Landmark</label>
+                <input
+                  type="text"
+                  id="landmarkEdit"
+                  class="form-control"
+                  placeholder="Landmark"
+                />
+                <span id="landmarkEditError" style="color: red; margin-left: 20px"></span>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="housenoBuildingApartment"
+                  >House no/Building/Apartment</label
+                >
+                <input
+                  type="text"
+                  id="housenoBuildingApartmentEdit"
+                  class="form-control"
+                  placeholder="House no / Building / Apartment"
+                />
+                <span id="houseEditError" style="color: red; margin-left: 20px"></span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="text"
+                  id="phoneEdit"
+                  class="form-control"
+                  placeholder="Phone Number"
+                />
+                <span id="phoneEditError" style="color: red; margin-left: 20px"></span>
+
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" id="addressEditSaveBtn" class="btn btn-primary">
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.2.0/noty.min.js"></script>
+
 
 <script>
-     document.addEventListener("DOMContentLoaded", (event) => {
+  document.addEventListener("DOMContentLoaded", (event) => {
     const states = [
       "Select state",
       "Andhra Pradesh",
@@ -245,6 +412,8 @@
     ];
 
     const stateSelect = document.getElementById("state");
+    // const stateSelectEdit = document.getElementById("stateEdit");
+    
 
     for (const state of states) {
       const option = document.createElement("option");
@@ -256,14 +425,103 @@
         option.text = state;
       }
       stateSelect.appendChild(option);
+      // stateSelectEdit.appendChild(option)
     }
 
 
+
+
+    const stateSelectEdit = document.getElementById("stateEdit");
+    
+
+    for (const state of states) {
+      const option = document.createElement("option");
+      if (state == "Select state") {
+        option.value = "";
+        option.text = state;
+      } else {
+        option.value = state;
+        option.text = state;
+      }
+      stateSelectEdit.appendChild(option)
+    }
+
+    let addressId
+
     document.addEventListener("click", (event) => {
+
+
+      if(event.target && event.target.classList.contains("editBtn")){
+        // const addressId = event.target.getAttribute('address-id')
+        addressId = event.target.getAttribute('address-id')
+
+        const name = document.getElementById(`name${addressId}`).innerText
+        const locality = document.getElementById(`locality${addressId}`).innerText
+        const landmark = document.getElementById(`landmark${addressId}`).innerText
+        const city = document.getElementById(`city${addressId}`).innerText
+        const state = document.getElementById(`state${addressId}`).innerText
+        const pincode = document.getElementById(`pincode${addressId}`).innerText
+        const phone = document.getElementById(`phone${addressId}`).innerText
+
+
+        const nameInput = document.getElementById("fullNameEdit").value = name
+        const stateInput = document.getElementById("stateEdit").value = state
+        const cityDistrictTownInput = document.getElementById("cityDistrictTownEdit").value = city
+        const zipPostalCodeInput = document.getElementById("zipPostalCodeEdit").value = pincode
+        const localityAreaStreetInput = document.getElementById("localityAreaStreetEdit").value = locality
+        const landmarkInput = document.getElementById("landmarkEdit").value = landmark
+        const phoneInput = document.getElementById("phoneEdit").value = phone
+
+      }
+
+
+      if(event.target && event.target.id == "addressEditSaveBtn"){
+
+        const nameInput = document.getElementById("fullNameEdit").value
+        const stateInput = document.getElementById("stateEdit").value 
+        const cityDistrictTownInput = document.getElementById("cityDistrictTownEdit").value 
+        const zipPostalCodeInput = document.getElementById("zipPostalCodeEdit").value
+        const localityAreaStreetInput = document.getElementById("localityAreaStreetEdit").value 
+        const landmarkInput = document.getElementById("landmarkEdit").value 
+        const phoneInput = document.getElementById("phoneEdit").value 
+
+
+
+
+        const data = {
+          fullName: nameInput,
+          state: stateInput,
+          cityDistrictTown: cityDistrictTownInput,
+          zipPostalCode: zipPostalCodeInput,
+          localityAreaStreet: localityAreaStreetInput,
+          housenoBuildingApartment:"123",
+          phone: phoneInput,
+          landmark: landmarkInput,
+          addressId: addressId
+        };
+
+        axios
+          .post("/address/editAddress", data)
+          .then((response) => {
+            if (response.status == 200) {
+              window.location.href = "/address"
+
+              document.querySelector("#addAddressModal .close").click();
+            }
+          })
+          .catch((error) => {
+            console.log("error code");
+          });
+      
+
+
+      }
+
+
       if (event.target && event.target.id == "addressSaveBtn") {
         event.preventDefault();
 
-        const addressContainer = document.getElementById('addressContainer')
+        const addressContainer = document.getElementById("addressContainer");
 
         let fullName = document.getElementById("fullName");
         let state = document.getElementById("state");
@@ -274,7 +532,109 @@
           "housenoBuildingApartment"
         );
         let phone = document.getElementById("phone");
-        let landmark = document.getElementById("landmark");
+        let landmark = document.getElementById("landmark")
+
+
+        let nameError = document.getElementById("nameError");
+        let stateError = document.getElementById("stateError");
+        let cityError = document.getElementById("cityError");
+        let pincodeError = document.getElementById("pincodeError");
+        let localityError = document.getElementById("localityError");
+        let landmarkError = document.getElementById("landmarkError");
+        let houseError = document.getElementById("houseError");
+        let phoneError = document.getElementById("phoneError");
+
+        let isValid = true
+
+            //Name validation
+            if (!fullName.value.trim()) {
+        nameError.textContent = "Name is required";
+        isValid = false;
+      } else if (fullName.value.trim().length < 2) {
+        nameError.textContent = "Name must be at least 2 characters long";
+        isValid = false;
+      } else if (fullName.value.trim().length > 100) {
+        nameError.textContent = "Name must be less than 100 characters long";
+        isValid = false;
+      } else {
+        nameError.textContent = "";
+      }
+
+        //state validation
+      if (!state.value.trim()) {
+        stateError.textContent = "This field is required";
+      isValid = false;
+    } else {
+      stateError.textContent = "";
+    }
+
+            //city validation
+            if (!cityDistrictTown.value.trim()) {
+        cityError.textContent = "This field is required";
+        isValid = false;
+      } else if (cityDistrictTown.value.trim().length > 100) {
+        cityError.textContent = "City/District/Town must be less than 100 characters long";
+        isValid = false;
+      } else {
+        cityError.textContent = "";
+      }
+
+      const postalCodePattern = /^\d{5,6}$/;
+                //pincode validation
+                if (!zipPostalCode.value.trim()) {
+        pincodeError.textContent = "This field is required";
+        isValid = false;
+      } else if (!postalCodePattern.test(zipPostalCode.value.trim())) {
+        pincodeError.textContent = "Please enter a valid 5 or 6-digit postal code";
+        isValid = false;
+      } else {
+        pincodeError.textContent = "";
+      }
+
+
+      if (!localityAreaStreet.value.trim()) {
+        localityError.textContent = "This field is required";
+        isValid = false;
+      } else if (localityAreaStreet.value.trim().length > 100) {
+        localityError.textContent = "Locality/Area/Street must be less than 100 characters long";
+        isValid = false;
+      } else {
+        localityError.textContent = "";
+      }
+
+
+                    //house validation
+      if (!housenoBuildingApartment.value.trim()) {
+              houseError.textContent = "This field is required";
+      isValid = false;
+    } else {
+      houseError.textContent = "";
+    }
+
+
+                    //landmark validation
+                    if (!landmark.value.trim()) {
+              landmarkError.textContent = "This field is required";
+      isValid = false;
+    } else {
+      landmarkError.textContent = "";
+    }
+
+
+      //Phone validation
+      if (!phone.value.trim()) {
+      phoneError.textContent = "This field is required";
+      isValid = false;
+    } else if (
+      phone &&
+      !/^\(?([0-9]{3})\)?[- ]?([0-9]{3})[- ]?([0-9]{4})$/.test(phone)
+    ) {
+      phoneError.textContent = "Enter a valid phone number";
+    } else {
+      phoneError.textContent = "";
+    }
+
+    if(isValid){
 
         const data = {
           fullName: fullName.value,
@@ -291,107 +651,133 @@
           .post("/address/addAddress", data)
           .then((response) => {
             if (response.status == 200) {
-                console.log("Hey", response.data);
-                const data = response.data.data
+              console.log("Hey", response.data);
+              const data = response.data.data;
 
-                addressContainer.innerHTML += `
+              addressContainer.innerHTML += `
                 
-                <div style="display: flex; flex-direction: row;" class="address-card-two">
+                <div style="display: flex; flex-direction: row;" id="addressCard${data._id}" class="address-card-two">
                   <div style="flex: 4;">
-                      <p><strong>${data.name}</strong></p>
+                      <p><strong><span id="name${data._id}">${data.name}<span></strong></p>
                       <p>
-                        ${data.localityAreaStreet}, ${data.landmark}, ${data.cityDistrictTown}, ${data.state}, ${data.pincode}
+                        <span id="locality${data._id}">${data.localityAreaStreet}</span>, <span id="landmark${data._id}">${data.landmark}</span>, <span id="city${data._id}">${data.cityDistrictTown}</span>, <span id="state${data._id}">${data.state}</span>, <span id="pincode${data._id}">${data.pincode}</span>
                       </p>
-                      <p>Phone: ${data.phoneNumber}</p>
+                      <p>Phone: <span id="phone${data._id}">${data.phoneNumber}</span></p>
     
                             </div>
                   <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-evenly;">
-                    <button class="editDltBtn" style="border-color: rgb(76, 174, 212);">Edit</button>
-                    <button class="editDltBtn" style="border-color: rgb(250, 141, 141);">Delete</button>
+                    <a href="" class="editBtn editDltBtn" style="border-color: rgb(76, 174, 212);" address-id="${data._id}">Edit</a>
+                    <button class="editDltBtn" address-id="${data._id}" style="border-color: rgb(250, 141, 141);">Delete</button>
 
                   </div>
                 </div>
-                `
-                document.querySelector('#addAddressModal .close').click();
-
+                `;
+              document.querySelector("#addAddressModal .close").click();
             }
           })
           .catch((error) => {
             console.log("error code");
           });
+        }
+
       }
 
 
-      if(event.target && event.target.classList.contains("dltBtn")){
-        console.log("Hey delete it.....");
-        new Noty({
-        text: 'Are you sure you want to delete this item?',
-        type: 'confirm',
-        buttons: [
-          Noty.button('Yes', 'btn btn-success btn-yes', function() {
-            // Handle the delete action here
-            console.log('Item deleted');
-            n.close();
-          }),
-          Noty.button('No', 'btn btn-danger btn-no', function() {
-            // Handle the cancel action here
-            console.log('Delete canceled');
-            n.close();
-          })
-        ]
-      }).show();
+
+      if (event.target && event.target.classList.contains("dltBtn")) {
+        console.log("moyi");
+        const addressId = event.target.getAttribute("address-id")
+        let n = new Noty({
+          text: "Are you sure you want to delete this item?",
+          type: "confirm",
+          theme: "metroui",
+          layout: "center",
+          modal: true,
+          timeout: false,
+          progressBar: true,
+          animation: {
+            open: "animated bounceInLeft",
+            close: "animated bounceOutRight",
+          },
+          buttons: [
+            Noty.button("Yes", "btn btn-success btn-yes", function () {
+
+              console.log("hey yes clicked");
+
+              axios
+                .post("/address/deleteAddress", { addressId: addressId })
+                .then((response) => {
+                  if (response.status == 200) {
+                    const addressCard = document.getElementById(`addressCard${addressId}`)
+                    addressCard.remove()
+                    n.close();
+                  }
+                })
+                .catch((error) => {
+                  console.log("it is an error", error);
+                  if (error.response.status == 409) {
+                  }
+                });
+
+            }),
+            Noty.button("No", "btn btn-danger btn-no", function () {
+              // Handle the cancel action here
+              console.log("Delete canceled");
+              n.close();
+            }),
+          ],
+        }).show();
       }
     });
+  });
+  //   const changePasswordForm = document.getElementById("changePasswordForm");
 
-})
-//   const changePasswordForm = document.getElementById("changePasswordForm");
+  //   changePasswordForm.addEventListener("submit", (event) => {
+  //     event.preventDefault();
 
-//   changePasswordForm.addEventListener("submit", (event) => {
-//     event.preventDefault();
+  //     const currentPassword = document.getElementById("currentPassword");
+  //     const newPassword = document.getElementById("newPassword");
+  //     const confirmNewPassword = document.getElementById("confirmNewPassword");
 
-//     const currentPassword = document.getElementById("currentPassword");
-//     const newPassword = document.getElementById("newPassword");
-//     const confirmNewPassword = document.getElementById("confirmNewPassword");
-
-//     axios
-//       .post("/profile/changePassword", {
-//         currentPassword: currentPassword.value,
-//         newPassword: newPassword.value,
-//       })
-//       .then((response) => {
-//         if (response.status == 200) {
-//           new Noty({
-//             type: "success",
-//             text: response.data.message,
-//             timeout: 3000, // Duration to display the message (in milliseconds)
-//             layout: "bottomCenter",
-//             theme: "relax",
-//             animation: {
-//               open: "animated bounceInRight",
-//               close: "animated bounceOutRight",
-//             },
-//             callbacks: {
-//               afterClose: function () {
-//                 // Redirect to the sign-in page after the notification closes
-//                 window.location.href = "/profile";
-//               },
-//             },
-//           }).show();
-//         }
-//       })
-//       .catch((error) => {
-//         console.log("it is an error", error);
-//         if (error.response.status == 409) {
-//           new Noty({
-//             type: "error",
-//             text: error.response.data.message,
-//             timeout: 3000,
-//             layout: "bottomCenter",
-//             theme: "metroui",
-//           }).show();
-//         }
-//       });
-//   });
+  //     axios
+  //       .post("/profile/changePassword", {
+  //         currentPassword: currentPassword.value,
+  //         newPassword: newPassword.value,
+  //       })
+  //       .then((response) => {
+  //         if (response.status == 200) {
+  //           new Noty({
+  //             type: "success",
+  //             text: response.data.message,
+  //             timeout: 3000, // Duration to display the message (in milliseconds)
+  //             layout: "bottomCenter",
+  //             theme: "relax",
+  //             animation: {
+  //               open: "animated bounceInRight",
+  //               close: "animated bounceOutRight",
+  //             },
+  //             callbacks: {
+  //               afterClose: function () {
+  //                 // Redirect to the sign-in page after the notification closes
+  //                 window.location.href = "/profile";
+  //               },
+  //             },
+  //           }).show();
+  //         }
+  //       })
+  //       .catch((error) => {
+  //         console.log("it is an error", error);
+  //         if (error.response.status == 409) {
+  //           new Noty({
+  //             type: "error",
+  //             text: error.response.data.message,
+  //             timeout: 3000,
+  //             layout: "bottomCenter",
+  //             theme: "metroui",
+  //           }).show();
+  //         }
+  //       });
+  //   });
 </script>
 
 <%- include('./footer') %>

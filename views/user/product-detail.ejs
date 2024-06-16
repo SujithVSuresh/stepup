@@ -1,1030 +1,1001 @@
- <%- include('./header', {isLogin: isLogin, cartCount}) %>
-		
+<%- include('./header', {isLogin: isLogin, cartCount}) %>
+
 	<!-- <div class="colorlib-loader"></div> -->
 
 
 
-		<div class="breadcrumbs">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<p class="bread"><span><a href="/">Home</a></span> / <span>Product Details</span></p>
-					</div>
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<p class="bread"><span><a href="/">Home</a></span> / <span>Product Details</span></p>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<span id="data-handler" style="display: none;" varient-data-id="<%=  varientId %>" product-data-id="<%= productId %>"></span>
+	<span id="data-handler" style="display: none;" varient-data-id="<%=  varientId %>"
+		product-data-id="<%= productId %>"></span>
 
-		<div class="colorlib-product">
-			<div class="container">
-				<div class="row row-pb-lg product-detail-wrap">
-					<div class="col-sm-8">
-						<div class="owl-carousel" id="product-image-container">
+	<div class="colorlib-product">
+		<div class="container">
+			<div class="row row-pb-lg product-detail-wrap">
+				<div class="col-sm-8">
+					<div class="owl-carousel" id="product-image-container">
 
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img id="img1" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
+						<div class="item">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img id="img1" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								</a>
 							</div>
-
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img id="img2" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>
-
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img id="img3" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>	
-							
-							<div class="item">
-								<div class="product-entry border">
-									<a href="#" class="prod-img">
-										<img id="img4" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-									</a>
-								</div>
-							</div>	
-
-					
 						</div>
+
+						<div class="item">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img id="img2" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img id="img3" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								</a>
+							</div>
+						</div>
+
+						<div class="item">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img id="img4" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
+								</a>
+							</div>
+						</div>
+
+
 					</div>
-					<div class="col-sm-4">
-						<div class="product-desc product-details">
-				 <!--product details --> 
-				 <p style="font-weight: bold; font-size: 26px; color: black;" id="product-title"><span id="show-model-name"></span>  <span id="show-category-name"></span> for  <span id="show-gender"></span></p>
-				 <p class="price">
-					 <span style="font-size: 25px;" id="show-price"></span> 
-			 
-					 
-				 </p>
-
-				 <div class="">
-					
-					<!-- Color container -->
-				   <span><p style="font-size: 25px; color: red;" id="show-stock">Only Few Left</p></span>
 				</div>
+				<div class="col-sm-4">
+					<div class="product-desc product-details">
+						<!--product details -->
+						<p style="font-weight: bold; font-size: 26px; color: black;" id="product-title"><span
+								id="show-model-name"></span> <span id="show-category-name"></span> for <span
+								id="show-gender"></span></p>
+						<p class="price">
+							<span style="font-size: 25px;" id="show-price"></span>
 
-							<span class="rate" style="display: flex; flex-direction: row;">
-								<div style="background-color: green; width: auto; padding-left: 5px; padding-right: 5px; border-radius: 50px;  margin-right: 5px;">
+
+						</p>
+
+						<div class="">
+
+							<!-- Color container -->
+							<span>
+								<p style="font-size: 25px; color: red;" id="show-stock">Only Few Left</p>
+							</span>
+						</div>
+
+						<span class="rate" style="display: flex; flex-direction: row;">
+							<div
+								style="background-color: green; width: auto; padding-left: 5px; padding-right: 5px; border-radius: 50px;  margin-right: 5px;">
 								<span style="font-size: 15; color: white; font-weight: bold;">4.5</span>
 								<i class="icon-star-full" style="color: white;"></i>
 							</div>
-								<span>(74 ratings & 15 reviews)</span>
-							</span>
-							<p></p>
-							<div class="size-wrap">
-								<div class="block-26 mb-2">
-									<h4>Size</h4>
-				               <ul id="size-container">
-				                  
-	
-				              
-				               </ul>
-				            </div>
-				            <div class="block-26 mb-4">
-									<h4>Color</h4>
+							<span>(74 ratings & 15 reviews)</span>
+						</span>
+						<p></p>
+						<div class="size-wrap">
+							<div class="block-26 mb-2">
+								<h4>Size</h4>
+								<ul id="size-container">
+
+
+
+								</ul>
+							</div>
+							<div class="block-26 mb-4">
+								<h4>Color</h4>
 								<!-- Color container -->
-				               <ul id="color-container">
-				               
-				               </ul>
-				            </div>
+								<ul id="color-container">
 
-			
-							</div>
-                     <div class="input-group mb-4">
-                     	<span class="input-group-btn">
-                        	<button id="decrement-qty" type="button" class="dec-qty-btn quantity-left-minus btn"  data-type="minus" data-field="">
-                           <i class="icon-minus2 dec-qty-btn"></i>
-                        	</button>
-                    		</span>
-                     	<input type="text" id="quantity-input" name="quantity" class="form-control input-number" value="1" min="1" max="100" disabled>
-                     	<span class="input-group-btn ml-1">
-                        	<button id="increment-qty" type="button" class="inc-qty-btn quantity-right-plus btn" data-type="plus" data-field="">
-                             <i class="icon-plus2 inc-qty-btn"></i>
-                         </button>
-                     	</span>
-                  	</div>
-                  	<div class="row">
-	                  	<div class="col-sm-6 text-center">
-									<p class="addtocart"><a href="" id="addToCartBtn" class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to Cart</a></p>
-								</div>
-
-								<div class="col-sm-6 text-center">
-									<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i class="icon-heart"></i>Wishlist</a></p>
-
-									
-								</div>
+								</ul>
 							</div>
 
-							<div class="magnified-img"></div>
+
 						</div>
-
-						
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-sm-12">
+						<div class="input-group mb-4">
+							<span class="input-group-btn">
+								<button id="decrement-qty" type="button" class="dec-qty-btn quantity-left-minus btn"
+									data-type="minus" data-field="">
+									<i class="icon-minus2 dec-qty-btn"></i>
+								</button>
+							</span>
+							<input type="text" id="quantity-input" name="quantity" class="form-control input-number"
+								value="1" min="1" max="100" disabled>
+							<span class="input-group-btn ml-1">
+								<button id="increment-qty" type="button" class="inc-qty-btn quantity-right-plus btn"
+									data-type="plus" data-field="">
+									<i class="icon-plus2 inc-qty-btn"></i>
+								</button>
+							</span>
+						</div>
 						<div class="row">
-							<div class="col-md-12 pills">
-								<div class="bd-example bd-example-tabs">
-								  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+							<div class="col-sm-6 text-center">
+								<p class="addtocart"><a href="" id="addToCartBtn"
+										class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to
+										Cart</a></p>
+							</div>
 
-								    <li class="nav-item">
-								      <a class="nav-link active" id="pills-description-tab" data-toggle="pill" href="#pills-description" role="tab" aria-controls="pills-description" aria-expanded="true">PRODUCT DETAILS</a>
-								    </li>
-							
-								    <li class="nav-item">
-								      <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-expanded="true">Review</a>
-								    </li>
-								  </ul>
+							<div class="col-sm-6 text-center">
+								<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i
+											class="icon-heart"></i>Wishlist</a></p>
 
-								  <div class="tab-content" id="pills-tabContent">
-								    <div class="tab-pane border fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-						<!-- product description -->
 
-						<p id="p-desc">ss</p>
-						<ul>
-							<li id="p-clr"></li>
-							<li id="p-model"></li>
-							<li id="p-brand"></li>
-							<li id="p-outer"></li>
-							<li id="p-sole"></li>
-							<li id="p-gender"></li>
-							<li id="p-category"></li>
-							
-						
-						</ul>
-								    </div>
+							</div>
+						</div>
 
-			
+						<div class="magnified-img"></div>
+					</div>
 
-								    <div class="tab-pane border fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-								      <div class="row">
-								   		<div class="col-md-8">
-								   			<h3 class="head">23 Reviews</h3>
-								   			<div class="review">
-										   		<div class="user-img" style="background-image: url(images/person1.jpg)"></div>
-										   		<div class="desc">
-										   			<h4>
-										   				<span class="text-left">Jacob Webb</span>
-										   				<span class="text-right">14 March 2018</span>
-										   			</h4>
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-half"></i>
-										   					<i class="icon-star-empty"></i>
-									   					</span>
-									   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-										   			</p>
-										   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-										   		</div>
-										   	</div>
-										   	<div class="review">
-										   		<div class="user-img" style="background-image: url(images/person2.jpg)"></div>
-										   		<div class="desc">
-										   			<h4>
-										   				<span class="text-left">Jacob Webb</span>
-										   				<span class="text-right">14 March 2018</span>
-										   			</h4>
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-half"></i>
-										   					<i class="icon-star-empty"></i>
-									   					</span>
-									   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-										   			</p>
-										   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-										   		</div>
-										   	</div>
-										   	<div class="review">
-										   		<div class="user-img" style="background-image: url(images/person3.jpg)"></div>
-										   		<div class="desc">
-										   			<h4>
-										   				<span class="text-left">Jacob Webb</span>
-										   				<span class="text-right">14 March 2018</span>
-										   			</h4>
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-half"></i>
-										   					<i class="icon-star-empty"></i>
-									   					</span>
-									   					<span class="text-right"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-										   			</p>
-										   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-										   		</div>
-										   	</div>
-								   		</div>
-								   		<div class="col-md-4">
-								   			<div class="rating-wrap">
-									   			<h3 class="head">Give a Review</h3>
-									   			<div class="wrap">
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					(98%)
-									   					</span>
-									   					<span>20 Reviews</span>
-										   			</p>
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-empty"></i>
-										   					(85%)
-									   					</span>
-									   					<span>10 Reviews</span>
-										   			</p>
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-empty"></i>
-										   					<i class="icon-star-empty"></i>
-										   					(70%)
-									   					</span>
-									   					<span>5 Reviews</span>
-										   			</p>
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-empty"></i>
-										   					<i class="icon-star-empty"></i>
-										   					<i class="icon-star-empty"></i>
-										   					(10%)
-									   					</span>
-									   					<span>0 Reviews</span>
-										   			</p>
-										   			<p class="star">
-										   				<span>
-										   					<i class="icon-star-full"></i>
-										   					<i class="icon-star-empty"></i>
-										   					<i class="icon-star-empty"></i>
-										   					<i class="icon-star-empty"></i>
-										   					<i class="icon-star-empty"></i>
-										   					(0%)
-									   					</span>
-									   					<span>0 Reviews</span>
-										   			</p>
-										   		</div>
-									   		</div>
-								   		</div>
-								   	</div>
-								    </div>
-								  </div>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="row">
+						<div class="col-md-12 pills">
+							<div class="bd-example bd-example-tabs">
+								<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+									<li class="nav-item">
+										<a class="nav-link active" id="pills-description-tab" data-toggle="pill"
+											href="#pills-description" role="tab" aria-controls="pills-description"
+											aria-expanded="true">PRODUCT DETAILS</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" id="pills-review-tab" data-toggle="pill"
+											href="#pills-review" role="tab" aria-controls="pills-review"
+											aria-expanded="true">Review</a>
+									</li>
+								</ul>
+
+								<div class="tab-content" id="pills-tabContent">
+									<div class="tab-pane border fade show active" id="pills-description" role="tabpanel"
+										aria-labelledby="pills-description-tab">
+										<!-- product description -->
+
+										<p id="p-desc">ss</p>
+										<ul>
+											<li id="p-clr"></li>
+											<li id="p-model"></li>
+											<li id="p-brand"></li>
+											<li id="p-outer"></li>
+											<li id="p-sole"></li>
+											<li id="p-gender"></li>
+											<li id="p-category"></li>
+
+
+										</ul>
+									</div>
+
+
+
+									<div class="tab-pane border fade" id="pills-review" role="tabpanel"
+										aria-labelledby="pills-review-tab">
+										<div class="row">
+											<div class="col-md-8">
+												<h3 class="head">23 Reviews</h3>
+												<div class="review">
+													<div class="user-img"
+														style="background-image: url(images/person1.jpg)"></div>
+													<div class="desc">
+														<h4>
+															<span class="text-left">Jacob Webb</span>
+															<span class="text-right">14 March 2018</span>
+														</h4>
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-half"></i>
+																<i class="icon-star-empty"></i>
+															</span>
+															<span class="text-right"><a href="#" class="reply"><i
+																		class="icon-reply"></i></a></span>
+														</p>
+														<p>When she reached the first hills of the Italic Mountains, she
+															had a last view back on the skyline of her hometown
+															Bookmarksgrov</p>
+													</div>
+												</div>
+												<div class="review">
+													<div class="user-img"
+														style="background-image: url(images/person2.jpg)"></div>
+													<div class="desc">
+														<h4>
+															<span class="text-left">Jacob Webb</span>
+															<span class="text-right">14 March 2018</span>
+														</h4>
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-half"></i>
+																<i class="icon-star-empty"></i>
+															</span>
+															<span class="text-right"><a href="#" class="reply"><i
+																		class="icon-reply"></i></a></span>
+														</p>
+														<p>When she reached the first hills of the Italic Mountains, she
+															had a last view back on the skyline of her hometown
+															Bookmarksgrov</p>
+													</div>
+												</div>
+												<div class="review">
+													<div class="user-img"
+														style="background-image: url(images/person3.jpg)"></div>
+													<div class="desc">
+														<h4>
+															<span class="text-left">Jacob Webb</span>
+															<span class="text-right">14 March 2018</span>
+														</h4>
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-half"></i>
+																<i class="icon-star-empty"></i>
+															</span>
+															<span class="text-right"><a href="#" class="reply"><i
+																		class="icon-reply"></i></a></span>
+														</p>
+														<p>When she reached the first hills of the Italic Mountains, she
+															had a last view back on the skyline of her hometown
+															Bookmarksgrov</p>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="rating-wrap">
+													<h3 class="head">Give a Review</h3>
+													<div class="wrap">
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																(98%)
+															</span>
+															<span>20 Reviews</span>
+														</p>
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-empty"></i>
+																(85%)
+															</span>
+															<span>10 Reviews</span>
+														</p>
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-empty"></i>
+																<i class="icon-star-empty"></i>
+																(70%)
+															</span>
+															<span>5 Reviews</span>
+														</p>
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-empty"></i>
+																<i class="icon-star-empty"></i>
+																<i class="icon-star-empty"></i>
+																(10%)
+															</span>
+															<span>0 Reviews</span>
+														</p>
+														<p class="star">
+															<span>
+																<i class="icon-star-full"></i>
+																<i class="icon-star-empty"></i>
+																<i class="icon-star-empty"></i>
+																<i class="icon-star-empty"></i>
+																<i class="icon-star-empty"></i>
+																(0%)
+															</span>
+															<span>0 Reviews</span>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-				         </div>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
-				<div class="colorlib-product">
-					<div class="container">
-					  <div class="row">
+			<div class="colorlib-product">
+				<div class="container">
+					<div class="row">
 						<div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
-						  <h2>Related Products</h2>
+							<h2>Related Products</h2>
 						</div>
-					  </div>
-					  <div class="row row-pb-md">
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-1.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-2.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Minam Meaghan</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-3.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Men's Taja Commissioner</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-4.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Russ Men's Sneakers</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="w-100"></div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-5.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-6.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-7.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-8.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="w-100"></div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-9.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-10.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-11.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-12.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="w-100"></div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-13.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-14.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-15.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-						<div class="col-lg-3 mb-4 text-center">
-						  <div class="product-entry border">
-							<a href="#" class="prod-img">
-							  <img
-								src="/static/user/images/item-16.jpg"
-								class="img-fluid"
-								alt="Free html5 bootstrap 4 template"
-							  />
-							</a>
-							<div class="desc">
-							  <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-							  <span class="price">$139.00</span>
-							</div>
-						  </div>
-						</div>
-					  </div>
 					</div>
-				  </div>
+					<div class="row row-pb-md">
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-1.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-2.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Minam Meaghan</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-3.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Men's Taja Commissioner</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-4.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Russ Men's Sneakers</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-5.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-6.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-7.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-8.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-9.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-10.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-11.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-12.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-13.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-14.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-15.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-3 mb-4 text-center">
+							<div class="product-entry border">
+								<a href="#" class="prod-img">
+									<img src="/static/user/images/item-16.jpg" class="img-fluid"
+										alt="Free html5 bootstrap 4 template" />
+								</a>
+								<div class="desc">
+									<h2><a href="#">Women's Boots Shoes Maca</a></h2>
+									<span class="price">$139.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
 
 
 
-</html>
+	</html>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="path/to/jquery.min.js"></script>
-<script src="path/to/owl.carousel.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="path/to/jquery.min.js"></script>
+	<script src="path/to/owl.carousel.min.js"></script>
 
-<script>
-
-
-document.addEventListener("DOMContentLoaded", function() {
-
-let dataHandler = document.getElementById("data-handler")
-
-let initialProductId = dataHandler.getAttribute('product-data-id')
-let initialVarientId = dataHandler.getAttribute('varient-data-id')
-
-let productImageContainer = document.getElementById("product-image-container")
-
-let addToCartBtn = document.getElementById('addToCartBtn')
+	<script>
 
 
-	     // Header cart count.
-		 let cartCount = document.getElementById('mainCartCount')
+		document.addEventListener("DOMContentLoaded", function () {
+
+			let dataHandler = document.getElementById("data-handler")
+
+			let initialProductId = dataHandler.getAttribute('product-data-id')
+			let initialVarientId = dataHandler.getAttribute('varient-data-id')
+
+			let productImageContainer = document.getElementById("product-image-container")
+
+			let addToCartBtn = document.getElementById('addToCartBtn')
 
 
-console.log(productImageContainer);
-
-let imageOne = document.getElementById('img1')
-let imageTwo = document.getElementById('img2')
-let imageThree = document.getElementById('img3')
-let imageFour = document.getElementById('img4')
-
-let pDescription = document.getElementById('p-desc')
-let pColor = document.getElementById('p-clr')
-let pModel = document.getElementById('p-model')
-let pBrand = document.getElementById('p-brand')
-let pOuter = document.getElementById('p-outer')
-let pSole = document.getElementById('p-sole')
-let pGender = document.getElementById('p-gender')
-let pCategory = document.getElementById('p-category')
-
-axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${initialVarientId}`)
-.then(function(response) {
-	if (response.status == 200) {
-		
-
-		let data = response.data
-
-        
-
-		let varients = data.allVarients
-
-		let selectedSubVarients = data.selectedSubVarients
-
-		console.log(addToCartBtn, "AddToCart...............1", response.data);
-
-		let product = data.product
-
-		pColor.innerText = `Color - ${data.selectedVarients[0].colorName}`
-
-		pDescription.innerText = `${product.description}`
+			// Header cart count.
+			let cartCount = document.getElementById('mainCartCount')
 
 
-		//Setting Subvarient id to add t cart btn
-		addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id) 
+			console.log(productImageContainer);
+
+			let imageOne = document.getElementById('img1')
+			let imageTwo = document.getElementById('img2')
+			let imageThree = document.getElementById('img3')
+			let imageFour = document.getElementById('img4')
+
+			let pDescription = document.getElementById('p-desc')
+			let pColor = document.getElementById('p-clr')
+			let pModel = document.getElementById('p-model')
+			let pBrand = document.getElementById('p-brand')
+			let pOuter = document.getElementById('p-outer')
+			let pSole = document.getElementById('p-sole')
+			let pGender = document.getElementById('p-gender')
+			let pCategory = document.getElementById('p-category')
+
+			axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${initialVarientId}`)
+				.then(function (response) {
+					if (response.status == 200) {
+
+
+						let data = response.data
 
 
 
-		//Setting description
-		pModel.innerText = `Model - ${product.modelName}`
-		pBrand.innerText = `Brand - ${product.brand}`
-		pOuter.innerText = `Outer material - ${product.outerMaterial}`
-		pSole.innerText = `Sole material - ${product.soleMaterial}`
-		pCategory.innerText = `Category - ${product.category.categoryName}`
-		pGender.innerText = `Gender - ${product.gender}`
-		pBrand.innerText = `Brand - ${product.brand}`
+						let varients = data.allVarients
 
-        
-		// Setting images
-		let images = data.selectedVarients[0].images
+						let selectedSubVarients = data.selectedSubVarients
 
-		imageOne.src = `/static/images/${images[0]}`
-		imageTwo.src = `/static/images/${images[1]}`
-		imageThree.src = `/static/images/${images[2]}`
-		imageFour.src = `/static/images/${images[3]}`
+						console.log(addToCartBtn, "AddToCart...............1", response.data);
+
+						let product = data.product
+
+						pColor.innerText = `Color - ${data.selectedVarients[0].colorName}`
+
+						pDescription.innerText = `${product.description}`
 
 
-		//Setting colors
-        let colorContainer = document.getElementById('color-container')
+						//Setting Subvarient id to add t cart btn
+						addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id)
 
-		colorContainer.innerHTML = ""
-		varients.forEach(function (varient){
-			colorContainer.innerHTML += `
+
+
+						//Setting description
+						pModel.innerText = `Model - ${product.modelName}`
+						pBrand.innerText = `Brand - ${product.brand}`
+						pOuter.innerText = `Outer material - ${product.outerMaterial}`
+						pSole.innerText = `Sole material - ${product.soleMaterial}`
+						pCategory.innerText = `Category - ${product.category.categoryName}`
+						pGender.innerText = `Gender - ${product.gender}`
+						pBrand.innerText = `Brand - ${product.brand}`
+
+
+						// Setting images
+						let images = data.selectedVarients[0].images
+
+						imageOne.src = `/static/images/${images[0]}`
+						imageTwo.src = `/static/images/${images[1]}`
+						imageThree.src = `/static/images/${images[2]}`
+						imageFour.src = `/static/images/${images[3]}`
+
+
+						//Setting colors
+						let colorContainer = document.getElementById('color-container')
+
+						colorContainer.innerHTML = ""
+						varients.forEach(function (varient) {
+							colorContainer.innerHTML += `
 			<li><a id="clr${varient._id}" varient-data-id="${varient._id}" style="background-color: ${varient.colorCode}; border-width: 1px; border-style: solid; border-color: gray" class="clrBox" href="#"></a></li>
 			`
 
-		});
+						});
 
 
-		// Setting sizes
-		let sizeContainer = document.getElementById('size-container')
+						// Setting sizes
+						let sizeContainer = document.getElementById('size-container')
 
-		sizeContainer.innerHTML = ""
-		selectedSubVarients.forEach(function (subVarient){
-			sizeContainer.innerHTML += `
+						sizeContainer.innerHTML = ""
+						selectedSubVarients.forEach(function (subVarient) {
+							sizeContainer.innerHTML += `
 		 <li><a id="size${subVarient._id}" sub-varient-data-id="${subVarient._id}" style="border-width: 1px; border-style: solid; border-color: gray" class="sizeBox" href="#">${subVarient.size}</a></li>
 			`
-		});
+						});
 
 
-	    // Setting product details
-		let showModelName = document.getElementById('show-model-name')
-		let showCategoryName = document.getElementById('show-category-name')
-		let showGender = document.getElementById("show-gender")
-		let showPrice = document.getElementById("show-price")
+						// Setting product details
+						let showModelName = document.getElementById('show-model-name')
+						let showCategoryName = document.getElementById('show-category-name')
+						let showGender = document.getElementById("show-gender")
+						let showPrice = document.getElementById("show-price")
 
 
-		showModelName.innerText = `${product.modelName}`
-		showCategoryName.innerText = `${product.category.categoryName}`
-		showGender.innerText = `${product.gender}`
+						showModelName.innerText = `${product.modelName}`
+						showCategoryName.innerText = `${product.category.categoryName}`
+						showGender.innerText = `${product.gender}`
 
-		showPrice.innerText = `₹ ${selectedSubVarients[0].price}`
+						showPrice.innerText = `₹ ${selectedSubVarients[0].price}`
 
-		let firstColor = document.getElementById(`clr${varients[0]._id}`)
+						let firstColor = document.getElementById(`clr${varients[0]._id}`)
 
-		let firstSize = document.getElementById(`size${selectedSubVarients[0]._id}`)
+						let firstSize = document.getElementById(`size${selectedSubVarients[0]._id}`)
 
-		firstColor.style.borderColor = 'black'
-		firstColor.style.borderWidth = '3px'
+						firstColor.style.borderColor = 'black'
+						firstColor.style.borderWidth = '3px'
 
-		firstSize.style.borderColor = 'black'
-		firstSize.style.borderWidth = '3px'
+						firstSize.style.borderColor = 'black'
+						firstSize.style.borderWidth = '3px'
 
-		// Setting stock status
-		let showStock = document.getElementById("show-stock")
+						// Setting stock status
+						let showStock = document.getElementById("show-stock")
 
-		if(selectedSubVarients[0].quantity > 10){
-			showStock.style.color = 'green'
-			showStock.innerText = `In Stock`
+						if (selectedSubVarients[0].quantity > 10) {
+							showStock.style.color = 'green'
+							showStock.innerText = `In Stock`
 
-		}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 6){
-			showStock.style.color = 'red'
-			showStock.innerText = `Only Few Left`
+						} else if (selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 6) {
+							showStock.style.color = 'red'
+							showStock.innerText = `Only Few Left`
 
-		}else if(selectedSubVarients[0].quantity > 0 && selectedSubVarients[0].quantity <= 5){
-			showStock.style.color = 'red'
-			showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
+						} else if (selectedSubVarients[0].quantity > 0 && selectedSubVarients[0].quantity <= 5) {
+							showStock.style.color = 'red'
+							showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
 
-		}else{
-			showStock.style.color = 'red'
-			showStock.innerText = `Out of stock`
+						} else {
+							showStock.style.color = 'red'
+							showStock.innerText = `Out of stock`
 
-		}
+						}
 
 
-	}
+					}
 
-})
-.catch(function(error) {
-  console.error('Error fetching data:', error);
-});
+				})
+				.catch(function (error) {
+					console.error('Error fetching data:', error);
+				});
 
 
-// ----------------------------CLICK EVENT START------------------------------------------
+			// ----------------------------CLICK EVENT START------------------------------------------
 
-document.addEventListener("click", (event) => {
-	
+			document.addEventListener("click", (event) => {
 
-	let showStock = document.getElementById("show-stock")
 
+				let showStock = document.getElementById("show-stock")
 
 
-	// Qty inc & dec event
-	if(event.target && (event.target.classList.contains("inc-qty-btn") || event.target.classList.contains("dec-qty-btn"))){
-		event.preventDefault()
-let qtyInput = document.getElementById("quantity-input")
 
-		if(event.target.classList.contains("inc-qty-btn")){
-		    let num = qtyInput.value 
+				// Qty inc & dec event
+				if (event.target && (event.target.classList.contains("inc-qty-btn") || event.target.classList.contains("dec-qty-btn"))) {
+					event.preventDefault()
+					let qtyInput = document.getElementById("quantity-input")
 
-			if(num < 10){
+					if (event.target.classList.contains("inc-qty-btn")) {
+						let num = qtyInput.value
 
-			num++
+						if (num < 10) {
 
-			qtyInput.value = num
+							num++
 
-			console.log(num);
-			}
+							qtyInput.value = num
 
-		}
+							console.log(num);
+						}
 
-		if(event.target.classList.contains("dec-qty-btn")){
+					}
 
-			let num = qtyInput.value 
+					if (event.target.classList.contains("dec-qty-btn")) {
 
-			if(num > 1){
+						let num = qtyInput.value
 
-            num--
+						if (num > 1) {
 
-            qtyInput.value = num
+							num--
 
-            console.log(num);
-			}
-			
-		}
+							qtyInput.value = num
 
-	}
+							console.log(num);
+						}
 
+					}
 
-   
+				}
 
-	// COLOR BUTTON
-    if(event.target && event.target.classList.contains("clrBox")){
-		event.preventDefault()
 
-		let allClrBox = document.querySelectorAll(".clrBox")
 
-		let clickedClrBox = event.target
 
+				// COLOR BUTTON
+				if (event.target && event.target.classList.contains("clrBox")) {
+					event.preventDefault()
 
+					let allClrBox = document.querySelectorAll(".clrBox")
 
-		console.log("Jiooo", clickedClrBox);
+					let clickedClrBox = event.target
 
-		let varientId = clickedClrBox.getAttribute("varient-data-id")
-	
 
 
-		axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${varientId}`)
-.then(function(response) {
-	if (response.status == 200) {
-		console.log(addToCartBtn, "AddToCart...............2");
+					console.log("Jiooo", clickedClrBox);
 
-		let data = response.data
+					let varientId = clickedClrBox.getAttribute("varient-data-id")
 
-		console.log("kpppppppppppppp", data);
-		pColor.innerText = `Color - ${data.selectedVarients[0].colorName}`
 
-		let selectedSubVarients = data.selectedSubVarients
 
+					axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${varientId}`)
+						.then(function (response) {
+							if (response.status == 200) {
+								let data = response.data
 
+								pColor.innerText = `Color - ${data.selectedVarients[0].colorName}`
 
-		if(data.selectedVarients[0]._id == varientId){
+								let selectedSubVarients = data.selectedSubVarients
 
-		//Setting Subvarient id to add t cart btn
-		addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id) 
 
-		for (let i = 0; i < allClrBox.length; i++) {
-			allClrBox[i].style.borderColor = 'gray'; 
-			allClrBox[i].style.borderWidth = '1px';
-        }
 
-		clickedClrBox.style.borderColor = "black"
-		clickedClrBox.style.borderWidth = '3px'
+								if (data.selectedVarients[0]._id == varientId) {
 
+									//Setting Subvarient id to add t cart btn
+									addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id)
 
-				// Setting images
-				let images = data.selectedVarients[0].images
+									for (let i = 0; i < allClrBox.length; i++) {
+										allClrBox[i].style.borderColor = 'gray';
+										allClrBox[i].style.borderWidth = '1px';
+									}
 
-imageOne.src = `/static/images/${images[0]}`
-imageTwo.src = `/static/images/${images[1]}`
-imageThree.src = `/static/images/${images[2]}`
-imageFour.src = `/static/images/${images[3]}`
+									clickedClrBox.style.borderColor = "black"
+									clickedClrBox.style.borderWidth = '3px'
 
 
+									// Setting images
+									let images = data.selectedVarients[0].images
 
-		// Setting sizes
-		let sizeContainer = document.getElementById('size-container')
+									imageOne.src = `/static/images/${images[0]}`
+									imageTwo.src = `/static/images/${images[1]}`
+									imageThree.src = `/static/images/${images[2]}`
+									imageFour.src = `/static/images/${images[3]}`
 
-		sizeContainer.innerHTML = ""
-		selectedSubVarients.forEach(function (subVarient){
-			sizeContainer.innerHTML += `
+
+
+									// Setting sizes
+									let sizeContainer = document.getElementById('size-container')
+
+									sizeContainer.innerHTML = ""
+									selectedSubVarients.forEach(function (subVarient) {
+										sizeContainer.innerHTML += `
 			<li><a id="size${subVarient._id}" sub-varient-data-id="${subVarient._id}" style="border-width: 1px; border-style: solid; border-color: gray" class="sizeBox" href="#">${subVarient.size}</a></li>
 			`
 
-		});
+									});
 
-		let firstSize = document.getElementById(`size${selectedSubVarients[0]._id}`)
-
-
-        firstSize.style.borderColor = 'black'
-        firstSize.style.borderWidth = '3px'
-
-// Setting Price
-let showPrice = document.getElementById("show-price")
-        showPrice.innerText = `₹ ${selectedSubVarients[0].price}`
+									let firstSize = document.getElementById(`size${selectedSubVarients[0]._id}`)
 
 
+									firstSize.style.borderColor = 'black'
+									firstSize.style.borderWidth = '3px'
 
-				// Setting stock status
-				// let showStock = document.getElementById("show-stock")
-
-if(selectedSubVarients[0].quantity > 10){
-	showStock.style.color = 'green'
-	showStock.innerText = `In Stock`
-
-}else if(selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 6){
-	showStock.style.color = 'red'
-	showStock.innerText = `Only Few Left`
-
-}else if(selectedSubVarients[0].quantity > 0 && selectedSubVarients[0].quantity <= 5){
-			showStock.style.color = 'red'
-			showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
-
-		}else{
-			showStock.style.color = 'red'
-			showStock.innerText = `Out of stock`
-
-		}
-
-		
-		}
-
-	}
-
-})
-.catch(function(error) {
-  console.error('Error fetching data:', error);
-});
-	}
+									// Setting Price
+									let showPrice = document.getElementById("show-price")
+									showPrice.innerText = `₹ ${selectedSubVarients[0].price}`
 
 
 
-// SIZE BOX
-	if(event.target && event.target.classList.contains("sizeBox")){
-		event.preventDefault()
+									// Setting stock status
+									// let showStock = document.getElementById("show-stock")
 
-		let allSizeBox = document.querySelectorAll(".sizeBox")
+									if (selectedSubVarients[0].quantity > 10) {
+										showStock.style.color = 'green'
+										showStock.innerText = `In Stock`
 
-		let sizeElement = event.target
+									} else if (selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 6) {
+										showStock.style.color = 'red'
+										showStock.innerText = `Only Few Left`
 
-		let subVarientId = sizeElement.getAttribute("sub-varient-data-id")
+									} else if (selectedSubVarients[0].quantity > 0 && selectedSubVarients[0].quantity <= 5) {
+										showStock.style.color = 'red'
+										showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
 
-		axios.get(`/shop/item/productDetails?svid=${subVarientId}`)
-.then(function(response) {
-	if (response.status == 200) {
+									} else {
+										showStock.style.color = 'red'
+										showStock.innerText = `Out of stock`
 
-		console.log("yadhav", response.data, subVarientId)
-
-		console.log(addToCartBtn, "AddToCart...............3");
-
-		let subVarient = response.data.subVarient
-		console.log(subVarient, "lllll");
-
-		if(subVarient._id == subVarientId){
-
-			console.log("Kohli");
-
-				//Setting Subvarient id to add t cart btn
-		addToCartBtn.setAttribute('svid', subVarientId) 
-
-			for (let i = 0; i < allSizeBox.length; i++) {
-				allSizeBox[i].style.borderColor = 'gray'; 
-				allSizeBox[i].style.borderWidth = '1px';
-        }
-
-		
-		sizeElement.style.borderColor = "black"
-		sizeElement.style.borderWidth = '3px'
+									}
 
 
-		// Setting Price
-let showPrice = document.getElementById("show-price")
-        showPrice.innerText = `₹ ${subVarient.price}`
+								}
+
+							}
+
+						})
+						.catch(function (error) {
+							console.error('Error fetching data:', error);
+						});
+				}
 
 
 
-						// Setting stock status
-						// let showStock = document.getElementById("show-stock")
+				// SIZE BOX
+				if (event.target && event.target.classList.contains("sizeBox")) {
+					event.preventDefault()
 
-if(subVarient.quantity > 10){
-	
-	showStock.style.color = 'green'
-	showStock.innerText = `In Stock`
+					let allSizeBox = document.querySelectorAll(".sizeBox")
 
-}else if(subVarient.quantity <= 10 && subVarient.quantity >= 6){
-	showStock.style.color = 'red'
-	showStock.innerText = `Only Few Left`
+					let sizeElement = event.target
 
+					let subVarientId = sizeElement.getAttribute("sub-varient-data-id")
 
-}else if(subVarient.quantity > 0 && subVarient.quantity <= 5){
-			showStock.style.color = 'red'
-			showStock.innerText = `Only ${subVarient.quantity} Left`
+					axios.get(`/shop/item/productDetails?svid=${subVarientId}`)
+						.then(function (response) {
+							if (response.status == 200) {
 
-		}else{
-			showStock.style.color = 'red'
-			showStock.innerText = `Out of stock`
+								let subVarient = response.data.subVarient
 
-		}
+								if (subVarient._id == subVarientId) {
+									//Setting Subvarient id to add t cart btn
+									addToCartBtn.setAttribute('svid', subVarientId)
 
-
-		}
+									for (let i = 0; i < allSizeBox.length; i++) {
+										allSizeBox[i].style.borderColor = 'gray';
+										allSizeBox[i].style.borderWidth = '1px';
+									}
 
 
-	}
+									sizeElement.style.borderColor = "black"
+									sizeElement.style.borderWidth = '3px'
 
-})
-.catch(function(error) {
-  console.error('Error fetching data:', error);
-});
 
-	}
-
-// ADD TO CART EVENT
-	if(event.target && event.target.id == "addToCartBtn"){
-		event.preventDefault()
-
-		 let qty = document.getElementById("quantity-input").value
-
-		 let productSubVarientId = event.target.getAttribute('svid')
+									// Setting Price
+									let showPrice = document.getElementById("show-price")
+									showPrice.innerText = `₹ ${subVarient.price}`
 
 
 
-		 console.log(qty, productSubVarientId, "qty Input");
+									// Setting stock status
+									// let showStock = document.getElementById("show-stock")
 
-		 axios
-          .post("/shop/cart/addToCart", {productId: productSubVarientId, quantity: qty})
-          .then((response) => {
-            if (response.status == 200) {
+									if (subVarient.quantity > 10) {
 
-				cartCount.innerText = response.data.cartCount
+										showStock.style.color = 'green'
+										showStock.innerText = `In Stock`
 
-			 new Noty({
-                type: 'success', 
-                text: response.data.message,
-                timeout: 3000,
-                layout: 'bottomCenter',
-                theme: 'relax',
-				animation: {
-    open: 'animated bounceInRight',
-    close: 'animated bounceOutRight', 
-}
-            }).show();
-            }
-          })
-          .catch((error) => {
-            console.log("it is an error", error);
-			if (error.response.status == 409) {
-				new Noty({
-                type: 'warning', 
-                text: error.response.data.message,
-                timeout: 3000,
-                layout: 'bottomCenter',
-                theme: 'relax',
-				animation: {
-    open: 'animated bounceInRight', 
-    close: 'animated bounceOutRight', 
-}
-            }).show();
-				
-			}
-          });
-
-	}
+									} else if (subVarient.quantity <= 10 && subVarient.quantity >= 6) {
+										showStock.style.color = 'red'
+										showStock.innerText = `Only Few Left`
 
 
+									} else if (subVarient.quantity > 0 && subVarient.quantity <= 5) {
+										showStock.style.color = 'red'
+										showStock.innerText = `Only ${subVarient.quantity} Left`
 
-})
-// ----------------------------CLICK EVENT END------------------------------------------
+									} else {
+										showStock.style.color = 'red'
+										showStock.innerText = `Out of stock`
 
-})
+									}
 
-</script>
-<%- include('./footer') %> 
+
+								}
+
+
+							}
+
+						})
+						.catch(function (error) {
+							console.error('Error fetching data:', error);
+						});
+
+				}
+
+				// ADD TO CART EVENT
+				if (event.target && event.target.id == "addToCartBtn") {
+					event.preventDefault()
+
+					let qty = document.getElementById("quantity-input").value
+
+					let productSubVarientId = event.target.getAttribute('svid')
+
+
+
+					console.log(qty, productSubVarientId, "qty Input");
+
+					axios
+						.post("/shop/cart/addToCart", { productId: productSubVarientId, quantity: qty })
+						.then((response) => {
+							if (response.status == 200) {
+
+								cartCount.innerText = response.data.cartCount
+
+								new Noty({
+									type: 'success',
+									text: response.data.message,
+									timeout: 3000,
+									layout: 'bottomCenter',
+									theme: 'metroui',
+									animation: {
+										open: 'animated bounceInRight',
+										close: 'animated bounceOutRight',
+									}
+								}).show();
+							}
+						})
+						.catch((error) => {
+							console.log("it is an error", error);
+							if (error.response.status == 409) {
+								new Noty({
+									type: 'warning',
+									text: error.response.data.message,
+									timeout: 3000,
+									layout: 'bottomCenter',
+									theme: 'metroui',
+									animation: {
+										open: 'animated bounceInRight',
+										close: 'animated bounceOutRight',
+									}
+								}).show();
+
+							}
+						});
+
+				}
+
+
+
+			})
+			// ----------------------------CLICK EVENT END------------------------------------------
+
+		})
+
+	</script>
+	<%- include('./footer') %>

@@ -61,7 +61,7 @@
   width: 50px;
   height: 50px;
   cursor: pointer;
-  border: 2px solid #000;
+  border: 2px solid gray;
   border-radius: 5px;
   margin-right: 20px;
 }
@@ -87,7 +87,7 @@
   height: 190px;
   background-size: cover;
   background-position: center;
-  border: 2px solid #000;
+  border: 2px solid  gray;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -197,16 +197,3 @@
 }
 
 
-/* Button and theme color. */
-
-.editBtnClr{
-  background-color: #1DA1F2;
-}
-
-.dltBtnClr{
-  background-color: red;
-}
-
-.varientBtnClr{
-  background-color: orange;
-}

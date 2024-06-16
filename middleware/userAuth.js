@@ -25,7 +25,19 @@ const isLogout = (req, res, next) => {
   }
 };
 
+
+
+const isGoogleUser = (req, res, next) => {
+    if(!req.session.gUser){
+      next();
+    }else{
+      res.redirect('/profile')
+    }
+};
+
+
 module.exports = {
   isLogin,
   isLogout,
+  isGoogleUser
 };

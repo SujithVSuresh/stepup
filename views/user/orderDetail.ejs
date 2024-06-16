@@ -1,0 +1,141 @@
+<%- include('./header', {isLogin: isLogin, cartCount: cartCount}) %>
+
+<div class="breadcrumbs">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p class="bread">
+          <span><a href="index.html">Home</a></span> / <span>Profile</span> /
+          <span>Order</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="colorlib-product">
+  <div class="container">
+    <div class="row row-pb-lg">
+      <div class="col-md-12">
+
+        <div class="row row-pb-lg">
+          <div class="col-md-12">
+            <div class="product-name d-flex">
+              <div class="one-forth text-left px-4">
+                <span>Order Details</span>
+              </div>
+              <div class="one-eight text-center">
+                <span>Amount</span>
+              </div>
+              <div class="one-eight text-center">
+                <span>Status</span>
+              </div>
+              <div class="one-eight text-center">
+                <span>PAYMENT</span>
+              </div>
+              <div class="one-eight text-center px-4">
+                <span></span>
+              </div>
+              <div class="one-eight text-center px-4">
+                <span></span>
+              </div>
+            </div>
+  
+            <div id="cartItemsContainer">
+        
+
+              <div class="product-cart d-flex" id="cartItemContainer${item._id}">
+                <div class="one-forth">
+                  <div class="product-img" style="background-image: url('/static/images/');">
+                  </div>
+                  <div class="display-tc">
+                    <span style="margin-left: 30px; color: black">Order id: </span><br>
+                    <span style="margin-left: 30px;" class="price">Items: </span><br>
+                    <span style="margin-left: 30px;" class="price">Date: </span><br>
+  
+                  </div>
+
+                </div>
+                <div class="one-eight text-center">
+                  <div class="display-tc">
+                    <span class="price">₹ total amount</span>
+                  </div>
+                </div>
+                <div class="one-eight text-center">
+                  <div class="display-tc">
+                    <span class="price" style="color: rgb(252, 134, 0);">status</span>
+                  </div>
+                </div>
+                <div class="one-eight text-center">
+                  <div class="display-tc">
+                    <span class="price" id="total${item._id}">payment method</span>
+                  </div>
+                </div>
+                <div class="one-eight text-center">
+                  <div class="display-tc">
+                    <!-- <a href="" data-cart-item-id=${item._id} class="removeFromCartBtn closed"> -->
+                      <button class="editDltBtn" address-id="" style="border-color: rgb(250, 141, 141); color: rgb(250, 141, 141); background-color: white;">Cancel</button>
+                    <!-- </a> -->
+                  </div>
+                </div>
+                <div class="one-eight text-center">
+                  <div class="display-tc">
+                    <a class="editDltBtn" href="/profile/order/itemDetail" address-id="" style="border-color: black; background-color: white;">View more1223</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item completed">
+                <div class="timeline-icon"></div>
+                <div class="timeline-content">
+                    <h3>Order Confirmed</h3>
+                    <span>Sun, 4th Feb</span>
+                </div>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-icon"></div>
+                <div class="timeline-content">
+                    <h3>Shipped</h3>
+                    <span>Sun, 4th Feb</span>
+                </div>
+            </div>
+            <div class="timeline-item timeline-item1 completed">
+                <div class="timeline-icon"></div>
+                <div class="timeline-content">
+                    <h3>Out for delivery</h3>
+                    <span>Tue, 6th Feb</span>
+                </div>
+            </div>
+            <div class="timeline-item completed">
+                <div class="timeline-icon"></div>
+                <div class="timeline-content">
+                    <h3>Delivered</h3>
+                    <span>Tue, 6th Feb</span>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script>
+
+
+  
+
+</script>
+
+<%- include('./footer') %>

@@ -1,0 +1,260 @@
+<%- include('./header', {adminName: adminName}) %>
+
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+
+                <!-- <li class="nav-item nav-profile">
+        <a href="#" class="nav-link">
+          <div class="nav-profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <span class="login-status online"></span>
+
+          </div>
+          <div class="nav-profile-text d-flex flex-column">
+            <span class="font-weight-bold mb-2">David Grey. H</span>
+            <span class="text-secondary text-small">Project Manager</span>
+          </div> 
+          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+        </a>
+      </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard">
+                        <span class="menu-title">DASHBOARD</span>
+                        <i class="mdi mdi-home menu-icon"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-products" aria-expanded="false"
+                        aria-controls="ui-basic">
+                        <span class="menu-title">PRODUCTS</span>
+                        <i class="menu-arrow"></i>
+                        <i class="mdi menu-icon mdi-shoe-formal" style="font-size: 24px;"></i>
+                    </a>
+                    <div class="collapse" id="ui-products">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="/admin/products">LISTED</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="">UNLISTED</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/users">
+                        <span class="menu-title">USERS</span>
+                        <i class="mdi menu-icon mdi-account-multiple"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-categories" aria-expanded="false"
+                        aria-controls="ui-basic">
+                        <span class="menu-title">CATEGORIES</span>
+                        <i class="menu-arrow"></i>
+                        <i class="mdi mdi-cube-outline menu-icon"></i>
+                    </a>
+                    <div class="collapse" id="ui-categories">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="/admin/category">LISTED</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/admin/category/unlisted">UNLISTED</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <span class="menu-title text-dark">ORDERS</span>
+                        <i class="mdi mdi-cart menu-icon text-dark"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <span class="menu-title">COUPON</span>
+                        <i class="mdi mdi-tag menu-icon"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="">
+                        <span class="menu-title">BANNER</span>
+                        <i class="mdi mdi-label menu-icon"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <div class="page-header">
+                    <h3 class="page-title">
+                        <span class="page-title-icon bg-dark  text-white mr-2">
+                            <i class="mdi menu-icon mdi-cart"></i>
+                        </span> ORDERS ID: <%= order.orderId %>
+                    </h3>
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <!-- <span></span> <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i> -->
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+
+
+
+                            <table class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>IMAGE</th>
+                                        <th>MODEL</th>
+
+                                        <th>GENDER</th>
+                                        <th>QUANTITY</th>
+                                        <th>PRICE</th>
+                                        <th>COLOR</th>
+                                        <th>SIZE</th>
+                                        <th>PAYMENT STATUS</th>
+                                        <th>ORDER STATUS</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-container">
+                                    <% order.orderedItems.forEach((item)=> { %>
+
+                                        <tr>
+                                            <td>
+                                                <img id="preview" src="/static/images/<%= item.image %>"
+                                                    alt="Image preview" />
+                                            </td>
+
+                                            <td>
+                                                <%= item.modelName %>
+                                            </td>
+                                            <td>
+                                                <%= item.gender=="men" ? "Men" : item.gender=="women" ? "Women"
+                                                    : "Men & Women" %>
+                                            </td>
+                                            <td>
+                                                <%= item.quantity %>
+                                            </td>
+                                            <td>
+                                                <%= item.price %>
+                                            </td>
+                                            <td>
+                                                <%= item.color %>
+                                            </td>
+                                            <td>
+                                                <%= item.size %>
+                                            </td>
+                                            <td>
+                                                <%= item.paymentStatus %>
+                                            </td>
+                                            <td>
+                                                <%= item.orderStatus %>
+                                            </td>
+                                            <td>
+                                                <% if(item.orderStatus!="Cancelled" && item.orderStatus!="Returned"){ %>
+                                                <select class="statusChange" item-id="<%= item._id %>" order-id="<%= order._id %>" id="orderItemStatus-<%= item._id %>" name="orderStatus">
+                                                    <!-- <option value="pending" <%= item.orderStatus === 'Pending' ? 'selected' : '' %>>Pending</option> -->
+                                                    <% if(item.orderStatus=="Pending" ){ %>
+                                                        <option value="">Pending</option>
+                                                        <option value="Ordered">Ordered</option>
+                                                        <option value="Cancelled">Cancel</option>
+                                                        <% } %>
+
+                                                            <% if(item.orderStatus=="Ordered" ){ %>
+                                                                <option value="">Ordered</option>
+                                                                <option value="Shipped">Shipped</option>
+                                                                <option value="Cancelled">Cancel</option>
+                                                                <% } %>
+
+                                                                    <% if(item.orderStatus=="Shipped" ){ %>
+                                                                        <option value="">Shipped</option>
+                                                                        <option value="Delivered">Delivered</option>
+                                                                        <option value="Cancelled">Cancel</option>
+                                                                        <% } %>
+
+                                                                            <% if(item.orderStatus=="Delivered" ){ %>
+                                                                                <option value="">Delivered</option>
+                                                                                <!-- <option value="Returned">Returned -->
+                                                                                </option>
+                                                                                <% } %>
+
+                                                </select>
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+
+                                        <% }) %>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- content-wrapper ends -->
+
+
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <%- include('./loader') %>
+        <script>
+
+            document.addEventListener("change", (event) => {
+
+                if(event.target && event.target.classList.contains("statusChange")){
+                  
+                    let statusChange = event.target
+
+                    const status = statusChange.value
+                    const orderId = statusChange.getAttribute('order-id')
+                    const itemId = statusChange.getAttribute('item-id')
+
+                    console.log("koipppt",statusChange);
+
+
+                axios.post('/admin/order/items/changeStatus', {status:status, orderId:orderId, itemId:itemId})
+                    .then((response) => {
+                        if (response.status == 200) {
+                            window.location.href = `/admin/order/items?oid=${orderId}`
+
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("it is an error", error)
+                    })
+
+                }
+
+
+
+            })
+
+
+
+
+        </script>
+
+        <%- include('./footer') %>

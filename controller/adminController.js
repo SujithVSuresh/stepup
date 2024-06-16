@@ -5,6 +5,7 @@ const Product = require("../models/productModel");
 const Brand = require("../models/brandModal");
 const Varient = require("../models/varientModel");
 const Subvarient = require("../models/subVarientModel");
+const Order = require("../models/orderModel")
 const bcrypt = require("bcrypt");
 
 const login = async (req, res) => {
@@ -441,7 +442,7 @@ const addColorVarient = async (req, res) => {
   try {
     const { colorName, colorCode, productId } = req.body;
 
-    let findColorVarient = await Varient.findOne({colorName: colorName, colorCode: colorCode})
+    let findColorVarient = await Varient.findOne({product: productId, colorName: colorName, colorCode: colorCode})
 
     if(findColorVarient){
       return res.status(409).json({ "message": "Color you are trying to add already exists." });
@@ -622,6 +623,140 @@ const singleProductData = async (req, res) => {
   }
 };
 
+
+const order = async (req, res) => {
+  try {
+    const orders = await Order.find({ }).populate('userId')
+
+    console.log("koi orders", orders);
+
+    res.render("admin/order", {
+      orders: orders,
+      isLogin: true,
+      adminName: req.session.adminName,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+const orderItem = async (req, res) => {
+  try {
+    const orderId = req.query.oid
+
+    const order = await Order.findOne({_id: orderId }).populate('userId')
+
+
+    res.render("admin/orderitem", {
+      order: order,
+      isLogin: true,
+      adminName: req.session.adminName,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+
+const changeOrderStatus = async (req, res) => {
+  try {
+    const { status, orderId, itemId } = req.body
+
+    const order = await Order.findOne({_id: orderId }).populate('userId')
+
+    const orderItem = order.orderedItems.find(item => item._id.toString() === itemId);
+
+
+    if(status){
+      orderItem.orderStatus = status;
+      await order.save();
+
+      if(status == "Cancelled" || status == "Returned"){
+        // To update quantity
+  
+          let subVartient = await Subvarient.findOne({ _id: orderItem.productId });
+          if (subVartient) {
+            subVartient.quantity += orderItem.quantity;
+            await subVartient.save();
+          }
+        
+          if(status == "Returned"){
+
+        if(order.paymentMethod == "COD"){
+          orderItem.paymentStatus = "Refunded"
+          await order.save()
+        }
+      }
+
+      }else if(status == "Delivered"){
+
+        if(order.paymentMethod == "COD"){
+          orderItem.paymentStatus = "Success"
+          await order.save()
+        }
+
+
+        // let count = 0
+        // order.orderedItems.map((item) => {
+        //   if(item.orderStatus == "Delivered"){
+        //     count++
+        //   }
+  
+        // })
+  
+        // if(count==order.orderedItems.length){
+        //   order.orderStatus = "Delivered";
+        //   await order.save();
+  
+        // }
+          
+      }
+
+
+      let count = 0
+      order.orderedItems.map((item) => {
+        if(item.orderStatus == "Cancelled" || item.orderStatus == "Delivered" || item.orderStatus == "Returned"){
+          count++
+        }
+
+      })
+
+      if(count==order.orderedItems.length){
+        order.orderStatus = "Completed";
+        await order.save();
+
+      }
+
+    }
+
+
+    // let count = 0
+    //   order.orderedItems.map((item) => {
+    //     if(item.orderStatus == "Cancelled"){
+    //       count++
+    //     }
+
+    //   })
+
+    //   if(count==order.orderedItems.length){
+    //     order.orderStatus = "Cancelled";
+    //     await order.save();
+
+    //   }
+   
+
+    res.status(200).json({message: "Order status changed successfully."})
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+
 module.exports = {
   dashboard,
   products,
@@ -654,4 +789,8 @@ module.exports = {
   getAllColorVarient,
   getAllSizeVarient,
   singleProductData,
+
+  order,
+  orderItem,
+  changeOrderStatus
 };

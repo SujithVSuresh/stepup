@@ -10,7 +10,11 @@ const productSchema = new mongoose.Schema({
     description: {type:String, required: true},
     category: {type:mongoose.Schema.Types.ObjectId, ref: "Category", required:true},
     isDelete: {type: Boolean, default:false, required:true},
-    isActive: {type: Boolean, default:false, required:true}
+    isActive: {type: Boolean, default:false, required:true},
+    date: {
+        type: Date,
+        default: Date.now,
+      },
 })
 
 module.exports = mongoose.model("Product", productSchema)

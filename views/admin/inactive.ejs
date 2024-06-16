@@ -160,7 +160,7 @@
           <div class="modal-content" style="padding: 15px">
             <div class="modal-header">
               <!-- <h5 class="modal-title" id="productModalLabel">VARIENTS</h5>-->
-              <h4>VARIENTS - <span id="colorNameTag"></span></h4>
+              <h4>VARIENTS<span id="colorNameTag"></span></h4>
 
               <button
                 type="button"
@@ -523,7 +523,7 @@ function showModal(modalId) {
               response.data.colorVarients
             );
 
-            colorNameTag.innerText = response.data.colorVarients[0].colorName;
+            // colorNameTag.innerText = response.data.colorVarients[0].colorName;
 
             response.data.colorVarients.forEach((varient) => {
               colorSelection.innerHTML += `

@@ -1,0 +1,198 @@
+<%- include('./header', {isLogin: isLogin, cartCount: cartCount}) %>
+
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="bread">
+            <span><a href="index.html">Home</a></span> / <span>Profile</span> /
+            <span>Order</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="colorlib-product">
+    <div class="container">
+      <div class="row row-pb-lg">
+        <div class="col-md-12">
+
+          <div class="row row-pb-lg">
+            <div class="col-md-12">
+              <div class="product-name d-flex">
+                <div class="one-forth text-left px-4">
+                  <span>Order Details</span>
+                </div>
+                <div class="one-eight text-center">
+                  <span>Amount</span>
+                </div>
+                <div class="one-eight text-center">
+                  <span>Status</span>
+                </div>
+                <div class="one-eight text-center">
+                  <span>PAYMENT</span>
+                </div>
+  
+                <div class="one-eight text-center px-4">
+                  <span></span>
+                </div>
+              </div>
+
+              <div id="orderItemsContainer">
+                <% orders.forEach((order)=> { %>
+
+                  <div class="product-cart d-flex" id="orderItemContainer<%= order._id %>">
+                    <div class="one-forth">
+                      <div class="product-img"
+                        style="background-image: url('/static/images/<%= order.orderedItems[0].image %>');">
+                      </div>
+                      <div class="display-tc">
+                        <span style="margin-left: 30px; color: black">Order id: <%= order.orderId %></span><br>
+                        <span style="margin-left: 30px;" class="price">Items: <%= order.orderedItems.length %>
+                        </span><br>
+                        <span style="margin-left: 30px;" class="price">Date: <%- new
+                            Date(order.orderedDate).toLocaleDateString() %></span><br>
+
+                      </div>
+                    </div>
+                    <div class="one-eight text-center">
+                      <div class="display-tc">
+                        <span class="price">₹ <%= order.totalAmount %></span>
+                      </div>
+                    </div>
+                    <div class="one-eight text-center">
+                      <div class="display-tc">
+                        <span class="price" style="color: rgb(252, 134, 0);">
+                          <%= order.orderStatus %>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="one-eight text-center">
+                      <div class="display-tc">
+                        <span class="price" id="total${item._id}">
+                          <%= order.paymentMethod %>
+                        </span>
+                      </div>
+                    </div>
+                    <!-- <div class="one-eight text-center">
+                      <div class="display-tc">
+                        <button class="editDltBtn" address-id=""
+                          style="border-color: rgb(250, 141, 141); color: rgb(250, 141, 141); background-color: white;">Cancel</button>
+                      </div>
+                    </div> -->
+                    <div class="one-eight text-center">
+                      <div class="display-tc">
+                        <a order-id="<%= order._id %>" id="viewMoreOrder" class="button editDltBtn" data-toggle="modal"
+                          data-target="#orderItemModal"
+                          style="border-color: black; padding: 5px; color: black; background-color: white;">View
+                          more</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <% }) %>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Order items Modal -->
+  <div class="modal fade" id="orderItemModal" tabindex="-1" role="dialog" aria-labelledby="orderItemLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="billingModalLabel">Order id: <span id="showOrderId"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="orderItemContainer">
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+  <script>
+
+
+    document.addEventListener('click', (event) => {
+      if (event.target.id == "viewMoreOrder") {
+        console.log(event.target)
+        let orderItemContainer = document.getElementById("orderItemContainer")
+        let showOrderId = document.getElementById("showOrderId")
+
+        const clickedBtn = event.target
+
+        const oid = clickedBtn.getAttribute('order-id')
+
+        orderItemContainer.innerHTML = ""
+
+        axios
+          .get(`/profile/order/getOrderById?oid=${oid}`)
+          .then((response) => {
+            if (response.status == 200) {
+
+               console.log(response.data);
+               showOrderId.innerText = response.data.order.orderId
+               response.data.order.orderedItems.map((item) => {
+                orderItemContainer.innerHTML += `
+                              <div class="product-cart d-flex" id="cartItemContainer${item._id}">
+            <div class="one-forth">
+              <div class="product-img" style="background-image: url('/static/images/${item.image}');">
+              </div>
+              <div class="display-tc">
+                <span style="margin-left: 30px; color: black">${item.modelName}</span><br>
+                <span style="margin-left: 30px;" class="price">Color: ${item.color}</span><br>
+                <span style="margin-left: 30px;" class="price">Size: ${item.size}</span><br>
+
+              </div>
+            </div>
+            <div class="one-forth text-center">
+              <div class="display-tc">
+                <span class="price">₹ ${item.price}</span>
+              </div>
+            </div>
+            <div class="one-eight text-center">
+              <div class="display-tc">
+                <span class="price" style="color: rgb(252, 134, 0);">${item.orderStatus}</span>
+
+              </div>
+            </div>
+            <div class="one-eight text-center">
+              <div class="display-tc">
+                <a address-id="" href="/profile/order/itemDetail?oid=${oid}&itid=${item._id}" class="button editDltBtn" style="border-color: black; padding: 5px; color: black; background-color: white;">View more</a>
+              </div>
+            </div>
+          </div> 
+                `
+               })
+
+            }
+          })
+          .catch((error) => {
+            console.log("it is an error", error);
+          });
+
+      }
+    })
+
+
+
+
+  </script>
+
+  <%- include('./footer') %>

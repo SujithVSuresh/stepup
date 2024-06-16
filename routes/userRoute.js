@@ -5,9 +5,6 @@ const cart = require("../middleware/cart")
 const userController = require("../controller/userController")
 
 
-
-
-
 const router = express.Router()
 
 router.get('/', userController.home)
@@ -32,16 +29,29 @@ router.get('/shop/items/:productId', auth.isLogin,  userController.productDetail
 
 router.get('/shop/item/productDetails', auth.isLogin,  userController.productDetails)
 
+router.post('/shop/placeOrder', auth.isLogin,  userController.placeOrder)
+
+router.post('/shop/cancelOrder', auth.isLogin,  userController.cancelOrder)
+
+router.get('/shop/orderComplete', auth.isLogin,  userController.orderComplete)
+
 //router.get('/shop/product/details', userController.fetchProductDetails)
-router.get('/address', userController.address)
-router.post('/address/addAddress', userController.createAddress)
+router.get('/address', auth.isLogin, userController.address)
+router.post('/address/addAddress', auth.isLogin, userController.createAddress)
+router.post('/address/deleteAddress', auth.isLogin, userController.deleteAddress)
+router.post('/address/editAddress', auth.isLogin, userController.editAddress)
 // router.get('/address/showAddress', userController.showAddress)
 
 router.get('/profile', auth.isLogin, userController.profile)
 router.post('/profile/editProfile', auth.isLogin, userController.editProfile)
-router.get('/profile/changePassword', auth.isLogin, userController.changePassword)
-router.post('/profile/changePassword', auth.isLogin, userController.changePassword)
+router.get('/profile/changePassword', auth.isLogin, auth.isGoogleUser, userController.changePassword)
+router.post('/profile/changePassword', auth.isLogin, auth.isGoogleUser, userController.changePassword)
 
+router.get('/profile/order', auth.isLogin, userController.order)
+router.get('/profile/order/getOrderById', auth.isLogin, userController.getOrderById)
+// router.get('/profile/order/orderDetail', auth.isLogin, userController.orderDetail)
+
+router.get('/profile/order/itemDetail', auth.isLogin, userController.orderItemDetail)
 
 router.get('/signin',  auth.isLogout, userController.signin)
 

@@ -148,12 +148,13 @@
     } else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       emailError.textContent = "Please enter a valid email address";
       isValid = false;
-    } else if (/\s/.test(email) && /^\s|\s$/.test(email)) {
-      emailError.textContent = "Email cannot contain whitespace";
+    } else if (/\s/.test(email) || /^\s|\s$/.test(email)) {
+      emailError.textContent = "Please enter a valid email address";
       isValid = false;
     } else {
       emailError.textContent = "";
     }
+
 
     //Password validation
     if (!password.trim()) {
@@ -162,7 +163,7 @@
     } else if (password && password.length < 8) {
       passwordError.textContent = "Password must be at least 8 characters long";
       isValid = false;
-    } else if (/\s/.test(password) && /^\s|\s$/.test(password)) {
+    } else if (/\s/.test(password) || /^\s|\s$/.test(password)) {
       passwordError.textContent = "Password cannot contain whitespace";
       isValid = false;
     } else {

@@ -141,12 +141,27 @@
     gap: 10px;
 }
 
+.address-selection-checkout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .address-card {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     position: relative;
     padding-left: 40px;
+}
+
+.address-card-checkout{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    padding-left: 45px;
+
 }
 
 
@@ -159,7 +174,7 @@
 
 
 
-.address-card label {
+.address-card label, .address-card-checkout label {
     cursor: pointer;
 }
 
@@ -171,7 +186,7 @@
     height: 20px;
 }
 
-.address-card p, .address-card-two p {
+.address-card p, .address-card-two p, .address-card-checkout p {
     margin: 0px;
     padding: 2px 0;
 }
@@ -236,3 +251,205 @@
   }
 
 
+  /* #proceedToBuy {
+    pointer-events: none;
+  } */
+
+
+
+
+  /* NOTY  Confirm*/
+
+  /* Custom styles for the Noty confirm box */
+.noty_layout__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .noty_type__confirm {
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+    color: #333; /* Text color */
+  }
+  
+  .noty_type__confirm .noty_body {
+    font-size: 16px; /* Larger font size */
+    padding: 20px; /* Padding for better spacing */
+  }
+  
+  .noty_type__confirm .btn-yes {
+    background-color: #28a745; /* Green background for Yes button */
+    color: white; /* White text color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for better spacing */
+    margin-right: 10px; /* Margin between buttons */
+  }
+  
+  .noty_type__confirm .btn-no {
+    background-color: #dc3545; /* Red background for No button */
+    color: white; /* White text color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for better spacing */
+  }
+  
+
+
+/* Sort input field */
+
+.sort-by-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+    /* font-size: 16px; */
+}
+
+.sort-by-container label {
+    margin-right: 10px;
+    font-weight: 400;
+    color: #333;
+}
+
+.sort-by-container select {
+    /* padding: 50px 50px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: gray;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease; */
+
+    padding: 3px 10px 3px 10px; /* Add padding to the right for the arrow */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    /* font-size: 16px; */
+    color: gray;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none; /* Remove default arrow in Webkit browsers */
+    -moz-appearance: none; /* Remove default arrow in Firefox */
+    appearance: none; /* Remove default arrow in other browsers */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path fill="none" stroke="%23333" stroke-width="2" d="M7 10l5 5 5-5"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Position the arrow */
+    background-size: 10px;
+}
+
+
+
+/* 
+.sort-by-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+    font-size: 16px;
+}
+
+.sort-by-container label {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.sort-by-container select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.sort-by-container select:focus {
+    border-color: #007bff;
+}
+
+.sort-by-container select option {
+    padding: 5px;
+}
+
+ */
+
+
+
+ /* Timeline */
+
+
+.timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px auto;
+    max-width: 800px;
+    position: relative;
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.timeline-item::after {
+    content: '';
+    width: 100%;
+    height: 4px;
+    background: #28a745;
+    position: absolute;
+    top: 10%;
+    left: 100%;
+    z-index: -1;
+    transform: translateX(-50%);
+}
+
+.timeline-item .completed::after {
+    background: #28a745;
+}
+
+.timeline-item:last-child::after {
+    display: none;
+}
+
+.timeline-item1::after {
+    display: none;
+}
+
+
+.timeline-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    position: relative;
+    z-index: 1;
+}
+
+
+.timeline-content {
+    margin-top: 10px;
+}
+
+.timeline-content h3 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+}
+
+.timeline-content span {
+    font-size: 14px;
+    color: #777;
+}
+
+/* .timeline-item.completed .timeline-icon {
+    background: #28a745;
+} */

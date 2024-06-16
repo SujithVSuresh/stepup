@@ -75,4 +75,8 @@ router.get('/brands/list', auth.isAdminLogin, adminController.brandList)
 router.post('/brand/add', auth.isAdminLogin, upload.single("croppedImage"), adminController.addBrand)
 
 
+router.get('/order', auth.isAdminLogin, adminController.order)
+router.get('/order/items', auth.isAdminLogin, adminController.orderItem)
+router.post('/order/items/changeStatus', auth.isAdminLogin, adminController.changeOrderStatus)
+
 module.exports = router;

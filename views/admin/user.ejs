@@ -43,8 +43,8 @@
 
       <li class="nav-item">
         <a class="nav-link" href="/admin/users">
-          <span class="menu-title">USERS</span>
-          <i class="mdi menu-icon mdi-account-multiple"></i>
+          <span class="menu-title text-dark">USERS</span>
+          <i class="mdi menu-icon mdi-account-multiple text-dark"></i>
         </a>
       </li>
 
@@ -63,7 +63,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/admin/order">
           <span class="menu-title">ORDERS</span>
           <i class="mdi mdi-cart menu-icon"></i>
         </a>
@@ -91,7 +91,7 @@
 
       <div class="page-header">
         <h3 class="page-title">
-          <span class="page-title-icon bg-gradient-primary text-white mr-2">
+          <span class="page-title-icon bg-dark  text-white mr-2">
             <i class="mdi menu-icon mdi-account-multiple"></i>
           </span> USERS
         </h3>
@@ -123,15 +123,7 @@
                     </tr>
                   </thead>
                   <tbody id="table-container">
-                    <!-- <tr>
-                      <td>Jacob</td>
-                      <td>V K</td>
-                      <td>sujitheternal13@gmail.com</td>
-                      <td>8590369084</td>
-                      <td>Jan 12, 2023</td>
-                      <td><label class="badge badge-danger">Active</label></td>
-                      <td><button type="button" class="btn btn-primary btn-sm">Block</button></td>
-                    </tr> -->
+  
                 
              
                   </tbody>
@@ -152,6 +144,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<%- include('./loader') %>
 <script>
 
   document.addEventListener("DOMContentLoaded", (event) => {
@@ -176,7 +169,7 @@
                       <td>${user.dateJoined.substring(0, 10)}</td>
                       <td><label class="badge badge-danger" id="label${user._id}">Blocked</label></td>
                       <td>                   
-                      <button data-user-id="${user._id}" id="${user._id}" type="button" class="btn btn-success btn-sm statusBtn">Unblock</button>                   
+                      <button data-user-id="${user._id}" id="${user._id}" type="button" class="btn btn-outline-dark btn-sm statusBtn">Unblock</button>                   
                     </td>
                     </tr>
                         `;
@@ -186,11 +179,11 @@
                       <td>${user.firstName}</td>
                       <td>${user.lastName}</td>
                       <td>${user.email}</td>
-                      <td>${user.phone}</td>
+                      <td>${user.phone ? user.phone : "Not available"}</td>
                       <td>${user.dateJoined.substring(0, 10)}</td>
                       <td><label class="badge badge-danger" id="label${user._id}">Active</label></td>
                       <td>                   
-                      <button data-user-id="${user._id}" id="${user._id}" type="button" class="btn btn-primary btn-sm statusBtn">Block</button>                   
+                      <button data-user-id="${user._id}" id="${user._id}" type="button" class="btn btn-outline-dark btn-sm statusBtn">Block</button>                   
                     </td>
                     </tr>
                         `;
@@ -237,9 +230,6 @@
                     let label = document.getElementById(`label${response.data._id}`)
 
                     statusBtn.innerText = "Block"
-                    statusBtn.classList.add("btn-primary")
-                    statusBtn.classList.remove("btn-success")
-                    console.log(statusBtn)
 
                     label.innerText = "Active"
                     }else{
@@ -247,8 +237,6 @@
                       let label = document.getElementById(`label${response.data._id}`)
 
                       statusBtn.innerText = "Unblock"
-                      statusBtn.classList.add("btn-success")
-                      statusBtn.classList.remove("btn-primary")
 
                       label.innerText = "Blocked"
 
@@ -272,4 +260,5 @@
         
 
 </script>
+
 <%- include('./footer') %>
