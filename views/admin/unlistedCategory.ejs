@@ -69,16 +69,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/admin/coupon">
           <span class="menu-title">COUPON</span>
           <i class="mdi mdi-tag menu-icon"></i>
         </a>
       </li>
 
+      
       <li class="nav-item">
-        <a class="nav-link" href="">
-          <span class="menu-title">BANNER</span>
-          <i class="mdi mdi-label menu-icon"></i>
+        <a class="nav-link" href="/admin/salesReport">
+          <span class="menu-title">SALES REPORT</span>
+
+          <i class="mdi menu-icon mdi-chart-line"></i>
         </a>
       </li>
 
@@ -112,20 +114,12 @@
         <div class="col-md-3 mb-4" id="card<%= category._id %>">
           <div class="card">
             <div class="card-body">
-              <div id="categoryImg">
-                <img
-                  id="preview"
-                  src="/static/images/<%= category.image %>"
-                  alt="Image preview"
-                />
-              </div>
 
               <h5
                 class="card-title"
                 style="
                   margin-bottom: 20px;
                   text-transform: uppercase;
-                  margin-top: 30px;
                 "
               >
                 <%= category.categoryName %>
@@ -168,7 +162,6 @@
 
 <script>
 document.addEventListener("click", (event) => {
-    console.log(event.target, "jiiioo")
     if (event.target && event.target.classList.contains("categoryListBtn")) {
       let listBtn = event.target;
 
@@ -215,11 +208,18 @@ document.addEventListener("click", (event) => {
               }
             })
             .catch((error) => {
+              console.log(error.response.status)
+
+              if(error.response.status){
+
               Swal.fire(
                 "Error!",
-                "There was an error deleting the category.",
+                error.response.data.message,
                 "error"
               );
+
+              }
+
             });
         }
       });

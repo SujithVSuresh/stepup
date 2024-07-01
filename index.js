@@ -48,6 +48,8 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 app.use("/admin", adminRouter);
 app.use("/", userRouter);
 
+
+
 //passport
 passport.serializeUser(function (user, done) {
   done(null, user);

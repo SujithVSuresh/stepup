@@ -197,3 +197,19 @@
 }
 
 
+
+/* Sales report */
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.flex-item {
+  display: flex;
+  align-items: center;
+}
+.flex-item span {
+  margin-right: 15px;
+}

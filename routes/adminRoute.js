@@ -79,4 +79,13 @@ router.get('/order', auth.isAdminLogin, adminController.order)
 router.get('/order/items', auth.isAdminLogin, adminController.orderItem)
 router.post('/order/items/changeStatus', auth.isAdminLogin, adminController.changeOrderStatus)
 
+router.get('/coupon', auth.isAdminLogin, adminController.coupon)
+router.post('/coupon/addCoupon', auth.isAdminLogin, adminController.addCoupon)
+router.post('/coupon/deleteCoupon', auth.isAdminLogin, adminController.deleteCoupon)
+
+router.get('/salesReport', auth.isAdminLogin, adminController.salesReport)
+router.get('/salesReport/data', auth.isAdminLogin, adminController.salesReportData)
+
+
+
 module.exports = router;

@@ -72,18 +72,20 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <span class="menu-title">COUPON</span>
-                        <i class="mdi mdi-tag menu-icon"></i>
+                    <a class="nav-link" href="/admin/coupon">
+                      <span class="menu-title">COUPON</span>
+                      <i class="mdi mdi-tag menu-icon"></i>
                     </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="">
-                        <span class="menu-title">BANNER</span>
-                        <i class="mdi mdi-label menu-icon"></i>
+                  </li>
+          
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="/admin/salesReport">
+                      <span class="menu-title">SALES REPORT</span>
+          
+                      <i class="mdi menu-icon mdi-chart-line"></i>
                     </a>
-                </li>
+                  </li>
 
             </ul>
         </nav>
@@ -160,38 +162,64 @@
                                                 <%= item.paymentStatus %>
                                             </td>
                                             <td>
-                                                <%= item.orderStatus %>
-                                            </td>
-                                            <td>
-                                                <% if(item.orderStatus!="Cancelled" && item.orderStatus!="Returned"){ %>
-                                                <select class="statusChange" item-id="<%= item._id %>" order-id="<%= order._id %>" id="orderItemStatus-<%= item._id %>" name="orderStatus">
-                                                    <!-- <option value="pending" <%= item.orderStatus === 'Pending' ? 'selected' : '' %>>Pending</option> -->
-                                                    <% if(item.orderStatus=="Pending" ){ %>
-                                                        <option value="">Pending</option>
-                                                        <option value="Ordered">Ordered</option>
-                                                        <option value="Cancelled">Cancel</option>
-                                                        <% } %>
-
-                                                            <% if(item.orderStatus=="Ordered" ){ %>
-                                                                <option value="">Ordered</option>
-                                                                <option value="Shipped">Shipped</option>
-                                                                <option value="Cancelled">Cancel</option>
+                                                <% if(item.orderStatus=="REQUESTED_FOR_RETURN" ){ %>
+                                                    Return requested
+                                                    <br><span style="margin-top: 20px;">Reason: Size not fit</span>
+                                                    <% }else if(item.orderStatus=="RETURN_APPROVED"){ %>
+                                                        Return approved
+                                                            <% }else{ %>
+                                                                <%= item.orderStatus %>
                                                                 <% } %>
 
-                                                                    <% if(item.orderStatus=="Shipped" ){ %>
-                                                                        <option value="">Shipped</option>
-                                                                        <option value="Delivered">Delivered</option>
-                                                                        <option value="Cancelled">Cancel</option>
-                                                                        <% } %>
+                                            </td>
+                                            <td>
+                                                <% if(item.orderStatus!="Cancelled" && item.orderStatus!="Returned" ){
+                                                    %>
+                                                    <select class="statusChange form-control mr-3" item-id="<%= item._id %>"
+                                                        order-id="<%= order._id %>" id="orderItemStatus-<%= item._id %>"
+                                                        name="orderStatus">
+                                                        <!-- <select class="" id="edit-gender" style="width: 200px;"> -->
 
-                                                                            <% if(item.orderStatus=="Delivered" ){ %>
-                                                                                <option value="">Delivered</option>
-                                                                                <!-- <option value="Returned">Returned -->
-                                                                                </option>
-                                                                                <% } %>
+                                                        <!-- <option value="pending" <%= item.orderStatus === 'Pending' ? 'selected' : '' %>>Pending</option> -->
+                                                        <% if(item.orderStatus=="Pending" ){ %>
+                                                            <option value="">Pending</option>
+                                                            <option value="Ordered">Ordered</option>
+                                                            <option value="Cancelled">Cancel</option>
+                                                            <% } %>
 
-                                                </select>
-                                                <% } %>
+                                                                <% if(item.orderStatus=="Ordered" ){ %>
+                                                                    <option value="">Ordered</option>
+                                                                    <option value="Shipped">Shipped</option>
+                                                                    <option value="Cancelled">Cancel</option>
+                                                                    <% } %>
+
+                                                                        <% if(item.orderStatus=="Shipped" ){ %>
+                                                                            <option value="">Shipped</option>
+                                                                            <option value="Delivered">Delivered</option>
+                                                                            <option value="Cancelled">Cancel</option>
+                                                                            <% } %>
+
+                                                                                <% if(item.orderStatus=="Delivered" ){
+                                                                                    %>
+                                                                                    <option value="">Delivered</option>
+                                                                                 
+                                                                                    <% } %>
+
+                                                                                        <% if(item.orderStatus=="REQUESTED_FOR_RETURN"){ %>
+                                                                                            <option value=""></option>
+                                                                                            <option value="Approve">Approve</option>
+                                                                                            <option value="Reject">Reject</option>
+                                                                                       
+                                                                                            <% } %>
+
+                                                                                            <% if(item.orderStatus=="RETURN_APPROVED"){ %>
+                                                                                                <option value=""></option>
+                                                                                                <option value="Returned">Returned</option>
+                                                                                           
+                                                                                            <% } %>      
+
+                                                    </select>
+                                                    <% } %>
                                             </td>
                                             <td>
                                             </td>
@@ -204,6 +232,21 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3">
+                    <div class="card p-4">
+                        <span class="mb-4" style="font-weight: 600;">DELIVERY ADDRESS</span>
+                        <p>Name: <%= order.address.name %></p>
+                        <p>Phone: <%= order.address.phoneNumber %></p>
+                        <p>House No/Building/Apartment: <%= order.address.housenoBuildingApartment %></p>
+                        <p>Locality/Area/Street: <%= order.address.localityAreaStreet %></p>
+                        <p>Landmark: <%= order.address.landmark %></p>
+                        <p>City/District/Town: <%= order.address.cityDistrictTown %></p>
+                        <p>State: <%= order.address.state %></p>
+                        <p>Pincode: <%= order.address.pincode %></p>
                     </div>
                 </div>
 
@@ -224,27 +267,27 @@
 
             document.addEventListener("change", (event) => {
 
-                if(event.target && event.target.classList.contains("statusChange")){
-                  
+                if (event.target && event.target.classList.contains("statusChange")) {
+
                     let statusChange = event.target
 
                     const status = statusChange.value
                     const orderId = statusChange.getAttribute('order-id')
                     const itemId = statusChange.getAttribute('item-id')
 
-                    console.log("koipppt",statusChange);
+                    console.log("koipppt", statusChange);
 
 
-                axios.post('/admin/order/items/changeStatus', {status:status, orderId:orderId, itemId:itemId})
-                    .then((response) => {
-                        if (response.status == 200) {
-                            window.location.href = `/admin/order/items?oid=${orderId}`
+                    axios.post('/admin/order/items/changeStatus', { status: status, orderId: orderId, itemId: itemId })
+                        .then((response) => {
+                            if (response.status == 200) {
+                                window.location.href = `/admin/order/items?oid=${orderId}`
 
-                        }
-                    })
-                    .catch((error) => {
-                        console.log("it is an error", error)
-                    })
+                            }
+                        })
+                        .catch((error) => {
+                            console.log("it is an error", error)
+                        })
 
                 }
 

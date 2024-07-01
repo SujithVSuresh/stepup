@@ -28,10 +28,13 @@
                   <span>Amount</span>
                 </div>
                 <div class="one-eight text-center">
+                  <span>Payment</span>
+                </div>
+                <div class="one-eight text-center">
                   <span>Status</span>
                 </div>
                 <div class="one-eight text-center">
-                  <span>PAYMENT</span>
+                  <span>Method</span>
                 </div>
   
                 <div class="one-eight text-center px-4">
@@ -43,7 +46,8 @@
                 <% orders.forEach((order)=> { %>
 
                   <div class="product-cart d-flex" id="orderItemContainer<%= order._id %>">
-                    <div class="one-forth">
+                    <div class="one-forth" style="display: flex; justify-content: space-between;">
+                      <div>
                       <div class="product-img"
                         style="background-image: url('/static/images/<%= order.orderedItems[0].image %>');">
                       </div>
@@ -53,12 +57,25 @@
                         </span><br>
                         <span style="margin-left: 30px;" class="price">Date: <%- new
                             Date(order.orderedDate).toLocaleDateString() %></span><br>
+                      </div>
+                    </div>
 
+                      <div style="align-self: center;">
+                        <% if(order.paymentMethod!="COD" && order.paymentStatus=="Pending"){ %>
+                        <button>pay now</button>
+                        <% } %>
                       </div>
                     </div>
                     <div class="one-eight text-center">
                       <div class="display-tc">
                         <span class="price">₹ <%= order.totalAmount %></span>
+                      </div>
+                    </div>
+                    <div class="one-eight text-center">
+                      <div class="display-tc">
+                        <span class="price" style="color: rgb(252, 134, 0);">
+                          <%= order.paymentStatus %>
+                        </span>
                       </div>
                     </div>
                     <div class="one-eight text-center">
@@ -71,7 +88,7 @@
                     <div class="one-eight text-center">
                       <div class="display-tc">
                         <span class="price" id="total${item._id}">
-                          <%= order.paymentMethod %>
+                          <%= order.paymentMethod=="ONLINE_PAYMENT" ? "Online" : order.paymentMethod %>
                         </span>
                       </div>
                     </div>
@@ -168,7 +185,7 @@
             </div>
             <div class="one-eight text-center">
               <div class="display-tc">
-                <span class="price" style="color: rgb(252, 134, 0);">${item.orderStatus}</span>
+                <span class="price" style="color: rgb(252, 134, 0);">${item.orderStatus == "REQUESTED_FOR_RETURN" ? "Return requested" : item.orderStatus}</span>
 
               </div>
             </div>

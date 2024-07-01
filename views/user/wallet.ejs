@@ -1,0 +1,307 @@
+<%- include('./header', {isLogin: isLogin, cartCount: cartCount}) %>
+
+  <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="bread">
+            <span><a href="index.html">Home</a></span> / <span>Profile</span> /
+            <span>Wallet</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="colorlib-product">
+    <div class="container">
+      <div class="row row-pb-lg d-flex flex-row justify-content-center">
+        <div class="col-md-6">
+          <div class="d-flex flex-column justify-content-between text-white"
+            style="background: linear-gradient(40deg, #001B7B, rgb(0, 0, 0));; height: 300px; border-radius: 40px; padding: 35px;">
+            <div class="d-flex justify-content-between">
+              <span style="font-weight: 600; font-size: 25px;">STEPUP WALLET</span>
+
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex flex-column">
+                <span style="font-size: 18px; margin-bottom: 10px;">BALANCE: ₹ <%= wallet?.balance %></span>
+                <span style="font-size: 18px;">ADD MONEY <a
+                    style="border: white 1px solid; border-radius: 0px; width: 10px; padding: 0px 5px; color: white; border-radius: 180px;"
+                    data-toggle="modal" data-target="#addMoneyModal">+</a></span>
+              </div>
+              <span style="font-size: 18px;" class="text-uppercase">
+                <%= wallet.userId.firstName %>
+                  <%= wallet.userId.lastName %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-pb-lg">
+        <div class="col-md-12">
+
+          <div class="row row-pb-lg">
+            <div class="col-md-12">
+              <div class="product-name d-flex">
+
+                <div class="one-eight text-center">
+                  <span>Amount</span>
+                </div>
+
+                <div class="one-eight text-center">
+                </div>
+
+                <div class="one-eight text-center">
+                  <span>Type</span>
+                </div>
+
+                <div class="one-eight text-center">
+                </div>
+
+                <div class="one-eight text-center">
+                  <span>Date</span>
+                </div>
+
+
+                <div class="one-forth text-center px-4">
+                  <span>Order Details</span>
+                </div>
+              </div>
+
+
+              <% wallet?.history.forEach((transaction)=> { %>
+
+                <div class="product-cart d-flex" style="height: 40px;">
+
+                  <div class="one-eight text-center">
+                    <span>₹ <%= transaction.amount %></span>
+                  </div>
+
+                  <div class="one-eight text-center">
+                  </div>
+
+                  <div class="one-eight text-center">
+                    <span>
+                      <%= transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1) %>
+                    </span>
+                  </div>
+
+                  <div class="one-eight text-center">
+                  </div>
+
+                  <div class="one-eight text-center">
+                    <span>
+                      <%= transaction.date.toISOString().slice(0, 10) %>
+                    </span>
+                  </div>
+
+
+                  <div class="one-forth text-center px-4">
+                    <span>
+                      <%= transaction.description %>
+                    </span>
+                  </div>
+                </div>
+
+
+                <% }) %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- Order items Modal -->
+  <div class="modal fade" id="addMoneyModal" tabindex="-1" role="dialog" aria-labelledby="orderItemLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document" style="width: 25%;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="billingModalLabel"><span id="showOrderId"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+
+        <div class="modal-body">
+          <form method="post" class="colorlib-form" id="walletAmountForm">
+            <!-- <h2>Billing Details</h2> -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="amount">ENTER AMOUNT</label>
+                  <input type="text" id="addToWalletAmount" class="form-control" placeholder="Enter amount" />
+                  <span id="amountError" style="color: red;"></span>
+
+                </div>
+              </div>
+
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" id="addAmountToWalletBtn" class="btn btn-primary">
+              Add money
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+
+
+      const amountError = document.getElementById('amountError')
+      const walletAmountForm = document.getElementById('walletAmountForm')
+      const addAmountToWalletBtn = document.getElementById('addAmountToWalletBtn')
+
+
+      function walletPaymentSuccess(amount) {
+
+        axios.post('/profile/wallet/addMoney', { amount })
+          .then((response) => {
+            if (response.status == 200) {
+              console.log("priii", response.data)
+              new Noty({
+                type: "success",
+                text: response.data.message,
+                timeout: 3000,
+                layout: "bottomCenter",
+                theme: "metroui",
+                animation: {
+                  open: "animated bounceInRight",
+                  close: "animated bounceOutRight",
+                },
+              }).show();
+            }
+          })
+          .catch((error) => {
+            console.log("it is an error123", error)
+            if (error.response.status == 404) {
+
+              new Noty({
+                type: 'error',
+                text: error.response.data.message,
+                timeout: 3000,
+                layout: 'bottomCenter',
+                theme: 'metroui',
+              }).show();
+
+            }
+          })
+
+      }
+
+      addAmountToWalletBtn.addEventListener('click', (event) => {
+        event.preventDefault()
+
+        const amount = document.getElementById('addToWalletAmount').value
+
+        let isValid = true
+
+        if (!amount.trim()) {
+          console.log(amount)
+          amountError.textContent = "This field is required";
+          isValid = false;
+        } else if (!/^(?!0\d)\d+(\.\d+)?$/.test(amount)) {
+          amountError.textContent = "Enter a valid amount";
+          isValid = false;
+        } else {
+          amountError.textContent = "";
+        }
+
+        if (isValid) {
+
+          axios.post('/profile/wallet/createOrder', { amount: amount })
+            .then((response) => {
+              if (response.status == 200) {
+                const data = response.data
+                console.log("lll", data)
+
+                var options = {
+                  "key": "rzp_test_3v8uE4x50656nf",
+                  "amount": data.razOrder.amount,
+                  "currency": "INR",
+                  "name": "STEPUP",
+                  "order_id": data.razOrder.id,
+                  "handler": function (response) {
+                    // Payment success handler
+                    walletPaymentSuccess(data.razOrder.amount)
+                  },
+                  "theme": {
+                    "color": "#66BCEE"
+                  },
+                  "modal": {
+                    "ondismiss": function () {
+                      // Payment dismiss handler
+                      console.log("payment dismissed.")
+                    }
+                  }
+                };
+                var razorpayObject = new Razorpay(options);
+                razorpayObject.on('payment.failed', function (response) {
+                  // Payment failure handler
+                  new Noty({
+                  type: 'error',
+                  text: "Payment failed",
+                  timeout: 3000,
+                  layout: 'bottomCenter',
+                  theme: 'metroui',
+                }).show();
+                });
+
+
+                razorpayObject.open();
+
+
+              }
+            })
+            .catch((error) => {
+              console.log("it is an error123", error)
+              if (error.response.status == 409) {
+                new Noty({
+                  type: 'error',
+                  text: error.response.data.message,
+                  timeout: 3000,
+                  layout: 'bottomCenter',
+                  theme: 'metroui',
+                }).show();
+
+              }
+            })
+
+        }
+
+      })
+
+
+
+
+
+    })
+
+
+  </script>
+
+  <%- include('./footer') %>

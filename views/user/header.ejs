@@ -59,7 +59,7 @@
 			            <form class="search-wrap">
 			               <div class="form-group">
 			                  <input type="search" id="searchInput" class="form-control search" placeholder="Search">
-			                  <button class="btn btn-primary submit-search text-center" type="submit"><i class="icon-search"></i></button>
+			                  <button style="border-color: #008AD8;" class="btn btn-light bg-white submit-search text-center" type="submit"><i style="color: #008AD8;" class="icon-search"></i></button>
 			               </div>
 			            </form>
 			         </div>
@@ -71,11 +71,15 @@
 								<li><a href="/shop">Shop</a></li>
 								<li><a href="">About</a></li>
 								<li><a href="">Contact</a></li>
+
 								<li class="cart"><a href="/shop/cart"><i class="icon-shopping-cart"></i> Cart [<span id="mainCartCount">
 					
 									<%= cartCount %>
 							
 							</span>]</a></li>
+
+								<li class="cart"><a href="/shop/wishlist"><i class="icon-heart"></i> Wishlist</a></li>
+						
 								<% if (isLogin) { %>
 								<li class="has-dropdown cart">
 									<a style="cursor: pointer; color: black;"><i class="icon-user"> </i> Profile</a>
@@ -95,7 +99,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="sale">
+			<div class="sale" style="background-color: #008AD8;">
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-8 offset-sm-2 text-center">

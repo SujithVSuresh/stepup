@@ -35,7 +35,7 @@
       <div class="row">
         <div class="col-lg-8">
           <!--   -->
-          <div class="container cart-detail">
+          <div class="container cart-detail" style="background-color: #f0faff;">
             <h2>Delivery Address</h2>
 
             <div class="address-selection-checkout">
@@ -60,138 +60,27 @@
                     <% } else { %>
                       <h3 style="color: gray; text-align: center">No address found !</h3>
                       <% } %>
-
-                        <!-- <div class="address-card">
-              <input
-                type="radio"
-                id="address2"
-                name="address"
-                class="address-radio"
-              />
-              <label for="address2">
-                <p><strong>Sujith V S</strong></p>
-                <p>
-                  Kinfra Techno Industrial Part, Calicut University PO,<br />
-                  Kakkancheri, Kerala 673635
-                </p>
-                <p>Phone: 8590369084</p>
-              </label>
-            </div> -->
-
                         <button style="
-                width: 30%;
-                border-radius: 10px;
-                height: 50px;
-                margin-top: 15px;
-              " class="btn btn-primary" data-toggle="modal" data-target="#billingModal">
+                        background-color: #66BCEE;
+                        color: white;
+                        border: none;
+                        width: 25%;
+                        border-radius: 10px;
+                        margin-top: 15px;" class="btn btn-primary btn-sm" data-toggle="modal"
+                          data-target="#billingModal">
                           Add Address
                         </button>
             </div>
           </div>
-
-          <!-- <form method="post" class="colorlib-form">
-							<h2>Billing Details</h2>
-		              	<div class="row">
-			               <div class="col-md-12">
-			                  <div class="form-group">
-			                  	<label for="country">Select Country</label>
-			                     <div class="form-field">
-			                     	<i class="icon icon-arrow-down3"></i>
-			                        <select name="people" id="people" class="form-control">
-				                      	<option value="#">Select country</option>
-				                        <option value="#">Alaska</option>
-				                        <option value="#">China</option>
-				                        <option value="#">Japan</option>
-				                        <option value="#">Korea</option>
-				                        <option value="#">Philippines</option>
-			                        </select>
-			                     </div>
-			                  </div>
-			               </div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="fname">First Name</label>
-										<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="lname">Last Name</label>
-										<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<label for="companyname">Company Name</label>
-			                    	<input type="text" id="companyname" class="form-control" placeholder="Company Name">
-			                  </div>
-			               </div>
-
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="fname">Address</label>
-			                    	<input type="text" id="address" class="form-control" placeholder="Enter Your Address">
-			                  </div>
-			                  <div class="form-group">
-			                    	<input type="text" id="address2" class="form-control" placeholder="Second Address">
-			                  </div>
-			               </div>
-			            
-			               <div class="col-md-12">
-									<div class="form-group">
-										<label for="companyname">Town/City</label>
-			                    	<input type="text" id="towncity" class="form-control" placeholder="Town or City">
-			                  </div>
-			               </div>
-			            
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="stateprovince">State/Province</label>
-										<input type="text" id="fname" class="form-control" placeholder="State Province">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="lname">Zip/Postal Code</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="Zip / Postal">
-									</div>
-								</div>
-							
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="email">E-mail Address</label>
-										<input type="text" id="email" class="form-control" placeholder="State Province">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label for="Phone">Phone Number</label>
-										<input type="text" id="zippostalcode" class="form-control" placeholder="">
-									</div>
-								</div>
-
-								<div class="col-md-12">
-									<div class="form-group">
-										<div class="radio">
-										  <label><input type="radio" name="optradio"> Create an Account? </label>
-										  <label><input type="radio" name="optradio"> Ship to different address</label>
-										</div>
-									</div>
-								</div>
-		               </div>
-		            </form> -->
         </div>
-
         <div class="col-lg-4">
           <div class="row">
             <div class="col-md-12">
-              <div class="cart-detail">
+              <div class="cart-detail" style="background-color: #f0faff;">
                 <h2>Cart Total</h2>
                 <ul>
                   <li>
-            
+
                     <ul>
                       <% cart.items.map(function(item){ %>
                         <% if(item.productId.quantity !=0){ %>
@@ -210,14 +99,18 @@
                     <span>₹ <%= totalAmountDetails.totalPrice %></span>
                   </li>
                   <li>
+                    <span>Discount</span>
+                    <span>₹ <%= totalAmountDetails.couponDiscount %></span>
+                  </li>
+                  <li>
                     <span>Shipping</span>
                     <span>₹ <%= totalAmountDetails.shippingPrice %></span>
                   </li>
                   <li style="font-weight:600;">
-                    
+
                     <span>Total Amount</span>
                     <span>₹ <%= totalAmountDetails.totalAmount %></span>
-     
+
                   </li>
                 </ul>
               </div>
@@ -226,7 +119,7 @@
             <div class="w-100"></div>
 
             <div class="col-md-12">
-              <div class="cart-detail">
+              <div class="cart-detail" style="background-color: #f0faff;">
                 <h2>Payment Method</h2>
                 <div class="form-group">
                   <div class="col-md-12">
@@ -255,15 +148,20 @@
               </div>
             </div>
           </div>
+
           <div class="row">
             <div class="col-md-12 text-center">
               <a style="
+              background-color: #66BCEE;
+              color: white;
+              border: none;
                 width: 100%;
                 border-radius: 10px;
                 height: 50px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+       
               " class="btn btn-primary" href="" id="placeAnOrderBtn">
                 Place an Order
               </a>
@@ -362,6 +260,8 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <script>
     document.addEventListener("DOMContentLoaded", (event) => {
       const states = [
@@ -427,13 +327,17 @@
         if (event.target && event.target.id == "placeAnOrderBtn") {
           event.preventDefault();
 
+
+
           if (
             walletPayment.checked ||
             codPayment.checked ||
             onlinePayment.checked
           ) {
+
             let choosenAddress = "";
             let choosenPayment = walletPayment.checked ? walletPayment.value : codPayment.checked ? codPayment.value : onlinePayment.value
+
 
             if (address.length > 0) {
               address.forEach((item) => {
@@ -448,7 +352,58 @@
               .post("/shop/placeOrder", { deliveryAddress: choosenAddress, paymentMethod: choosenPayment })
               .then((response) => {
                 if (response.status == 200) {
-                  window.location.href="/shop/orderComplete"
+                  let data = response.data
+                  if (data.pMethod == "COD") {
+
+                    window.location.href = `/shop/orderComplete?oid=${data.order._id}`
+                  } else if (data.pMethod == "ONLINE_PAYMENT") {
+                    var options = {
+                      "key": "rzp_test_3v8uE4x50656nf",
+                      "amount": data.razOrder.amount,
+                      "currency": "INR",
+                      "name": "STEPUP",
+                      "description": "Pay & Checkout this Course, Upgrade your DSA Skill",
+                      "image": "https://media.geeksforgeeks.org/wp-content/uploads/20210806114908/dummy-200x200.png",
+                      "order_id": data.razOrder.id,
+                      "handler": function (response) {
+                        //  console.log(response, "thaiii", data.razOrder.amount)
+                        //  alert("This step of Payment Succeeded");
+                        window.location.href = `/shop/orderComplete?oid=${data.order._id}`
+
+                      },
+                      "prefill": {
+                        //Here we are prefilling random contact
+                        "contact": "9876543210",
+                        //name and email id, so while checkout
+                        "name": "Twinkle Sharma",
+                        "email": "smtwinkle@gmail.com",
+                      },
+                      "notes": {
+                        "description": "Best Course for SDE placements",
+                        "language": "Available in 4 major Languages JAVA, C/C++, Python, Javascript",
+                        "access": "This course have Lifetime Access"
+                      },
+                      "theme": {
+                        "color": "#66BCEE"
+                      },
+                      "modal": {
+                        "ondismiss": function () {
+                          window.location.href = "/profile/order";
+                        }
+                      }
+                    };
+                    var razorpayObject = new Razorpay(options);
+                    razorpayObject.on('payment.failed', function (response) {
+                      // window.location.href = `/shop/orderComplete?oid=${response.data.order._id}` 
+                      window.location.href = "/profile/order";
+                    });
+
+                    //  document.getElementById('pay-button').onclick = function(e){
+                    razorpayObject.open();
+                    //      e.preventDefault();
+                    //  }
+
+                  }
 
                 }
               })
@@ -464,7 +419,6 @@
                   }).show();
                 }
               });
-
 
           } else {
             console.log("choose a payment method");

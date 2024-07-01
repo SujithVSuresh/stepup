@@ -1,0 +1,395 @@
+<%- include('./header', {adminName: adminName}) %>
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+
+        <!-- <li class="nav-item nav-profile">
+        <a href="#" class="nav-link">
+          <div class="nav-profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile">
+            <span class="login-status online"></span>
+
+          </div>
+          <div class="nav-profile-text d-flex flex-column">
+            <span class="font-weight-bold mb-2">David Grey. H</span>
+            <span class="text-secondary text-small">Project Manager</span>
+          </div> 
+          <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+        </a>
+      </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/dashboard">
+            <span class="menu-title">DASHBOARD</span>
+            <i class="mdi mdi-home menu-icon"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#ui-products" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-title">PRODUCTS</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi menu-icon mdi-shoe-formal" style="font-size: 24px;"></i>
+          </a>
+          <div class="collapse" id="ui-products">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/admin/products">LISTED</a></li>
+              <li class="nav-item"> <a class="nav-link" href="">UNLISTED</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/users">
+            <span class="menu-title">USERS</span>
+            <i class="mdi menu-icon mdi-account-multiple"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#ui-categories" aria-expanded="false"
+            aria-controls="ui-basic">
+            <span class="menu-title">CATEGORIES</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi mdi-cube-outline menu-icon"></i>
+          </a>
+          <div class="collapse" id="ui-categories">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="/admin/category">LISTED</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/admin/category/unlisted">UNLISTED</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/order">
+            <span class="menu-title">ORDERS</span>
+            <i class="mdi mdi-cart menu-icon"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/coupon">
+            <span class="menu-title">COUPON</span>
+            <i class="mdi mdi-tag menu-icon"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/salesReport">
+            <span class="menu-title text-dark">SALES REPORT</span>
+
+            <i class="mdi menu-icon mdi-chart-line text-dark"></i>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- partial -->
+    <div class="main-panel">
+      <div class="content-wrapper">
+
+        <div class="page-header">
+          <h3 class="page-title">
+            <span class="page-title-icon bg-dark  text-white mr-2">
+              <i class="mdi menu-icon mdi-chart-line"></i>
+            </span> SALES REPORT
+          </h3>
+          <nav aria-label="breadcrumb">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">
+                <!-- <span></span> <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i> -->
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="col-lg-12 grid-margin stretch-card">
+
+
+          <div class="card">
+            <div class="card-body">
+
+              <div class="flex-container">
+                <div class="p-2 flex-item">
+           
+                  <input type="text" placeholder="CHOOSE DATE RANGE" id="datepicker" style="width: 200px; background-color: white;" class="form-control mr-3">
+             
+                    <select class="form-control mr-3" id="dateFilter" style="width: 200px;">
+                      <option value="">CHOOSE DAY/WEEK/MONTH/YEAR</option>
+                      <option value="day">Day</option>
+                      <option value="week">Week</option>
+                      <option value="month">Month</option>
+                      <option value="year">Year</option>
+                    </select>
+
+                    <button type="button" id="filterBtn" class="btn btn-outline-secondary">
+                      <i class="mdi menu-icon mdi-filter-outline" style="font-size: 20px;"></i>
+
+                    </button>
+
+                 
+                </div>
+                <div class="p-2 flex-item">
+                  <span class="mr-2">DOWNLOAD</span>
+                  <button type="button" id="downloadPDF" class="btn btn-outline-dark btn-sm mr-2">PDF</button>
+                  <button type="button" id="downloadExcel" class="btn btn-outline-dark btn-sm">EXCEL</button>
+                </div>
+              </div>
+
+              <div class="flex-container mt-5" style="justify-content: center;">
+                <div class="p-2 flex-item">
+
+                  <span class="mr-5">TOTAL ORDERS: <span id="totalOrders"></span></span>
+                  <span class="mr-5">TOTAL SALES: <span id="totalSales"></span></span>
+                  <!-- <span class="mr-5">TOTAL REVENUE: <span id="totalRevenue"></span></span> -->
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+
+
+
+              <table class="table table-hover" id="orderTable">
+                <thead>
+                  <tr>
+                    <th>ORDER ID</th>
+                    <th>ORDERED DATE</th>
+                    <th>DELIVERED DATE</th>
+                    <th>USER</th>
+                    <th>PAYMENT</th>
+                    <th>ITEM</th>
+                    <th>PRICE</th>
+                    <th>QUANTITY</th>
+                    <th>TOTAL</th>
+                  </tr>
+                </thead>
+
+
+
+                <tbody id="table-container">
+                  
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+
+
+    </div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.22/jspdf.plugin.autotable.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+
+
+  <%- include('./loader') %>
+    <script>
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        let fromStrDate
+        let toStrDate
+
+        const tableContainer = document.getElementById('table-container')
+        const dateFilter = document.getElementById('dateFilter')
+        const filterBtn = document.getElementById('filterBtn')
+
+        const totalOrders = document.getElementById('totalOrders')
+        const totalSales = document.getElementById('totalSales')
+        // const totalRevenue = document.getElementById('totalRevenue')
+
+        fetchSalesData()
+
+        document.getElementById('downloadExcel').addEventListener('click', function () {
+            // Select the table
+            var table = document.getElementById('orderTable');
+
+            // Convert table to worksheet
+            var wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+            // Create an Excel file
+            var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+            // Function to convert string to ArrayBuffer
+            function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+            }
+
+            // Save the file
+            saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'order_details.xlsx');
+        });
+
+
+        document.getElementById('downloadPDF').addEventListener('click', function () {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            let content = "Total revenue: "
+
+            doc.text("SALES REPORT", 85, 15); 
+
+              // Add content to PDF
+              doc.text(`Total orders: ${totalOrders.innerText}`, 15, 30); // Positioning "Total revenue"
+              doc.text(`Total sales: ${totalSales.innerText}`, 15, 40);
+
+
+              let todayDate = new Date()
+            doc.text(String(todayDate.toISOString().slice(0, 10)), 160, 15); // Positioning "Total sales" on the same row
+
+            doc.autoTable({ html: '#orderTable', startY: 50 });
+
+            doc.save('order_details.pdf');
+        });
+
+        function fetchSalesData(filterType="", fromStrDate="", toStrDate=""){
+          console.log("ll", toStrDate, fromStrDate, "ll")
+          axios.get(`/admin/salesReport/data?filter=${filterType}&gte=${fromStrDate}&lte=${toStrDate}`)
+            .then((response) => {
+                if(response.status == 200){
+                  const data = response.data
+                  console.log("lop123", data.orders)
+                  tableContainer.innerHTML = ""
+
+                  totalOrders.innerText = data.totalOrders[0].count
+                  totalSales.innerText = data.totalSales[0].count
+
+                  console.log("jii", data.orders);
+
+                  data.orders.forEach((order) => {
+                  console.log("ll");
+                     order.items.forEach((item)=> { 
+                    tableContainer.innerHTML += `
+                      <tr>
+                        <td>
+                          ${order.orderId}
+                        </td>
+                        <td>
+                          ${item.orderedDate.substring(0, 10)}
+                        </td>
+                        <td>
+                          ${item.deliveredDate.substring(0, 10)}
+                        </td>
+                        <td>
+                          ${item.deliveredDate.substring(0, 10)}
+                        </td>
+                        <td>
+                          ${order.paymentMethod=="ONLINE_PAYMENT" ? "ONLINE" : order.paymentMethod}
+                        </td>
+                        <td>
+                          ${item.modelName}(${item.color}, ${item.size})
+                        </td>
+                        <td>
+                          ${item.price}
+                        </td>
+                        <td>
+                          ${item.quantity}
+                        </td>
+
+                        <td>
+                          ${item.price*item.quantity}
+                        </td>
+                      </tr>
+                    
+                    
+                    `
+
+                     })
+
+                  })
+                }
+            })
+            .catch((error) => {
+                console.log("it is an error", error)
+            })
+        }
+
+        
+
+        flatpickr("#datepicker", {
+          mode: "range",
+          minDate: "2024-01-01",
+          dateFormat: "Y-m-d",
+          onChange: function(selectedDates, dateStr, instance) {
+            console.log(dateStr, instance, "lop");
+            dateFilter.value = ""
+                    
+            if (selectedDates.length === 2) {
+        const fromDate = selectedDates[0];
+        const toDate = selectedDates[1];
+        fromStrDate = instance.formatDate(fromDate, "Y-m-d"); // Format fromDate as a string
+        toStrDate = instance.formatDate(toDate, "Y-m-d"); // Format toDate as a string
+
+      }
+                },
+          disable: [
+            function (date) {
+              // disable every multiple of 8
+              // return !(date.getDate() % 8);
+            }
+          ]
+        });
+
+        dateFilter.addEventListener('change', (event) => {
+
+          
+          document.getElementById('datepicker').value = ""
+           
+          
+        })
+
+
+            document.addEventListener('click', (event) => {
+
+              if(event.target && event.target.id == "filterBtn"){
+
+                console.log(dateFilter.value)
+
+                if(dateFilter.value){
+                  fetchSalesData(dateFilter.value)
+                }else{
+                  console.log(fromStrDate, toStrDate, "llop");
+                  fetchSalesData("date", fromStrDate, toStrDate)
+                }
+
+
+              }
+
+            })
+
+
+      })
+
+
+
+
+
+    </script>
+
+    <%- include('./footer') %>

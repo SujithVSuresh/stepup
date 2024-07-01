@@ -80,16 +80,18 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="">
+          <a class="nav-link" href="/admin/coupon">
             <span class="menu-title">COUPON</span>
             <i class="mdi mdi-tag menu-icon"></i>
           </a>
         </li>
 
+        
         <li class="nav-item">
-          <a class="nav-link" href="">
-            <span class="menu-title">BANNER</span>
-            <i class="mdi mdi-label menu-icon"></i>
+          <a class="nav-link" href="/admin/salesReport">
+            <span class="menu-title">SALES REPORT</span>
+
+            <i class="mdi menu-icon mdi-chart-line"></i>
           </a>
         </li>
       </ul>
@@ -1250,12 +1252,6 @@
           let productId = varientBtn.getAttribute("data-product-id");
           let colorNameTag = document.getElementById("colorNameTag");
 
-          //closing subvarient edit and add form on varient btn click
-          // subVarientEditformContainer.style.display = "none";
-          // subVarientAddformContainer.style.display = "none";
-
-          console.log("lokam...............", subVarientAddformContainer);
-
           let imageGroup = document.getElementById("imageGroup");
 
           const colorSelection = document.getElementById("colorSelection");
@@ -1386,7 +1382,6 @@
 
           })
 
-          console.log(selectedColor, imageEditPreviewOne, imageEditPreviewTwo, imageEditPreviewThree, imageEditPreviewFour, "color selected..........");
         }
 
         //COLOR VARIENT DELETE
@@ -1760,7 +1755,7 @@
         }
       }
 
-      //PRODUCT SELECT AND CROPPING
+      //---------------------------------PRODUCT SELECT AND CROPPING-----------------------------------------------
       let cropperOne, cropperTwo, cropperThree, cropperFour;
 
       document.addEventListener("change", (event) => {
@@ -2040,196 +2035,7 @@
           }
         }
       });
-      // let cropperOne;
-      // let cropperTwo;
-      // let cropperThree;
-      // let cropperFour;
 
-      // document.addEventListener("change", (event) => {
-      //   if (
-      //     event.target &&
-      //     (event.target.id == "productImageOne" ||
-      //       event.target.id == "productImageTwo" ||
-      //       event.target.id == "productImageThree" ||
-      //       event.target.id == "productImageFour")
-      //   )
-      //   console.log("Hey this is the id.", event.target.id);
-      //   readURL(event.target);
-      // });
-
-      // function readURL(input) {
-      //   if (input.files && input.files[0]) {
-      //     const reader = new FileReader();
-
-      //     reader.onload = function (e) {
-      //       const imgElement = document.createElement("img");
-      //       imgElement.src = e.target.result;
-      //       imgElement.alt = "Category Image";
-      //       imgElement.id = `cropperImage${input.id}`;
-      //       imgElement.style.objectFit = "contain";
-      //       imgElement.classList.add("img-thumbnail");
-
-      //       console.log("kkk1", input.id, "kkk");
-
-      //       if (input.id == "productImageOne") {
-      //         let imagePreviewContainer =
-      //          document.getElementById("imagePreviewOne");
-
-      //         imagePreviewContainer.innerHTML = "";
-      //         imagePreviewContainer.appendChild(imgElement);
-
-      //         imgElement.addEventListener("load", function () {
-      //           if (cropperOne) {
-      //             cropperOne.destroy();
-      //           }
-
-      //           cropperOne = new Cropper(imgElement, {
-      //             aspectRatio: 1 / 1,
-      //             viewMode: 2,
-      //             autoCropArea: 1,
-      //             movable: true,
-      //             zoomable: true,
-      //             scalable: true,
-      //             rotatable: true,
-      //             minContainerWidth: 100,
-      //             minContainerHeight: 200,
-      //           });
-      //         });
-      //       } else if (input.id == "productImageTwo") {
-      //         let imagePreviewContainer =
-      //           document.getElementById("imagePreviewTwo");
-      //         imagePreviewContainer.innerHTML = "";
-      //         imagePreviewContainer.appendChild(imgElement);
-
-      //         imgElement.addEventListener("load", function () {
-      //           if (cropperTwo) {
-      //             cropperTwo.destroy();
-      //           }
-
-      //           cropperTwo = new Cropper(imgElement, {
-      //             aspectRatio: 1 / 1,
-      //             viewMode: 2,
-      //             autoCropArea: 1,
-      //             movable: true,
-      //             zoomable: true,
-      //             scalable: true,
-      //             rotatable: true,
-      //             minContainerWidth: 100,
-      //             minContainerHeight: 200,
-      //           });
-      //         });
-      //       } else if (input.id == "productImageThree") {
-      //         let imagePreviewContainer =
-      //           document.getElementById("imagePreviewThree");
-      //         imagePreviewContainer.innerHTML = "";
-      //         imagePreviewContainer.appendChild(imgElement);
-
-      //         imgElement.addEventListener("load", function () {
-      //           if (cropperThree) {
-      //             cropperThree.destroy();
-      //           }
-
-      //           cropperThree = new Cropper(imgElement, {
-      //             aspectRatio: 1 / 1,
-      //             viewMode: 2,
-      //             autoCropArea: 1,
-      //             movable: true,
-      //             zoomable: true,
-      //             scalable: true,
-      //             rotatable: true,
-      //             minContainerWidth: 100,
-      //             minContainerHeight: 200,
-      //           });
-      //         });
-      //       } else if (input.id == "productImageFour") {
-      //         let imagePreviewContainer =
-      //           document.getElementById("imagePreviewFour");
-      //         imagePreviewContainer.innerHTML = "";
-      //         imagePreviewContainer.appendChild(imgElement);
-
-      //         imgElement.addEventListener("load", function () {
-      //           if (cropperFour) {
-      //             cropperFour.destroy();
-      //           }
-
-      //           cropperFour = new Cropper(imgElement, {
-      //             aspectRatio: 1 / 1,
-      //             viewMode: 2,
-      //             autoCropArea: 1,
-      //             movable: true,
-      //             zoomable: true,
-      //             scalable: true,
-      //             rotatable: true,
-      //             minContainerWidth: 100,
-      //             minContainerHeight: 200,
-      //           });
-      //         });
-      //       }
-      //     };
-
-      //     reader.readAsDataURL(input.files[0]);
-
-      //     console.log(input.files[0], "Hey Solaman");
-      //   }
-      // }
-
-      // const productColorVarientForm = document.getElementById(
-      //   "product-color-varient-form"
-      // );
-
-      // productColorVarientForm.addEventListener("submit", (event) => {
-      //   event.preventDefault();
-
-      //   let colorName = document.getElementById("colorName").value;
-      //   let colorCode = document.getElementById("colorCode").value;
-
-      //   console.log(cropperOne, cropperTwo, cropperThree, cropperFour, "Hey, I am sujith");
-
-      //   if (cropperOne && cropperTwo && cropperThree && cropperFour) {
-      //     const formData = new FormData();
-
-      //     const getBlobFromCropper = (cropper) => {
-
-      //       return new Promise((resolve) => {
-      //         cropper.getCroppedCanvas().toBlob((blob) => {
-      //           resolve(blob);
-      //         });
-      //       });
-      //     };
-
-      //     Promise.all([
-      //       getBlobFromCropper(cropperOne),
-      //       getBlobFromCropper(cropperTwo),
-      //       getBlobFromCropper(cropperThree),
-      //       getBlobFromCropper(cropperFour),
-      //     ])
-      //       .then((blobs) => {
-      //         formData.append("productImgOne", blobs[0]);
-      //         formData.append("productImgTwo", blobs[1]);
-      //         formData.append("productImgThree", blobs[2]);
-      //         formData.append("productImgFour", blobs[3]);
-      //         formData.append("colorName", colorName);
-      //         formData.append("colorCode", colorCode);
-
-      //         console.log("All blobs appended");
-      //         //POST REQUEST - ADD COLOR VARIENT
-
-      //         axios
-      //           .post("/admin/addProduct/colorVarient", formData)
-      //           .then((response) => {
-      //             if (response.status === 200) {
-
-      //             }
-      //           })
-      //           .catch((error) => {
-      //             console.log("it is an error", error);
-      //           });
-      //       })
-      //       .catch((error) => {
-      //         console.error("Error creating blobs:", error);
-      //       });
-      //   }
-      // });
 
       //ADD PRODUCT EVENT HANDLER
       const productForm = document.getElementById("product-form");
@@ -2253,21 +2059,6 @@
 
         let isValid = true;
 
-        // if (!model.trim()) {
-        //       quantityEditError.textContent = "Model name is required";
-        //       isValid = false;
-        //     } else if (quantityEdit && quantityEdit < 0) {
-        //       quantityEditError.textContent = "Enter a valid quantity";
-        //       isValid = false;
-        //     } else if (!/^\d+$/.test(quantityEdit)) {
-        //       quantityEditError.textContent = "Enter a valid quantity";
-        //       isValid = false;
-        //     } else if (/\s/.test(quantityEdit) && /^\s|\s$/.test(quantityEdit)) {
-        //       quantityEditError.textContent = "Enter a valid quantity";
-        //       isValid = false;
-        //     } else {
-        //       quantityEditError.textContent = "";
-        //     }
 
         if (!model.trim()) {
           modelNameError.textContent = "Model name is required";
@@ -2384,12 +2175,6 @@
           });
       });
     </script>
-
-    <!-- <td>${
-    product.isActive
-      ? `<span class="text-success">ACTIVE</span>`
-       : `<span class="text-danger">INACTIVE</span>`
-  }</td> -->
 
 
     <%- include('./footer') %>

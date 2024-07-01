@@ -10,9 +10,17 @@ const isLogin = async (req, res, next) => {
     if (user) {
       next();
     } else {
-      res.redirect("/logout");
+      if (req.session.userId) {
+        delete req.session.userId;
+      }else if(req.session.gUser){
+        delete req.session.gUser
+      }
+  
+      res.redirect("/signin");
     }
   } else {
+    console.log("hey redirect response", req.originalUrl)
+    req.session.redirectTo = req.originalUrl;
     res.redirect("/signin");
   }
 };

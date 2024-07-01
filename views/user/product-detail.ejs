@@ -20,50 +20,34 @@
 	<div class="colorlib-product">
 		<div class="container">
 			<div class="row row-pb-lg product-detail-wrap">
-				<div class="col-sm-8">
-					<div class="owl-carousel" id="product-image-container">
+				<div class="col-sm-1">
 
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img id="img1" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
-							</div>
-						</div>
+					<img id="img1" src="" class="img-fluid border mb-2 sideImg" alt="Free html5 bootstrap 4 template">
+					<img id="img2" src="" class="img-fluid border mb-2 sideImg" alt="Free html5 bootstrap 4 template">
+					<img id="img3" src="" class="img-fluid border mb-2 sideImg" alt="Free html5 bootstrap 4 template">
+					<img id="img4" src="" class="img-fluid border sideImg" alt="Free html5 bootstrap 4 template">
 
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img id="img2" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
-							</div>
-						</div>
-
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img id="img3" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
-							</div>
-						</div>
-
-						<div class="item">
-							<div class="product-entry border">
-								<a href="#" class="prod-img">
-									<img id="img4" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
-								</a>
-							</div>
-						</div>
-
-
-					</div>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-6 product-image-container">
+
+					<div class="product-image">
+						<img id="showImg" src="" class="img-fluid" alt="Free html5 bootstrap 4 template">
+					</div>
+
+
+					<div id="zoomLens"></div>
+					<div id="zoomResult"></div>
+				</div>
+				<div class="col-sm-5">
 					<div class="product-desc product-details">
+						
 						<!--product details -->
-						<p style="font-weight: bold; font-size: 26px; color: black;" id="product-title"><span
-								id="show-model-name"></span> <span id="show-category-name"></span> for <span
-								id="show-gender"></span></p>
+						<p style="font-weight: bold; font-size: 26px; color: black;" class="text-uppercase"
+							id="product-title"><span id="show-model-name"></span> <span id="show-category-name"></span>
+							for <span id="show-gender"></span></p>
+						<!-- <p>When she reached the first hills of the Italic Mountains, she
+							had a last view back on the skyline of her hometown
+							Bookmarksgrov</p> -->
 						<p class="price">
 							<span style="font-size: 25px;" id="show-price"></span>
 
@@ -124,23 +108,18 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-6 text-center">
-								<p class="addtocart"><a href="" id="addToCartBtn"
-										class="btn btn-primary btn-addtocart"><i class="icon-shopping-cart"></i> Add to
+								<p class="addtocart"><a href="" id="addToCartBtn" style="background-color: #1dcaff; color: black;"
+										class="btn btn-addtocart"><i class="icon-shopping-cart text-dark"></i> Add to
 										Cart</a></p>
 							</div>
 
 							<div class="col-sm-6 text-center">
-								<p class="addtocart"><a href="" class="btn btn-primary btn-addtocart"><i
-											class="icon-heart"></i>Wishlist</a></p>
-
-
+								<div id="addToWishlistBtn" class="btn btn-primary btn-addtocart"><i
+											class="icon-heart"></i>Save to Wishlist</div>
 							</div>
 						</div>
-
 						<div class="magnified-img"></div>
 					</div>
-
-
 				</div>
 			</div>
 
@@ -257,9 +236,9 @@
 															<span class="text-right"><a href="#" class="reply"><i
 																		class="icon-reply"></i></a></span>
 														</p>
-														<p>When she reached the first hills of the Italic Mountains, she
+														<!-- <p>When she reached the first hills of the Italic Mountains, she
 															had a last view back on the skyline of her hometown
-															Bookmarksgrov</p>
+															Bookmarksgrov</p> -->
 													</div>
 												</div>
 											</div>
@@ -334,7 +313,7 @@
 				</div>
 			</div>
 
-			<div class="colorlib-product">
+			<!-- <div class="colorlib-product">
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
@@ -539,21 +518,21 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
 
 
-	</html>
-
+	<!-- </html> -->
 
 
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="path/to/jquery.min.js"></script>
-	<script src="path/to/owl.carousel.min.js"></script>
-
+	<!-- <script src="path/to/owl.carousel.min.js"></script> -->
 	<script>
+
+
 
 
 		document.addEventListener("DOMContentLoaded", function () {
@@ -563,21 +542,29 @@
 			let initialProductId = dataHandler.getAttribute('product-data-id')
 			let initialVarientId = dataHandler.getAttribute('varient-data-id')
 
-			let productImageContainer = document.getElementById("product-image-container")
+			// let productImageContainer = document.getElementById("product-image-container")
 
 			let addToCartBtn = document.getElementById('addToCartBtn')
+
+			let addToWishlistBtn = document.getElementById('addToWishlistBtn')
+
+			let wishlistTxt = document.getElementById('wishlistTxt')
 
 
 			// Header cart count.
 			let cartCount = document.getElementById('mainCartCount')
 
 
-			console.log(productImageContainer);
+			// console.log(productImageContainer);
 
 			let imageOne = document.getElementById('img1')
 			let imageTwo = document.getElementById('img2')
 			let imageThree = document.getElementById('img3')
 			let imageFour = document.getElementById('img4')
+
+			let showImg = document.getElementById('showImg')
+
+
 
 			let pDescription = document.getElementById('p-desc')
 			let pColor = document.getElementById('p-clr')
@@ -601,7 +588,6 @@
 
 						let selectedSubVarients = data.selectedSubVarients
 
-						console.log(addToCartBtn, "AddToCart...............1", response.data);
 
 						let product = data.product
 
@@ -612,6 +598,7 @@
 
 						//Setting Subvarient id to add t cart btn
 						addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id)
+						addToWishlistBtn.setAttribute('svid', selectedSubVarients[0]._id)
 
 
 
@@ -632,6 +619,10 @@
 						imageTwo.src = `/static/images/${images[1]}`
 						imageThree.src = `/static/images/${images[2]}`
 						imageFour.src = `/static/images/${images[3]}`
+
+						showImg.src = `/static/images/${images[0]}`
+
+
 
 
 						//Setting colors
@@ -710,6 +701,65 @@
 				});
 
 
+			// Image zoom.
+
+			const zoomResult = document.getElementById('zoomResult')
+
+			showImg.addEventListener('mousemove', moveLens);
+			zoomLens.addEventListener('mousemove', moveLens);
+			showImg.addEventListener('mouseenter', showZoom);
+			zoomLens.addEventListener('mouseenter', showZoom);
+			showImg.addEventListener('mouseleave', hideZoom);
+			zoomLens.addEventListener('mouseleave', hideZoom);
+
+
+
+			function showZoom() {
+				zoomLens.style.display = "block";
+				zoomResult.style.display = "block";
+			}
+
+			function hideZoom() {
+				zoomLens.style.display = "none";
+				zoomResult.style.display = "none";
+			}
+
+			function moveLens(e) {
+				const pos = getCursorPos(e);
+				let x = pos.x - (zoomLens.offsetWidth / 2);
+				let y = pos.y - (zoomLens.offsetHeight / 2);
+
+				if (x > showImg.width - zoomLens.offsetWidth) { x = showImg.width - zoomLens.offsetWidth; }
+				if (x < 0) { x = 0; }
+				if (y > showImg.height - zoomLens.offsetHeight) { y = showImg.height - zoomLens.offsetHeight; }
+				if (y < 0) { y = 0; }
+
+				zoomLens.style.left = x + "px";
+				zoomLens.style.top = y + "px";
+
+				zoomResult.style.backgroundImage = `url(${showImg.src})`;
+				zoomResult.style.backgroundSize = `${showImg.width * 2}px ${showImg.height * 2}px`;
+				zoomResult.style.backgroundPosition = `-${x * 2}px -${y * 2}px`;
+
+			}
+
+			function getCursorPos(e) {
+				const a = showImg.getBoundingClientRect();
+				const x = e.clientX - a.left;
+				const y = e.clientY - a.top;
+				return { x: x, y: y };
+			}
+
+
+			// Image mouse over event start.....
+
+			document.addEventListener('mouseover', (event) => {
+				if (event.target && event.target.classList.contains("sideImg")) {
+					showImg.src = event.target.src
+				}
+			})
+
+
 			// ----------------------------CLICK EVENT START------------------------------------------
 
 			document.addEventListener("click", (event) => {
@@ -755,11 +805,8 @@
 
 				}
 
-
-
-
-				// COLOR BUTTON
-				if (event.target && event.target.classList.contains("clrBox")) {
+	// COLOR BUTTON
+	if (event.target && event.target.classList.contains("clrBox")) {
 					event.preventDefault()
 
 					let allClrBox = document.querySelectorAll(".clrBox")
@@ -806,6 +853,8 @@
 									imageTwo.src = `/static/images/${images[1]}`
 									imageThree.src = `/static/images/${images[2]}`
 									imageFour.src = `/static/images/${images[3]}`
+
+									showImg.src = imageOne.getAttribute('src')
 
 
 
@@ -863,6 +912,110 @@
 							console.error('Error fetching data:', error);
 						});
 				}
+
+
+				// COLOR BUTTON
+			// 	if (event.target && event.target.classList.contains("clrBox")) {
+			// 		event.preventDefault()
+
+			// 		let allClrBox = document.querySelectorAll(".clrBox")
+
+			// 		let clickedClrBox = event.target
+
+			// 		let varientId = clickedClrBox.getAttribute("varient-data-id")
+
+			// 		axios.get(`/shop/item/productDetails?pid=${initialProductId}&vid=${varientId}`)
+			// 			.then(function (response) {
+			// 				if (response.status == 200) {
+			// 					let data = response.data
+
+			// 					pColor.innerText = `Color - ${data.selectedVarients[0].colorName}`
+
+			// 					let selectedSubVarients = data.selectedSubVarients
+
+
+
+			// 					if (data.selectedVarients[0]._id == varientId) {
+
+			// 						//Setting Subvarient id to add t cart btn
+			// 						addToCartBtn.setAttribute('svid', selectedSubVarients[0]._id)
+
+			// 						for (let i = 0; i < allClrBox.length; i++) {
+			// 							allClrBox[i].style.borderColor = 'gray';
+			// 							allClrBox[i].style.borderWidth = '1px';
+			// 						}
+
+			// 						clickedClrBox.style.borderColor = "black"
+			// 						clickedClrBox.style.borderWidth = '3px'
+
+
+			// 						// Setting images
+			// 						let images = data.selectedVarients[0].images
+
+			// 						imageOne.src = `/static/images/${images[0]}`
+			// 						imageTwo.src = `/static/images/${images[1]}`
+			// 						imageThree.src = `/static/images/${images[2]}`
+			// 						imageFour.src = `/static/images/${images[3]}`
+
+			// 						showImg.src = imageOne.getAttribute('src')
+
+
+
+			// 						// Setting sizes
+			// 						let sizeContainer = imageOne.getAttribute('size-container')
+
+			// 						sizeContainer.innerHTML = ""
+									
+			// 						selectedSubVarients.forEach(function (subVarient) {
+			// 							sizeContainer.innerHTML += `
+			// <li><a id="size${subVarient._id}" sub-varient-data-id="${subVarient._id}" style="border-width: 1px; border-style: solid; border-color: gray" class="sizeBox" href="#">${subVarient.size}</a></li>
+			// `
+
+			// 						});
+
+			// 						let firstSize = document.getElementById(`size${selectedSubVarients[0]._id}`)
+
+
+			// 						firstSize.style.borderColor = 'black'
+			// 						firstSize.style.borderWidth = '3px'
+
+			// 						// Setting Price
+			// 						let showPrice = document.getElementById("show-price")
+			// 						showPrice.innerText = `₹ ${selectedSubVarients[0].price}`
+
+
+
+			// 						// Setting stock status
+			// 						// let showStock = document.getElementById("show-stock")
+
+			// 						if (selectedSubVarients[0].quantity > 10) {
+			// 							showStock.style.color = 'green'
+			// 							showStock.innerText = `In Stock`
+
+			// 						} else if (selectedSubVarients[0].quantity <= 10 && selectedSubVarients[0].quantity >= 6) {
+			// 							showStock.style.color = 'red'
+			// 							showStock.innerText = `Only Few Left`
+
+			// 						} else if (selectedSubVarients[0].quantity > 0 && selectedSubVarients[0].quantity <= 5) {
+			// 							showStock.style.color = 'red'
+			// 							showStock.innerText = `Only ${selectedSubVarients[0].quantity} Left`
+
+			// 						} else {
+			// 							showStock.style.color = 'red'
+			// 							showStock.innerText = `Out of stock`
+
+			// 						}
+
+
+			// 					}
+
+			// 				}
+
+			// 			})
+			// 			.catch(function (error) {
+			// 				console.error('Error fetching data:', error);
+			// 			});
+			// 	}
 
 
 
@@ -935,7 +1088,6 @@
 						.catch(function (error) {
 							console.error('Error fetching data:', error);
 						});
-
 				}
 
 				// ADD TO CART EVENT
@@ -956,6 +1108,55 @@
 							if (response.status == 200) {
 
 								cartCount.innerText = response.data.cartCount
+
+								new Noty({
+									type: 'success',
+									text: response.data.message,
+									timeout: 3000,
+									layout: 'bottomCenter',
+									theme: 'metroui',
+									animation: {
+										open: 'animated bounceInRight',
+										close: 'animated bounceOutRight',
+									}
+								}).show();
+							}
+						})
+						.catch((error) => {
+							console.log("it is an error", error);
+							if (error.response.status == 409) {
+								new Noty({
+									type: 'warning',
+									text: error.response.data.message,
+									timeout: 3000,
+									layout: 'bottomCenter',
+									theme: 'metroui',
+									animation: {
+										open: 'animated bounceInRight',
+										close: 'animated bounceOutRight',
+									}
+								}).show();
+
+							}
+						});
+
+				}
+
+
+
+
+
+				// ADD TO WISHLIST
+				if (event.target && (event.target.id == "addToWishlistBtn" || event.target.id == "wishlistTxt")) {
+					event.preventDefault()
+
+					let productSubVarientId = event.target.getAttribute('svid')
+
+
+					axios
+						.post("/shop/wishlist/addToWishlist", { productId: productSubVarientId})
+						.then((response) => {
+							if (response.status == 200) {
 
 								new Noty({
 									type: 'success',

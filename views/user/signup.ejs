@@ -166,6 +166,10 @@
     } else if (/\s/.test(password) || /^\s|\s$/.test(password)) {
       passwordError.textContent = "Password cannot contain whitespace";
       isValid = false;
+    } else if (!/^[^\W_][\w\W]{4,}$/.test(password)){
+      passwordError.textContent = "Enter a valid password";
+      isValid = false
+
     } else {
       passwordError.textContent = "";
     }
@@ -175,7 +179,8 @@
       password2Error.textContent = "Password confirmation is required";
       isValid = false;
     } else if (password !== confirmPassword) {
-      password2Error.textContent = "Passwords do not match";
+      isValid = false;
+      password2Error.textContent = "Passwords does not match";
     } else {
       password2Error.textContent = "";
     }
@@ -183,6 +188,12 @@
     //Name validation
     if (!firstName.trim() || !lastName.trim()) {
       nameError.textContent = "First name & Last name is required";
+      isValid = false;
+    } else if(!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(firstName)){
+      nameError.textContent = "Enter a valid firstname";
+      isValid = false;
+    } else if(!/^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$/.test(lastName)){
+      nameError.textContent = "Enter a valid lastname";
       isValid = false;
     } else {
       nameError.textContent = "";

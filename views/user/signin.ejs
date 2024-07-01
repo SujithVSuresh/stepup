@@ -86,7 +86,6 @@
       emailError.textContent = "";
     }
 
-
        //Password validation
        if (!password.trim()) {
       passwordError.textContent = "Password is required";
@@ -111,7 +110,8 @@
         axios.post('/signin', data)
             .then((response) => {
                 if(response.status == 200){
-                    window.location.href = "/"
+                    const redirectTo = response.data.redirectTo
+                    window.location.href = redirectTo
                 }
             })
             .catch((error) => {

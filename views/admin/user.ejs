@@ -70,16 +70,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/admin/coupon">
           <span class="menu-title">COUPON</span>
           <i class="mdi mdi-tag menu-icon"></i>
         </a>
       </li>
 
+      
       <li class="nav-item">
-        <a class="nav-link" href="">
-          <span class="menu-title">BANNER</span>
-          <i class="mdi mdi-label menu-icon"></i>
+        <a class="nav-link" href="/admin/salesReport">
+          <span class="menu-title">SALES REPORT</span>
+
+          <i class="mdi menu-icon mdi-chart-line"></i>
         </a>
       </li>
 
@@ -175,7 +177,7 @@
                         `;
                   }else{
                     tableContainer.innerHTML += `
-                        <tr>
+                      <tr>
                       <td>${user.firstName}</td>
                       <td>${user.lastName}</td>
                       <td>${user.email}</td>
@@ -239,7 +241,6 @@
                       statusBtn.innerText = "Unblock"
 
                       label.innerText = "Blocked"
-
                     }
                 }
             })
@@ -249,15 +250,7 @@
 
           }}) 
     }
-
   })
-
-
- 
-
-
-
-        
 
 </script>
 

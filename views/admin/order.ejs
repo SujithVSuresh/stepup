@@ -70,16 +70,18 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/admin/coupon">
           <span class="menu-title">COUPON</span>
           <i class="mdi mdi-tag menu-icon"></i>
         </a>
       </li>
 
+      
       <li class="nav-item">
-        <a class="nav-link" href="">
-          <span class="menu-title">BANNER</span>
-          <i class="mdi mdi-label menu-icon"></i>
+        <a class="nav-link" href="/admin/salesReport">
+          <span class="menu-title">SALES REPORT</span>
+
+          <i class="mdi menu-icon mdi-chart-line"></i>
         </a>
       </li>
 
@@ -133,12 +135,13 @@
                         <td><%= order.orderedDate.toISOString().slice(0, 10)  %></td>
                         <td><%= order.paymentStatus %></td>
                         <td><%= order.orderStatus %></td>
-                        <td><%= order.paymentMethod %></td>
+                        <td><%= order.paymentMethod=="ONLINE_PAYMENT" ? "Online" : "COD" %></td>
                         <td><%= order.orderedItems.length %></td>
                         <td><%= order.totalAmount %></td>
                         <td><a href="/admin/order/items?oid=<%= order._id %>" class="btn btn-outline-dark btn-sm">View more</a>                   
                         </td>
-                        <td>                   
+                        <td>  
+                                      
                       </td>
                       </tr>
 

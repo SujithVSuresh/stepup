@@ -21,6 +21,19 @@ router.post('/shop/cart/removeFromCart', auth.isLogin, userController.removeFrom
 
 router.post('/shop/cart/qtyManagement', auth.isLogin, userController.cartQtyManagement)
 
+
+
+router.post('/shop/cart/applyCoupon', auth.isLogin, userController.couponApply)
+router.post('/shop/cart/removeCoupon', auth.isLogin, userController.removeCoupon)
+
+
+router.get('/shop/wishlist', auth.isLogin, userController.wishlist)
+
+router.post('/shop/wishlist/addToWishlist', auth.isLogin, userController.addToWishlist)
+router.post('/shop/wishlist/removeFromWishlist', auth.isLogin, userController.removeFromWishlist)
+
+
+
 router.get('/shop/checkout', auth.isLogin, userController.checkout)
 
 router.get('/shop/items', auth.isLogin,  userController.items)
@@ -32,6 +45,7 @@ router.get('/shop/item/productDetails', auth.isLogin,  userController.productDet
 router.post('/shop/placeOrder', auth.isLogin,  userController.placeOrder)
 
 router.post('/shop/cancelOrder', auth.isLogin,  userController.cancelOrder)
+router.post('/shop/requestForReturn', auth.isLogin,  userController.requestForReturn)
 
 router.get('/shop/orderComplete', auth.isLogin,  userController.orderComplete)
 
@@ -50,8 +64,14 @@ router.post('/profile/changePassword', auth.isLogin, auth.isGoogleUser, userCont
 router.get('/profile/order', auth.isLogin, userController.order)
 router.get('/profile/order/getOrderById', auth.isLogin, userController.getOrderById)
 // router.get('/profile/order/orderDetail', auth.isLogin, userController.orderDetail)
-
 router.get('/profile/order/itemDetail', auth.isLogin, userController.orderItemDetail)
+
+
+
+router.get('/profile/wallet', auth.isLogin, userController.wallet)
+router.post('/profile/wallet/createOrder', auth.isLogin, userController.createWalletPaymentOrder)
+router.post('/profile/wallet/addMoney', auth.isLogin, userController.addMoneyToWallet)
+
 
 router.get('/signin',  auth.isLogout, userController.signin)
 
